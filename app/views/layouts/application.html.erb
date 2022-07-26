@@ -15,6 +15,9 @@
     <div class="main">
       <%= render "layouts/top_bar"%>
       <div class="main-container">
+        <% flash.each do |message_type, message| %>
+          <div class="alert alert-<%= message_type %>"><%= message %></div>
+        <% end %>   
         <%= yield %>
       </div>
     </div>

@@ -3,12 +3,21 @@
         <input type="text">
     </div>
     <div class="top-bar-right">
-        <p id="user">kosamega</p>
-        <div id="user-ddmenu">
-            <ul>
-            <li>設定</li>
-            <li>ログアウト</li>
-            </ul>
-        </div>
+        <% if logged_in? %>
+            <p id="user"><%= current_user.name %></p>
+            <div id="user-ddmenu">
+                <ul>
+                    <li>設定</li>
+                    <li><%= link_to("ログアウト", "/logout", {method: :delete})%></li>
+                </ul>
+            </div>
+        <% else %>
+            <p id="user">ゲスト</p>
+            <div id="user-ddmenu">
+                <ul>
+                    <li><%= link_to("ログイン", "/login") %></li>
+                </ul>
+            </div>
+        <% end %>
     </div>
 </div>
