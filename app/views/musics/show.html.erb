@@ -1,0 +1,11 @@
+<div class="music-info">
+    <div class="album-info-jaket">
+        <%= image_tag(@music.album.img_path, class: "album-jaket-img") %>
+    </div>
+    <div class="music-info-right">
+        <%= link_to(@music.album.name, "/albums/#{@music.album.id}")%>
+        <h2><%= @music.name%></h2>
+        <h3><%= @music.artist%></h3>
+        <audio controlslist="nodownload" controls src="/assets/<%=@music.audio_path%>"></audio>
+    </div>
+</div>

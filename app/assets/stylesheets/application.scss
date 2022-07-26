@@ -1,0 +1,143 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template:
+      "side-bar main" 100vh
+      / 250px 1fr;
+  }
+
+/* トップバー */
+.top-bar {
+  background-color: bisque;
+  height: 50px;
+  width: 100%;
+  position: fixed;
+}
+
+.top-bar-left {
+  float: left;
+}
+
+.top-bar-right {
+  height: 50px;
+  float: right;
+  margin-left: 300px;
+  margin-right: 250px;
+  p {
+    margin:0 0 0 50px;
+    background-color: azure;    
+    height: 20px;
+    display: inline-block;
+    padding: 5px;
+    margin: 10px 0;
+  }
+}
+
+
+.top-bar input {
+  width: 100px;
+  display: inline-block;
+}
+
+.top-bar p {
+  margin-right: 30px;
+}
+
+#user-ddmenu {
+  display: none;
+  width: 100px;
+  height: 100px;
+  background-color: rgb(224, 224, 224);
+}
+
+/* サイドバー */
+.side-bar {
+  background-color: azure;
+}
+
+.side-bar-content {
+  position: fixed;
+}
+
+.main-container {
+  margin-top: 50px;
+  background-color: rgb(255, 255, 255);
+}
+
+#logo {
+  font-size: 30px;
+  margin: 0;
+}
+
+/* 文字 */
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+/* ジャケット */
+.album-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.album-item {
+  flex: 0 0 30%;
+  margin: 10px;
+}
+
+// アルバムshow
+.album-musics {
+  margin: 30px;
+}
+
+.album-info {
+  display: grid;
+  grid-template:
+  "jaket text" 250px
+  / 300px 1fr;
+  margin-top: 100px;
+}
+
+.album-info-jaket {
+}
+
+.album-jaket-img {
+  width: 250px;
+  margin-left: 30px;
+}
+.album-info-text {
+  h1 {
+    line-height: 250px;
+    margin: 0;
+  }
+}
+
+
+.album-musics {
+  display: grid;
+  grid-template:
+  "a b c" 
+  /30px 2fr 1fr ;
+}
+
+// music show
+.music-info {
+  display: grid;
+  grid-template:
+  "jaket text" 250px
+  / 300px 1fr;
+  margin-top: 100px;
+}

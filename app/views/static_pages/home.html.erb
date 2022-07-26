@@ -1,0 +1,6 @@
+<h1>最新リリース</h1>
+<div class="album-container">
+    <% @albums.each do |a| %>
+        <%= link_to(image_tag("#{a.img_path}",class: "album-item", width: "250px"), "albums/#{a.id}") %>
+    <% end %>
+</div>
