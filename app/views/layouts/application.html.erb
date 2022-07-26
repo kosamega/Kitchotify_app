@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>KichotifyApp</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <%= render "layouts/side_bar" %>
+    <div class="main">
+      <%= render "layouts/top_bar"%>
+      <div class="main-container">
+        <%= yield %>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script>
+        $(function(){
+            $('#user').mouseenter(function(){
+            $('#user-ddmenu').show();
+            });
+
+            $('html').click(function(){
+            $('#user-ddmenu').hide();
+            });
+        });
+    </script>
+  </body>
+</html>
+
