@@ -62,6 +62,7 @@ GEM
       zeitwerk (~> 2.3)
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
+    bcrypt (3.1.18)
     bindex (0.8.1)
     bootsnap (1.12.0)
       msgpack (~> 1.2)
@@ -136,6 +137,10 @@ GEM
       bundler (>= 1.15.0)
       railties (= 6.1.6.1)
       sprockets-rails (>= 2.0.0)
+    rails-controller-testing (1.0.5)
+      actionpack (>= 5.0.1.rc1)
+      actionview (>= 5.0.1.rc1)
+      activesupport (>= 5.0.1.rc1)
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
@@ -213,6 +218,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  bcrypt
   bootsnap (>= 1.4.4)
   byebug
   capybara (>= 3.26)
@@ -221,6 +227,7 @@ DEPENDENCIES
   net-smtp
   puma (~> 5.0)
   rails (~> 6.1.6)
+  rails-controller-testing
   sass-rails (>= 6)
   selenium-webdriver (>= 4.0.0.rc1)
   spring

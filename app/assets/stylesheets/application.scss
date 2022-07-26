@@ -79,6 +79,7 @@ ul {
 
 li {
   list-style: none;
+  margin: 5px 0;
 }
 
 a {
@@ -140,4 +141,10 @@ a {
   "jaket text" 250px
   / 300px 1fr;
   margin-top: 100px;
+}
+
+// ログイン
+.login-forms {
+  width: 800px;
+  margin: 100px auto;
 }
