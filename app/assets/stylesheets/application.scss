@@ -130,8 +130,19 @@ a {
 .album-musics {
   display: grid;
   grid-template:
-  "a b c" 
-  /30px 2fr 1fr ;
+  "a b c like" 
+  /30px 2fr 1fr 50px ;
+}
+
+.unliked-btn {
+  margin-right: 10px;
+  color: #8899a6;
+
+}
+
+.liked-btn {
+  margin-right: 10px;
+  color: #ff2581;
 }
 
 // music show
@@ -147,4 +158,12 @@ a {
 .login-forms {
   width: 800px;
   margin: 100px auto;
+}
+
+// like index
+.liked-musics {
+  display: grid;
+  grid-template:
+  "name album artist like"
+  /2fr 2fr 1fr 50px;
 }
