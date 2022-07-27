@@ -1,6 +1,8 @@
 <div class="top-bar">
     <div class="top-bar-left">
-        <input type="text">
+        <%= form_with(url: "/search/result", scope: :search, method: :get, local: true,) do |f| %>
+            <%= f.text_field :content %>
+        <% end %>
     </div>
     <div class="top-bar-right">
         <% if logged_in? %>

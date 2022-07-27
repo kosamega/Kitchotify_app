@@ -13,6 +13,7 @@ class LikesController < ApplicationController
 
   def index
     @likes = current_user.likes
+    store_location
   end
 
 end
