@@ -2,6 +2,7 @@
 
 <div class="liked-musics" >
     <% @likes.each do |like| %>
+        <div class="liked-music-jaket"><%= link_to(image_tag("#{like.music.album.img_path}",class: "jaket-mini", width: "50px"), "/albums/#{like.music.album.id}") %></div>
         <div class="liked-music-name"><%= link_to(like.music.name, "/musics/#{like.music_id}") %></div>
         <div class="liked-music-album"><%= link_to(like.music.album.name, "/albums/#{like.music.album.id}") %></div>
         <div class="liked-music-artist"><%= link_to(like.music.artist, "/musics/#{like.music_id}") %></div>

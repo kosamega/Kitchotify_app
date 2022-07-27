@@ -1,0 +1,25 @@
+<h1><%= @params %>での検索結果</h1>
+
+<% if @result.any? %>
+    <div class="liked-musics" >
+        <% @result.each do |music| %>
+            <div class="liked-music-jaket"><%= link_to(image_tag("#{music.album.img_path}",class: "jaket-mini", width: "50px"), "/albums/#{music.album.id}") %></div>
+            <div class="liked-music-name"><%= link_to(music.name, "/musics/#{music.id}") %></div>
+            <div class="liked-music-album"><%= link_to(music.album.name, "/albums/#{music.album.id}") %></div>
+            <div class="liked-music-artist"><%= link_to(music.artist, "/musics/#{music.id}") %></div>
+            <div class="album-music-like">
+                <% if Like.find_by(user_id: current_user.id, music_id: music.id) %>
+                    <%= link_to("/likes/#{music.id}/destroy", {method: "delete"}) do %>
+                        <span class="fa fa-heart liked-btn"></span>
+                    <% end %>
+                <% else %>
+                    <%= link_to("/likes/#{music.id}/create", {method: "post"}) do%>
+                        <span class="fa fa-heart unliked-btn"></span>
+                    <% end %>
+                <% end %>
+            </div>
+        <% end %>
+    </div>
+<% else %>
+    <p><%= @params %>を含む曲は見つかりませんでした<p>
+<% end %>
