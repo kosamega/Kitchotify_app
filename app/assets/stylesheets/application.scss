@@ -1,3 +1,8 @@
+/*
+*= require_tree .
+*= require_self
+*/
+
 body {
     margin: 0;
     padding: 0;
@@ -54,11 +59,14 @@ body {
 
 /* サイドバー */
 .side-bar {
+  height: 100vh;
   background-color: azure;
+  
 }
 
 .side-bar-content {
   position: fixed;
+  margin: 20px;
 }
 
 .main-container {
@@ -150,15 +158,6 @@ a {
   color: #ff2581;
 }
 
-// music show
-.music-info {
-  display: grid;
-  grid-template:
-  "jaket text" 250px
-  / 300px 1fr;
-  margin-top: 100px;
-}
-
 // ログイン
 .login-forms {
   width: 800px;
@@ -170,10 +169,43 @@ a {
   margin: 30px;
   display: grid;
   grid-template:
-  "jaket name album artist like"
-  /60px 2fr 2fr 1fr 50px;
+  "jaket name album artist like ."
+  /60px 2fr 2fr 1fr 50px 50px;
 }
 
-.liked-music-name, .liked-music-album, .liked-music-artist {
+.liked-music-name, .liked-music-album, .liked-music-artist, .music-delete-from-playlist {
   line-height: 50px;
 }
+
+.add-playlist p {
+  margin-top: 10px;
+}
+
+.add_playlist-point {
+  position: relative;
+  margin-bottom: 5px;
+  cursor: pointer;
+}
+
+.select-playlists {
+  position: absolute;
+  right: 100px;
+  background-color: #8899a6;
+  width: 100px;
+  padding: 0 10px;
+  display: none;
+}
+
+.select-playlists-close {
+  cursor: pointer;
+}
+
+// playlist show
+.musics-in-the-playlist {
+  margin: 30px;
+  display: grid;
+  grid-template:
+  "jaket name album artist like create delete"
+  /60px 2fr 2fr 1fr 50px 50px 50px;
+}
+

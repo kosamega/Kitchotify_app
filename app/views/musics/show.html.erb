@@ -18,3 +18,22 @@
         <% end %>
     </div>
 </div>
+
+<div class="music-comments">
+    <h1>コメント</h1>
+    <div class="comment-item">
+        <div class="comment-form">
+            <%= form_with(url: "/comments/create", scope: :comment, local: true) do |f| %>
+                <div><%= hidden_field_tag :music_id, @music.id %></div>
+                <%= f.text_area :content, class: "comment-textarea" %>
+                <%= f.submit "送信", class: "comment-submit" %>
+            <% end %>
+        </div>
+        <ul>
+            <% @comments.each do |comment| %>
+                    <li class="comment-user" ><%= comment.user.name %>   <%= comment.created_at%></li>
+                    <li class="comment-content"><%= comment.content %></li>
+            <% end %>
+        </ul>
+    </div>
+</div>

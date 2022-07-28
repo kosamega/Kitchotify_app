@@ -1,9 +1,46 @@
-<nav class="side-bar">
-    <div class="side-bar-content">
-        <%= link_to("Kichotify", "/", id: "logo")%>
-        <ul>
-            <li><%= link_to("ホーム", "/") %></li>
-            <li><%= link_to("お気に入り", "/likes/index") %></li>
-        </ul>   
-    </div>
-</nav>
+<% if logged_in? %>
+    <nav class="side-bar">
+        <div class="side-bar-content">
+            <div casll="side-bar-content-1">
+                <%= link_to("Kichotify", "/", id: "logo")%>
+                <ul>
+                    <li><%= link_to("ホーム", "/") %></li>
+                    <li><%= link_to("お気に入り", "/likes/index") %></li>
+                    <li>新しいプレイリスト</li>
+                    <li>
+                        <%= form_with(url: "/playlists/create", scope: :playlist, local: true) do |f| %>
+                            <%= f.text_field :name %>
+                            <%= f.submit "作成" %>
+                        <%end%>
+                    </li>
+                </ul>   
+            </div>
+            <div class="side-bar-content-2">
+                <ul>
+                    <% current_user.playlists.each do |p| %>
+                        <li><%= link_to(p.name, "/playlists/#{p.id}") %></li>
+                    <% end %>
+                </ul>
+            </div>
+        </div>
+    </nav>
+<% else %>
+    <nav class="side-bar">
+        <div class="side-bar-content">
+            <div casll="side-bar-content-1">
+                <%= link_to("Kichotify", "/", id: "logo")%>
+                <ul>
+                    <li><%= link_to("ホーム", "/") %></li>
+                    <li><%= link_to("お気に入り", "/likes/index") %></li>
+                </ul>   
+            </div>
+            <%# <div class="side-bar-content-2">
+                <ul>
+                    <li>プレイリスト1</li>
+                    <li>プレイリスト2</li>
+                    <li>プレイリスト3</li>
+                </ul>
+            </div> %>
+        </div>
+    </nav>
+<% end %>

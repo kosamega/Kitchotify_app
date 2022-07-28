@@ -25,8 +25,4 @@ module SessionsHelper
         session.delete(:forwarding_url)
     end
 
-    # 最後にgetリクエストを送ったURLを覚えておく
-    def store_location
-        session[:forwarding_url] = request.original_url if request.get?
-    end
 end

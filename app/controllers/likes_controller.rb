@@ -1,4 +1,6 @@
 class LikesController < ApplicationController
+  before_action :logged_in_user
+  
   def create
     @like = Like.new(user_id: current_user.id, music_id: params[:id])
     @like.save
@@ -13,7 +15,7 @@ class LikesController < ApplicationController
 
   def index
     @likes = current_user.likes
-    store_location
+    @playlists = current_user.playlists
   end
 
 end

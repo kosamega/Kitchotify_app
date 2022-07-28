@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  before_action :logged_in_user, only: :destroy
+
   def new
   end
 
@@ -15,6 +17,6 @@ class SessionsController < ApplicationController
 
   def destroy
     log_out
-    redirect_to "/"
+    redirect_to "/login"
   end
 end

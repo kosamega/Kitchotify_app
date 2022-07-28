@@ -4,3 +4,13 @@
         <%= link_to(image_tag("#{a.img_path}",class: "album-item", width: "250px"), "albums/#{a.id}") %>
     <% end %>
 </div>
+
+<div class="new-comments">
+    <h1>新着コメント</h1>
+    <% @comments.each do |comment| %>
+        <ul>
+            <li><%=comment.user.name%><%=comment.created_at%></li>
+            <li><%=comment.content%></li>
+        </ul>
+    <% end %>
+</div>
