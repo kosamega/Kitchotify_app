@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_27_051745) do
+ActiveRecord::Schema.define(version: 2022_07_27_131155) do
 
   create_table "albums", force: :cascade do |t|
     t.integer "album_id"
@@ -20,6 +20,14 @@ ActiveRecord::Schema.define(version: 2022_07_27_051745) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "comments", force: :cascade do |t|
+    t.text "content"
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "music_id"
+  end
+
   create_table "likes", force: :cascade do |t|
     t.integer "music_id"
     t.integer "user_id"
@@ -27,8 +35,14 @@ ActiveRecord::Schema.define(version: 2022_07_27_051745) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "musics", id: false, force: :cascade do |t|
-    t.integer "id"
+  create_table "music_playlist_relations", force: :cascade do |t|
+    t.integer "music_id"
+    t.integer "playlist_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "musics", force: :cascade do |t|
     t.integer "album_id"
     t.integer "track"
     t.text "name"
@@ -36,6 +50,13 @@ ActiveRecord::Schema.define(version: 2022_07_27_051745) do
     t.text "audio_path"
     t.text "created_at"
     t.text "updated_at"
+  end
+
+  create_table "playlists", force: :cascade do |t|
+    t.integer "user_id"
+    t.text "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|

@@ -1,3 +1,41 @@
-// Place all the styles related to the musics controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
+
+// music show
+.music-info {
+    display: grid;
+    grid-template:
+    "jaket text" 250px
+    / 300px 1fr;
+    margin-top: 100px;
+  }
+  
+  .music-comments {
+    margin: 30px;
+  }
+  
+  .comment-form {
+    width: 500px;
+    height: 150px;
+  }
+  
+  .comment-textarea {
+    width: 500px;
+    height: 100px;
+    margin: 0;
+    padding: 0;
+    display: block;
+    font-size: 15px;
+  }
+  
+  .comment-submit {
+    margin:10px 0;
+    float: right;
+  }
+  
+  .comment-item {
+    margin-left: 10px;
+  }
+  
+  .comment-user {
+    color: #8899a6;
+  }
+  

@@ -1,11 +1,11 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 171:
-  album_id: 1
   name: 月吉171号
   img_path: 171.png
+  id: 1
 
 172:
-  album_id: 2
   name: 月吉172号
   img_path: 172.png
+  id: 2

@@ -8,6 +8,7 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
     <%# FontAwesome読み込み %>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -24,7 +25,6 @@
         <%= yield %>
       </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script>
         $(function(){
             $('#user').mouseenter(function(){
@@ -33,6 +33,14 @@
 
             $('html').click(function(){
             $('#user-ddmenu').hide();
+            });
+
+            $(".add_playlist-point").click(function(){
+              $(this).siblings().show();
+            });
+
+            $('.select-playlists-close').click(function(){
+              $(this).parent().parent().find(".select-playlists").hide();
             });
         });
     </script>
