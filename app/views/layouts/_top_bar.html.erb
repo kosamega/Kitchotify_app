@@ -6,7 +6,8 @@
     </div>
     <div class="top-bar-right">
         <% if logged_in? %>
-            <p id="user"><%= current_user.name %></p>
+            <%= link_to(current_user.name, "/users/#{current_user.id}") %>
+            <%= link_to("ログアウト", "/logout", {method: :delete})%>
             <div id="user-ddmenu">
                 <ul>
                     <li>設定</li>

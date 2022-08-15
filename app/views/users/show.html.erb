@@ -1,0 +1,13 @@
+<h1><%=@user.name%></h1>
+<p><%= @user.bio %></p>
+<% if @user == current_user %>
+    <%= link_to("編集", "/users/#{current_user.id}/edit") %>
+<% end %>
+
+<h2>プレイリスト</h2>
+<ul>
+    <% @playlists.each do |playlist| %>
+     <li><%= link_to(playlist.name, "/playlists/#{playlist.id}") %></li>
+    <% end %>
+</ul>
+

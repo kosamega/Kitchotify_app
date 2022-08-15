@@ -1,4 +1,14 @@
 // ホーム
-.new-comments {
+.sita-container {
+    display: grid;
+    grid-template: 
+        "comment playlist"
+        /1fr 1fr;
+}
+.new-comments, .new-playlists {
     margin: 30px;
+}
+
+.new-comment-item {
+    margin-left: 10px;
 }

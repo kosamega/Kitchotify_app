@@ -3,6 +3,7 @@ class AlbumsController < ApplicationController
     def show
         @album = Album.find_by(id: params[:id])
         @musics = @album.musics
+        @playlists = current_user.playlists
     end
 
 end

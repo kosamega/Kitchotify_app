@@ -14,4 +14,9 @@ class ApplicationController < ActionController::Base
             redirect_to "/login"            
         end
     end
+
+    def correct_user
+        @user = Playlist.find_by(id: params[:id]).user
+        redirect_to("/") unless @user == current_user
+    end
 end

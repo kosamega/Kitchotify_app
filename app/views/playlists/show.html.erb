@@ -1,5 +1,11 @@
-<h1><%= @playlist.name %></h1>
-<%= link_to("削除", "/playlists/#{@playlist.id}", method: :delete, data: { confirm: "本当に消しますか" }) %>
+<div class="playlist-info">
+    <h1><%= @playlist.name %></h1>
+    <%= link_to(@playlist.user.name, "/users/#{@playlist.user.id}") %></h3>
+    <p><%= @playlist.comment %> </p>
+    <% if current_user == @playlist.user%>
+        <%= link_to("削除", "/playlists/#{@playlist.id}", method: :delete, data: { confirm: "本当に消しますか" }) %>
+    <% end %>
+</div>
 
 <div class="musics-in-the-playlist " >
     <% @musics.each do |music| %>
