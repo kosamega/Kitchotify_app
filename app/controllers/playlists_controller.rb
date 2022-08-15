@@ -1,8 +1,9 @@
 class PlaylistsController < ApplicationController
   before_action :logged_in_user
+  before_action :correct_user, only: [:destroy]
 
   def create
-    playlist = Playlist.new(user_id: current_user.id, name: params[:playlist][:name])
+    playlist = current_user.playlists.build(playlist_params)
     playlist.save
     redirect_back_or "/"
   end
@@ -12,12 +13,19 @@ class PlaylistsController < ApplicationController
     redirect_to "/"
   end
 
-
+  def index
+    @playlists = Playlist.all
+  end
   
   def show
     @playlist = Playlist.find_by(id: params[:id])
     @playlists = current_user.playlists
     @musics = @playlist.musics_included
   end
+
+  private 
+    def playlist_params
+      params.require(:playlist).permit(:name, :public, :comment)
+    end
 
   end

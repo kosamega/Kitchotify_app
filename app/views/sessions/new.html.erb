@@ -9,6 +9,13 @@
             <li><%= f.label :password %></li>
             <li><%= f.password_field :password %></li>
 
+            <%= f.label :remember_me, class: "checkbox inline" do %>
+                <li>
+                    <%= f.check_box :remember_me %>
+                    <span>パスワードを記憶する</span>
+                </li>
+            <% end %>
+
             <li><%= f.submit "ログイン" %></li>
         </ul>
     <% end %>

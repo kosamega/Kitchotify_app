@@ -1,0 +1,10 @@
+<h1>ユーザー設定</h1>
+<%= form_with(url: "/users/#{current_user.id}", scope: :user, method: :patch, local: true) do |f| %>
+    <ul>
+        <li><%= f.label :名前 %></li>
+        <li><%= f.text_field :name, class: "form-name", value: "#{current_user.name}" %></li>
+        <li><%= f.label :bio %></li>
+        <li><%= f.text_area :bio, class: "form-bio", value: "#{current_user.bio}" %></li>
+        <li><%= f.submit "変更" %></li>
+    </ul>
+<% end %>

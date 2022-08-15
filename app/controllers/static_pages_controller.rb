@@ -4,5 +4,6 @@ class StaticPagesController < ApplicationController
   def home
     @albums = Album.all
     @comments = Comment.all[1..10]
+    @playlists = Playlist.where(public: 1)[1..10]
   end
 end

@@ -1,0 +1,6 @@
+<h1>全てのプレイリスト</h1>
+<ul>
+    <% @playlists.each do |playlist| %>
+        <li><%=link_to("#{playlist.user.name}　#{playlist.name}", "/playlists/#{playlist.id}")%></li>
+    <% end %>
+</ul>

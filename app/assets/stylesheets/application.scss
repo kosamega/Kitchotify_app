@@ -8,9 +8,16 @@ body {
     padding: 0;
     display: grid;
     grid-template:
-      "side-bar main" 100vh
+      "side-bar main" 
       / 250px 1fr;
   }
+
+// メイン
+.main {
+  height: 100vh;
+  overflow: scroll;
+}
+
 
 /* トップバー */
 .top-bar {
@@ -36,13 +43,13 @@ body {
   float: right;
   margin-left: 300px;
   margin-right: 250px;
-  p {
+  a {
     margin:0 0 0 50px;
     background-color: azure;    
     height: 20px;
     display: inline-block;
     padding: 5px;
-    margin: 10px 0;
+    margin: 10px 17px 10px 0;
   }
 }
 
@@ -61,22 +68,111 @@ body {
 .side-bar {
   height: 100vh;
   background-color: azure;
-  
 }
 
 .side-bar-content {
-  position: fixed;
-  margin: 20px;
+  margin-left: 20px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.side-bar-content-2 {
+    margin-top: 10px;
+    height: auto;
+    overflow-y: scroll;
+    flex-grow: 1;
+}
+
+
+.fa-config{
+  font-family: "Font Awesome 6 free";
+  font-weight: 900;
+  display: inline-block;
+}
+
+.x-icon {
+  float: right;
+  margin: 13px 19px;
+  font-size: large;
+  cursor: pointer;
+}
+
+.like-icon {
+  color: #ff2581;
+}
+
+.icon {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  text-align: center;
+  vertical-align: middle;
+  margin-right: 7px;
+}
+
+.text-field {
+  width: 154px;
 }
 
 .main-container {
-  margin: 60px 20px 0 20px;
+  margin: 70px 30px 0 30px;
   background-color: rgb(255, 255, 255);
 }
 
 #logo {
   font-size: 30px;
-  margin: 0;
+  display: inline-block;
+  margin-top: 10px;
+}
+
+// 新しいプレイリスト
+#new-playlist {
+  cursor: pointer;
+}
+
+.new-playlist {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  z-index: 1;
+  background-color: #0000004d;
+  display: none;
+}
+
+.new-playlist-form {
+  width: 900px;
+  height: 500px;
+  margin: auto;
+  background-color: aliceblue;
+  border-radius: 10px;
+}
+
+.x {
+  height: 30px;
+}
+
+.new-playlist-form-content-form {
+  width: 500px;
+  margin: auto;
+}
+
+.form-name{
+  width: 500px;
+}
+
+.form-bio{
+  width: 500px;
+  height: 230px;
+}
+
+.new-playlist-comment {
+  width: 500px;
+  height: 230px;
+}
+
+.new-playlist-submit-btn {
+  float: right;
 }
 
 /* 文字 */
@@ -88,7 +184,7 @@ ul {
 
 li {
   list-style: none;
-  margin: 5px 0;
+  margin: 9px 0;
 }
 
 a {
@@ -96,11 +192,15 @@ a {
   color: black;
 }
 
+a:hover {
+  text-decoration:underline;
+}
+
 /* ジャケット */
 .album-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
+  // display: flex;
+  // flex-wrap: wrap;
+  // justify-content: space-evenly;
 }
 
 .album-item {
@@ -109,10 +209,6 @@ a {
 }
 
 // アルバムshow
-.album-musics {
-  margin: 30px;
-}
-
 .album-music-like  a {
   line-height: 50px;
 }
@@ -141,10 +237,15 @@ a {
 
 
 .album-musics {
+  margin: 30px;
   display: grid;
   grid-template:
-  "a b c like" 
-  /30px 2fr 1fr 50px ;
+  "track name artist like add-playlist" 
+  /30px 2fr 1fr 50px 50px;
+}
+
+.album-music-track, .album-music-like .add-playlist {
+  line-height: 50px;
 }
 
 .unliked-btn {
@@ -158,6 +259,11 @@ a {
   color: #ff2581;
 }
 
+.house {
+  margin-right: 10px;
+  color: #000000;
+}
+
 // ログイン
 .login-forms {
   width: 800px;
@@ -169,7 +275,7 @@ a {
   margin: 30px;
   display: grid;
   grid-template:
-  "jaket name album artist like ."
+  "jaket name album artist like addplaylist"
   /60px 2fr 2fr 1fr 50px 50px;
 }
 

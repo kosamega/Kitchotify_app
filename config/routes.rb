@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
   get '/', to: "static_pages#home"
+
+  get '/users/index', to: "users#index"
+  get '/users/:id/edit', to: "users#edit"
+  get '/users/:id', to: "users#show"
+  patch '/users/:id', to: "users#update"
   
   get '/login', to: "sessions#new"
   post '/login', to: "sessions#create"
@@ -15,10 +20,10 @@ Rails.application.routes.draw do
   
   post '/comments/create', to: "comments#create"
 
-  post '/search/create', to: "searchs#create"
   get '/search/result', to: "searchs#index"
   
   post 'playlists/create', to: "playlists#create"
+  get 'playlists/index', to: "playlists#index"
   get 'playlists/:id', to: "playlists#show"
   delete 'playlists/:id', to: "playlists#destroy"
 
