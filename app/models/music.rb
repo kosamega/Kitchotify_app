@@ -3,4 +3,5 @@ class Music < ApplicationRecord
     has_many :likes
     has_many :playlists
     has_many :comments
+    default_scope -> { order(id: :asc) }
 end
