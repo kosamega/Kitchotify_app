@@ -8,12 +8,14 @@
 <div class="sita-container">
     <div class="new-comments">
         <h1>新着コメント</h1>
-        <% @comments.each do |comment| %>
-            <ul>
-                <li><%=link_to(comment.music.name, "/musics/#{comment.music.id}")%></li>
-                <li class="new-comment-item comment-user"><%=comment.user.name%><%=comment.created_at%></li>
-                <li class="new-comment-item"><%=comment.content%></li>
-            </ul>
+        <% if @comments %>
+            <% @comments.each do |comment| %>
+                <ul>
+                    <li><%=link_to(comment.music.name, "/musics/#{comment.music.id}")%></li>
+                    <li class="new-comment-item comment-user"><%=comment.user.name%><%=comment.created_at%></li>
+                    <li class="new-comment-item"><%=comment.content%></li>
+                </ul>
+            <% end %>
         <% end %>
     </div>
     <div class="new-playlists">
