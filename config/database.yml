@@ -8,14 +8,18 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  timeout: 5000
-  username: yanagi
-  password: Kotomi864
-  host: localhost
+  # timeout: 5000
+  # username: yanagi
+  # password: Kotomi864
+  # host: localhost
 
 development:
   <<: *default
   database: Kitchotify
+  timeout: 5000
+  username: yanagi
+  password: Kotomi864
+  host: localhost
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -35,6 +39,6 @@ test:
 # かえたあと
 production:
   <<: *default
-  database: Kitchotify_production
+  database: Kitchotify
   username: yanagi
   password: <%= ENV['KITCHOTIFY_DATABASE_PASSWORD'] %>

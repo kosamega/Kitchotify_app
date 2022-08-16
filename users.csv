@@ -1,3 +1,0 @@
-id,name,email,password_digest,created_at,updated_at,bio,remember_digest
-1,kosamega,kosamega@gmail.com,$2a$12$bineQL0Qsae0TjuWyOWZ/e4hNEe1zXjAZqTToqs7q9CP5Fp1Cl7Du,2022-07-26 11:28:00.295933,2022-08-15 06:11:17.389610,わくわくする曲が好きです。光、風が好きです。きもい音も好きです。ブレイクコアが好きです。,
-2,posamega,posamega@gmail.com,$2a$12$bineQL0Qsae0TjuWyOWZ/e4hNEe1zXjAZqTToqs7q9CP5Fp1Cl7Du,2022-07-26 12:15:29.943070,2022-07-26 12:15:29.943070,,
