@@ -14,7 +14,7 @@ class PlaylistsController < ApplicationController
   end
 
   def index
-    @playlists = Playlist.all
+    @playlists = Playlist.where(public: 1)
   end
   
   def show

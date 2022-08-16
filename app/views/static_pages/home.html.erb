@@ -17,10 +17,12 @@
         <% end %>
     </div>
     <div class="new-playlists">
-         <h1>新着プレイリスト</h1>
-        <% @playlists.each do |playlist| %>
-            <ul>
-                <li><%= link_to("#{playlist.user.name}　#{playlist.name}", "/playlists/#{playlist.id}") %></li>
-            </ul>
-        <% end %>    
+        <h1>新着プレイリスト</h1>
+        <% if @playlists%>
+            <% @playlists.each do |playlist| %>
+                <ul>
+                    <li><%= link_to("#{playlist.user.name}　#{playlist.name}", "/playlists/#{playlist.id}") %></li>
+                </ul>
+            <% end %>    
+        <% end %>
     </div>
