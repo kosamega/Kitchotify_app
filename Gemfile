@@ -33,6 +33,7 @@ gem 'net-smtp'
 gem 'rails-controller-testing'
 gem "jquery-rails"
 gem 'net-pop'
+gem 'net-imap'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
