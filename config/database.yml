@@ -24,8 +24,17 @@ test:
   <<: *default
   database: psql_Kitchotify_test
 
-production:
-  <<: *default
-  database: psql_Kitchotify_production
+
+# かえるまえ
+# production:
+#   <<: *default
+#   database: psql_Kitchotify_production
   # username: psql_Kitchotify
   # password: <%= ENV['PSQL_TEST20220815_DATABASE_PASSWORD'] %>
+
+# かえたあと
+production:
+  <<: *default
+  database: Kitchotify_production
+  username: yanagi
+  password: <%= ENV['KITCHOTIFY_DATABASE_PASSWORD'] %>
