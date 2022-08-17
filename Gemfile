@@ -34,6 +34,7 @@ gem 'net-pop'
 gem 'net-smtp'
 gem 'rails-controller-testing'
 gem "jquery-rails"
+gem 'aws-sdk-s3'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

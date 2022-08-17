@@ -6,7 +6,7 @@
         <%= link_to(@music.album.name, "/albums/#{@music.album.id}")%>
         <h2><%= @music.name%></h2>
         <h3><%= @music.artist%></h3>
-        <audio controlslist="nodownload" controls src="/assets/<%=@music.audio_path%>"></audio>
+        <audio controlslist="nodownload" controls src="http://s3.amazonaws.com/kitchotifyappstrage/audio/<%=@music.audio_path%>"></audio>
         <% if Like.find_by(user_id: current_user.id, music_id: @music.id) %>
             <%= link_to("/likes/#{@music.id}/destroy", {method: "delete"}) do %>
                 <span class="fa fa-heart liked-btn"></span>
