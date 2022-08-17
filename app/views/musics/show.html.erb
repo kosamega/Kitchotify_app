@@ -1,14 +1,12 @@
 <div class="music-info">
     <div class="album-info-jaket">
         <%= image_tag(@music.album.img_path, class: "album-jaket-img") %>
-        <%= image_tag("https://kitchotifyappstrage.s3.us-west-1.amazonaws.com/images/01.jpg", class: "album-jaket-img") %>
     </div>
     <div class="music-info-right">
         <%= link_to(@music.album.name, "/albums/#{@music.album.id}")%>
         <h2><%= @music.name%></h2>
         <h3><%= @music.artist%></h3>
         <audio controlslist="nodownload" controls src="https://kitchotifyappstrage.s3.us-west-1.amazonaws.com/audio/<%= h(@music.audio_path) %>"></audio>
-        <audio controlslist="nodownload" controls src="s3://kitchotifyappstrage/audio/kosamega_No going through.mp3"></audio>
         <% if Like.find_by(user_id: current_user.id, music_id: @music.id) %>
             <%= link_to("/likes/#{@music.id}/destroy", {method: "delete"}) do %>
                 <span class="fa fa-heart liked-btn"></span>
