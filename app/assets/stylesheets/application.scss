@@ -21,35 +21,46 @@ body {
 
 /* トップバー */
 .top-bar {
-  background-color: bisque;
+  background-color: rgb(39, 39, 39);
   height: 50px;
   width: 100%;
   position: fixed;
+  display: grid;
+  grid-template:
+   "left right"
+   / 500px 1fr;
 }
 
 .top-bar-left {
-  float: left;
+  display: flex;
+  form {
+    display: inline-block;
+    margin: auto 0;
+    height: 28px;
+  }
   input {
     width: 250px;
-    height: 20px;
+    height: 24px;
     padding: 0;
-    margin: 15px 20px;
-    display: inline-block;
+    margin:0 20px;
   }
 }
 
 .top-bar-right {
   height: 50px;
-  float: right;
   margin-left: 300px;
   margin-right: 250px;
   a {
-    margin:0 0 0 50px;
-    background-color: azure;    
+    float: right;
+    // background-color: azure;    
     height: 20px;
     display: inline-block;
     padding: 5px;
     margin: 10px 17px 10px 0;
+    color: rgba(238, 238, 238, 0.74);
+  }
+  a:hover {
+    color: #eee;
   }
 }
 
@@ -129,6 +140,11 @@ body {
 // 新しいプレイリスト
 #new-playlist {
   cursor: pointer;
+  color: rgb(44, 44, 44);
+}
+
+#new-playlist:hover {
+  color: #000000;
 }
 
 .new-playlist {
@@ -189,11 +205,11 @@ li {
 
 a {
   text-decoration: none;
-  color: black;
+  color: rgb(44, 44, 44);
 }
 
 a:hover {
-  text-decoration:underline;
+  color: black;
 }
 
 /* ジャケット */
@@ -300,6 +316,8 @@ a:hover {
   width: 100px;
   padding: 0 10px;
   display: none;
+  z-index: 1;
+  border-radius: 2px;
 }
 
 .select-playlists-close {

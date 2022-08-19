@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   post 'playlists/create', to: "playlists#create"
   get 'playlists/index', to: "playlists#index"
   get 'playlists/:id', to: "playlists#show"
+  post 'playlists/:id', to: "playlists#edit"
   delete 'playlists/:id', to: "playlists#destroy"
 
   post 'music_playlist_relations/create/:music_id/:playlist_id', to: "music_playlist_relations#create"
