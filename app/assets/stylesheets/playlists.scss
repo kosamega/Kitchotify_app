@@ -1,8 +1,41 @@
 .playlist-info {
     h1 {
-        margin-bottom: 8px;
+        margin-bottom: 5px;
     }
     h3 {
         margin: 10px 0 10px 0;
     }
+    background-color: #eee;
+    padding:2px 20px;
+    border-radius: 10px;
+
 }
+
+.playlist-edit-delete {
+    height: 40px;
+    a, span {
+        float: right;
+        margin-left: 15px;
+        cursor: pointer;
+        padding: 5px 10px;
+        background-color: rgb(39, 39, 39);
+        color: #ffffff;
+        border-radius: 3px;
+    }
+    a:hover {
+        color: #ffffff;
+    }
+    // margin:0 30px;
+}
+
+.edit-playlist {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background-color: #0000004d;
+    display: none;
+  }
+
