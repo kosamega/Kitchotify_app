@@ -10,6 +10,6 @@ class MusicsController < ApplicationController
         @url = signer.presigned_url(:get_object, 
                                     bucket: 'kitchotifyappstrage',
                                     key: "audio/#{@music.audio_path}",
-                                    expires_in: 10)
+                                    expires_in: 1200)
     end
 end

@@ -28,7 +28,7 @@ body {
   display: grid;
   grid-template:
    "left right"
-   / 500px 1fr;
+   / 300px 1fr;
 }
 
 .top-bar-left {
@@ -48,7 +48,6 @@ body {
 
 .top-bar-right {
   height: 50px;
-  margin-left: 300px;
   margin-right: 250px;
   a {
     float: right;
