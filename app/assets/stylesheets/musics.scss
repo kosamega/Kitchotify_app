@@ -6,9 +6,12 @@
     "jaket text" 250px
     / 300px 1fr;
     margin-top: 100px;
+    padding: 30px 0;
+    background-color:#8899a642;
+    border-radius: 10px;
   }
   
-  .music-comments {
+  .music-comments, .music-suggest {
     margin: 30px;
   }
   
@@ -39,3 +42,41 @@
     color: #8899a6;
   }
   
+.music-info-right {
+  audio {
+    width: 500px;
+  }
+}
+
+.music-containner-sita {
+  display: grid;
+  grid-template:
+  "comment suggest"
+  /1fr 2fr;
+}
+
+.musics-suggested {
+  display: grid;
+  grid-template:
+  "jaket name"
+  /60px 1fr;
+  height: 60px;
+}
+
+.musics-suggested-jacket {
+  margin: 5px;
+}
+
+.jacket-s {
+  height: 60px;
+}
+
+.name-s {
+  display: inline-block;
+}
+
+.suggestion-wrap {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+}

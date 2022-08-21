@@ -8,33 +8,51 @@
         <h3><%= @music.artist%></h3>
         <%# <audio controlslist="nodownload" controls src="https://kitchotifyappstrage.s3.us-west-1.amazonaws.com/audio/<%= h(@music.audio_path) "></audio> %>
         <audio controlslist="nodownload" controls src=<%= @url %>></audio>
-        <% if Like.find_by(user_id: current_user.id, music_id: @music.id) %>
-            <%= link_to("/likes/#{@music.id}/destroy", {method: "delete"}) do %>
-                <span class="fa fa-heart liked-btn"></span>
+        <div>
+            <% if Like.find_by(user_id: current_user.id, music_id: @music.id) %>
+                <%= link_to("/likes/#{@music.id}/destroy", {method: "delete"}) do %>
+                    <span class="fa fa-heart liked-btn"></span>
+                <% end %>
+            <% else %>
+                <%= link_to("/likes/#{@music.id}/create", {method: "post"}) do%>
+                    <span class="fa fa-heart unliked-btn"></span>
+                <% end %>
             <% end %>
-        <% else %>
-            <%= link_to("/likes/#{@music.id}/create", {method: "post"}) do%>
-                <span class="fa fa-heart unliked-btn"></span>
-            <% end %>
-        <% end %>
+        </div>
     </div>
 </div>
 
-<div class="music-comments">
-    <h1>コメント</h1>
-    <div class="comment-item">
-        <div class="comment-form">
-            <%= form_with(url: "/comments/create", scope: :comment, local: true) do |f| %>
-                <div><%= hidden_field_tag :music_id, @music.id %></div>
-                <%= f.text_area :content, class: "comment-textarea" %>
-                <%= f.submit "送信", class: "comment-submit" %>
-            <% end %>
+<div class="music-containner-sita">
+
+    <div class="music-comments">
+        <h2>コメント</h2>
+        <div class="comment-item">
+            <div class="comment-form">
+                <%= form_with(url: "/comments/create", scope: :comment, local: true) do |f| %>
+                    <div><%= hidden_field_tag :music_id, @music.id %></div>
+                    <%= f.text_area :content, class: "comment-textarea" %>
+                    <%= f.submit "送信", class: "comment-submit" %>
+                <% end %>
+            </div>
+            <ul>
+                <% @comments.each do |comment| %>
+                        <li class="comment-user" ><%= comment.user.name %>   <%= comment.created_at%></li>
+                        <li class="comment-content"><%= comment.content %></li>
+                <% end %>
+            </ul>
         </div>
+    </div>
+    <div class="music-suggest">
+        <h2><%= @music.artist %>の曲</h2>
         <ul>
-            <% @comments.each do |comment| %>
-                    <li class="comment-user" ><%= comment.user.name %>   <%= comment.created_at%></li>
-                    <li class="comment-content"><%= comment.content %></li>
-            <% end %>
+            <%@artistsmusics.each do |music| %>
+                <li>
+                    <div class="musics-suggested">
+                        <div class="jacket-s"><%= image_tag(music.album.img_path, class: "musics-suggested-jacket", width: "50px") %></div>
+                        <div class="suggestion-wrap"><%= link_to("#{music.name}", "/musics/#{music.id}", class: "name-s") %></div>
+                    </div>
+                </li>
+            <%end%>
         </ul>
     </div>
 </div>
