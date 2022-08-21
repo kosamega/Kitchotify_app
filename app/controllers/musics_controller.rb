@@ -9,7 +9,7 @@ class MusicsController < ApplicationController
         signer = Aws::S3::Presigner.new(client: s3)
         @url = signer.presigned_url(:get_object, 
                                     bucket: 'kitchotifyappstrage',
-                                    key: "audio/#{@music.audio_path}",
+                                    key: "audio/#{@music.album.id}/#{@music.audio_path}",
                                     expires_in: 1200)
     end
 end
