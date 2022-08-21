@@ -3,8 +3,8 @@
     <%= form_with(url: "/login", scope: :session, local: true) do |f| %>
 
         <ul>
-            <li><%= f.label :email %></li>
-            <li><%= f.text_field :email %></li>
+            <li><%= f.label :ユーザーネーム %></li>
+            <li><%= f.text_field :name %></li>
 
             <li><%= f.label :password %></li>
             <li><%= f.password_field :password %></li>
