@@ -4,7 +4,7 @@ class User < ApplicationRecord
     has_many :playlists
     has_many :comments
     validates :name, presence: true
-    validates :email, presence: true
+    # validates :email, presence: true
     attr_accessor :remember_token
     # 渡された文字列のハッシュ値を返す
     def User.digest(string)
