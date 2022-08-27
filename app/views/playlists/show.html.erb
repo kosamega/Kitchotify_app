@@ -75,8 +75,11 @@
                 </ul>
             </div>
         </div>
+        
         <div class="music-delete-from-playlist" >
-            <%= link_to("削除", "/music_playlist_relations/destroy/#{music.id}/#{@playlist.id}", method: "delete") %>
+            <% if @playlist.user == current_user %>
+                <%= link_to("削除", "/music_playlist_relations/destroy/#{music.id}/#{@playlist.id}", method: "delete") %>
+            <% end %>
         </div>
     <% end %>
 </div>
