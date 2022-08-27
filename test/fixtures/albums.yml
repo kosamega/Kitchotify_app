@@ -1,11 +1,9 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-171:
+g171:
   name: 月吉171号
   img_path: 171.png
   id: 1
 
-172:
+g172:
   name: 月吉172号
   img_path: 172.png
   id: 2

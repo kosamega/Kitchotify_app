@@ -6,16 +6,18 @@
         <div class="liked-music-name"><%= link_to(like.music.name, "/musics/#{like.music_id}") %></div>
         <div class="liked-music-album"><%= link_to(like.music.album.name, "/albums/#{like.music.album.id}") %></div>
         <div class="liked-music-artist"><%= link_to(like.music.artist, "/musics/#{like.music_id}") %></div>
-        <div class="album-music-like">
-            <% if Like.find_by(user_id: current_user.id, music_id: like.music_id) %>
-                <%= link_to("/likes/#{like.music_id}/destroy", {method: "delete"}) do %>
-                    <span class="fa fa-heart liked-btn"></span>
+        <div class="liked-music-like">
+            <div class="like-m">
+                <% if Like.find_by(user_id: current_user.id, music_id: like.music_id) %>
+                    <%= link_to("/likes/#{like.music_id}/destroy", {method: "delete"}) do %>
+                        <span class="fa fa-heart liked-btn"></span>
+                    <% end %>
+                <% else %>
+                    <%= link_to("/likes/#{like.music_id}/create", {method: "post"}) do%>
+                        <span class="fa fa-heart unliked-btn"></span>
+                    <% end %>
                 <% end %>
-            <% else %>
-                <%= link_to("/likes/#{like.music_id}/create", {method: "post"}) do%>
-                    <span class="fa fa-heart unliked-btn"></span>
-                <% end %>
-            <% end %>
+            </div>
         </div>
         <div class="add-playlist">
             <div class="add_playlist-point"><p>…</p></div>
@@ -25,7 +27,7 @@
                 </div>
                 <ul>
                     <% @playlists.each do |playlist| %>
-                        <li><%= link_to(playlist.name, "/music_playlist_relations/create/#{like.id}/#{playlist.id}", method: "post")%></li>
+                        <li><%= link_to(playlist.name, "/music_playlist_relations/create/#{like.music_id}/#{playlist.id}", method: "post")%></li>
                     <% end %>
                 </ul>
             </div>

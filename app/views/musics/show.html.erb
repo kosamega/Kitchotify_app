@@ -6,18 +6,36 @@
         <%= link_to(@music.album.name, "/albums/#{@music.album.id}")%>
         <h2><%= @music.name%></h2>
         <h3><%= @music.artist%></h3>
-        <%# <audio controlslist="nodownload" controls src="https://kitchotifyappstrage.s3.us-west-1.amazonaws.com/audio/<%= h(@music.audio_path) "></audio> %>
-        <audio controlslist="nodownload" controls src=<%= @url %>></audio>
-        <div>
-            <% if Like.find_by(user_id: current_user.id, music_id: @music.id) %>
-                <%= link_to("/likes/#{@music.id}/destroy", {method: "delete"}) do %>
-                    <span class="fa fa-heart liked-btn"></span>
+        <div class="audio-like-playlist">
+            <div class="audio-player">
+                <audio controlslist="nodownload" controls src=<%= @url %>></audio>
+            </div>
+            <div class="music-show-like-playlist">
+                <% if Like.find_by(user_id: current_user.id, music_id: @music.id) %>
+                    <%= link_to("/likes/#{@music.id}/destroy", method: "delete", class: "music-show-like") do %>
+                        <span class="fa fa-heart liked-btn"></span>
+                    <% end %>
+                <% else %>
+                    <%= link_to("/likes/#{@music.id}/create", method: "post", class: "music-show-like") do%>
+                        <span class="fa fa-heart unliked-btn"></span>
+                    <% end %>
                 <% end %>
-            <% else %>
-                <%= link_to("/likes/#{@music.id}/create", {method: "post"}) do%>
-                    <span class="fa fa-heart unliked-btn"></span>
-                <% end %>
-            <% end %>
+                <div class="add-playlist">
+                    <%# <div class="add_playlist-point"> %>
+                        <p class="add_playlist-point">…</p>
+                    <%# </div> %>
+                    <div class="select-playlists">
+                        <div class="select-playlists-close">
+                            <p>x</p>
+                        </div>
+                        <ul>
+                            <% @playlists.each do |playlist| %>
+                                <li><%= link_to(playlist.name, "/music_playlist_relations/create/#{@music.id}/#{playlist.id}", method: "post")%></li>
+                            <% end %>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -27,13 +45,17 @@
     <div class="music-comments">
         <h2>コメント</h2>
         <div class="comment-item">
-            <div class="comment-form">
-                <%= form_with(url: "/comments/create", scope: :comment, local: true) do |f| %>
-                    <div><%= hidden_field_tag :music_id, @music.id %></div>
-                    <%= f.text_area :content, class: "comment-textarea" %>
-                    <%= f.submit "送信", class: "comment-submit" %>
-                <% end %>
-            </div>
+            <% if current_user == User.find(2) %>
+                <div>kitchonkun以外でログインするとコメントができます</div>
+            <% else %>
+                <div class="comment-form">
+                    <%= form_with(url: "/comments/create", scope: :comment, local: true) do |f| %>
+                        <div><%= hidden_field_tag :music_id, @music.id %></div>
+                        <%= f.text_area :content, class: "comment-textarea" %>
+                        <%= f.submit "送信", class: "comment-submit" %>
+                    <% end %>
+                </div>
+            <% end %>
             <ul>
                 <% @comments.each do |comment| %>
                         <li class="comment-user" ><%= comment.user.name %>   <%= comment.created_at%></li>

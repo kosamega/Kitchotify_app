@@ -1,79 +1,9 @@
 one:
   content: "いいね"
   user: kosamega
-  music: hikari
+  music_id: 1 
 
 two:
   content: "悪いね"
   user: kosamega
-  music: hikari
-  
-one:
-  content: "いいね"
-  user: kosamega
-  music: hikari
-
-two:
-  content: "悪いね"
-  user: kosamega
-  music: hikari
-  
-one:
-  content: "いいね"
-  user: kosamega
-  music: hikari
-
-two:
-  content: "悪いね"
-  user: kosamega
-  music: hikari
-  
-one:
-  content: "いいね"
-  user: kosamega
-  music: hikari
-
-two:
-  content: "悪いね"
-  user: kosamega
-  music: hikari
-  
-one:
-  content: "いいね"
-  user: kosamega
-  music: hikari
-
-two:
-  content: "悪いね"
-  user: kosamega
-  music: hikari
-  
-one:
-  content: "いいね"
-  user: kosamega
-  music: hikari
-
-two:
-  content: "悪いね"
-  user: kosamega
-  music: hikari
-  
-one:
-  content: "いいね"
-  user: kosamega
-  music: hikari
-
-two:
-  content: "悪いね"
-  user: kosamega
-  music: hikari
-  
-one:
-  content: "いいね"
-  user: kosamega
-  music: hikari
-
-two:
-  content: "悪いね"
-  user: kosamega
-  music: hikari
+  music_id: 1 

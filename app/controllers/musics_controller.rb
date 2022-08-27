@@ -3,6 +3,7 @@ class MusicsController < ApplicationController
     
     def show
         @music = Music.find_by(id: params[:id])
+        @playlists = current_user.playlists
         @artistsmusics = Music.where(artist: @music.artist)
         @comments = @music.comments
         require 'aws-sdk-s3'

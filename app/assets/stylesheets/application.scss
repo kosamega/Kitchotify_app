@@ -224,10 +224,6 @@ a:hover {
 }
 
 // アルバムshow
-.album-music-like  a {
-  line-height: 50px;
-}
-
 .album-info {
   display: grid;
   grid-template:
@@ -244,9 +240,12 @@ a:hover {
   margin-left: 30px;
 }
 .album-info-text {
+  display: flex;
+  align-items: center;
   h1 {
-    line-height: 250px;
+    display: inline-block;
     margin: 0;
+    
   }
 }
 
@@ -259,8 +258,10 @@ a:hover {
   /30px 2fr 1fr 50px 50px;
 }
 
-.album-music-track, .album-music-like .add-playlist {
-  line-height: 40px;
+.album-music-track {
+  display: flex;
+  // justify-content: center;
+  align-items: center;
 }
 
 .unliked-btn {
@@ -294,17 +295,15 @@ a:hover {
   /60px 2fr 2fr 1fr 50px 50px;
 }
 
-.liked-music-name, .liked-music-album, .liked-music-artist, .music-delete-from-playlist {
-  line-height: 50px;
+.liked-music-name, .liked-music-album, .liked-music-artist, .music-delete-from-playlist, .liked-music-like, .liked-music-jaket, .album-music-like  {
+  display: flex;
+  align-items: center;
 }
 
-.add-playlist p {
-  margin-top: 10px;
-}
 
 .add_playlist-point {
   position: relative;
-  margin-bottom: 5px;
+  // margin-bottom: 5px;
   cursor: pointer;
 }
 

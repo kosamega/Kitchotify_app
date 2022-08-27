@@ -15,6 +15,14 @@ class ApplicationController < ActionController::Base
         end
     end
 
+    def not_kitchonkun
+        if current_user == User.find(2)
+            store_location
+            flash[:danger] = "ログインしてください"
+            redirect_to "/login"  
+        end
+    end
+
     def correct_user
         @user = Playlist.find_by(id: params[:id]).user
         redirect_to("/") unless @user == current_user

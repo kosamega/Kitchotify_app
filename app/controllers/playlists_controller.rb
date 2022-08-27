@@ -1,6 +1,7 @@
 class PlaylistsController < ApplicationController
   before_action :logged_in_user
-  before_action :correct_user, only: [:edit, :destroy]
+  before_action :correct_user, only: [:update, :destroy]
+  before_action :not_kitchonkun, only: [:create, :update, :destroy]
 
   def create
     playlist = current_user.playlists.build(playlist_params)
@@ -8,7 +9,7 @@ class PlaylistsController < ApplicationController
     redirect_back_or "/"
   end
 
-  def edit
+  def update
     Playlist.find_by(id: params[:id]).update(playlist_params)
     redirect_back_or "/"
   end
