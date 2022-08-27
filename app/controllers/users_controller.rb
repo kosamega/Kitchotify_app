@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
   before_action :logged_in_user
+  before_action :not_kitchonkun, only: [:edit, :update]
+  
 
   def show
     @user = User.find_by(id: params[:id])

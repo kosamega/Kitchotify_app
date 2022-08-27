@@ -19,7 +19,7 @@ class LikesControllerTest < ActionDispatch::IntegrationTest
     end
     
     test "ログインしないとlike一覧にアクセスできない" do
-        get "/likes/index"
+        get "/likes"
         assert_not flash.empty?
         assert_redirected_to "/login"
     end

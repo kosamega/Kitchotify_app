@@ -3,7 +3,7 @@ require "test_helper"
 class CommentTest < ActiveSupport::TestCase
   def setup
     @user = users(:kosamega)
-    @comment = @user.comments.build(content: "iijan")
+    @comment = @user.comments.build(content: "iijan", music_id: 1)
   end
 
   test "コメントが有効" do

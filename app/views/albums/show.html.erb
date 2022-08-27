@@ -3,39 +3,55 @@
         <%= image_tag(@album.img_path, class: "album-jaket-img") %>
     </div>
     <div class="album-info-text">
-        <ul>
-            <li><h1><%= @album.name %></h1></li>
-        </ul>
+        <div>
+            <h1><%= @album.name %></h1>
+        </div>
     </div>
 </div>
 
 <div class="album-musics" >
     <% @musics.each do |music| %>
-        <div class="album-music-track"><%= link_to(music.track, "/musics/#{music.id}") %></div>
-        <div class="album-music-track"><%= link_to(music.name, "/musics/#{music.id}") %></div>
-        <div class="album-music-track"><%= link_to(music.artist, "/musics/#{music.id}") %></div>
-        <div class="album-music-like">
-            <% if Like.find_by(user_id: current_user.id, music_id: music.id) %>
-                <%= link_to("/likes/#{music.id}/destroy", {method: "delete"}) do %>
-                    <span class="fa fa-heart liked-btn"></span>
-                <% end %>
-            <% else %>
-                <%= link_to("/likes/#{music.id}/create", {method: "post"}) do%>
-                    <span class="fa fa-heart unliked-btn"></span>
-                <% end %>
-            <% end %>
+        <div class="album-music-track">
+            <div class="album-track">
+                <%= link_to(music.track, "/musics/#{music.id}") %>
+            </div>
         </div>
-        <div class="add-playlist">
-            <div class="add_playlist-point"><p>…</p></div>
-            <div class="select-playlists">
-                <div class="select-playlists-close">
-                    <p>x</p>
-                </div>
-                <ul>
-                    <% @playlists.each do |playlist| %>
-                        <li><%= link_to(playlist.name, "/music_playlist_relations/create/#{music.id}/#{playlist.id}", method: "post")%></li>
+        <div class="album-music-track">
+            <div class="album-music-name">
+                <%= link_to(music.name, "/musics/#{music.id}") %>
+            </div>
+        </div>
+        <div class="album-music-track">
+            <div class="album-artist-name">
+                <%= link_to(music.artist, "/musics/#{music.id}") %>
+            </div>
+        </div>
+        <div class="album-music-like">
+            <div>
+                <% if Like.find_by(user_id: current_user.id, music_id: music.id) %>
+                    <%= link_to("/likes/#{music.id}/destroy", {method: "delete"}) do %>
+                        <span class="fa fa-heart liked-btn"></span>
                     <% end %>
-                </ul>
+                <% else %>
+                    <%= link_to("/likes/#{music.id}/create", {method: "post"}) do%>
+                        <span class="fa fa-heart unliked-btn"></span>
+                    <% end %>
+                <% end %>
+            </div>
+        </div>
+        <div class="album-music-track">
+            <div class="add-playlist">
+                <div class="add_playlist-point"><p>…</p></div>
+                <div class="select-playlists">
+                    <div class="select-playlists-close">
+                        <p>x</p>
+                    </div>
+                    <ul>
+                        <% @playlists.each do |playlist| %>
+                            <li><%= link_to(playlist.name, "/music_playlist_relations/create/#{music.id}/#{playlist.id}", method: "post")%></li>
+                        <% end %>
+                    </ul>
+                </div>
             </div>
         </div>
     <% end %>

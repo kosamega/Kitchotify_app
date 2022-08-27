@@ -5,10 +5,12 @@
                 <%= link_to("Kichotify", "/", id: "logo")%>
                 <ul>
                     <li><span class="icon"><i class="fa-light fa-house home-icon fa-config"></i></span><%= link_to("ホーム", "/") %></li>
-                    <li><span class="icon"><i class="fa-regular fa-heart like-icon fa-config"></i></span><%= link_to("お気に入り", "/likes/index") %></li>
-                    <li id="new-playlist"><span class="icon"><i class="fa-light fa-plus pluse-icon fa-config"></i></span>新しいプレイリスト</li>
-                    <li><span class="icon"><i class="fa-solid fa-users fa-config"></i></span><%= link_to("全てのユーザー", "/users/index") %></li>
-                    <li><span class="icon"><i class="fa-solid fa-play fa-config"></i></span><%= link_to("全てのプレイリスト", "/playlists/index") %></li>
+                    <% unless current_user == User.find(2) %>
+                        <li><span class="icon"><i class="fa-regular fa-heart like-icon fa-config"></i></span><%= link_to("お気に入り", "/likes") %></li>
+                        <li id="new-playlist"><span class="icon"><i class="fa-light fa-plus pluse-icon fa-config"></i></span>新しいプレイリスト</li>
+                    <% end %>
+                    <li><span class="icon"><i class="fa-solid fa-users fa-config"></i></span><%= link_to("全てのユーザー", "/users") %></li>
+                    <li><span class="icon"><i class="fa-solid fa-play fa-config"></i></span><%= link_to("全てのプレイリスト", "/playlists") %></li>
                 </ul>   
             </div>
             <div class="side-bar-content-2">
@@ -27,9 +29,9 @@
                 <%= link_to("Kichotify", "/", id: "logo")%>
                 <ul>
                     <li><span class="icon"><i class="fa-light fa-house home-icon fa-config"></i></span><%= link_to("ホーム", "/") %></li>
-                    <li><span class="icon"><i class="fa-regular fa-heart like-icon fa-config"></i></span><%= link_to("お気に入り", "/likes/index") %></li>
-                    <li><span class="icon"><i class="fa-solid fa-users fa-config"></i></span><%= link_to("全てのユーザー", "/users/index") %></li>
-                    <li><span class="icon"><i class="fa-solid fa-play fa-config"></i></span><%= link_to("全てのプレイリスト", "/playlists/index") %></li>
+                    <li><span class="icon"><i class="fa-regular fa-heart like-icon fa-config"></i></span><%= link_to("お気に入り", "/likes") %></li>
+                    <li><span class="icon"><i class="fa-solid fa-users fa-config"></i></span><%= link_to("全てのユーザー", "/users") %></li>
+                    <li><span class="icon"><i class="fa-solid fa-play fa-config"></i></span><%= link_to("全てのプレイリスト", "/playlists") %></li>
                 </ul>   
             </div>
             <%# <div class="side-bar-content-2">

@@ -44,7 +44,8 @@
   
 .music-info-right {
   audio {
-    width: 500px;
+    display: inline-block;
+    width: 100%;
   }
 }
 
@@ -79,4 +80,39 @@
   display: flex;
   align-items: center;
   margin-left: 10px;
+}
+
+.music-show-like-playlist {
+  display: flex;
+  text-align: center;
+}
+
+.music-show-like {
+  display: inline-block;
+  line-height: 61px;
+  margin: 0 15px;
+}
+
+// .add-playlist {
+//   display: flex;
+//   text-align: center;
+// }
+
+.audio-player {
+  display: inline-block;
+}
+
+.audio-like-playlist {
+  display: grid;
+  grid-template:
+  "player like-playlist ."
+  / 1fr 75px 20px;
+}
+
+.add_playlist-point {
+  vertical-align: middle;
+  p {
+    line-height: 61px;
+    margin: 0;
+  }
 }
