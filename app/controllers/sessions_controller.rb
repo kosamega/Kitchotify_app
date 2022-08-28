@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
       end
       redirect_to "/"
     else
-      flash.now[:danger] = "メールアドレスかパスワードが間違っています"
+      flash.now[:danger] = "ユーザーネームかパスワードが間違っています"
       render "new"
     end
   end
