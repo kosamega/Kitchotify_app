@@ -8,7 +8,7 @@
         <h3><%= @music.artist%></h3>
         <div class="audio-like-playlist">
             <div class="audio-player">
-                <audio controlslist="nodownload" controls src=<%= @url %>></audio>
+                <audio src=<%= @url %> controlslist="nodownload" controls id="audio"></audio>
             </div>
             <div class="music-show-like-playlist">
                 <% if Like.find_by(user_id: current_user.id, music_id: @music.id) %>
@@ -78,3 +78,7 @@
         </ul>
     </div>
 </div>
+<script>
+    var audio = document.getElementById('audio');
+    audio.volume = 0.15;
+</script>
