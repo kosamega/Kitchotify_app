@@ -17,5 +17,4 @@ class LikesController < ApplicationController
     @likes = current_user.likes
     @playlists = current_user.playlists
   end
-
 end
