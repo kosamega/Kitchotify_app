@@ -1,6 +1,7 @@
 class PlaylistsController < ApplicationController
   before_action :logged_in_user
   before_action :correct_user, only: [:update, :destroy]
+  before_action :correct_user_or_public, only: [:show]
   before_action :not_kitchonkun, only: [:create, :update, :destroy]
 
   def create
@@ -34,4 +35,10 @@ class PlaylistsController < ApplicationController
       params.require(:playlist).permit(:name, :public, :comment)
     end
 
+    def correct_user_or_public
+      @playlist = Playlist.find_by(id: params[:id])
+      unless (@playlist.user == current_user) || (@playlist.public == 1)
+        redirect_to("/")
+      end
+    end
   end

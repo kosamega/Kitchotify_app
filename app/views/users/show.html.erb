@@ -6,10 +6,21 @@
 
 
 <% unless @user.id == 2 %>
-    <h2>プレイリスト</h2>
-    <ul>
-        <% @playlists.each do |playlist| %>
-        <li><%= link_to(playlist.name, "/playlists/#{playlist.id}") %></li>
-        <% end %>
-    </ul>
+    <% if @user == current_user %>
+        <h2>プレイリスト</h2>
+        <ul>
+            <% @playlists.each do |playlist| %>
+            <li><%= link_to(playlist.name, "/playlists/#{playlist.id}") %></li>
+            <% end %>
+        </ul>
+    <% else %>
+        <h2>公開プレイリスト</h2>
+        <ul>
+            <% @playlists.each do |playlist| %>
+                <% if playlist.public == 1 %>
+                    <li><%= link_to(playlist.name, "/playlists/#{playlist.id}") %></li>
+                <% end %>
+            <% end %>
+        </ul>
+    <% end %>
 <% end %>

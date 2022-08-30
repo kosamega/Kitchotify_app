@@ -29,6 +29,7 @@ body {
   grid-template:
    "left right"
    / 300px 1fr;
+   z-index: 100;
 }
 
 .top-bar-left {
