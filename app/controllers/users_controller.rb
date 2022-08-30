@@ -12,8 +12,12 @@ class UsersController < ApplicationController
   end
 
   def update
-    current_user.update(user_params)
-    redirect_to "/users/#{current_user.id}"
+    if current_user.update(user_params)
+      redirect_to "/users/#{current_user.id}"
+    else
+      flash[:danger] = "すでに存在する名前です"
+      redirect_to edit_user_path(current_user)
+    end
   end
 
   def index
