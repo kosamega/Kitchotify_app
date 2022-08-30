@@ -1,9 +1,11 @@
 one:
   content: "いいね"
   user: kosamega
+  user_id: 1
   music_id: 1 
 
 two:
   content: "悪いね"
   user: kosamega
+  user_id: 1
   music_id: 1 
