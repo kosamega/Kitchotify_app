@@ -10,10 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_27_131155) do
+ActiveRecord::Schema.define(version: 2022_09_05_055746) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "albums", force: :cascade do |t|
-    t.integer "album_id"
     t.string "name"
     t.string "img_path"
     t.datetime "created_at", precision: 6, null: false
@@ -43,13 +45,13 @@ ActiveRecord::Schema.define(version: 2022_07_27_131155) do
   end
 
   create_table "musics", force: :cascade do |t|
+    t.string "name"
+    t.string "artist"
     t.integer "album_id"
     t.integer "track"
-    t.text "name"
-    t.text "artist"
-    t.text "audio_path"
-    t.text "created_at"
-    t.text "updated_at"
+    t.string "audio_path"
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
   end
 
   create_table "playlists", force: :cascade do |t|
@@ -57,14 +59,18 @@ ActiveRecord::Schema.define(version: 2022_07_27_131155) do
     t.text "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "public"
+    t.text "comment"
   end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.string "password_digest"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
+    t.text "bio"
+    t.text "remember_digest"
   end
 
 end

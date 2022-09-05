@@ -8,18 +8,16 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
   test "ログイン失敗" do
     get "/login"
     assert_template "sessions/new"
-    post "/login", params: {session: {email: "", password: ""}}
+    post "/login", params: {session: {name: "", password: ""}}
     assert_not is_logged_in?
     assert_template "sessions/new"
     assert flash.any?
-    get "/"
-    assert flash.empty?
   end
 
   test "ログイン成功・ログアウト成功" do
     get "/login"
     assert_template "sessions/new"
-    post "/login", params: {session: {email: @user.email,
+    post "/login", params: {session: {name: @user.name,
                                        password: "password" }}
     assert is_logged_in?
     assert_redirected_to "/"
@@ -27,8 +25,8 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert_template "static_pages/home"
     delete "/logout"
     assert_not is_logged_in?
-    assert_redirected_to "/"
+    assert_redirected_to "/login"
     follow_redirect!
-    assert_template "static_pages/home"
+    assert_template "sessions/new"
   end
 end
