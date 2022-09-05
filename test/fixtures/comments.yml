@@ -1,11 +1,13 @@
 one:
   content: "いいね"
   user: kosamega
-  user_id: 1
-  music_id: 1 
+  music: hikari
+  created_at: "2022-08-16 12:25:57"
+  updated_at: "2022-08-16 12:25:57"
 
 two:
   content: "悪いね"
   user: kosamega
-  user_id: 1
-  music_id: 1 
+  music: hikari
+  created_at: "2022-08-16 12:25:57"
+  updated_at: "2022-08-16 12:25:57"

@@ -27,4 +27,8 @@ class ApplicationController < ActionController::Base
         @user = Playlist.find_by(id: params[:id]).user
         redirect_to("/") unless @user == current_user
     end
+
+    def adimin_user
+        redirect_to("/") unless current_user == User.find(1)
+    end
 end

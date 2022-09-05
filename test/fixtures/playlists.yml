@@ -3,7 +3,13 @@
 one:
   user: kosamega
   name: "わくわく"
+  created_at: "2022-08-16 12:25:57"
+  updated_at: "2022-08-16 12:25:57"
+
 
 two:
   user: kosamega
   name: hikari
+  created_at: "2022-08-16 12:25:57"
+  updated_at: "2022-08-16 12:25:57"
+

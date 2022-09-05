@@ -13,5 +13,10 @@ class UserTest < ActiveSupport::TestCase
     @user.name = "  "
     assert_not @user.valid?
   end
+
+  test "nameが一意" do
+    duplicate_user = @user.dup
+    assert_not duplicate_user.valid?
+  end
   
 end

@@ -2,8 +2,10 @@ kosamega:
   name: kosamega
   email: kosamega@gmail.com
   password_digest: <%= User.digest('password') %>
+  id: 1
   
 posamega:
   name: posamega
   email: posamega@gmail.com
   password_digest: <%= User.digest('password') %>
+  id: 2
