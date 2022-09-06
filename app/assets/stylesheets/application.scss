@@ -289,7 +289,7 @@ a:hover {
 
 // like index
 .liked-musics {
-  margin: 30px;
+  margin: 2px 30px;
   display: grid;
   grid-template:
   "jaket name album artist like addplaylist"
@@ -320,6 +320,13 @@ a:hover {
 
 .select-playlists-close {
   cursor: pointer;
+}
+
+.like-btn {
+  border: none;
+  background-color:#00000000;
+  cursor: pointer;
+  padding: 0 0 0 5px;
 }
 
 // playlist show

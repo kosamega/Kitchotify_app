@@ -10,30 +10,24 @@
             <div class="audio-player">
                 <audio src=<%= @url %> controlslist="nodownload" controls id="audio"></audio>
             </div>
-            <div class="music-show-like-playlist">
-                <% if Like.find_by(user_id: current_user.id, music_id: @music.id) %>
-                    <%= link_to("/likes/#{@music.id}/destroy", method: "delete", class: "music-show-like") do %>
-                        <span class="fa fa-heart liked-btn"></span>
-                    <% end %>
+            <div id="like-form-<%=@music.id%>" class="music-like">
+                <% if @like = Like.find_by(user_id: current_user.id, music_id: @music.id) %>
+                    <%= render "shared/unlike", like: @like , like_index: false %>
                 <% else %>
-                    <%= link_to("/likes/#{@music.id}/create", method: "post", class: "music-show-like") do%>
-                        <span class="fa fa-heart unliked-btn"></span>
-                    <% end %>
+                    <%= render "shared/like", unliked_music: @music, like_index: false %>
                 <% end %>
-                <div class="add-playlist">
-                    <%# <div class="add_playlist-point"> %>
-                        <p class="add_playlist-point">…</p>
-                    <%# </div> %>
-                    <div class="select-playlists">
-                        <div class="select-playlists-close">
-                            <p>x</p>
-                        </div>
-                        <ul>
-                            <% @playlists.each do |playlist| %>
-                                <li><%= link_to(playlist.name, "/music_playlist_relations/create/#{@music.id}/#{playlist.id}", method: "post")%></li>
-                            <% end %>
-                        </ul>
+            </div>
+            <div class="add-playlist">
+                <p class="add_playlist-point">…</p>
+                <div class="select-playlists">
+                    <div class="select-playlists-close">
+                        <p>x</p>
                     </div>
+                    <ul>
+                        <% @playlists.each do |playlist| %>
+                            <li><%= link_to(playlist.name, "/music_playlist_relations/create/#{@music.id}/#{playlist.id}", method: "post")%></li>
+                        <% end %>
+                    </ul>
                 </div>
             </div>
         </div>

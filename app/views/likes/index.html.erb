@@ -1,36 +1,30 @@
 <h1>お気に入り</h1>
 
-<div class="liked-musics" >
+<%# <div class="liked-musics" > %>
     <% @likes.each do |like| %>
-        <div class="liked-music-jaket"><%= link_to(image_tag("#{like.music.album.img_path}",class: "jaket-mini", width: "50px"), "/albums/#{like.music.album.id}") %></div>
-        <div class="liked-music-name"><%= link_to(like.music.name, "/musics/#{like.music_id}") %></div>
-        <div class="liked-music-album"><%= link_to(like.music.album.name, "/albums/#{like.music.album.id}") %></div>
-        <div class="liked-music-artist"><%= link_to(like.music.artist, "/musics/#{like.music_id}") %></div>
-        <div class="liked-music-like">
-            <div class="like-m">
-                <% if Like.find_by(user_id: current_user.id, music_id: like.music_id) %>
-                    <%= link_to("/likes/#{like.music_id}/destroy", {method: "delete"}) do %>
-                        <span class="fa fa-heart liked-btn"></span>
-                    <% end %>
-                <% else %>
-                    <%= link_to("/likes/#{like.music_id}/create", {method: "post"}) do%>
-                        <span class="fa fa-heart unliked-btn"></span>
-                    <% end %>
-                <% end %>
-            </div>
-        </div>
-        <div class="add-playlist">
-            <div class="add_playlist-point"><p>…</p></div>
-            <div class="select-playlists">
-                <div class="select-playlists-close">
-                    <p>x</p>
+        <div class="liked-musics" id="like-form-<%=like.id%>">
+            <div class="liked-music-jaket"><%= link_to(image_tag("#{like.music.album.img_path}",class: "jaket-mini", width: "50px"), "/albums/#{like.music.album.id}") %></div>
+            <div class="liked-music-name"><%= link_to(like.music.name, "/musics/#{like.music_id}") %></div>
+            <div class="liked-music-album"><%= link_to(like.music.album.name, "/albums/#{like.music.album.id}") %></div>
+            <div class="liked-music-artist"><%= link_to(like.music.artist, "/musics/#{like.music_id}") %></div>
+            <div class="liked-music-like">
+                <div>
+                    <%= render "shared/unlike", like: like, like_index: @like_index %>
                 </div>
-                <ul>
-                    <% @playlists.each do |playlist| %>
-                        <li><%= link_to(playlist.name, "/music_playlist_relations/create/#{like.music_id}/#{playlist.id}", method: "post")%></li>
-                    <% end %>
-                </ul>
+            </div>
+            <div class="add-playlist">
+                <div class="add_playlist-point"><p>…</p></div>
+                <div class="select-playlists">
+                    <div class="select-playlists-close">
+                        <p>x</p>
+                    </div>
+                    <ul>
+                        <% @playlists.each do |playlist| %>
+                            <li><%= link_to(playlist.name, "/music_playlist_relations/create/#{like.music_id}/#{playlist.id}", method: "post")%></li>
+                        <% end %>
+                    </ul>
+                </div>
             </div>
         </div>
     <% end %>
-</div>
+<%# </div> %>

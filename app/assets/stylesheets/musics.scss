@@ -82,9 +82,10 @@
   margin-left: 10px;
 }
 
-.music-show-like-playlist {
+.music-like {
   display: flex;
-  text-align: center;
+  justify-content: center;
+  align-items: center;
 }
 
 .music-show-like {
@@ -98,14 +99,16 @@
 }
 
 .audio-player {
-  display: inline-block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .audio-like-playlist {
   display: grid;
   grid-template:
   "player like-playlist ."
-  / 1fr 75px 20px;
+  / 1fr 35px 35px 20px;
 }
 
 .add_playlist-point {
