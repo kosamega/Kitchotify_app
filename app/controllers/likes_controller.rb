@@ -1,20 +1,36 @@
 class LikesController < ApplicationController
   before_action :logged_in_user, :not_kitchonkun
+  before_action :set_variables
   
   def create
-    @like = Like.new(user_id: current_user.id, music_id: params[:id])
+    @like = Like.new(user_id: params[:user_id], music_id: params[:music_id])
     @like.save
-    redirect_back_or "/"
+    respond_to do |format|
+        format.html {redirect_back_or "/"}
+        format.js
+    end
   end
 
   def destroy
-    @like = Like.find_by(user_id: current_user.id, music_id: params[:id])
+    @like = Like.find_by(id: params[:like_id])
+    @unliked_music = @like.music
     @like.destroy
-    redirect_back_or "/"
+    @like_index = params[:like_index]
+    respond_to do |format|
+      format.html {redirect_back_or "/"}
+      format.js
+    end
   end
 
   def index
     @likes = current_user.likes
     @playlists = current_user.playlists
+    @like_index = true
   end
+
+  private
+    def set_variables
+      @id_name = "#like-form-#{params[:music_id]}"
+      @like_id = "#like-form-#{params[:like_id]}"
+    end
 end

@@ -27,15 +27,11 @@
             </div>
         </div>
         <div class="album-music-like">
-            <div>
-                <% if Like.find_by(user_id: current_user.id, music_id: music.id) %>
-                    <%= link_to("/likes/#{music.id}/destroy", {method: "delete"}) do %>
-                        <span class="fa fa-heart liked-btn"></span>
-                    <% end %>
+            <div id="like-form-<%=music.id%>">
+                <% if @like = Like.find_by(user_id: current_user.id, music_id: music.id) %>
+                    <%= render "shared/unlike", like: @like , like_index: false %>
                 <% else %>
-                    <%= link_to("/likes/#{music.id}/create", {method: "post"}) do%>
-                        <span class="fa fa-heart unliked-btn"></span>
-                    <% end %>
+                    <%= render "shared/like", unliked_music: music, like_index: false %>
                 <% end %>
             </div>
         </div>
