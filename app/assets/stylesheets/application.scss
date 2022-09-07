@@ -52,7 +52,6 @@ body {
   margin-right: 250px;
   a {
     float: right;
-    // background-color: azure;    
     height: 20px;
     display: inline-block;
     padding: 5px;
@@ -213,12 +212,6 @@ a:hover {
 }
 
 /* ジャケット */
-.album-container {
-  // display: flex;
-  // flex-wrap: wrap;
-  // justify-content: space-evenly;
-}
-
 .album-item {
   flex: 0 0 30%;
   margin: 10px;
@@ -231,9 +224,6 @@ a:hover {
   "jaket text" 250px
   / 300px 1fr;
   margin-top: 100px;
-}
-
-.album-info-jaket {
 }
 
 .album-jaket-img {
@@ -330,10 +320,38 @@ a:hover {
 
 // playlist show
 .musics-in-the-playlist {
-  margin: 30px;
+  margin:2px 30px;
   display: grid;
   grid-template:
   "jaket name album artist like create delete"
   /60px 2fr 2fr 1fr 50px 50px 50px;
+}
+
+.music-list {
+  margin:10px 0 ;
+}
+
+// プレイリストに追加
+.playlist-name {
+  font-size: medium;
+}
+
+#flash {
+  width: 30%;
+  left: 70%;
+  position: absolute;
+  top: 60px;
+  div {
+    width: 100%;
+    height: 46px;
+    p {
+      float: right;
+      margin: 1px 50px 1px 0;
+      background-color: rgb(195, 227, 255);
+      padding: 10px;
+      border-radius: 5px;
+      display: inline-block;
+    }
+  }
 }
 

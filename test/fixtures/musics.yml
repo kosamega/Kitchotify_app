@@ -7,6 +7,7 @@ hikari:
   track: 1
   audio_path: MyString
   album: 171
+  id : 1
 
 two:
   name: waopo
@@ -15,3 +16,4 @@ two:
   track: 1
   audio_path: MyString
   album: 171
+  id : 2
