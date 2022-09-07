@@ -27,7 +27,7 @@ class PlaylistsController < ApplicationController
   def show
     @playlist = Playlist.find_by(id: params[:id])
     @playlists = current_user.playlists
-    @musics = @playlist.musics_included
+    @relations = @playlist.music_playlist_relations
   end
 
   private 

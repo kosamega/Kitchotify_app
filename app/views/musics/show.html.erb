@@ -23,11 +23,18 @@
                     <div class="select-playlists-close">
                         <p>x</p>
                     </div>
-                    <ul>
-                        <% @playlists.each do |playlist| %>
-                            <li><%= link_to(playlist.name, "/music_playlist_relations/create/#{@music.id}/#{playlist.id}", method: "post")%></li>
-                        <% end %>
-                    </ul>
+                    <% @playlists.each do |playlist| %>
+                        <div>
+                            <%= form_with(model: MusicPlaylistRelation.new, local: false) do |f| %>
+                                <%= hidden_field_tag :music_id, @music.id %>
+                                <%= hidden_field_tag :playlist_id, playlist.id %>
+                                <%= hidden_field_tag :at_playlist_show, false %>
+                                <%= button_tag type: :submit, class: "like-btn" do %>
+                                    <p class="playlist-name"><%=playlist.name%></p>
+                                <% end %>
+                            <% end %>
+                        </div>
+                    <% end %>
                 </div>
             </div>
         </div>

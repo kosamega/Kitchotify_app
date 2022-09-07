@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>KichotifyApp</title>
+    <title>KitchotifyApp</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -53,16 +53,10 @@
         <%= yield %>
       </div>
     </div>
+    <div id="flash">
+    </div>
     <script>
         $(function(){
-            // $('#user').mouseenter(function(){
-            // $('#user-ddmenu').show();
-            // });
-
-            // $('html').click(function(){
-            // $('#user-ddmenu').hide();
-            // });
-
             $(".add_playlist-point").click(function(){
               $(this).siblings().show();
             });

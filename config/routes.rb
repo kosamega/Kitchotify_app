@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   # post 'playlists/:id', to: "playlists#edit"
   # delete 'playlists/:id', to: "playlists#destroy"
 
-  post 'music_playlist_relations/create/:music_id/:playlist_id', to: "music_playlist_relations#create"
-  delete 'music_playlist_relations/destroy/:music_id/:playlist_id', to: "music_playlist_relations#destroy"
+  resources :music_playlist_relations
+  # post 'music_playlist_relations/create/:music_id/:playlist_id', to: "music_playlist_relations#create"
+  # delete 'music_playlist_relations/destroy/:music_id/:playlist_id', to: "music_playlist_relations#destroy"
 end
