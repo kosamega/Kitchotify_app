@@ -65,18 +65,20 @@
                     <div class="select-playlists-close">
                         <p>x</p>
                     </div>
+                    <ul>
                         <% @playlists.each do |playlist| %>
-                            <div>
+                            <li class="playlist-name">
                                 <%= form_with(model: MusicPlaylistRelation.new, local: false) do |f| %>
                                     <%= hidden_field_tag :music_id, relation.music.id %>
                                     <%= hidden_field_tag :playlist_id, playlist.id %>
                                     <%= hidden_field_tag :at_playlist_show, true %>
                                     <%= button_tag type: :submit, class: "like-btn" do %>
-                                        <p class="playlist-name"><%=playlist.name%></p>
+                                        <%=playlist.name%>
                                     <% end %>
                                 <% end %>
-                            </div>
+                            </li>
                         <% end %>
+                    </ul>  
                 </div>
             </div>
             
