@@ -1,0 +1,4 @@
+$('#flash').append('<div><p><%= @playlist.name %>に追加</p></div>');
+setTimeout(function(){
+    $('#flash div:first').remove();
+}, 3000);
