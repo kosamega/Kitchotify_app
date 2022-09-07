@@ -22,7 +22,7 @@
                         <% @playlists.each do |playlist| %>
                             <li class="playlist-name">
                                 <%= form_with(model: MusicPlaylistRelation.new, local: false) do |f| %>
-                                    <%= hidden_field_tag :music_id, like.id %>
+                                    <%= hidden_field_tag :music_id, like.music.id %>
                                     <%= hidden_field_tag :playlist_id, playlist.id %>
                                     <%= hidden_field_tag :at_playlist_show, false %>
                                     <%= button_tag type: :submit, class: "like-btn" do %>
