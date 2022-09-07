@@ -6,6 +6,7 @@ class MusicPlaylistRelationsController < ApplicationController
         @relation.save
         @playlist = Playlist.find(params[:playlist_id])
         @playlists = current_user.playlists
+        @music = Music.find(params[:music_id])
         @at_playlist_show = params[:at_playlist_show]
         respond_to do |format|
             format.html {redirect_back_or "/"}

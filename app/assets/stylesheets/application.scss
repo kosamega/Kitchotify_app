@@ -299,16 +299,22 @@ a:hover {
 .select-playlists {
   position: absolute;
   right: 10px;
-  background-color: #8899a6;
+  background-color: #d9eeff;
   width: 100px;
-  padding: 0 10px;
+  padding: 0 7px;
   display: none;
   z-index: 1;
   border-radius: 2px;
+  ul {
+    margin-bottom: 10px;
+  }
 }
 
 .select-playlists-close {
   cursor: pointer;
+  p {
+    margin:7px 5px;
+  }
 }
 
 .like-btn {
@@ -333,7 +339,11 @@ a:hover {
 
 // プレイリストに追加
 .playlist-name {
-  font-size: medium;
+  margin: 4px 0;
+  button {
+    text-align: left;
+    font-size: medium;
+  }
 }
 
 #flash {
