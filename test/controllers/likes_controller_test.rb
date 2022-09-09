@@ -7,13 +7,13 @@ class LikesControllerTest < ActionDispatch::IntegrationTest
     end
 
     test "ログインしないとlikeを作成出来ない" do
-        post "/likes/1/create"
+        post likes_path, params: {music_id: 1, user_id: 1}
         assert_not flash.empty?
         assert_redirected_to "/login"
     end
     
     test "ログインしないとlikeを削除できない" do
-        delete "/likes/1/destroy"
+        delete like_path(1)
         assert_not flash.empty?
         assert_redirected_to "/login"
     end

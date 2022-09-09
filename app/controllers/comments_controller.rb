@@ -3,6 +3,6 @@ class CommentsController < ApplicationController
     def create
         comment = Comment.new(content: params[:comment][:content], user_id: current_user.id, music_id: params[:music_id])
         comment.save
-        redirect_to "/musics/#{params[:music_id]}"
+        redirect_to music_path(params[:music_id])
     end
 end
