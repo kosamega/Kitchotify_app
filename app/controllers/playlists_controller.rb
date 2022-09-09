@@ -7,7 +7,10 @@ class PlaylistsController < ApplicationController
   def create
     playlist = current_user.playlists.build(playlist_params)
     playlist.save
-    redirect_back_or "/"
+    respond_to do |format|
+      format.html {redirect_back_or "/"}
+      format.js
+  end
   end
 
   def update
@@ -25,9 +28,12 @@ class PlaylistsController < ApplicationController
   end
   
   def show
-    @playlist = Playlist.find_by(id: params[:id])
-    @playlists = current_user.playlists
-    @relations = @playlist.music_playlist_relations
+    if @playlist = Playlist.find_by(id: params[:id])
+      @playlists = current_user.playlists
+      @relations = @playlist.music_playlist_relations
+    else
+      render "shared/not_found"
+    end
   end
 
   private 
@@ -36,9 +42,10 @@ class PlaylistsController < ApplicationController
     end
 
     def correct_user_or_public
-      @playlist = Playlist.find_by(id: params[:id])
-      unless (@playlist.user == current_user) || (@playlist.public == 1)
-        redirect_to("/")
+      if @playlist = Playlist.find_by(id: params[:id])
+        unless (@playlist.user == current_user) || (@playlist.public == 1)
+          redirect_to("/")
+        end
       end
     end
   end

@@ -19,8 +19,11 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find_by(id: params[:id])
-    @playlists = @user.playlists
+    if @user = User.find_by(id: params[:id]) 
+      @playlists = @user.playlists
+    else
+      render "shared/not_found"
+    end
   end
 
   def edit

@@ -52,7 +52,7 @@
                 <div>kitchonkun以外でログインするとコメントができます</div>
             <% else %>
                 <div class="comment-form">
-                    <%= form_with(url: "/comments/create", scope: :comment, local: true) do |f| %>
+                    <%= form_with(model: Comment.new, local: true) do |f| %>
                         <div><%= hidden_field_tag :music_id, @music.id %></div>
                         <%= f.text_area :content, class: "comment-textarea" %>
                         <%= f.submit "送信", class: "comment-submit" %>
