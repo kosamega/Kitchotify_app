@@ -15,44 +15,75 @@
   </head>
 
   <body>
-    <div class="new-playlist">
-      <div class="new-playlist-form">
-          <div class="new-playlist-form-content">
-            <div class="x">
-              <i class="fa-solid fa-x x-icon fa-config" class="x"></i>      
-            </div>
-            <div class="new-playlist-form-content-form">
-              <%= form_with(model: Playlist.new, local: false,) do |f| %>
-                  <ul>
-                    <li><%= f.label :プレイリスト名 %></li>
-                    <li><%= f.text_field :name, class: "form-name", value: ""%></li>
-                    <li><%= f.label :説明・コメント %></li>
-                    <li><%= f.text_area :comment, class: "new-playlist-comment", value: ""  %></li>
-                    <li>
-                      <%= f.label :公開する do %>
-                        <%= f.check_box :public , checked: false%>
-                        <span>公開する</span>
-                      <% end %>
-                    </li>
-                  <li><%= f.submit "作成", class: "new-playlist-submit-btn" %></li>
+    <div class="body-grid">
+      <div class="new-playlist">
+        <div class="new-playlist-form">
+            <div class="new-playlist-form-content">
+              <div class="x">
+                <i class="fa-solid fa-x x-icon fa-config" class="x"></i>      
+              </div>
+              <div class="new-playlist-form-content-form">
+                <%= form_with(model: Playlist.new, local: false,) do |f| %>
+                    <ul>
+                      <li><%= f.label :プレイリスト名 %></li>
+                      <li><%= f.text_field :name, class: "form-name", value: ""%></li>
+                      <li><%= f.label :説明・コメント %></li>
+                      <li><%= f.text_area :comment, class: "new-playlist-comment", value: ""  %></li>
+                      <li>
+                        <%= f.label :公開する do %>
+                          <%= f.check_box :public , checked: false%>
+                          <span>公開する</span>
+                        <% end %>
+                      </li>
+                    <li><%= f.submit "作成", class: "new-playlist-submit-btn" %></li>
 
-                  </ul>
-              <% end %>
+                    </ul>
+                <% end %>
+              </div>
             </div>
-          </div>
+        </div>
+      </div>
+      
+      <%= render "layouts/side_bar" %>
+      <div class="main">
+        <%= render "layouts/top_bar"%>
+        <div class="main-container">
+          <% flash.each do |message_type, message| %>
+            <div class="alert alert-<%= message_type %>"><%= message %></div>
+          <% end %>   
+          <%= yield %>
+        </div>
       </div>
     </div>
-    
-    <%= render "layouts/side_bar" %>
-    <div class="main">
-      <%= render "layouts/top_bar"%>
-      <div class="main-container">
-        <% flash.each do |message_type, message| %>
-          <div class="alert alert-<%= message_type %>"><%= message %></div>
-        <% end %>   
-        <%= yield %>
+    <footer>
+    <% if !@relations.blank? %>
+      <div class="track-info-wrapper">
+        <div class="track-info">
+          <span id="track-artist"><%=@relations[0].music.artist%></span>
+        </div>
+        <div class="track-info">
+          <p>-</p>
+        </div>
+        <div class="track-info">
+          <span id="track-name"><%=@relations[0].music.name%></span>
+        </div>
       </div>
-    </div>
+      <div class="audio-player-wrapper">
+        <div class="prevbtn">
+          <button onclick="prev()">
+            <i class="fa-solid fa-left-long"></i>
+          </button>
+        </div>
+        <div id="foot-audio-player">
+        </div>
+        <div class="nextbtn">
+          <button onclick="next()">
+            <i class="fa-solid fa-right-long"></i>
+          </button>
+        </div>
+      </div>
+    <%end%>
+    </footer>
     <div id="flash">
     </div>
     <script>
@@ -82,6 +113,135 @@
             });
         });
     </script>
+    <% if !@urls_j.blank? || !@music_names_j.blank? %>
+    <script>
+      var audio = document.createElement('audio');
+      var audioPlayer = document.getElementById("foot-audio-player");
+      var urls = <%= @urls_j %>
+      var names = <%=@music_names_j%>
+      var artists = <%=@music_artists_j%>
+      var max = urls.length
+      function changeInfo(){
+        var artistElement = document.getElementById("track-artist");
+        var artist = artists[index];
+        var nameElement = document.getElementById("track-name");
+        var name = names[index];
+        artistElement.innerHTML = artist;
+        nameElement.innerHTML = name;
+      }
+
+      function nowPlay(trackNum){
+        var track = document.getElementById(`tracknumber${trackNum}`);
+        track.classList.add("now-play");
+      }
+
+      function endPlay(trackNum){
+        var tracks = document.getElementsByClassName("now-play");
+        var track = tracks.item(0);
+        track.classList.remove("now-play");
+      }
+
+      audioPlayer.append(audio);
+      audio.volume = 0.08;
+      audio.style.width = '750px';
+      audio.style.height = '30px';
+      audio.controls = true;
+      audio.controlsList.add("nodownload");
+      
+      audio.src = urls[0];
+      index = 0
+      nowPlay(0);
+
+      audio.addEventListener('ended', function(){
+        endPlay(index);
+        index++
+        if ( index < max) {
+            audio.src = urls[index];
+        }
+        else {
+            audio.src = urls[0];
+            index = 0;
+        }
+        changeInfo();
+        nowPlay(index);
+        audio.play();
+      });
+
+      function prev(){
+          endPlay(index);
+          if (0 < index) {
+              index--;
+          }
+          else{
+              index = 0;
+          }
+          audio.src = urls[index];
+          changeInfo();
+          nowPlay(index);
+          audio.play();
+      }
+
+      function next(){
+          endPlay(index);
+          if ( index < (max - 1) ) {
+              index++;
+          }
+          else {
+              index = 0;
+          }
+          audio.src = urls[index];
+          nowPlay(index);
+          changeInfo();
+          audio.play();
+      }
+            
+      function playButton(trackNum){
+        endPlay(index);
+        index = trackNum;
+        audio.src = urls[index];
+        changeInfo();
+        nowPlay(index);
+        audio.play();
+      }
+
+      function trDelete(trackNum){
+        urls.splice(trackNum, 1);
+        artists.splice(trackNum, 1);
+        names.splice(trackNum, 1);
+
+        if(trackNum == index){
+          if(index == (max-1)){
+            index--;
+          }
+          audio.src = urls[index];
+          audio.load();
+          changeInfo();
+          nowPlay(index + 1);
+        }
+        max--;
+        trackNum++;
+        for(let i = trackNum; i <= max; i++){
+          var track = document.getElementById(`tracknumber${i}`);
+          track.setAttribute("id", `tracknumber${i - 1}`);
+
+          var button = document.getElementById(`playButton${i}`);
+          button.setAttribute("id", `playButton${i - 1 }`);
+          button.setAttribute("onClick", `playButton(${i-1})`)
+
+          var tr = document.getElementById(`tr${i}`);
+          tr.setAttribute("id", `tr${i-1}`);
+          tr.textContent = i;
+
+          var deletebtn = document.getElementById(`delete${i}`);
+          deletebtn.setAttribute("onclick", `trDelete(${i - 1})`);
+
+          var deletebtn = document.getElementById(`delete${i}`);
+          deletebtn.setAttribute("id", `delete${i -1 }`);
+        }
+      }
+
+</script>
+<%end%>
   </body>
 </html>
 

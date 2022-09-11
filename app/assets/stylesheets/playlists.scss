@@ -39,3 +39,42 @@
     display: none;
   }
 
+.track-number-play {
+    border: none;
+    background-color: #00000000;
+    cursor: pointer;
+}
+
+.play-button {
+    position:relative;
+}
+.playbutton {
+    opacity: 0;
+    position: absolute;
+    top: 30%;
+    left: 10%;
+}
+
+.play-button:hover {
+    .playbutton {
+        opacity: 1;
+    }
+
+    .track-number {
+        opacity: 0;
+    }
+}
+
+.playlistplaybutton{
+    font-size: 20px;
+}
+
+.now-play {
+    background-color: #c3e4ff;
+    .playbutton {
+        opacity: 1;
+    }
+    .track-number {
+        opacity: 0;
+    }
+}
