@@ -46,8 +46,17 @@
 </div>
 
 <div class="music-list">
+    <% number = 0 %>
     <% @relations.each do |relation| %>
-        <div class="musics-in-the-playlist" id="relation-<%=relation.id%>" >
+        <div class="musics-in-the-playlist relation-<%=relation.id%>" id="tracknumber<%=number%>" >
+            <div class="play-button" id="play-<%=relation.id%>">
+                <button onclick="playButton(<%=number%>)" class="track-number-play" id="playButton<%=number%>">
+                    <p class="track-number" id="tr<%=number%>"><%=number+1%></p>
+                    <div class="playbutton">
+                        <i class="fa-duotone fa-play fa playlistplaybutton"></i>
+                    </div>
+                </button>
+            </div>
             <div class="liked-music-jaket"><%= link_to(image_tag("#{relation.music.album.img_path}",class: "jaket-mini", width: "50px"), "/albums/#{relation.music.album.id}") %></div>
             <div class="liked-music-name"><%= link_to(relation.music.name, "/musics/#{relation.music.id}") %></div>
             <div class="liked-music-album"><%= link_to(relation.music.album.name, "/albums/#{relation.music.album.id}") %></div>
@@ -88,12 +97,13 @@
                         <%= hidden_field_tag :music_id, relation.music.id %>
                         <%= hidden_field_tag :playlist_id, relation.playlist.id %>
                         <%= hidden_field_tag :relation_id, relation.id %>
-                        <%= button_tag type: :submit, class: "like-btn" do %>
+                        <%= button_tag type: :submit, class: "like-btn", id: "delete#{number}", onclick: "trDelete(#{number})" do %>
                             <p class="delete-btn">削除</p>
                         <% end %>
                     <% end %>
                 <% end %>
             </div>
         </div>
+        <%number += 1%>
     <% end %>
 </div>
