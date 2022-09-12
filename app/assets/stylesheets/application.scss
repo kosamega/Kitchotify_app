@@ -294,11 +294,7 @@ a:hover {
 
 
 .album-musics {
-  margin: 30px;
-  display: grid;
-  grid-template:
-  "track name artist like add-playlist" 
-  /30px 2fr 1fr 50px 50px;
+  margin: 10px;
 }
 
 .album-music-track {
@@ -334,8 +330,8 @@ a:hover {
   margin: 2px 30px;
   display: grid;
   grid-template:
-  "jaket name album artist like addplaylist"
-  /60px 2fr 2fr 1fr 50px 50px;
+  "play jaket name album artist like addplaylist"
+  /40px 60px 2fr 2fr 1fr 50px 50px;
 }
 
 .liked-music-name, .liked-music-album, .liked-music-artist, .music-delete-from-playlist, .liked-music-like, .liked-music-jaket, .album-music-like  {

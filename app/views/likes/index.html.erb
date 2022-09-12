@@ -1,8 +1,17 @@
 <h1>お気に入り</h1>
 
 <%# <div class="liked-musics" > %>
+    <%number=0%>
     <% @likes.each do |like| %>
-        <div class="liked-musics" id="like-form-<%=like.id%>">
+        <div class="liked-musics like-form-<%=like.id%>" id="tracknumber<%=number%>">
+            <div class="play-button" id="play-<%=like.id%>">
+                <button onclick="playButton(<%=number%>)" class="track-number-play" id="playButton<%=number%>">
+                    <p class="track-number" id="tr<%=number%>"><%=number+1%></p>
+                    <div class="playbutton">
+                        <i class="fa-duotone fa-play fa playlistplaybutton"></i>
+                    </div>
+                </button>
+            </div>
             <div class="liked-music-jaket"><%= link_to(image_tag("#{like.music.album.img_path}",class: "jaket-mini", width: "50px"), "/albums/#{like.music.album.id}") %></div>
             <div class="liked-music-name"><%= link_to(like.music.name, "/musics/#{like.music_id}") %></div>
             <div class="liked-music-album"><%= link_to(like.music.album.name, "/albums/#{like.music.album.id}") %></div>
@@ -35,5 +44,6 @@
                 </div>
             </div>
         </div>
+        <%number+=1%>
     <% end %>
 <%# </div> %>

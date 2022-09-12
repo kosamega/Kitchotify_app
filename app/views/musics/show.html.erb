@@ -10,7 +10,7 @@
             <div class="audio-player">
                 <audio src=<%= @url %> controlslist="nodownload" controls id="audio"></audio>
             </div>
-            <div id="like-form-<%=@music.id%>" class="music-like">
+            <div class="music-like like-form-<%=@music.id%>">
                 <% if @like = Like.find_by(user_id: current_user.id, music_id: @music.id) %>
                     <%= render "shared/unlike", like: @like , like_index: false %>
                 <% else %>

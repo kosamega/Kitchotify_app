@@ -41,7 +41,7 @@ class PlaylistsController < ApplicationController
         url = signer.presigned_url(:get_object, 
                                     bucket: 'kitchotifyappstrage',
                                     key: "audio/#{relation.music.album.id}/#{relation.music.audio_path}",
-                                    expires_in: 1200)
+                                    expires_in: 7200)
         @urls.push(url)
         @music_names.push(relation.music.name)
         @music_artists.push(relation.music.artist)

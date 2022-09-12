@@ -61,7 +61,7 @@
             <div class="liked-music-name"><%= link_to(relation.music.name, "/musics/#{relation.music.id}") %></div>
             <div class="liked-music-album"><%= link_to(relation.music.album.name, "/albums/#{relation.music.album.id}") %></div>
             <div class="liked-music-artist"><%= link_to(relation.music.artist, "/musics/#{relation.music.id}") %></div>
-            <div id="like-form-<%=relation.music.id%>" class="album-music-like">
+            <div class="album-music-like like-form-<%=relation.music.id%>">
                 <% if @like = Like.find_by(user_id: current_user.id, music_id: relation.music.id) %>
                     <%= render "shared/unlike", like: @like , like_index: false %>
                 <% else %>
