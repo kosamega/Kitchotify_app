@@ -2,7 +2,13 @@
     <%= hidden_field_tag :like_id, like.id %>
     <%= hidden_field_tag :music_id, like.music_id %>
     <%= hidden_field_tag :like_index, like_index %>
-    <%= button_tag type: :submit, class: "like-btn" do %>
-        <span class="fa fa-heart liked-btn"></span>
-    <% end %>
+    <%if like_index%>
+        <%= button_tag type: :submit, class: "like-btn", id: "delete#{number}", onclick: "trDelete(#{number})" do %>
+            <span class="fa fa-heart liked-btn"></span>
+        <% end %>
+    <%else%>
+        <%= button_tag type: :submit, class: "like-btn" do %>
+            <span class="fa fa-heart liked-btn"></span>
+        <% end %>
+    <%end%>
 <% end %>
