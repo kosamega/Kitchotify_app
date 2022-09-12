@@ -18,7 +18,7 @@
             <div class="liked-music-artist"><%= link_to(like.music.artist, "/musics/#{like.music_id}") %></div>
             <div class="liked-music-like">
                 <div>
-                    <%= render "shared/unlike", like: like, like_index: @like_index %>
+                    <%= render "shared/unlike", like: like, like_index: @like_index, number: number %>
                 </div>
             </div>
             <div class="add-playlist">
