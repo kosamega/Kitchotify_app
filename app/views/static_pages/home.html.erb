@@ -12,7 +12,7 @@
             <% @comments.each do |comment| %>
                 <ul>
                     <li><%=link_to(comment.music.name, "/musics/#{comment.music.id}")%></li>
-                    <li class="new-comment-item comment-user"><%=comment.user.name%><%=comment.created_at%></li>
+                    <li class="new-comment-item comment-user"><%=comment.user.name + " "%><%=comment.created_at.strftime("%F %R")%></li>
                     <li class="new-comment-item"><%=comment.content%></li>
                 </ul>
             <% end %>

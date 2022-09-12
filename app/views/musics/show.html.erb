@@ -61,7 +61,7 @@
             <% end %>
             <ul>
                 <% @comments.each do |comment| %>
-                        <li class="comment-user" ><%= comment.user.name %>   <%= comment.created_at%></li>
+                        <li class="comment-user" ><%=comment.user.name + " "%><%=comment.created_at.strftime("%F %R")%></li>
                         <li class="comment-content"><%= comment.content %></li>
                 <% end %>
             </ul>
