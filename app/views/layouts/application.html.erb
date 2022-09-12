@@ -14,6 +14,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
 
     <%= favicon_link_tag 'favicon.ico' %>
+    <script>
+      window.addEventListener('popstate', function(e) {
+        location.reload();
+      });
+    </script>
   </head>
 
   <body>
@@ -83,6 +88,11 @@
             <i class="fa-solid fa-right-long"></i>
           </button>
         </div>
+        <div class="loop">
+          <button onclick="loop()" id="loop-btn">
+            <i class="fa-solid fa-rotate" ></i>
+          </button>
+        </div>
       </div>
       <%end%>
     </footer>
@@ -117,9 +127,6 @@
     </script>
     <% if !@urls_j.blank? || !@music_names_j.blank? %>
     <script>
-      window.addEventListener('popstate', function(e) {
-        location.reload();
-      });
       var audio = document.createElement('audio');
       var audioPlayer = document.getElementById("foot-audio-player");
       var urls = <%= @urls_j %>
@@ -201,6 +208,17 @@
           changeInfo();
           audio.play();
       }
+
+      function loop(){
+        audio.loop = !audio.loop;
+        let loopbtn = document.getElementById("loop-btn");
+        if (audio.loop) {
+          loopbtn.classList.add("loop-true");
+        }
+        else{
+          loopbtn.classList.remove("loop-true");
+        }
+      }
             
       function playButton(trackNum){
         endPlay(index);
@@ -246,7 +264,6 @@
           deletebtn.setAttribute("id", `delete${i -1 }`);
         }
       }
-
 </script>
 <%end%>
   </body>

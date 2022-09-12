@@ -241,6 +241,17 @@ footer {
   margin: 0 10px;
 }
 
+.fa-rotate {
+  color: rgb(158, 158, 158);
+}
+
+.loop-true {
+  color: #000000;
+  background-color: #4dafff;
+  .fa-rotate {
+    color: rgb(0, 0, 0);
+  }
+}
 
 /* 文字 */
 ul {
