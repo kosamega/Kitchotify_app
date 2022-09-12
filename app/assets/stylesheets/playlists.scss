@@ -63,6 +63,7 @@
     .track-number {
         opacity: 0;
     }
+    background-color: rgb(243, 243, 243);
 }
 
 .playlistplaybutton{
@@ -70,7 +71,10 @@
 }
 
 .now-play {
-    background-color: #c3e4ff;
+    background-color: rgb(243, 243, 243);
+    a {
+        color: #0094ff;
+    }
     .playbutton {
         opacity: 1;
     }
