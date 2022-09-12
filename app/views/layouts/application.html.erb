@@ -56,16 +56,16 @@
       </div>
     </div>
     <footer>
-    <% if !@relations.blank? %>
+    <% if !@urls_j.blank? || !@music_names_j.blank? %>
       <div class="track-info-wrapper">
         <div class="track-info">
-          <span id="track-artist"><%=@relations[0].music.artist%></span>
+          <span id="track-artist"></span>
         </div>
         <div class="track-info">
           <p>-</p>
         </div>
         <div class="track-info">
-          <span id="track-name"><%=@relations[0].music.name%></span>
+          <span id="track-name"></span>
         </div>
       </div>
       <div class="audio-player-wrapper">
@@ -82,7 +82,7 @@
           </button>
         </div>
       </div>
-    <%end%>
+      <%end%>
     </footer>
     <div id="flash">
     </div>
@@ -124,9 +124,10 @@
       function changeInfo(){
         var artistElement = document.getElementById("track-artist");
         var artist = artists[index];
+        artistElement.innerHTML = artist;
+
         var nameElement = document.getElementById("track-name");
         var name = names[index];
-        artistElement.innerHTML = artist;
         nameElement.innerHTML = name;
       }
 
@@ -150,6 +151,7 @@
       
       audio.src = urls[0];
       index = 0
+      changeInfo();
       nowPlay(0);
 
       audio.addEventListener('ended', function(){

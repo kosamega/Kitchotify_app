@@ -12,7 +12,7 @@ class MusicsController < ApplicationController
             @url = signer.presigned_url(:get_object, 
                                         bucket: 'kitchotifyappstrage',
                                         key: "audio/#{@music.album.id}/#{@music.audio_path}",
-                                        expires_in: 1200)
+                                        expires_in: 7200)
         else
             render "shared/not_found"
         end

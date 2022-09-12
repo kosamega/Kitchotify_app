@@ -10,59 +10,61 @@
 </div>
 
 <div class="album-musics" >
+    <%number = 0%>
     <% @musics.each do |music| %>
-        <div class="album-music-track">
-            <div class="album-track">
-                <%= link_to(music.track, "/musics/#{music.id}") %>
-            </div>
-        </div>
-        <div class="album-music-track">
-            <div class="album-music-name">
-                <%= link_to(music.name, "/musics/#{music.id}") %>
-            </div>
-        </div>
-        <div class="album-music-track">
-            <div class="album-artist-name">
-                <%= link_to(music.artist, "/musics/#{music.id}") %>
-            </div>
-        </div>
-        <div class="album-music-like">
-            <div id="like-form-<%=music.id%>">
-                <% if @like = Like.find_by(user_id: current_user.id, music_id: music.id) %>
-                    <%= render "shared/unlike", like: @like , like_index: false %>
-                <% else %>
-                    <%= render "shared/like", unliked_music: music, like_index: false %>
-                <% end %>
-            </div>
-        </div>
-        <div class="album-music-track">
-            <div class="add-playlist">
-                <div class="add_playlist-point"><p>…</p></div>
-                <div class="select-playlists">
-                    <div class="select-playlists-close">
-                        <p>x</p>
+        <div class="music-in-album" id="tracknumber<%=number%>">
+            <div class="play-button">
+                <button onclick="playButton(<%=number%>)" class="track-number-play" id="playButton<%=number%>">
+                    <p class="track-number" id="tr<%=number%>"><%=number+1%></p>
+                    <div class="playbutton">
+                        <i class="fa-duotone fa-play fa playlistplaybutton"></i>
                     </div>
-                    <ul>
-                        <% @playlists.each do |playlist| %>
-                            <li class="playlist-name">
-                                <%= form_with(model: MusicPlaylistRelation.new, local: false) do |f| %>
-                                    <%= hidden_field_tag :music_id, music.id %>
-                                    <%= hidden_field_tag :playlist_id, playlist.id %>
-                                    <%= hidden_field_tag :at_playlist_show, false %>
-                                    <%= button_tag type: :submit, class: "like-btn" do %>
-                                        <%=playlist.name%>
-                                    <% end %>
-                                <% end %>
-                            </li>
-                        <% end %>
-                    </ul>
-                    <%# <ul> %>
-                        <%# <% @playlists.each do |playlist| %> 
-                            <%# <li><%= link_to(playlist.name, "/music_playlist_relations/create/#{music.id}/#{playlist.id}", method: "post")</li> %>
-                        <%# <% end %>
-                    <%# </ul> %>
+                </button>
+            </div>
+            <div class="album-music-track">
+                <div class="album-music-name">
+                    <%= link_to(music.name, "/musics/#{music.id}") %>
                 </div>
             </div>
+            <div class="album-music-track">
+                <div class="album-artist-name">
+                    <%= link_to(music.artist, "/musics/#{music.id}") %>
+                </div>
+            </div>
+            <div class="album-music-like">
+                <div class="like-form-<%=music.id%>">
+                    <% if @like = Like.find_by(user_id: current_user.id, music_id: music.id) %>
+                        <%= render "shared/unlike", like: @like , like_index: false %>
+                    <% else %>
+                        <%= render "shared/like", unliked_music: music, like_index: false %>
+                    <% end %>
+                </div>
+            </div>
+            <div class="album-music-track">
+                <div class="add-playlist">
+                    <div class="add_playlist-point"><p>…</p></div>
+                    <div class="select-playlists">
+                        <div class="select-playlists-close">
+                            <p>x</p>
+                        </div>
+                        <ul>
+                            <% @playlists.each do |playlist| %>
+                                <li class="playlist-name">
+                                    <%= form_with(model: MusicPlaylistRelation.new, local: false) do |f| %>
+                                        <%= hidden_field_tag :music_id, music.id %>
+                                        <%= hidden_field_tag :playlist_id, playlist.id %>
+                                        <%= hidden_field_tag :at_playlist_show, false %>
+                                        <%= button_tag type: :submit, class: "like-btn" do %>
+                                            <%=playlist.name%>
+                                        <% end %>
+                                    <% end %>
+                                </li>
+                            <% end %>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <%number += 1%>
         </div>
     <% end %>
 </div>
