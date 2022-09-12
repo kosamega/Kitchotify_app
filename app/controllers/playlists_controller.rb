@@ -7,10 +7,11 @@ class PlaylistsController < ApplicationController
   def create
     playlist = current_user.playlists.build(playlist_params)
     playlist.save
-    respond_to do |format|
-      format.html {redirect_back_or "/"}
-      format.js
-  end
+    redirect_back_or "/"
+    # respond_to do |format|
+      # format.html {redirect_back_or "/"}
+      # format.js
+    # end
   end
 
   def update

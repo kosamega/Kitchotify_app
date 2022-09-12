@@ -31,7 +31,7 @@
                 <i class="fa-solid fa-x x-icon fa-config" class="x"></i>      
               </div>
               <div class="new-playlist-form-content-form">
-                <%= form_with(model: Playlist.new, local: false,) do |f| %>
+                <%= form_with(model: Playlist.new, local: true,) do |f| %>
                     <ul>
                       <li><%= f.label :プレイリスト名 %></li>
                       <li><%= f.text_field :name, class: "form-name", value: ""%></li>

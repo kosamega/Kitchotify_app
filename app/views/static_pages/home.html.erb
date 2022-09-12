@@ -10,7 +10,7 @@
         <h1>新着コメント</h1>
         <% if @comments %>
             <% @comments.each do |comment| %>
-                <ul>
+                <ul class="comment-card">
                     <li><%=link_to(comment.music.name, "/musics/#{comment.music.id}")%></li>
                     <li class="new-comment-item comment-user"><%=comment.user.name + " "%><%=comment.created_at.strftime("%F %R")%></li>
                     <li class="new-comment-item"><%=comment.content%></li>
@@ -22,7 +22,7 @@
         <h1>新着プレイリスト</h1>
         <% if @playlists%>
             <% @playlists.each do |playlist| %>
-                <ul>
+                <ul class="playlist-card">
                     <li><%= link_to("#{playlist.user.name}　#{playlist.name}", "/playlists/#{playlist.id}") %></li>
                 </ul>
             <% end %>    
