@@ -115,6 +115,10 @@
     </script>
     <% if !@urls_j.blank? || !@music_names_j.blank? %>
     <script>
+      var audioRemains = document.getElementsByTagName("audio");
+      if (audioRemains.length) {
+        audioRemains.remove();
+      }
       var audio = document.createElement('audio');
       var audioPlayer = document.getElementById("foot-audio-player");
       var urls = <%= @urls_j %>
