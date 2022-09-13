@@ -3,7 +3,7 @@
 <%# <div class="liked-musics" > %>
     <%number=0%>
     <% @likes.each do |like| %>
-        <div class="liked-musics like-form-<%=like.id%>" id="tracknumber<%=number%>">
+        <div class="liked-musics like-form-<%=like.id%>" id="tracknumber<%=number%>" ondblclick="playButton(<%=number%>)">
             <div class="play-button" id="play-<%=like.id%>">
                 <button onclick="playButton(<%=number%>)" class="track-number-play" id="playButton<%=number%>">
                     <p class="track-number" id="tr<%=number%>"><%=number+1%></p>

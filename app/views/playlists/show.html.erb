@@ -48,7 +48,7 @@
 <div class="music-list">
     <% number = 0 %>
     <% @relations.each do |relation| %>
-        <div class="musics-in-the-playlist relation-<%=relation.id%>" id="tracknumber<%=number%>" >
+        <div class="musics-in-the-playlist relation-<%=relation.id%>" id="tracknumber<%=number%>" ondblclick="playButton(<%=number%>)">
             <div class="play-button" id="play-<%=relation.id%>">
                 <button onclick="playButton(<%=number%>)" class="track-number-play" id="playButton<%=number%>">
                     <p class="track-number" id="tr<%=number%>"><%=number+1%></p>

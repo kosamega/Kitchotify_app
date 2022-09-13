@@ -4,7 +4,7 @@
 <% if !@result_musics.empty? %>
     <%number=0%>
     <% @result_musics.each do |music| %>
-        <div class="liked-musics" id="tracknumber<%=number%>" >
+        <div class="liked-musics" id="tracknumber<%=number%>" ondblclick="playButton(<%=number%>)" >
             <div class="play-button" id="play-<%=music.id%>">
                 <button onclick="playButton(<%=number%>)" class="track-number-play" id="playButton<%=number%>">
                     <p class="track-number" id="tr<%=number%>"><%=number+1%></p>
