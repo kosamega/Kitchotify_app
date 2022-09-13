@@ -5,7 +5,7 @@ class SearchsController < ApplicationController
         @params = params[:search][:content]
         @result_musics = Music.where("name LIKE ?", "%#{@params}%").or(Music.where("artist LIKE?", "%#{@params}%"))
         @result_users = User.where("name LIKE ?", "%#{@params}%")
-        @result_playlists = Playlist.where("name LIKE ?", "%#{@params}%")
+        @result_playlists = Playlist.where("name LIKE ?", "%#{@params}%").where(public: 1)
         @urls = []
         @music_names = []
         @music_artists = []
