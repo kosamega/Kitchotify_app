@@ -3,7 +3,7 @@ class LikesController < ApplicationController
   before_action :set_variables
   
   def create
-    @like = Like.new(user_id: params[:user_id], music_id: params[:music_id])
+    @like = current_user.likes.build(music_id: params[:music_id])
     @like.save
     respond_to do |format|
         format.html {redirect_back_or "/"}
@@ -13,12 +13,14 @@ class LikesController < ApplicationController
 
   def destroy
     @like = Like.find_by(id: params[:like_id])
-    @unliked_music = @like.music
-    @like.destroy
-    @like_index = params[:like_index]
-    respond_to do |format|
-      format.html {redirect_back_or "/"}
-      format.js
+    if @like.user == current_user
+      @unliked_music = @like.music
+      @like.destroy
+      @like_index = params[:like_index]
+      respond_to do |format|
+        format.html {redirect_back_or "/"}
+        format.js
+      end
     end
   end
 
