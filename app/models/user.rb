@@ -5,6 +5,7 @@ class User < ApplicationRecord
     has_many :comments
     validates :name, presence: true, uniqueness: true
     attr_accessor :remember_token
+    default_scope -> { order(created_at: :asc) }
     # 渡された文字列のハッシュ値を返す
     def User.digest(string)
         cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
