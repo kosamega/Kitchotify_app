@@ -2,6 +2,8 @@ class SessionsController < ApplicationController
   before_action :logged_in_user, only: :destroy
 
   def new
+    @name = ""
+    @password = ""
   end
 
   def create
@@ -13,6 +15,8 @@ class SessionsController < ApplicationController
       end
       redirect_to "/"
     else
+      @name = params[:session][:name]
+      @password = params[:session][:password]
       flash.now[:danger] = "ユーザーネームかパスワードが間違っています"
       render "new"
     end

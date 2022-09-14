@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :logged_in_user
   before_action :not_kitchonkun, only: [:edit, :update]
-  before_action :adimin_user, only: [:new, :create]
+  before_action :admin_user, only: [:new, :create]
   before_action :correct_user_edit, only: [:edit, :update]
 
   def new

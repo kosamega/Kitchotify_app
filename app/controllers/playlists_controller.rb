@@ -5,18 +5,21 @@ class PlaylistsController < ApplicationController
   before_action :not_kitchonkun, only: [:create, :update, :destroy]
 
   def create
-    playlist = current_user.playlists.build(playlist_params)
-    playlist.save
-    redirect_back_or "/"
-    # respond_to do |format|
-      # format.html {redirect_back_or "/"}
-      # format.js
-    # end
+    @playlist = current_user.playlists.build(playlist_params)
+    @playlist.save
+    respond_to do |format|
+      format.html {redirect_back_or "/"}
+      format.js
+    end
   end
 
   def update
-    Playlist.find_by(id: params[:id]).update(playlist_params)
-    redirect_back_or "/"
+    @playlist = Playlist.find_by(id: params[:id])
+    @playlist.update(playlist_params)
+    respond_to do |format|
+      format.html {redirect_back_or "/"}
+      format.js
+    end
   end
 
   def destroy

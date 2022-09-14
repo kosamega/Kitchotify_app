@@ -4,10 +4,10 @@
 
         <ul>
             <li><%= f.label :ユーザーネーム %></li>
-            <li><%= f.text_field :name %></li>
+            <li><%= f.text_field :name, value: @name%></li>
 
             <li><%= f.label :password %></li>
-            <li><%= f.password_field :password %></li>
+            <li><%= f.password_field :password, value: @password%></li>
 
             <%= f.label :remember_me, class: "checkbox inline" do %>
                 <li>
