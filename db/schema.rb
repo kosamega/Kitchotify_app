@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_13_142554) do
+ActiveRecord::Schema.define(version: 2022_09_14_063305) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(version: 2022_09_13_142554) do
     t.datetime "updated_at", precision: 6
     t.text "bio"
     t.text "remember_digest"
+    t.index ["name"], name: "index_users_on_name", unique: true
   end
 
 end
