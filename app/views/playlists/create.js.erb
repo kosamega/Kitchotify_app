@@ -1,0 +1,2 @@
+$('.new-playlist').css("display", "none");
+$('#playlists-side').append('<li><%= link_to(@playlist.name, "/playlists/#{@playlist.id}") %></li>');

@@ -1,0 +1,11 @@
+$('#playlist-name').html('<%= @playlist.name %>');
+
+if (<%=@playlist.public%>){
+    $('.plivate-public').html('公開');
+}else{
+    $('.plivate-public').html('非公開');
+}
+
+$('#playlist-name').html('<%= @playlist.comment %>');
+
+$('.edit-playlist').css("display", "none");
