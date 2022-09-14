@@ -36,14 +36,13 @@
                       <li><%= f.text_field :name, class: "form-name", value: ""%></li>
                       <li><%= f.label :説明・コメント %></li>
                       <li><%= f.text_area :comment, class: "new-playlist-comment", value: ""  %></li>
-                      <li>
-                        <%= f.label :公開する do %>
-                          <%= f.check_box :public , checked: false%>
-                          <span>公開する</span>
-                        <% end %>
-                      </li>
+                      <%= f.label :public, :公開する do %>
+                        <li>
+                            <%= f.check_box  :public , checked: false%>
+                            <span>公開する</span>
+                        </li>
+                      <% end %>
                     <li><%= f.submit "作成", class: "new-playlist-submit-btn" %></li>
-
                     </ul>
                 <% end %>
               </div>
