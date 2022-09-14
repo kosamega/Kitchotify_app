@@ -1,4 +1,5 @@
 $('#playlist-name').html('<%= @playlist.name %>');
+$('#playlist-<%=@playlist.id%>').html('<%= @playlist.name %>');
 
 if (<%=@playlist.public%>){
     $('.plivate-public').html('公開');
@@ -6,6 +7,7 @@ if (<%=@playlist.public%>){
     $('.plivate-public').html('非公開');
 }
 
-$('#playlist-name').html('<%= @playlist.comment %>');
+$('#playlist-comment-content').html('<%= @playlist.comment %>');
+
 
 $('.edit-playlist').css("display", "none");

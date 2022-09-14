@@ -16,7 +16,7 @@
             <div class="side-bar-content-2">
                 <ul id="playlists-side">
                     <% current_user.playlists.each do |p| %>
-                        <li><%= link_to(p.name, "/playlists/#{p.id}") %></li>
+                        <li><%= link_to(p.name, "/playlists/#{p.id}", id: "playlist-#{p.id}") %></li>
                     <% end %>
                 </ul>
             </div>
