@@ -411,10 +411,16 @@ a:hover {
 // プレイリストに追加
 .playlist-name {
   margin: 4px 0;
+  padding: 3px;
+  border-radius: 2px;
   button {
     text-align: left;
     font-size: medium;
   }
+}
+
+.playlist-name:hover {
+  background-color: #eee;
 }
 
 #flash {
