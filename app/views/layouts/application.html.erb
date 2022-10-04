@@ -261,6 +261,10 @@
 
           var deletebtn = document.getElementById(`delete${i}`);
           deletebtn.setAttribute("id", `delete${i -1 }`);
+
+          var trackDiv = document.getElementById(`tracknumber${i}`);
+          trackDiv.setAttribute("id", `tracknumber${i -1 }`);
+          trackDiv.setAttribute("ondblclick", `playButton${i -1 }`);
         }
       }
 </script>
