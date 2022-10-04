@@ -247,7 +247,7 @@
         for(let i = trackNum; i <= max; i++){
           var track = document.getElementById(`tracknumber${i}`);
           track.setAttribute("id", `tracknumber${i - 1}`);
-          track.setAttribute("ondblclick", `playButton${i -1 }`);
+          track.setAttribute("ondblclick", `playButton(${i -1 })`);
 
 
           var button = document.getElementById(`playButton${i}`);
