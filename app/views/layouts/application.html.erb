@@ -247,6 +247,8 @@
         for(let i = trackNum; i <= max; i++){
           var track = document.getElementById(`tracknumber${i}`);
           track.setAttribute("id", `tracknumber${i - 1}`);
+          track.setAttribute("ondblclick", `playButton${i -1 }`);
+
 
           var button = document.getElementById(`playButton${i}`);
           button.setAttribute("id", `playButton${i - 1 }`);
@@ -261,10 +263,6 @@
 
           var deletebtn = document.getElementById(`delete${i}`);
           deletebtn.setAttribute("id", `delete${i -1 }`);
-
-          var trackDiv = document.getElementById(`tracknumber${i}`);
-          trackDiv.setAttribute("id", `tracknumber${i -1 }`);
-          trackDiv.setAttribute("ondblclick", `playButton${i -1 }`);
         }
       }
 </script>
