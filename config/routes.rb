@@ -1,21 +1,17 @@
 Rails.application.routes.draw do
-  get '/', to: "static_pages#home"
+  root to: "static_pages#home"
 
-  resources :users
+  resources :albums, only: %i[show]
+  resources :comments, only: %i[create]
+  resources :likes, only: %i[create destroy index]
+  resources :music_playlist_relations, only: %i[create destroy]
+  resources :musics, only: %i[show]
+  resources :playlists, only: %i[create update destroy index show]
+  resources :users, only: %i[new create show edit update index]
     
   get '/login', to: "sessions#new"
   post '/login', to: "sessions#create"
   delete '/logout', to: "sessions#destroy"
-  
-  resources :albums
-  resources :musics, only: [:show]
-  resources :likes
-  
-  resources :comments
 
   get '/search/result', to: "searchs#index"
-  
-  resources :playlists
-
-  resources :music_playlist_relations
 end

@@ -13,10 +13,11 @@ class UserSignupTest < ActionDispatch::IntegrationTest
                                          password: "foo",
                                          password_confirmation: "bar" } }
     end
+    follow_redirect!
     assert_template "users/new"
   end
 
-  test "有効なユーザー登録は聖子する" do
+  test "有効なユーザー登録は成功する" do
     log_in_as(@user)
     get new_user_path
     assert_difference "User.count", 1 do
@@ -24,6 +25,7 @@ class UserSignupTest < ActionDispatch::IntegrationTest
                                          password: "password",
                                          password_confirmation: "password" } }
     end
+    follow_redirect!
     assert_template "users/new"
   end
 end
