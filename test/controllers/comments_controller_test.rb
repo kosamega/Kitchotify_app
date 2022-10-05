@@ -5,6 +5,10 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
     @user = users(:kosamega)
   end
 
+  test "有効なユーザー" do
+    assert @user.valid?
+  end
+
   test "有効なコメントを作成" do
     log_in_as(@user)
     assert_difference "Comment.count", 1 do
@@ -24,5 +28,4 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
       post comments_path, params: {comment: {content: ""}, music_id: 1}
     end
   end
-
 end

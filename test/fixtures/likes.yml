@@ -1,10 +1,11 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
 one:
-  music_id: 1
-  user_id: 1
   user: kosamega
   music: hikari
   created_at: "2022-08-16 12:25:57"
   updated_at: "2022-08-16 12:25:57"
-  id: 1
+
+two:
+  user: kosamega
+  music: waopo
+  created_at: "2022-08-16 12:25:57"
+  updated_at: "2022-08-16 12:25:57"

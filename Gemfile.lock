@@ -118,6 +118,10 @@ GEM
     concurrent-ruby (1.1.10)
     crass (1.0.6)
     digest (3.1.0)
+    dotenv (2.8.1)
+    dotenv-rails (2.8.1)
+      dotenv (= 2.8.1)
+      railties (>= 3.2)
     erubi (1.10.0)
     ffi (1.15.5)
     globalid (1.0.0)
@@ -275,6 +279,7 @@ DEPENDENCIES
   bootsnap (>= 1.4.4)
   byebug
   capybara (>= 3.26)
+  dotenv-rails
   jbuilder (~> 2.7)
   jquery-rails
   listen (~> 3.3)
