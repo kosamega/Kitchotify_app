@@ -47,7 +47,7 @@
 <div class="music-list">
     <% number = 0 %>
     <% @relations.each do |relation| %>
-        <div class="musics-in-the-playlist relation-<%=relation.id%>" id="tracknumber<%=number%>" ondblclick="playButton(<%=number%>)">
+        <div class="music-in-the-playlist relation-<%=relation.id%>" id="tracknumber<%=number%>" ondblclick="playButton(<%=number%>)" draggable="true">
             <div class="play-button" id="play-<%=relation.id%>">
                 <button onclick="playButton(<%=number%>)" class="track-number-play" id="playButton<%=number%>">
                     <p class="track-number" id="tr<%=number%>"><%=number+1%></p>
@@ -106,3 +106,44 @@
         <%number += 1%>
     <% end %>
 </div>
+
+<script>
+    document.querySelectorAll(".music-in-the-playlist").forEach(elm => {
+        elm.ondragstart = function () {
+            event.dataTransfer.setData('text/plain', event.target.id);
+        };
+        elm.ondragover = function() {
+            event.preventDefault();
+            let rect = this.getBoundingClientRect();
+            if ((event.clientY - rect.top) < (this.clientHeight / 2)) {
+                //マウスカーソルの位置が要素の半分より上
+                this.style.borderTop = '2px solid black';
+                this.style.borderBottom = '';
+            } else {
+                //マウスカーソルの位置が要素の半分より下
+                this.style.borderTop = '';
+                this.style.borderBottom = '2px solid black';
+            }
+        };
+        elm.ondragleave = function () {
+            this.style.borderTop = '';
+            this.style.borderBottom = '';
+        };
+        elm.ondrop = function(){
+            event.preventDefault();
+            let id = event.dataTransfer.getData('text/plain');
+            let elm_drag = document.getElementById(id);
+
+            let rect = this.getBoundingClientRect();
+            if ((event.clientY - rect.top) < (this.clientHeight / 2)) {
+                //マウスカーソルの位置が要素の半分より上
+                this.parentNode.insertBefore(elm_drag, this);
+            } else {
+                //マウスカーソルの位置が要素の半分より下
+                this.parentNode.insertBefore(elm_drag, this.nextSibling);
+            }
+            this.style.borderTop = '';
+            this.style.borderBottom = '';
+        };
+    });
+</script>
