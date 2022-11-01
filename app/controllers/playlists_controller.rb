@@ -35,9 +35,7 @@ class PlaylistsController < ApplicationController
     if @playlist = Playlist.find_by(id: params[:id])
       @playlists = current_user.playlists
       @relations = @playlist.music_playlist_relations
-      @urls = []
-      @music_names = []
-      @music_artists = []
+      @infos = []
       require 'aws-sdk-s3'
       s3 = Aws::S3::Client.new
       signer = Aws::S3::Presigner.new(client: s3)
@@ -46,13 +44,9 @@ class PlaylistsController < ApplicationController
                                     bucket: 'kitchotifyappstrage',
                                     key: "audio/#{relation.music.album.id}/#{relation.music.audio_path}",
                                     expires_in: 7200)
-        @urls.push(url)
-        @music_names.push(relation.music.name)
-        @music_artists.push(relation.music.artist)
+        @infos.push({url: url, name: relation.music.name, artist: relation.music.artist})
       end
-      @urls_j = @urls.to_json.html_safe
-      @music_names_j = @music_names.to_json.html_safe
-      @music_artists_j = @music_artists.to_json.html_safe
+      @infos_j = @infos.to_json.html_safe
     else
       render "shared/not_found"
     end

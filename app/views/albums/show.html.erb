@@ -12,10 +12,10 @@
 <div class="album-musics" >
     <%number = 0%>
     <% @musics.each do |music| %>
-        <div class="music-in-album" id="tracknumber<%=number%>" ondblclick="playButton(<%=number%>)">
+        <div class="music-in-album" id="<%=number%>">
             <div class="play-button">
-                <button onclick="playButton(<%=number%>)" class="track-number-play" id="playButton<%=number%>">
-                    <p class="track-number" id="tr<%=number%>"><%=number+1%></p>
+                <button class="track-number-play">
+                    <p class="track-number"><%=number+1%></p>
                     <div class="playbutton">
                         <i class="fa-duotone fa-play fa playlistplaybutton"></i>
                     </div>
