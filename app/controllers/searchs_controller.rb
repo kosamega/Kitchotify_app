@@ -6,9 +6,7 @@ class SearchsController < ApplicationController
         @result_musics = Music.where("name LIKE ?", "%#{@params}%").or(Music.where("artist LIKE?", "%#{@params}%"))
         @result_users = User.where("name LIKE ?", "%#{@params}%")
         @result_playlists = Playlist.where("name LIKE ?", "%#{@params}%").where(public: 1)
-        @urls = []
-        @music_names = []
-        @music_artists = []
+        @infos = []
         require 'aws-sdk-s3'
         s3 = Aws::S3::Client.new
         signer = Aws::S3::Presigner.new(client: s3)
@@ -17,12 +15,8 @@ class SearchsController < ApplicationController
                                       bucket: 'kitchotifyappstrage',
                                       key: "audio/#{music.album.id}/#{music.audio_path}",
                                       expires_in: 7200)
-          @urls.push(url)
-          @music_names.push(music.name)
-          @music_artists.push(music.artist)
+          @infos.push({url: url, name: music.name, artist: music.artist})
         end
-        @urls_j = @urls.to_json.html_safe
-        @music_names_j = @music_names.to_json.html_safe
-        @music_artists_j = @music_artists.to_json.html_safe
+        @infos_j = @infos.to_json.html_safe
     end
 end

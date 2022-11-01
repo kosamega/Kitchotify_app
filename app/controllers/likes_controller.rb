@@ -28,9 +28,7 @@ class LikesController < ApplicationController
     @likes = current_user.likes
     @playlists = current_user.playlists
     @like_index = true
-    @urls = []
-    @music_names = []
-    @music_artists = []
+    @infos = []
     require 'aws-sdk-s3'
     s3 = Aws::S3::Client.new
     signer = Aws::S3::Presigner.new(client: s3)
@@ -39,13 +37,9 @@ class LikesController < ApplicationController
                                   bucket: 'kitchotifyappstrage',
                                   key: "audio/#{like.music.album.id}/#{like.music.audio_path}",
                                   expires_in: 7200)
-      @urls.push(url)
-      @music_names.push(like.music.name)
-      @music_artists.push(like.music.artist)
+      @infos.push({url: url, name: like.music.name, artist: like.music.artist})
     end
-    @urls_j = @urls.to_json.html_safe
-    @music_names_j = @music_names.to_json.html_safe
-    @music_artists_j = @music_artists.to_json.html_safe
+    @infos_j = @infos.to_json.html_safe
   end
 
   private
