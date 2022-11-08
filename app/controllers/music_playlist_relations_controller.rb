@@ -26,10 +26,6 @@ class MusicPlaylistRelationsController < ApplicationController
         end
     end
 
-    def update
-        
-    end
-
     private
         def correct_user
             playlist_user = Playlist.find(params[:playlist_id]).user
