@@ -1,5 +1,5 @@
 class MusicPlaylistRelation < ApplicationRecord
     belongs_to :playlist
     belongs_to :music
-    default_scope -> { order(created_at: :desc) }
+    acts_as_list scope: :playlist, top_of_list: 0
 end

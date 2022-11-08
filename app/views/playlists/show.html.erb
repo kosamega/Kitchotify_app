@@ -129,7 +129,7 @@
             this.style.borderTop = '';
             this.style.borderBottom = '';
         };
-        elm.ondrop = function(){
+        elm.ondrop = async function(){
             event.preventDefault();
             let dragged_id = Number(event.dataTransfer.getData('text/plain'));
             let elm_drag = document.getElementById(dragged_id);
@@ -151,6 +151,9 @@
                     info = infos[dragged_id]
                     infos.splice(dragged_id, 1)
                     infos.splice(dropped_id - 1, 0, info)
+                    if (!(dragged_id - dropped_id == 1)){
+                        await fetch(`/playlists/<%=@playlist.id%>/sort?drag=${dragged_id}&drop=${dropped_id - 1}`, {method: 'POST'})
+                    }
                 //マウスカーソルの位置が要素の半分より下
                 } else {
                     for(let i=dragged_id+1; i<=dropped_id; i++){
@@ -163,9 +166,10 @@
                     info = infos[dragged_id]
                     infos.splice(dragged_id, 1)
                     infos.splice(dropped_id, 0, info)
+                    await fetch(`/playlists/<%=@playlist.id%>/sort?drag=${dragged_id}&drop=${dropped_id}`, {method: 'POST'})
                 }
             // 下から上
-            }else{
+            }else if(dragged_id>dropped_id){
                 //マウスカーソルの位置が要素の半分より上
                 if ((event.clientY - rect.top) < (this.clientHeight / 2)) {
                     for(let i=dragged_id-1; dropped_id<=i; i--){
@@ -178,6 +182,7 @@
                     info = infos[dragged_id]
                     infos.splice(dragged_id, 1)
                     infos.splice(dropped_id, 0, info)
+                    await fetch(`/playlists/<%=@playlist.id%>/sort?drag=${dragged_id}&drop=${dropped_id}`, {method: 'POST'})
                 //マウスカーソルの位置が要素の半分より下
                 } else {
                     for(let i=dragged_id-1; dropped_id<i; i--){
@@ -190,6 +195,7 @@
                     info = infos[dragged_id]
                     infos.splice(dragged_id, 1)
                     infos.splice(dropped_id + 1, 0, info)
+                    await fetch(`/playlists/<%=@playlist.id%>/sort?drag=${dragged_id}&drop=${dropped_id + 1}`, {method: 'POST'})
                 }
             }
             this.style.borderTop = '';
