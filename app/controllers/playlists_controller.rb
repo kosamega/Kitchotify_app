@@ -1,8 +1,9 @@
 class PlaylistsController < ApplicationController
   before_action :logged_in_user
-  before_action :correct_user, only: [:update, :destroy]
+  before_action :correct_user, only: [:update, :destroy, :sort]
   before_action :correct_user_or_public, only: [:show]
   before_action :not_kitchonkun, only: [:create, :update, :destroy]
+  skip_before_action :verify_authenticity_token
 
   def create
     @playlist = current_user.playlists.build(playlist_params)
@@ -34,7 +35,7 @@ class PlaylistsController < ApplicationController
   def show
     if @playlist = Playlist.find_by(id: params[:id])
       @playlists = current_user.playlists
-      @relations = @playlist.music_playlist_relations
+      @relations = @playlist.music_playlist_relations.sort_by{ |a| a[:tr_num] }
       @infos = []
       require 'aws-sdk-s3'
       s3 = Aws::S3::Client.new
@@ -49,6 +50,12 @@ class PlaylistsController < ApplicationController
       @infos_j = @infos.to_json.html_safe
     else
       render "shared/not_found"
+    end
+  end
+
+  def sort
+    if !(params[:drag] == params[:drop])
+      MusicPlaylistRelation.find_by(playlist_id: params[:id], position: params[:drag]).insert_at(params[:drop].to_i)
     end
   end
 
