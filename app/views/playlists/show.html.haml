@@ -1,0 +1,169 @@
+.edit-playlist
+  .new-playlist-form
+    .new-playlist-form-content
+      .x
+        %i.fa-solid.fa-x.x-icon.fa-config
+      .new-playlist-form-content-form
+        = form_with(model: @playlist, local: false) do |f|
+          %ul
+            %li= f.label :プレイリスト名
+            %li= f.text_field :name, class: "form-name", value: @playlist.name
+            %li= f.label :説明・コメント
+            %li= f.text_area :comment, class: "new-playlist-comment", value: @playlist.comment
+            = f.label :public, :公開する do
+              %li
+                = f.check_box :public
+                %span 公開する
+            %li= f.submit "更新", class: "new-playlist-submit-btn"
+.playlist-info
+  %h1#playlist-name= @playlist.name
+  - if @playlist.public == 1
+    %span.plivate-public 公開
+  - else
+    %span.plivate-public 非公開
+  %h3= link_to(@playlist.user.name, "/users/#{@playlist.user.id}")
+  .playlist-comment
+    %p#playlist-comment-content
+      = @playlist.comment
+  - if current_user == @playlist.user
+    .playlist-edit-delete
+      = link_to("削除", "/playlists/#{@playlist.id}", method: :delete, data: { confirm: "本当に消しますか" })
+      %span#edit-playlist 編集
+.music-list
+  - number = 0
+  - @relations.each do |relation|
+    %div{:class => "music-in-the-playlist relation-#{relation.id}", :draggable => "true", :id => number}
+      .play-button
+        %button.track-number-play
+          %p.track-number{:id => "tr#{number}"}= number+1
+          .playbutton
+            %i.fa-duotone.fa-play.fa.playlistplaybutton
+      .liked-music-jaket= link_to(image_tag("#{relation.music.album.img_path}",class: "jaket-mini", width: "50px"), "/albums/#{relation.music.album.id}")
+      .liked-music-name= link_to(relation.music.name, "/musics/#{relation.music.id}")
+      .liked-music-album= link_to(relation.music.album.name, "/albums/#{relation.music.album.id}")
+      .liked-music-artist= link_to(relation.music.artist, "/musics/#{relation.music.id}")
+      %div{:class => "album-music-like like-form-#{relation.music.id}"}
+        - if @like = Like.find_by(user_id: current_user.id, music_id: relation.music.id)
+          = render "shared/unlike", like: @like , like_index: false
+        - else
+          = render "shared/like", unliked_music: relation.music, like_index: false
+      .add-playlist
+        .add_playlist-point
+          %p …
+        .select-playlists
+          .select-playlists-close
+            %p x
+          %ul
+            - @playlists.each do |playlist|
+              %li.playlist-name
+                = form_with(model: MusicPlaylistRelation.new, local: false) do |f|
+                  = hidden_field_tag :music_id, relation.music.id
+                  = hidden_field_tag :playlist_id, playlist.id
+                  = hidden_field_tag :at_playlist_show, true
+                  = button_tag type: :submit, class: "like-btn" do
+                    = playlist.name
+      .music-delete-from-playlist
+        - if @playlist.user == current_user
+          = form_with(model: relation, local: false, method: "delete") do |f|
+            = hidden_field_tag :music_id, relation.music.id
+            = hidden_field_tag :playlist_id, relation.playlist.id
+            = hidden_field_tag :relation_id, relation.id
+            = button_tag type: :submit, class: "like-btn delete-btn" do
+              %p 削除
+    - number += 1
+- if current_user == @playlist.user
+  :javascript
+    document.querySelectorAll(".music-in-the-playlist").forEach(elm => {
+        elm.ondragstart = function () {
+            event.dataTransfer.setData('text/plain', event.target.id);
+        };
+        elm.ondragover = function() {
+            event.preventDefault();
+            let rect = this.getBoundingClientRect();
+            if ((event.clientY - rect.top) < (this.clientHeight / 2)) {
+                //マウスカーソルの位置が要素の半分より上
+                this.style.borderTop = '2px solid black';
+                this.style.borderBottom = '';
+            } else {
+                //マウスカーソルの位置が要素の半分より下
+                this.style.borderTop = '';
+                this.style.borderBottom = '2px solid black';
+            }
+        };
+        elm.ondragleave = function () {
+            this.style.borderTop = '';
+            this.style.borderBottom = '';
+        };
+        elm.ondrop = async function(){
+            event.preventDefault();
+            let dragged_id = Number(event.dataTransfer.getData('text/plain'));
+            let elm_drag = document.getElementById(dragged_id);
+            let dropped_id = Number(this.getAttribute("id"));
+            let elm_drop = document.getElementById(dropped_id);
+
+            let rect = this.getBoundingClientRect();
+            // 上から下
+            if(dragged_id<dropped_id){
+                //マウスカーソルの位置が要素の半分より上のとき
+                if ((event.clientY - rect.top) < (this.clientHeight / 2)) {
+                    for(let i=dragged_id+1; i<dropped_id; i++){
+                        document.getElementById(i).querySelector("p").innerText = i;
+                        document.getElementById(i).setAttribute("id", `${i-1}`);
+                    }
+                    this.parentNode.insertBefore(elm_drag, this);
+                    elm_drag.querySelector("p").innerHTML = dropped_id
+                    elm_drag.setAttribute("id", dropped_id - 1);
+                    info = infos[dragged_id]
+                    infos.splice(dragged_id, 1)
+                    infos.splice(dropped_id - 1, 0, info)
+                    if (!(dragged_id - dropped_id == 1)){
+                        await fetch(`/playlists/#{@playlist.id}/sort?drag=${dragged_id}&drop=${dropped_id - 1}`, {method: 'POST'})
+                    }
+                //マウスカーソルの位置が要素の半分より下
+                } else {
+                    for(let i=dragged_id+1; i<=dropped_id; i++){
+                        document.getElementById(i).querySelector("p").innerText = i;
+                        document.getElementById(i).setAttribute("id", `${i-1}`);
+                    }
+                    this.parentNode.insertBefore(elm_drag, this.nextSibling);
+                    elm_drag.setAttribute("id", dropped_id);
+                    elm_drag.querySelector("p").innerHTML = dropped_id + 1;
+                    info = infos[dragged_id]
+                    infos.splice(dragged_id, 1)
+                    infos.splice(dropped_id, 0, info)
+                    await fetch(`/playlists/#{@playlist.id}/sort?drag=${dragged_id}&drop=${dropped_id}`, {method: 'POST'})
+                }
+            // 下から上
+            }else if(dragged_id>dropped_id){
+                //マウスカーソルの位置が要素の半分より上
+                if ((event.clientY - rect.top) < (this.clientHeight / 2)) {
+                    for(let i=dragged_id-1; dropped_id<=i; i--){
+                        document.getElementById(i).querySelector("p").innerText = i + 2;
+                        document.getElementById(i).setAttribute("id", i + 1);
+                    }
+                    this.parentNode.insertBefore(elm_drag, this);
+                    elm_drag.setAttribute("id", dropped_id);
+                    elm_drag.querySelector("p").innerHTML = dropped_id + 1;
+                    info = infos[dragged_id]
+                    infos.splice(dragged_id, 1)
+                    infos.splice(dropped_id, 0, info)
+                    await fetch(`/playlists/#{@playlist.id}/sort?drag=${dragged_id}&drop=${dropped_id}`, {method: 'POST'})
+                //マウスカーソルの位置が要素の半分より下
+                } else {
+                    for(let i=dragged_id-1; dropped_id<i; i--){
+                        document.getElementById(i).querySelector("p").innerText = i + 2;
+                        document.getElementById(i).setAttribute("id", i + 1);
+                    }
+                    this.parentNode.insertBefore(elm_drag, this.nextSibling);
+                    elm_drag.setAttribute("id", dropped_id + 1);
+                    elm_drag.querySelector("p").innerHTML = dropped_id + 2;
+                    info = infos[dragged_id]
+                    infos.splice(dragged_id, 1)
+                    infos.splice(dropped_id + 1, 0, info)
+                    await fetch(`/playlists/#{@playlist.id}/sort?drag=${dragged_id}&drop=${dropped_id + 1}`, {method: 'POST'})
+                }
+            }
+            this.style.borderTop = '';
+            this.style.borderBottom = '';
+        };
+    });

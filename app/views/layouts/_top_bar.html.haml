@@ -1,0 +1,12 @@
+.top-bar
+  .top-bar-left
+    = form_with(url: "/search/result", scope: :search, method: :get, local: true,) do |f|
+      = f.text_field :content
+  .top-bar-right
+    - if logged_in?
+      = link_to("ログアウト", "/logout", {method: :delete})
+      = link_to(current_user.name, "/users/#{current_user.id}")
+      #user-ddmenu
+        %ul
+          %li 設定
+          %li= link_to("ログアウト", "/logout", {method: :delete})

@@ -1,12 +1,13 @@
 class IntroQuizzesController < ApplicationController
   def show
-    ids = (1..100).to_a.sample(10)
-    @musics = Music.where(id: 1..100)
+    @q_num = 3
+    @ids = (1..Music.all.length).to_a.sample(@q_num)
+    @musics = Music.all
     @answers = []
     require 'aws-sdk-s3'
     s3 = Aws::S3::Client.new
     signer = Aws::S3::Presigner.new(client: s3)
-    ids.each do |id|
+    @ids.each do |id|
       music = Music.find_by(id: id)
       url = signer.presigned_url(:get_object, 
                                   bucket: 'kitchotifyappstrage',
@@ -15,6 +16,8 @@ class IntroQuizzesController < ApplicationController
       @answers.push({url: url, name: music.name, artist: music.artist})
     end
     gon.answers_j = @answers
+    gon.ids = @ids
+    gon.q_num = @q_num
   end
 
   def index
