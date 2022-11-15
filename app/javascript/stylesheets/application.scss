@@ -1,0 +1,452 @@
+@import "~bootstrap/scss/bootstrap.scss";
+@import "./albums.scss";
+@import "./comments.scss";
+@import "./intro_quizzes.scss";
+@import "./likes.scss";
+@import "./music_playlist_relations.scss";
+@import "./musics.scss";
+@import "./playlists.scss";
+@import "./searchs.scss";
+@import "./sessions.scss";
+@import "./static_pages.scss";
+@import "./users.scss";
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.body-grid {
+    display: grid;
+    grid-template:
+      "side-bar main" 90%
+      / 250px 1fr;
+  }
+
+// メイン
+.main {
+  height: 93vh;
+  overflow: hidden scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+// スクロールバー非表示
+.contents_box::-webkit-scrollbar{
+  display: none;
+}
+
+
+
+
+/* トップバー */
+.top-bar {
+  background-color: rgb(39, 39, 39);
+  height: 50px;
+  width: 100%;
+  position: fixed;
+  display: grid;
+  grid-template:
+   "left right"
+   / 300px 1fr;
+   z-index: 100;
+}
+
+.top-bar-left {
+  display: flex;
+  form {
+    display: inline-block;
+    margin: auto 0;
+    height: 28px;
+  }
+  input {
+    width: 250px;
+    height: 24px;
+    padding: 0;
+    margin:0 20px;
+  }
+}
+
+.top-bar-right {
+  height: 50px;
+  margin-right: 250px;
+  a {
+    float: right;
+    height: 20px;
+    display: inline-block;
+    padding: 5px;
+    margin: 10px 17px 10px 0;
+    color: rgba(238, 238, 238, 0.74);
+  }
+  a:hover {
+    color: #eee;
+  }
+}
+
+.top-bar p {
+  margin-right: 30px;
+}
+
+#user-ddmenu {
+  display: none;
+  width: 100px;
+  height: 100px;
+  background-color: rgb(224, 224, 224);
+}
+
+/* サイドバー */
+.side-bar {
+  height: 93vh;
+  background-color: azure;
+}
+
+.side-bar-content {
+  margin-left: 20px;
+  height: 93vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.side-bar-content-2 {
+    margin-top: 10px;
+    height: auto;
+    overflow-y: scroll;
+    flex-grow: 1;
+}
+
+
+.fa-config{
+  font-family: "Font Awesome 6 free";
+  font-weight: 900;
+  display: inline-block;
+}
+
+.x-icon {
+  float: right;
+  margin: 13px 19px;
+  font-size: large;
+  cursor: pointer;
+}
+
+.like-icon {
+  color: #ff2581;
+}
+
+.icon {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  text-align: center;
+  vertical-align: middle;
+  margin-right: 7px;
+}
+
+.text-field {
+  width: 154px;
+}
+
+.main-container {
+  margin: 70px 30px 0 30px;
+  background-color: rgb(255, 255, 255);
+}
+
+#logo {
+  font-size: 30px;
+  display: inline-block;
+  margin-top: 10px;
+}
+
+// 新しいプレイリスト
+#new-playlist {
+  cursor: pointer;
+  color: rgb(44, 44, 44);
+}
+
+#new-playlist:hover {
+  color: #000000;
+}
+
+.new-playlist {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  z-index: 1;
+  background-color: #0000004d;
+  display: none;
+}
+
+.new-playlist-form {
+  width: 900px;
+  height: 500px;
+  margin: auto;
+  background-color: aliceblue;
+  border-radius: 10px;
+}
+
+.x {
+  height: 30px;
+}
+
+.new-playlist-form-content-form {
+  width: 500px;
+  margin: auto;
+}
+
+.form-name{
+  width: 500px;
+}
+
+.form-bio{
+  width: 500px;
+  height: 230px;
+}
+
+.new-playlist-comment {
+  width: 500px;
+  height: 230px;
+}
+
+.new-playlist-submit-btn {
+  float: right;
+}
+
+// audio player
+footer {
+  position: fixed;
+  height: 7vh;
+  width: 100%;
+  bottom: 0;
+  background-color: #eee;
+  display: grid;
+  grid-template: 
+  "trackinfo player"
+  /30% 1fr ;
+  div {
+    display: flex;
+    align-items: center;
+  }
+}
+
+#foot-audio-player {
+  display: flex;
+  align-items: center;
+  audio {
+    display: inline-block;
+    width: 750px;
+  }
+}
+
+.track-info-wrapper {
+  margin-left: 30px;
+}
+
+.track-info {
+  margin-right: 10px;
+  display: inline-block;
+}
+
+.prevbtn, .nextbtn {
+  margin: 0 10px;
+}
+
+.fa-rotate {
+  color: rgb(158, 158, 158);
+}
+
+.loop-true {
+  color: #000000;
+  background-color: #4dafff;
+  .fa-rotate {
+    color: rgb(0, 0, 0);
+  }
+}
+
+/* 文字 */
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  list-style: none;
+  margin: 9px 0;
+}
+
+a {
+  text-decoration: none;
+  color: rgb(44, 44, 44);
+}
+
+a:hover {
+  color: black;
+}
+
+/* ジャケット */
+.album-item {
+  flex: 0 0 30%;
+  margin: 10px;
+}
+
+// アルバムshow
+.album-info {
+  display: grid;
+  grid-template:
+  "jaket text" 250px
+  / 300px 1fr;
+  margin-top: 100px;
+}
+
+.album-jaket-img {
+  width: 250px;
+  margin-left: 30px;
+}
+.album-info-text {
+  display: flex;
+  align-items: center;
+  h1 {
+    display: inline-block;
+    margin: 0;
+    
+  }
+}
+
+
+.album-musics {
+  margin: 10px;
+}
+
+.album-music-track {
+  display: flex;
+  // justify-content: center;
+  align-items: center;
+}
+
+.unliked-btn {
+  margin-right: 10px;
+  color: #8899a6;
+
+}
+
+.liked-btn {
+  margin-right: 10px;
+  color: #ff2581;
+}
+
+.house {
+  margin-right: 10px;
+  color: #000000;
+}
+
+// ログイン
+.login-forms {
+  width: 800px;
+  margin: 100px auto;
+}
+
+// like index
+.liked-musics {
+  margin: 2px 30px;
+  display: grid;
+  grid-template:
+  "play jaket name album artist like addplaylist"
+  /40px 60px 2fr 2fr 1fr 50px 50px;
+}
+
+.liked-music-name, .liked-music-album, .liked-music-artist, .music-delete-from-playlist, .liked-music-like, .liked-music-jaket, .album-music-like  {
+  display: flex;
+  align-items: center;
+}
+
+
+.add_playlist-point {
+  cursor: pointer;
+}
+
+.select-playlists {
+  position: absolute;
+  right: 10px;
+  background-color: #d9eeff;
+  width: 100px;
+  padding: 0 7px;
+  display: none;
+  z-index: 1;
+  border-radius: 2px;
+  ul {
+    margin-bottom: 10px;
+  }
+}
+
+.select-playlists-close {
+  cursor: pointer;
+  p {
+    margin:7px 5px;
+  }
+}
+
+.like-btn {
+  border: none;
+  background-color:#00000000;
+  cursor: pointer;
+  padding: 0 0 0 5px;
+}
+
+// playlist show
+.music-in-the-playlist {
+  margin:4px 30px 4px 20px;
+  padding-left: 10px;
+  display: grid;
+  grid-template:
+  "play jaket name album artist like create delete"
+  /40px 60px 2fr 2fr 1fr 50px 50px 50px;
+}
+
+.music-list {
+  margin:10px 0 ;
+}
+
+.play-button {
+  display: flex;
+  align-items: center;
+}
+
+.liked-music-jaket{
+  a {
+    height: 50px;
+  }
+}
+
+// プレイリストに追加
+.playlist-name {
+  margin: 4px 0;
+  padding: 3px;
+  border-radius: 2px;
+  button {
+    text-align: left;
+    font-size: medium;
+  }
+}
+
+.playlist-name:hover {
+  background-color: #eee;
+}
+
+#flash {
+  width: 30%;
+  left: 70%;
+  position: absolute;
+  top: 60px;
+  div {
+    width: 100%;
+    height: 46px;
+    p {
+      float: right;
+      margin: 1px 50px 1px 0;
+      background-color: rgb(195, 227, 255);
+      padding: 10px;
+      border-radius: 5px;
+      display: inline-block;
+    }
+  }
+}
+

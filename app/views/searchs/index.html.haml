@@ -1,0 +1,63 @@
+%h1
+  = @params
+  での検索結果
+%h2 曲
+- if !@result_musics.empty?
+  - number=0
+  - @result_musics.each do |music|
+    .liked-musics{:id => number}
+      .play-button
+        %button.track-number-play
+          %p.track-number= number+1
+          .playbutton
+            %i.fa-duotone.fa-play.fa.playlistplaybutton
+      .liked-music-jaket= link_to(image_tag("#{music.album.img_path}",class: "jaket-mini", width: "50px"), "/albums/#{music.album.id}")
+      .liked-music-name= link_to(music.name, "/musics/#{music.id}")
+      .liked-music-album= link_to(music.album.name, "/albums/#{music.album.id}")
+      .liked-music-artist= link_to(music.artist, "/musics/#{music.id}")
+      %div{:class => "album-music-like like-form-#{music.id}"}
+        - if @like = Like.find_by(user_id: current_user.id, music_id: music.id)
+          = render "shared/unlike", like: @like , like_index: false
+        - else
+          = render "shared/like", unliked_music: music, like_index: false
+      .add-playlist
+        .add_playlist-point
+          %p …
+        .select-playlists
+          .select-playlists-close
+            %p x
+          %ul
+            - @playlists.each do |playlist|
+              %li.playlist-name
+                = form_with(model: MusicPlaylistRelation.new, local: false) do |f|
+                  = hidden_field_tag :music_id, music.id
+                  = hidden_field_tag :playlist_id, playlist.id
+                  = hidden_field_tag :at_playlist_show, false
+                  = button_tag type: :submit, class: "like-btn" do
+                    = playlist.name
+    - number+=1
+- else
+  %p
+    = @params
+    を含む曲は見つかりませんでした
+  %p
+%h2 ユーザー
+- if !@result_users.empty?
+  %ul
+    - @result_users.each do |user|
+      %li= link_to(user.name, "/users/#{user.id}")
+- else
+  %p
+    = @params
+    を含むユーザーは見つかりませんでした
+  %p
+%h2 プレイリスト
+- if !@result_playlists.empty?
+  %ul
+    - @result_playlists.each do |playlist|
+      %li= link_to("#{playlist.user.name}　#{playlist.name}", "/playlists/#{playlist.id}")
+- else
+  %p
+    = @params
+    を含むプレイリストは見つかりませんでした
+  %p

@@ -1,0 +1,4 @@
+%h1 全てのプレイリスト
+%ul
+  - @playlists.each do |playlist|
+    %li= link_to("#{playlist.user.name}　#{playlist.name}", "/playlists/#{playlist.id}")

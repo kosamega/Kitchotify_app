@@ -1,0 +1,29 @@
+#quiz-play
+  .quiz-ui.mb-3
+    .btn.btn-primary#start-btn.mb-1.d-inline-block
+      スタート
+    %h6.d-inline-block#point= "0/#{@q_num}"
+    %h6.d-inline-block#time 00:00.000
+
+    %input#answer.form-control.mb-1{type: "text", placeholder: "検索"}
+  %audio#answer-audio
+  = audio_tag("correct", id: "correct")
+  = audio_tag("incorrect", id: "incorrect")
+
+  .answers
+    - @musics.each do |music|
+      .btn.btn-secondary.m-1.answer-btn{id: music.id}
+        = music[:artist]
+        \- #{music[:name]}
+
+#clear.d-none
+  .h1 クリアー！！！！！
+  .h3.d-inline-block タイム
+  .h3#clear-time.d-inline-block
+  .h6 答え
+  %ul
+    - @answers.each do |answer|
+      %li= answer[:artist] + "-" + answer[:name]
+
+
+= javascript_pack_tag "intro_quiz"

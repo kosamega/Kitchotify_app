@@ -1,0 +1,9 @@
+$(".relation-#{@relation_id}").remove();
+$("#flash").append("
+%div>
+  %p
+    「#{@playlist.name}」から「#{@music.name}」を削除
+");
+setTimeout(function(){
+$("#flash div:first").remove();
+}, 3000);

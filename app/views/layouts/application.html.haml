@@ -1,0 +1,91 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title Kitchotify
+    %meta{:content => "width=device-width,initial-scale=1", :name => "viewport"}/
+    = csrf_meta_tags
+    = csp_meta_tag
+    -# = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = include_gon
+    = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    %link{:href => "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css", :rel => "stylesheet"}/
+    = favicon_link_tag 'favicon.ico'
+  %body
+    .body-grid
+      .new-playlist
+        .new-playlist-form
+          .new-playlist-form-content
+            .x
+              %i.fa-solid.fa-x.x-icon.fa-config
+            .new-playlist-form-content-form
+              = form_with(model: Playlist.new, local: false) do |f|
+                %ul
+                  %li= f.label :プレイリスト名
+                  %li= f.text_field :name, class: "form-name", value: ""
+                  %li= f.label :説明・コメント
+                  %li= f.text_area :comment, class: "new-playlist-comment", value: ""
+                  = f.label :public, :公開する do
+                    %li
+                      = f.check_box  :public , checked: false
+                      %span 公開する
+                  %li= f.submit "作成", class: "new-playlist-submit-btn"
+      = render "layouts/side_bar"
+      .main
+        = render "layouts/top_bar"
+        .main-container
+          - flash.each do |message_type, message|
+            %div{:class => "alert alert-#{message_type}"}= message
+          = yield
+    %footer
+      - if !@infos.blank?
+        .track-info-wrapper
+          .track-info
+            %span#track-artist
+          .track-info
+            %span.mx-2 -
+          .track-info
+            %span#track-name
+        .audio-player-wrapper
+          .prevbtn
+            %button#prev
+              %i.fa-solid.fa-left-long
+          #foot-audio-player
+            %audio#audio
+          .nextbtn
+            %button#next
+              %i.fa-solid.fa-right-long
+          .loop
+            %button#loop-btn
+              %i.fa-solid.fa-rotate
+    #flash
+    :javascript
+      $(function(){
+          $(".add_playlist-point").click(function(){
+            $(this).siblings().show();
+          });
+
+          $('.select-playlists-close').click(function(){
+            $(this).parent().parent().find(".select-playlists").hide();
+          });
+
+          $('#new-playlist').click(function(){
+            $('.new-playlist').css("display", "flex");
+          });
+
+          $('.x').click(function(){
+            $('.new-playlist').css("display", "none");
+          });
+
+          $('#edit-playlist').click(function(){
+          $('.edit-playlist').css("display", "flex");
+          });
+
+          $('.x').click(function(){
+          $('.edit-playlist').css("display", "none");
+          });
+      });
+    - if !@infos.blank?
+      = javascript_pack_tag "audio_player"

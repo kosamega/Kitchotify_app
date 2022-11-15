@@ -1,0 +1,44 @@
+.album-info
+  .album-info-jaket
+    = image_tag(@album.img_path, class: "album-jaket-img")
+  .album-info-text
+    %div
+      %h1= @album.name
+.album-musics
+  - number = 0
+  - @musics.each do |music|
+    .music-in-album{:id => number}
+      .play-button
+        %button.track-number-play
+          %p.track-number= number+1
+          .playbutton
+            %i.fa-duotone.fa-play.fa.playlistplaybutton
+      .album-music-track
+        .album-music-name
+          = link_to(music.name, "/musics/#{music.id}")
+      .album-music-track
+        .album-artist-name
+          = link_to(music.artist, "/musics/#{music.id}")
+      .album-music-like
+        %div{:class => "like-form-#{music.id}"}
+          - if @like = Like.find_by(user_id: current_user.id, music_id: music.id)
+            = render "shared/unlike", like: @like , like_index: false
+          - else
+            = render "shared/like", unliked_music: music, like_index: false
+      .album-music-track
+        .add-playlist
+          .add_playlist-point
+            %p …
+          .select-playlists
+            .select-playlists-close
+              %p x
+            %ul
+              - @playlists.each do |playlist|
+                %li.playlist-name
+                  = form_with(model: MusicPlaylistRelation.new, local: false) do |f|
+                    = hidden_field_tag :music_id, music.id
+                    = hidden_field_tag :playlist_id, playlist.id
+                    = hidden_field_tag :at_playlist_show, false
+                    = button_tag type: :submit, class: "like-btn" do
+                      = playlist.name
+      - number += 1

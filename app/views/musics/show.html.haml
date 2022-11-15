@@ -1,0 +1,60 @@
+.music-info
+  .album-info-jaket
+    = image_tag(@music.album.img_path, class: "album-jaket-img")
+  .music-info-right
+    = link_to(@music.album.name, "/albums/#{@music.album.id}")
+    %h2= @music.name
+    %h3= @music.artist
+    .audio-like-playlist
+      .audio-player
+        %audio{:src => "<haml_loud"} @url  controlslist="nodownload" controls id="audio"&gt;
+      %div{:class => "music-like like-form-#{@music.id}"}
+        - if @like = Like.find_by(user_id: current_user.id, music_id: @music.id)
+          = render "shared/unlike", like: @like , like_index: false
+        - else
+          = render "shared/like", unliked_music: @music, like_index: false
+      .add-playlist
+        %p.add_playlist-point …
+        .select-playlists
+          .select-playlists-close
+            %p x
+          %ul
+            - @playlists.each do |playlist|
+              %li.playlist-name
+                = form_with(model: MusicPlaylistRelation.new, local: false) do |f|
+                  = hidden_field_tag :music_id, @music.id
+                  = hidden_field_tag :playlist_id, playlist.id
+                  = hidden_field_tag :at_playlist_show, false
+                  = button_tag type: :submit, class: "like-btn" do
+                    = playlist.name
+.music-containner-sita
+  .music-comments
+    %h2 コメント
+    .comment-item
+      - if current_user == User.find(2)
+        %div kitchonkun以外でログインするとコメントができます
+      - else
+        .comment-form
+          = form_with(model: Comment.new, local: false) do |f|
+            %div= hidden_field_tag :music_id, @music.id
+            = f.text_area :content, class: "comment-textarea"
+            = f.submit "送信", class: "comment-submit"
+      %ul#comments
+        - @comments.each do |comment|
+          %li.comment-user
+            = comment.user.name + " "
+            = comment.created_at.strftime("%F %R")
+          %li.comment-content= comment.content
+  .music-suggest
+    %h2
+      = @music.artist
+      の曲
+    %ul
+      - @artistsmusics.each do |music|
+        %li
+          .musics-suggested
+            .jacket-s= image_tag(music.album.img_path, class: "musics-suggested-jacket", width: "50px")
+            .suggestion-wrap= link_to("#{music.name}", "/musics/#{music.id}", class: "name-s")
+:javascript
+  var audio = document.getElementById('audio');
+  audio.volume = 0.08;

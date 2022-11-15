@@ -1,0 +1,5 @@
+= form_with(model:current_user.likes.build, local: false) do |f|
+  = hidden_field_tag :music_id, unliked_music.id
+  = hidden_field_tag :user_id, current_user.id
+  = button_tag type: :submit, class: "like-btn" do
+    %span.fa.fa-heart.unliked-btn
