@@ -39,7 +39,7 @@ class LikesController < ApplicationController
                                   expires_in: 7200)
       @infos.push({url: url, name: like.music.name, artist: like.music.artist})
     end
-    @infos_j = @infos.to_json.html_safe
+    gon.infos_j = @infos
   end
 
   private
