@@ -9,7 +9,8 @@ Rails.application.routes.draw do
   resources :playlists, only: %i[create update destroy index show]
   post '/playlists/:id/sort', to: "playlists#sort"
   resources :users, only: %i[new create show edit update index]
-    
+  resources :intro_quizzes, only: %i[index show]
+
   get '/login', to: "sessions#new"
   post '/login', to: "sessions#create"
   delete '/logout', to: "sessions#destroy"
