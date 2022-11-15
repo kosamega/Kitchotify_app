@@ -17,6 +17,6 @@ class SearchsController < ApplicationController
                                       expires_in: 7200)
           @infos.push({url: url, name: music.name, artist: music.artist})
         end
-        @infos_j = @infos.to_json.html_safe
+        gon.infos_j = @infos
     end
 end
