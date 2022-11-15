@@ -39,6 +39,8 @@ gem 'aws-sdk-rails'
 gem 'dotenv-rails'
 gem 'acts_as_list'
 gem 'gon'
+gem 'haml-rails'
+gem 'erb2haml'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

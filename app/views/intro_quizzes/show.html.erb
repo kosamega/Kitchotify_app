@@ -1,0 +1,26 @@
+<input type="text" id="answer">
+
+<ul>
+  <%@musics.each do |music|%>
+      <li class="answer-btn"><%=music[:artist]%> - <%=music[:name]%></li>
+  <%end%>
+<ul>
+
+
+<script>
+const searchMusic = (e) => {
+  const keyword = e.target.value
+  const answers = document.querySelectorAll(".answer-btn");
+  // console.log(answers[1].innerHTML)
+  if(keyword){
+    answers.forEach(e => {
+      if (e.innerHTML.indexOf(keyword) > -1){
+        e.style.display = "block"
+      }else{
+        e.style.display = "none"
+      }
+    })
+  }
+}
+    document.getElementById("answer").addEventListener("input", searchMusic);
+</script>
