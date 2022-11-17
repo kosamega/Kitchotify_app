@@ -1,8 +1,11 @@
 class IntroQuizzesController < ApplicationController
   def show
-    @q_num = 3
-    @ids = (1..Music.all.length).to_a.sample(@q_num)
-    @musics = Music.all
+    quiz = IntroQuiz.find_by(id: params[:id])
+    @q_num = quiz.q_num
+    if quiz.range = "full"
+      @ids = (1..Music.all.length).to_a.sample(@q_num)
+      @musics = Music.all
+    end
     @answers = []
     require 'aws-sdk-s3'
     s3 = Aws::S3::Client.new
@@ -21,5 +24,7 @@ class IntroQuizzesController < ApplicationController
   end
 
   def index
+    @results = QuizResult.first(10)
+    @intro_quizzes = IntroQuiz.all
   end
 end

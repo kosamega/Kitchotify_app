@@ -1,3 +1,11 @@
+// カウントダウン
+let rest = 2
+const countDown = ()=>{
+  console.log(rest)
+  document.getElementById("count-down-number").innerText = rest
+  rest--;
+};
+
 const answers = document.querySelectorAll(".answer-btn");
 
 const searchMusic = (e) => {
@@ -16,6 +24,17 @@ const searchMusic = (e) => {
       e.style.display = "inline-block"
     })
   }
+}
+
+const getCsrfToken = () => {
+  const metas = document.getElementsByTagName('meta');
+  for (let meta of metas) {
+      if (meta.getAttribute('name') === 'csrf-token') {
+          console.log('csrf-token:', meta.getAttribute('content'));
+          return meta.getAttribute('content');
+      }
+  }
+  return '';
 }
 
 index = 0
@@ -38,19 +57,33 @@ const correct = async ()=>{
   }else{
     document.getElementById("quiz-play").classList.add("d-none")
     currentTime = new Date(Date.now() - startTime);
-    const m  = String(currentTime.getMinutes()).padStart(2,"0");
-    const s  = String(currentTime.getSeconds()).padStart(2,"0");
-    const ms  = String(currentTime.getMilliseconds()).padStart(2,"0");
-    document.getElementById("clear-time").textContent = `${m}:${s}.${ms}`
+    const m = currentTime.getMinutes()
+    const s = currentTime.getSeconds()
+    const ms = currentTime.getMilliseconds()
+    const m_s  = String(m).padStart(2,"0");
+    const s_s  = String(s).padStart(2,"0");
+    const ms_s  = String(ms).padStart(2,"0");
+    document.getElementById("clear-time").textContent = `${m_s}:${s_s}.${ms_s}`
     document.getElementById("clear").classList.replace("d-none", "show")
+
+    const clearTime = m*60000 + s*1000 + ms
+
+    await fetch("/quiz_results", {
+      method: "POST", 
+      headers: {"Content-Type": "application/json", 
+                'X-CSRF-Token': getCsrfToken()},
+      body: JSON.stringify({time: clearTime, intro_quiz_id: 1})}
+    )
   }
 }
 
+false_count_node = document.getElementById("false-count")
+false_count = 0
 const incorrect = async ()=>{
   await incorrect_SE.play();
+  false_count++;
+  false_count_node.textContent = false_count;
 }
-
-document.get
 
 const quiz = async ()=>{
   answers.forEach(e=>{e.removeEventListener("click", incorrect)})
@@ -74,14 +107,21 @@ const displayTime = () => {
   const m  = String(currentTime.getMinutes()).padStart(2,"0");
   const s  = String(currentTime.getSeconds()).padStart(2,"0");
   const ms  = String(currentTime.getMilliseconds()).padStart(2,"0");
-
   time.textContent = `${m}:${s}.${ms}`
   timeoutID = setTimeout(displayTime, 10);
 }
 
 document.getElementById("answer").addEventListener("input", searchMusic);
 document.getElementById("start-btn").addEventListener("click", ()=> {
-  quiz();
-  startTime = Date.now();
-  displayTime();
+  document.getElementById("quiz-start").classList.add("d-none");
+  document.getElementById("count-down").classList.remove("d-none");
+  const countDownStart = setInterval(countDown, 1000);
+  setTimeout(()=>{
+    clearInterval(countDownStart);
+    document.getElementById("count-down").classList.add("d-none");
+    document.getElementById("quiz-play").classList.remove("d-none");
+    quiz();
+    startTime = Date.now();
+    displayTime();
+  }, 3000);
 });

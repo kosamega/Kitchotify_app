@@ -1,0 +1,2 @@
+class IntroQuiz < ApplicationRecord
+end

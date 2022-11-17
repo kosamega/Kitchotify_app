@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_11_04_082512) do
+ActiveRecord::Schema.define(version: 2022_11_16_091738) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,15 @@ ActiveRecord::Schema.define(version: 2022_11_04_082512) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "music_id"
+  end
+
+  create_table "intro_quizzes", force: :cascade do |t|
+    t.integer "q_num"
+    t.integer "range"
+    t.string "name"
+    t.integer "false_count"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "likes", force: :cascade do |t|
@@ -63,6 +72,14 @@ ActiveRecord::Schema.define(version: 2022_11_04_082512) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "public"
     t.text "comment"
+  end
+
+  create_table "quiz_results", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "intro_quiz_id"
+    t.integer "time"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
