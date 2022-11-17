@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   post '/playlists/:id/sort', to: "playlists#sort"
   resources :users, only: %i[new create show edit update index]
   resources :intro_quizzes, only: %i[index show]
+  resources :quiz_results, only: %i[create show index]
 
   get '/login', to: "sessions#new"
   post '/login', to: "sessions#create"

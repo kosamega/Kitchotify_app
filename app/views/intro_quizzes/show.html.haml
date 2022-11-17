@@ -1,11 +1,26 @@
-#quiz-play
-  .quiz-ui.mb-3
-    .btn.btn-primary#start-btn.mb-1.d-inline-block
-      スタート
-    %h6.d-inline-block#point= "0/#{@q_num}"
-    %h6.d-inline-block#time 00:00.000
+#quiz-start
+  .rule
+    流れる曲のタイトルをクリックしよう。
+  .btn.btn-primary#start-btn.mb-1.d-inline-block
+    スタート
 
-    %input#answer.form-control.mb-1{type: "text", placeholder: "検索"}
+#count-down.d-none
+  %h1#count-down-number
+    3
+
+#quiz-play.position-relative.d-none
+  .container-fluid.quiz-ui.mb-3.bg-white.py-3.row
+    .col
+      .row
+        %h6.d-inline-block#point 正解数
+        %h6.d-inline-block#point= "0/#{@q_num}"
+      .row
+        %h6.d-inline-block 不正解数
+        %h6.d-inline-block#false-count 0
+    .col
+      .h6.d-inline-block#time 00:00.000
+
+    %input#answer.form-control.mb-1{type: "text", placeholder: "絞り込み"}
   %audio#answer-audio
   = audio_tag("correct", id: "correct")
   = audio_tag("incorrect", id: "incorrect")
