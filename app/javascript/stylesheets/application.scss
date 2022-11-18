@@ -345,13 +345,13 @@ a:hover {
 }
 
 // like index
-.liked-musics {
-  margin: 2px 30px;
-  display: grid;
-  grid-template:
-  "play jaket name album artist like addplaylist"
-  /40px 60px 2fr 2fr 1fr 50px 50px;
-}
+// .liked-musics {
+//   margin: 2px 30px;
+//   display: grid;
+//   grid-template:
+//   "play jaket name album artist like addplaylist"
+//   /40px 60px 2fr 2fr 1fr 50px 50px;
+// }
 
 .liked-music-name, .liked-music-album, .liked-music-artist, .music-delete-from-playlist, .liked-music-like, .liked-music-jaket, .album-music-like  {
   display: flex;
@@ -405,30 +405,10 @@ a:hover {
   margin:10px 0 ;
 }
 
-.play-button {
-  display: flex;
-  align-items: center;
-}
-
 .liked-music-jaket{
   a {
     height: 50px;
   }
-}
-
-// プレイリストに追加
-.playlist-name {
-  margin: 4px 0;
-  padding: 3px;
-  border-radius: 2px;
-  button {
-    text-align: left;
-    font-size: medium;
-  }
-}
-
-.playlist-name:hover {
-  background-color: #eee;
 }
 
 #flash {
