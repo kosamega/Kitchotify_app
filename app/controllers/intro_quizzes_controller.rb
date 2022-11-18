@@ -21,10 +21,10 @@ class IntroQuizzesController < ApplicationController
     gon.answers_j = @answers
     gon.ids = @ids
     gon.q_num = @q_num
+    gon.q_id = quiz.id
   end
 
   def index
-    @results = QuizResult.first(10)
     @intro_quizzes = IntroQuiz.all
   end
 end
