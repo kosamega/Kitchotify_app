@@ -97,10 +97,10 @@ document.addEventListener('turbolinks:load', ()=>{
 
   // トラックナンバーと再生ボタン
   function setPlayButton(){
-    for(var el of document.querySelectorAll('.music-in-the-playlist, .music-in-album, .liked-musics')){
+    for(var el of document.querySelectorAll('.track, .music-in-album, .track')){
       el.addEventListener('dblclick', playButton)
     }
-    for(var el of document.querySelectorAll('.track-number-play')){
+    for(var el of document.querySelectorAll('.tr-number-play')){
       el.addEventListener('click', playButton)
     }
   }
@@ -109,7 +109,7 @@ document.addEventListener('turbolinks:load', ()=>{
   
   async function playButton(evt){
     endPlay(index);
-    index = evt.currentTarget.closest('.music-in-the-playlist, .music-in-album, .liked-musics').id;
+    index = evt.currentTarget.closest('.track, .music-in-album, .track').id;
     audio.src = infos[index]['url'];
     changeInfo();
     nowPlay(index);
@@ -118,7 +118,7 @@ document.addEventListener('turbolinks:load', ()=>{
 
   // プレイリストからトラックを削除したときにつじつまを合わせる
   function setDeleteButton(){
-    for(var el of document.querySelectorAll('.delete-btn')){
+    for(var el of document.querySelectorAll('.delete-btn, .like-btn')){
       el.addEventListener('click', trDelete)
     }
   }
@@ -126,7 +126,8 @@ document.addEventListener('turbolinks:load', ()=>{
   setDeleteButton();
 
   function trDelete(evt){
-    let trackNum = evt.currentTarget.closest('.music-in-the-playlist').id
+    let trackNum = evt.currentTarget.closest('.track').id
+    console.log(trackNum);
     infos.splice(trackNum, 1);
     
     if(trackNum == index){
@@ -141,8 +142,9 @@ document.addEventListener('turbolinks:load', ()=>{
     max--;
     trackNum++;
     for(var i = trackNum; i <= max; i++){
-      document.getElementById(`${i}`).setAttribute("id", `${i - 1}`);
-      document.getElementById(`tr${i}`).innerHTML = i ;
+      const track = document.getElementById(`${i}`)
+      track.setAttribute("id", `${i - 1}`);
+      track.querySelector('.tr-number').innerHTML = i ;
     }
     setPlayButton();
     setDeleteButton();

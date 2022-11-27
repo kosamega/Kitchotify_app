@@ -344,15 +344,6 @@ a:hover {
   margin: 100px auto;
 }
 
-// like index
-// .liked-musics {
-//   margin: 2px 30px;
-//   display: grid;
-//   grid-template:
-//   "play jaket name album artist like addplaylist"
-//   /40px 60px 2fr 2fr 1fr 50px 50px;
-// }
-
 .liked-music-name, .liked-music-album, .liked-music-artist, .music-delete-from-playlist, .liked-music-like, .liked-music-jaket, .album-music-like  {
   display: flex;
   align-items: center;
@@ -392,14 +383,14 @@ a:hover {
 }
 
 // playlist show
-.music-in-the-playlist {
-  margin:4px 30px 4px 20px;
-  padding-left: 10px;
-  display: grid;
-  grid-template:
-  "play jaket name album artist like create delete"
-  /40px 60px 2fr 2fr 1fr 50px 50px 50px;
-}
+// .track {
+//   margin:4px 30px 4px 20px;
+//   padding-left: 10px;
+//   display: grid;
+//   grid-template:
+//   "play jaket name album artist like create delete"
+//   /40px 60px 2fr 2fr 1fr 50px 50px 50px;
+// }
 
 .music-list {
   margin:10px 0 ;
