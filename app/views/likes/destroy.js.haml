@@ -1,5 +1,0 @@
-if (#{@like_index} == true) {
-$("#{@like_id}").remove();
-}else{
-$("#{@id_name}").html("#{escape_javascript(render('shared/like', unliked_music: @unliked_music, like_index: false))}");
-}

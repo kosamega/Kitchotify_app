@@ -34,9 +34,9 @@
   - @relations.each do |relation|
     %div{:class => "music-in-the-playlist relation-#{relation.id}", :draggable => "true", :id => number}
       .play-button
-        %button.track-number-play
-          %p.track-number{:id => "tr#{number}"}= number+1
-          .playbutton
+        %button.tr-number-play
+          %p.tr-number{:id => "tr#{number}"}= number+1
+          .tr-playbutton
             %i.fa-duotone.fa-play.fa.playlistplaybutton
       .liked-music-jaket= link_to(image_tag("#{relation.music.album.img_path}",class: "jaket-mini", width: "50px"), "/albums/#{relation.music.album.id}")
       .liked-music-name= link_to(relation.music.name, "/musics/#{relation.music.id}")
@@ -73,7 +73,7 @@
     - number += 1
 - if current_user == @playlist.user
   :javascript
-    document.querySelectorAll(".music-in-the-playlist").forEach(elm => {
+    document.querySelectorAll(".track").forEach(elm => {
         elm.ondragstart = function () {
             event.dataTransfer.setData('text/plain', event.target.id);
         };
