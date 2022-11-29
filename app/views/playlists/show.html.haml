@@ -29,6 +29,7 @@
     .playlist-edit-delete
       = link_to("削除", "/playlists/#{@playlist.id}", method: :delete, data: { confirm: "本当に消しますか" })
       %span#edit-playlist 編集
+
 .music-list
   - number = 0
   - @relations.each do |relation|
@@ -71,6 +72,7 @@
             = button_tag type: :submit, class: "like-btn delete-btn" do
               %p 削除
     - number += 1
+
 - if current_user == @playlist.user
   :javascript
     document.querySelectorAll(".track").forEach(elm => {

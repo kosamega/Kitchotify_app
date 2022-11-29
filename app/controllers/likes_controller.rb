@@ -26,6 +26,7 @@ class LikesController < ApplicationController
 
   def index
     @likes = current_user.likes
+    @musics = @likes.map{|like| like.music}
     @playlists = current_user.playlists
     @like_index = true
     @infos = []
@@ -45,6 +46,5 @@ class LikesController < ApplicationController
   private
     def set_variables
       @id_name = ".like-form-#{params[:music_id]}"
-      @like_id = ".like-form-#{params[:like_id]}"
     end
 end
