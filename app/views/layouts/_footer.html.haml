@@ -1,0 +1,21 @@
+%footer
+  - if !@infos.blank?
+    .track-info-wrapper
+      .track-info
+        %span#track-artist
+      .track-info
+        %span.mx-2 -
+      .track-info
+        %span#track-name
+    .audio-player-wrapper
+      .prevbtn
+        %button#prev
+          %i.fa-solid.fa-left-long
+      #foot-audio-player
+        %audio#audio
+      .nextbtn
+        %button#next
+          %i.fa-solid.fa-right-long
+      .loop
+        %button#loop-btn
+          %i.fa-solid.fa-rotate

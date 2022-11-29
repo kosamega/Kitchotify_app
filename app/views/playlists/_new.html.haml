@@ -1,0 +1,17 @@
+.new-playlist
+  .new-playlist-form
+    .new-playlist-form-content
+      .x
+        %i.fa-solid.fa-x.x-icon.fa-config
+      .new-playlist-form-content-form
+        = form_with(model: Playlist.new, local: false) do |f|
+          %ul
+            %li= f.label :プレイリスト名
+            %li= f.text_field :name, class: "form-name", value: ""
+            %li= f.label :説明・コメント
+            %li= f.text_area :comment, class: "new-playlist-comment", value: ""
+            = f.label :public, :公開する do
+              %li
+                = f.check_box  :public , checked: false
+                %span 公開する
+            %li= f.submit "作成", class: "new-playlist-submit-btn"
