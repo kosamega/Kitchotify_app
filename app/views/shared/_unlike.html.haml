@@ -1,6 +1,6 @@
 = form_with(model:like, local: false, html: {method: :delete}) do |f|
   = hidden_field_tag :like_id, like.id
-  = hidden_field_tag :music_id, like.music_id
+  = hidden_field_tag :number, number
   = hidden_field_tag :like_index, like_index
   - if like_index
     = button_tag type: :submit, class: "like-btn", id: "delete#{number}" do
