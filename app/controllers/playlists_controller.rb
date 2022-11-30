@@ -34,8 +34,10 @@ class PlaylistsController < ApplicationController
   
   def show
     if @playlist = Playlist.find_by(id: params[:id])
+      @at_playlist_show = true
       @playlists = current_user.playlists
       @relations = @playlist.music_playlist_relations.sort_by{ |a| a[:position] }
+      @musics = @relations.map{|relation|relation.music}
       @infos = []
       require 'aws-sdk-s3'
       s3 = Aws::S3::Client.new

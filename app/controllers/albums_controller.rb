@@ -4,6 +4,7 @@ class AlbumsController < ApplicationController
         if @album = Album.find_by(id: params[:id])
             @musics = @album.musics
             @playlists = current_user.playlists
+            @at_album_show = true
             @infos = []
             require 'aws-sdk-s3'
             s3 = Aws::S3::Client.new

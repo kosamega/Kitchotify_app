@@ -1,1 +1,2 @@
-$("<%=@id_name%>").html("<%= escape_javascript(render('shared/unlike', like: @like, like_index: false)) %>");
+$("#<%=@like_id%>").html("<%= escape_javascript(render('shared/unlike', like: @like , like_index: false, number: @number)) %>");
+

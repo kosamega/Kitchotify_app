@@ -30,48 +30,7 @@
       = link_to("削除", "/playlists/#{@playlist.id}", method: :delete, data: { confirm: "本当に消しますか" })
       %span#edit-playlist 編集
 
-.music-list
-  - number = 0
-  - @relations.each do |relation|
-    %div{:class => "music-in-the-playlist relation-#{relation.id}", :draggable => "true", :id => number}
-      .play-button
-        %button.tr-number-play
-          %p.tr-number{:id => "tr#{number}"}= number+1
-          .tr-playbutton
-            %i.fa-duotone.fa-play.fa.playlistplaybutton
-      .liked-music-jaket= link_to(image_tag("#{relation.music.album.img_path}",class: "jaket-mini", width: "50px"), "/albums/#{relation.music.album.id}")
-      .liked-music-name= link_to(relation.music.name, "/musics/#{relation.music.id}")
-      .liked-music-album= link_to(relation.music.album.name, "/albums/#{relation.music.album.id}")
-      .liked-music-artist= link_to(relation.music.artist, "/musics/#{relation.music.id}")
-      %div{:class => "album-music-like like-form-#{relation.music.id}"}
-        - if @like = Like.find_by(user_id: current_user.id, music_id: relation.music.id)
-          = render "shared/unlike", like: @like , like_index: false
-        - else
-          = render "shared/like", unliked_music: relation.music, like_index: false
-      .add-playlist
-        .add_playlist-point
-          %p …
-        .select-playlists
-          .select-playlists-close
-            %p x
-          %ul
-            - @playlists.each do |playlist|
-              %li.playlist-name
-                = form_with(model: MusicPlaylistRelation.new, local: false) do |f|
-                  = hidden_field_tag :music_id, relation.music.id
-                  = hidden_field_tag :playlist_id, playlist.id
-                  = hidden_field_tag :at_playlist_show, true
-                  = button_tag type: :submit, class: "like-btn" do
-                    = playlist.name
-      .music-delete-from-playlist
-        - if @playlist.user == current_user
-          = form_with(model: relation, local: false, method: "delete") do |f|
-            = hidden_field_tag :music_id, relation.music.id
-            = hidden_field_tag :playlist_id, relation.playlist.id
-            = hidden_field_tag :relation_id, relation.id
-            = button_tag type: :submit, class: "like-btn delete-btn" do
-              %p 削除
-    - number += 1
+= render "musics/music"
 
 - if current_user == @playlist.user
   :javascript

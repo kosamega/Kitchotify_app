@@ -1,0 +1,45 @@
+- number = 0
+%table.table.align-middle
+  %thead
+    - @musics.each do |music|
+      %tr.align-middle.track{id: number}
+        %th.play-button.tr-number-play.position-relative{scope: "row"}
+          .tr-number= number+1
+          %i.fa-duotone.fa-play.fa.position-absolute.start-0.ms-2.tr-playbutton.pb-2
+        %td= link_to(image_tag("#{music.album.img_path}",class: "jaket-mini", width: "50px"), album_path(music.album.id))
+        %td= link_to(music.name, music_path(music.id))
+        - if !@at_album_show
+          %td= link_to(music.album.name, album_path(music.album.id))
+        %td= link_to(music.artist, music_path(music.id))
+        - if @like_index
+          %td= render "shared/unlike", like: music.likes.find_by(user_id: current_user.id), like_index: true, number: number
+        - else
+          - if like = Like.find_by(user_id: current_user.id, music_id: music.id)
+            %td{id: "like#{number}"}= render "shared/unlike", like: like , like_index: false, number: number
+          - else
+            %td{id: "like#{number}"}= render "shared/like", unliked_music: music, like_index: false, number: number
+        %td.add-playlist
+          .add_playlist-point
+            %i.fa-solid.fa-plus.fa-config
+          .select-playlists
+            .select-playlists-close.m-1
+              %i.fa-solid.fa-xmark.fa-config
+            %ul
+              - @playlists.each do |playlist|
+                %li
+                  = form_with(model: MusicPlaylistRelation.new, local: false) do |f|
+                    = hidden_field_tag :music_id, music.id
+                    = hidden_field_tag :playlist_id, playlist.id
+                    = hidden_field_tag :at_playlist_show, false
+                    = button_tag type: :submit, class: "text-start border-0 bg-transparent" do
+                      = playlist.name
+        - if @at_playlist_show == true
+          %td
+            - if @playlist.user == current_user
+              = form_with(model: @relations[number], local: false, method: "delete") do |f|
+                = hidden_field_tag :music_id, music.id
+                = hidden_field_tag :playlist_id, @playlist.id
+                -# = hidden_field_tag :number, number
+                = button_tag type: :submit, class: "delete-btn border-0 bg-transparent" do
+                  削除
+      - number+=1

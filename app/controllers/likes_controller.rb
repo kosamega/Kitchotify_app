@@ -5,6 +5,7 @@ class LikesController < ApplicationController
   def create
     @like = current_user.likes.build(music_id: params[:music_id])
     @like.save
+    @number = params[:number]
     respond_to do |format|
         format.html {redirect_back_or "/"}
         format.js
@@ -13,6 +14,7 @@ class LikesController < ApplicationController
 
   def destroy
     @like = Like.find_by(id: params[:like_id])
+    @music = @like.music
     if @like.user == current_user
       @unliked_music = @like.music
       @like.destroy
@@ -45,6 +47,7 @@ class LikesController < ApplicationController
 
   private
     def set_variables
-      @id_name = ".like-form-#{params[:music_id]}"
+      @track_id = params[:number]
+      @like_id = "like#{params[:number]}"
     end
 end
