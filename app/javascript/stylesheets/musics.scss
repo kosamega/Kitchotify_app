@@ -10,10 +10,6 @@
     background-color:#8899a642;
   }
   
-  .music-comments, .music-suggest {
-    margin: 30px;
-  }
-  
   .comment-form {
     width: 500px;
     height: 150px;
@@ -33,20 +29,9 @@
     float: right;
   }
   
-  .comment-item {
-    margin-left: 10px;
-  }
-  
   .comment-user {
     color: #8899a6;
   }
-
-.music-containner-sita {
-  display: grid;
-  grid-template:
-  "comment suggest"
-  /1fr 2fr;
-}
 
 .musics-suggested {
   display: grid;

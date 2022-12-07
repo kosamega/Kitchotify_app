@@ -1,0 +1,6 @@
+$('.new-playlist').css("display", "none");
+$('#playlists-side').prepend('<li><%= link_to(@playlist.name, "/playlists/#{@playlist.id}") %></li>');
+$('#flash').append('<div><p><%= @playlist.name %>を作成しました</p></div>');
+setTimeout(function(){
+$('#flash div:first').remove();
+}, 3000);

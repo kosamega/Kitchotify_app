@@ -1,5 +1,5 @@
 .music-info.rounded.d-flex
-  .album-info-jaket.m-3.d-inline-block
+  .album-info-jaket.m-4.d-inline-block
     = image_tag(@music.album.img_path, class: "album-jaket-img")
   .d-inline-flex.flex-column.justify-content-center
     = link_to(@music.album.name, "/albums/#{@music.album.id}")
@@ -27,8 +27,8 @@
                     = playlist.name
 
 
-.music-containner-sita
-  .music-comments
+.row.ms-3.mt-5
+  .col
     %h2 コメント
     .comment-item
       - if current_user == User.find(2)
@@ -45,7 +45,7 @@
             = comment.user.name + " "
             = comment.created_at.strftime("%F %R")
           %li.comment-content= comment.content
-  .music-suggest
+  .col
     %h2
       = @music.artist
       の曲
