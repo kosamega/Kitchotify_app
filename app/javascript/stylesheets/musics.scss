@@ -1,14 +1,13 @@
 
 // music show
 .music-info {
-    display: grid;
-    grid-template:
-    "jaket text" 250px
-    / 300px 1fr;
-    margin-top: 100px;
-    padding: 30px 0;
+    // display: grid;
+    // grid-template:
+    // "jaket text" 250px
+    // / 300px 1fr;
+    // margin-top: 100px;
+    // padding: 30px 0;
     background-color:#8899a642;
-    border-radius: 10px;
   }
   
   .music-comments, .music-suggest {
@@ -41,13 +40,6 @@
   .comment-user {
     color: #8899a6;
   }
-  
-.music-info-right {
-  audio {
-    display: inline-block;
-    width: 100%;
-  }
-}
 
 .music-containner-sita {
   display: grid;
@@ -82,12 +74,6 @@
   margin-left: 10px;
 }
 
-// .music-like {
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-// }
-
 .music-show-like {
   display: inline-block;
   line-height: 61px;
@@ -104,17 +90,6 @@
   align-items: center;
 }
 
-.audio-like-playlist {
-  display: grid;
-  grid-template:
-  "player like-playlist ."
-  / 1fr 35px 35px 20px;
+.info {
+  height: auto;
 }
-
-// .add_playlist-point {
-//   vertical-align: middle;
-//   p {
-//     line-height: 61px;
-//     margin: 0;
-//   }
-// }
