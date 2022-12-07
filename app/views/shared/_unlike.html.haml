@@ -3,8 +3,8 @@
   = hidden_field_tag :number, number
   = hidden_field_tag :like_index, like_index
   - if like_index
-    = button_tag type: :submit, class: "like-btn", id: "delete#{number}" do
+    = button_tag type: :submit, class: "heart-btn delete-btn" do
       %span.fa.fa-heart.liked-btn
   - else
-    = button_tag type: :submit, class: "like-btn" do
+    = button_tag type: :submit, class: "heart-btn" do
       %span.fa.fa-heart.liked-btn

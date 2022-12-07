@@ -6,27 +6,30 @@
     %h2= @music.name
     %h3= @music.artist
     .audio-like-playlist
-      .audio-player
-        %audio{:src => "<haml_loud"} @url  controlslist="nodownload" controls id="audio"&gt;
+      -# .audio-player
+      -#   %audio{src: @url, controlslist: "nodownload", controls: true, id: "audio"}
       %div{:class => "music-like like-form-#{@music.id}"}
         - if @like = Like.find_by(user_id: current_user.id, music_id: @music.id)
-          = render "shared/unlike", like: @like , like_index: false
+          #like0= render "shared/unlike", like: @like , like_index: false, number: "0"
         - else
-          = render "shared/like", unliked_music: @music, like_index: false
+          #like0= render "shared/like", unliked_music: @music, like_index: false, number: "0"
       .add-playlist
-        %p.add_playlist-point …
+        .add_playlist-point
+          %i.fa-solid.fa-plus.fa-config
         .select-playlists
-          .select-playlists-close
-            %p x
+          .select-playlists-close.m-1
+            %i.fa-solid.fa-xmark.fa-config
           %ul
             - @playlists.each do |playlist|
-              %li.playlist-name
+              %li
                 = form_with(model: MusicPlaylistRelation.new, local: false) do |f|
                   = hidden_field_tag :music_id, @music.id
                   = hidden_field_tag :playlist_id, playlist.id
                   = hidden_field_tag :at_playlist_show, false
-                  = button_tag type: :submit, class: "like-btn" do
+                  = button_tag type: :submit, class: "text-start border-0 bg-transparent" do
                     = playlist.name
+
+
 .music-containner-sita
   .music-comments
     %h2 コメント
@@ -55,6 +58,3 @@
           .musics-suggested
             .jacket-s= image_tag(music.album.img_path, class: "musics-suggested-jacket", width: "50px")
             .suggestion-wrap= link_to("#{music.name}", "/musics/#{music.id}", class: "name-s")
-:javascript
-  var audio = document.getElementById('audio');
-  audio.volume = 0.08;

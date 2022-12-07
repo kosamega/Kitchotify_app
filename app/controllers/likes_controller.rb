@@ -15,6 +15,7 @@ class LikesController < ApplicationController
   def destroy
     @like = Like.find_by(id: params[:like_id])
     @music = @like.music
+    @number = params[:number]
     if @like.user == current_user
       @unliked_music = @like.music
       @like.destroy
