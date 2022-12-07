@@ -1,19 +1,16 @@
-.music-info
-  .album-info-jaket
+.music-info.rounded.d-flex
+  .album-info-jaket.m-3.d-inline-block
     = image_tag(@music.album.img_path, class: "album-jaket-img")
-  .music-info-right
+  .d-inline-flex.flex-column.justify-content-center
     = link_to(@music.album.name, "/albums/#{@music.album.id}")
     %h2= @music.name
     %h3= @music.artist
-    .audio-like-playlist
-      -# .audio-player
-      -#   %audio{src: @url, controlslist: "nodownload", controls: true, id: "audio"}
-      %div{:class => "music-like like-form-#{@music.id}"}
-        - if @like = Like.find_by(user_id: current_user.id, music_id: @music.id)
-          #like0= render "shared/unlike", like: @like , like_index: false, number: "0"
-        - else
-          #like0= render "shared/like", unliked_music: @music, like_index: false, number: "0"
-      .add-playlist
+    .like-add-playlist
+      - if @like = Like.find_by(user_id: current_user.id, music_id: @music.id)
+        #like0.d-inline-block= render "shared/unlike", like: @like , like_index: false, number: "0"
+      - else
+        #like0.d-inline-block= render "shared/like", unliked_music: @music, like_index: false, number: "0"
+      .add-playlist.d-inline-block
         .add_playlist-point
           %i.fa-solid.fa-plus.fa-config
         .select-playlists
