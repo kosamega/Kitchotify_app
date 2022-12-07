@@ -1,5 +1,5 @@
 $("#<%=@track_id%>").remove();
-$("#flash").append("<div><p><%= @playlist.name %>から<%=@music.name%>を削除</p></div>");
+$("#flash").append("<div><p><%= @playlist.name %>から<%=@music.name%>を削除しました</p></div>");
 setTimeout(function(){
     $("#flash div:first").remove();
 }, 3000);
