@@ -39,7 +39,6 @@
               = form_with(model: @relations[number], local: false, method: "delete") do |f|
                 = hidden_field_tag :music_id, music.id
                 = hidden_field_tag :playlist_id, @playlist.id
-                -# = hidden_field_tag :number, number
                 = button_tag type: :submit, class: "delete-btn border-0 bg-transparent" do
                   削除
       - number+=1
