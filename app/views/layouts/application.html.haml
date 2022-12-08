@@ -50,6 +50,6 @@
           $('.edit-playlist').css("display", "none");
           });
       });
-    - if !@infos.blank?
+    - if @infos.present?
       = javascript_pack_tag 'audio_player.js', data: {"turbolinks" => false}
 
