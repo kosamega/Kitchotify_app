@@ -17,7 +17,7 @@
             %li= f.submit "更新", class: "new-playlist-submit-btn"
 
 .playlist-info.mb-3
-  %h1#playlist-name= @playlist.name
+  %h1#playlist-name.mt-3= @playlist.name
   - if @playlist.public == 1
     %span.plivate-public 公開
   - else
