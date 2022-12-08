@@ -2,9 +2,9 @@
 .album-container
   - @albums.each do |a|
     = link_to(image_tag("#{a.img_path}",class: "album-item", width: "150px"), "albums/#{a.id}", class: "album-background")
-.sita-container
+.sita-container.mt-4
   .new-comments
-    %h1 新着コメント
+    %h3 新着コメント
     - if @comments
       - @comments.each do |comment|
         %ul.comment-card
@@ -14,7 +14,7 @@
             = comment.created_at.strftime("%F %R")
           %li.new-comment-item= comment.content
   .new-playlists
-    %h1 新着プレイリスト
+    %h3 新着プレイリスト
     - if @playlists
       - @playlists.each do |playlist|
         %ul.playlist-card
