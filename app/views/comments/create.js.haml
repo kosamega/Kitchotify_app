@@ -1,6 +1,0 @@
-$('#comments').prepend('
-%li.comment-user
-  = @comment.user.name + " "
-  = @comment.created_at.strftime("%F %R")
-= succeed "');" do
-  %li.comment-content= @comment.content
