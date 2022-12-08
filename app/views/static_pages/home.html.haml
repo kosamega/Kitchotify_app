@@ -3,7 +3,7 @@
   - @albums.each do |a|
     = link_to(image_tag("#{a.img_path}",class: "album-item", width: "150px"), "albums/#{a.id}", class: "album-background")
 .sita-container.mt-4
-  .new-comments
+  .new-comments.pe-5
     %h3 新着コメント
     - if @comments
       - @comments.each do |comment|
