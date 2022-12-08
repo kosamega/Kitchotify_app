@@ -63,27 +63,12 @@ footer {
   }
 }
 
-
-
-  
-// メイン
-// .main {
-  //   height: 93vh;
-  //   overflow: hidden scroll;
-//   -ms-overflow-style: none;
-//   scrollbar-width: none;
-// }
-
 // スクロールバー非表示
 .contents_box::-webkit-scrollbar{
   display: none;
 }
 
-
-
-
 /* トップバー */
-
 .top-bar-left {
   display: flex;
   form {
