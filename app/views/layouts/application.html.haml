@@ -14,15 +14,14 @@
     %link{:href => "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css", :rel => "stylesheet"}/
     = favicon_link_tag 'favicon.ico'
   %body
-    .body-grid
-      = render "playlists/new"
+    = render "playlists/new"
+    .content
       = render "layouts/side_bar"
-      .main
-        = render "layouts/top_bar"
-        .main-container
-          - flash.each do |message_type, message|
-            %div{:class => "alert alert-#{message_type}"}= message
-          = yield
+      = render "layouts/top_bar"
+      .main-container
+        - flash.each do |message_type, message|
+          %div{:class => "alert alert-#{message_type}"}= message
+        = yield
       = render "layouts/footer"
     #flash
     :javascript
