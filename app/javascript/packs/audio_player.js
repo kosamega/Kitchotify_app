@@ -24,8 +24,6 @@ function endPlay(trackNum){
 }
 
 audio.volume = 0.08;
-audio.style.width = '750px';
-audio.style.height = '30px';
 audio.controls = true;
 audio.controlsList.add("nodownload");
 
