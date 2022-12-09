@@ -9,7 +9,7 @@
         %span#track-name
   
     - if @music_show
-      .d-flex.justify-content-center
+      .audio-player.d-flex.justify-content-center
         .audio-player-wrapper-music-show.w-100
           #foot-audio-player
             %audio#audio
@@ -17,7 +17,7 @@
             %button#loop-btn
               %i.fa-solid.fa-rotate
     - else
-      .d-flex.justify-content-center
+      .audio-player.d-flex.justify-content-center
         .audio-player-wrapper.w-100
           .prevbtn
             %button#prev
