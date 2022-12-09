@@ -7,10 +7,13 @@
           .tr-number= number+1
           %i.fa-duotone.fa-play.fa.position-absolute.start-0.ms-2.tr-playbutton.pb-2
         %td= link_to(image_tag("#{music.album.img_path}",class: "jaket-mini", width: "50px"), album_path(music.album.id))
-        %td= link_to(music.name, music_path(music.id))
+        %td
+          = link_to(music.name, music_path(music.id))
+          %br
+          .artist-name-small= link_to(music.artist, music_path(music.id))
         - if !@at_album_show
-          %td= link_to(music.album.name, album_path(music.album.id))
-        %td= link_to(music.artist, music_path(music.id))
+          %td.album-name-big= link_to(music.album.name, album_path(music.album.id))
+        %td.artist-name-big= link_to(music.artist, music_path(music.id))
         - if @like_index
           %td= render "shared/unlike", like: music.likes.find_by(user_id: current_user.id), like_index: true, number: number
         - else

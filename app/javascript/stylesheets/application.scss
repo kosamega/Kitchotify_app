@@ -16,6 +16,7 @@ body {
   padding: 0;
 }
 
+// 細いとき
 @media screen and (max-width: 1023px) {
   .side-bar{
     display: none;
@@ -43,10 +44,6 @@ body {
     grid-row: 19/21;
     grid-column: 1/3;
     background-color: #eee;
-    // display: grid;
-    // grid-template: 
-    // "trackinfo player"
-    // /30% 1fr ;
     div {
       display: flex;
       align-items: center;
@@ -60,7 +57,6 @@ body {
     padding: 20px 40px 10px 40px;
     background-color: rgb(255, 255, 255);
   }
-
   .top-bar {
     background-color: rgb(39, 39, 39);
     grid-row: 1;
@@ -68,16 +64,30 @@ body {
     display: grid;
     grid-template:
       "left right"
-      / 300px 1fr;
+      / 250px 1fr;
       z-index: 100;
   }
 
   #open-side-bar{
     display: inline-block;
   }
+
+  .track-info-wrapper{
+    justify-content: center;
+    margin: 5px 0;
+  }
+
+  .audio-player {
+    display: flex;
+    align-items: center;
+  }
+
+  .album-name-big, .artist-name-big{
+    display: none;
+  }
 }
 
-
+// 太いとき
 @media screen and (min-width: 1024px) {
   .content {
       height: 100vh;
@@ -107,17 +117,6 @@ body {
     background-color: rgb(255, 255, 255);
   }
 
-  .top-bar {
-    background-color: rgb(39, 39, 39);
-    grid-row: 1;
-    grid-column: 2;
-    display: grid;
-    grid-template:
-      "left right"
-      / 300px 1fr;
-      z-index: 100;
-  }
-
   #close-side-bar{
     display: none !important;
   }
@@ -132,7 +131,24 @@ body {
   #open-side-bar{
     display: none;
   }
-  
+
+  .track-info-wrapper {
+    margin-left: 30px;
+  }
+
+  .album-name-small, .artist-name-small{
+    display: none;
+  }
+  .top-bar {
+    background-color: rgb(39, 39, 39);
+    grid-row: 1;
+    grid-column: 2;
+    display: grid;
+    grid-template:
+      "left right"
+      / 300px 1fr;
+      z-index: 100;
+  }
 }
 
 .tow-line{
@@ -154,11 +170,21 @@ body {
     margin: auto 0;
     height: 28px;
   }
-  input {
-    width: 250px;
-    height: 24px;
-    padding: 0;
-    margin:0 20px;
+  @media screen and (min-width: 1024px) {
+    input {
+      width: 250px;
+      height: 24px;
+      padding: 0;
+      margin:0 20px;
+    }
+  }
+  @media screen and (max-width: 1023px) {
+    input {
+      width: 150px;
+      height: 24px;
+      padding: 0;
+      margin:0 20px;
+    }
   }
 }
 
@@ -251,33 +277,51 @@ body {
 }
 
 .new-playlist {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   position: fixed;
-  z-index: 1;
+  z-index: 200;
   background-color: #0000004d;
   display: none;
 }
 
-.new-playlist-form {
-  width: 900px;
-  height: 500px;
-  margin: auto;
-  background-color: aliceblue;
-  border-radius: 10px;
+@media screen and (min-width: 1023px) {
+  .new-playlist-form {
+    width: 900px;
+    height: 500px;
+    margin: auto;
+    background-color: aliceblue;
+    border-radius: 10px;
+  }
+
+  .new-playlist-form-content-form {
+    width: 500px;
+    margin: auto;
+  }
 }
 
+@media screen and (max-width: 1023px) {
+  .new-playlist-form {
+    width: 300px;
+    height: 500px;
+    margin: auto;
+    background-color: aliceblue;
+    border-radius: 10px;
+  }
+  .new-playlist-form-content-form {
+    width: 250px;
+    margin: auto;
+  }
+}
 .x {
   height: 30px;
 }
 
-.new-playlist-form-content-form {
-  width: 500px;
-  margin: auto;
-}
+
+
 
 .form-name{
-  width: 500px;
+  width: 100%;
 }
 
 .form-bio{
@@ -286,7 +330,7 @@ body {
 }
 
 .new-playlist-comment {
-  width: 500px;
+  width: 100%;
   height: 230px;
 }
 
@@ -317,10 +361,6 @@ body {
   grid-template:
   "player loop ." auto
   / 10fr 50px 1fr;
-}
-
-.track-info-wrapper {
-  margin-left: 30px;
 }
 
 .track-info {
@@ -368,7 +408,7 @@ a:hover {
 /* ジャケット */
 .album-item {
   flex: 0 0 30%;
-  margin: 10px;
+  margin: 5px;
 }
 
 // アルバムshow
