@@ -1,4 +1,4 @@
-%footer.overflow-hidden{class: "#{'d-none' if @intro_quiz}"}
+%footer{class: "#{'d-none' if @intro_quiz}"}
   - if @infos.present?
     .track-info-wrapper
       .track-info
@@ -7,18 +7,26 @@
         %span.mx-2 -
       .track-info
         %span#track-name
-      
-    .audio-player-wrapper
-      - if !@music_show
-        .prevbtn
-          %button#prev
-            %i.fa-solid.fa-left-long
-      #foot-audio-player
-        %audio#audio
-      - if !@music_show
-        .nextbtn
-          %button#next
-            %i.fa-solid.fa-right-long
-      .loop
-        %button#loop-btn
-          %i.fa-solid.fa-rotate
+  
+    - if @music_show
+      .audio-player.d-flex.justify-content-center
+        .audio-player-wrapper-music-show.w-100
+          #foot-audio-player
+            %audio#audio
+          .loop
+            %button#loop-btn
+              %i.fa-solid.fa-rotate
+    - else
+      .audio-player.d-flex.justify-content-center
+        .audio-player-wrapper.w-100
+          .prevbtn
+            %button#prev
+              %i.fa-solid.fa-left-long
+          #foot-audio-player
+            %audio#audio
+          .nextbtn
+            %button#next
+              %i.fa-solid.fa-right-long
+          .loop
+            %button#loop-btn
+              %i.fa-solid.fa-rotate

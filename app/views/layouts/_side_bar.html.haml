@@ -1,6 +1,8 @@
 - if logged_in?
   %nav.side-bar
-    .side-bar-content
+    .side-bar-content.position-relative
+      #close-side-bar
+        %i.fa-solid.fa-xmark.fa-config.h1
       %div{:casll => "side-bar-content-1"}
         = link_to("Kitchotify", "/", id: "logo")
         %ul
@@ -33,9 +35,12 @@
         %ul#playlists-side
           - current_user.playlists.each do |p|
             %li= link_to(p.name, "/playlists/#{p.id}", id: "playlist-#{p.id}")
+
 - else
   %nav.side-bar
     .side-bar-content
+      #close-side-bar
+        %i.fa-solid.fa-xmark.fa-config.h1
       %div{:casll => "side-bar-content-1"}
         = link_to("Kitchotify", "/", id: "logo")
         %ul
