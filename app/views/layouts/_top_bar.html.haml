@@ -1,7 +1,10 @@
 .top-bar.navbar
   .top-bar-left
+    #open-side-bar
+      %i.fa-solid.fa-grip-lines.text-white.tow-line
     = form_with(url: "/search/result", scope: :search, method: :get, local: true,) do |f|
       = f.text_field :content
+
   .top-bar-right
     - if logged_in?
       = link_to("ログアウト", "/logout", {method: :delete})
