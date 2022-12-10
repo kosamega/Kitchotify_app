@@ -17,6 +17,7 @@ class AlbumsController < ApplicationController
               @infos.push({url: url, name: music.name, artist: music.artist})
             end
             gon.infos_j = @infos
+            @infos
         else
             render "shared/not_found"
         end
