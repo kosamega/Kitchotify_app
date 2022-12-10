@@ -6,9 +6,7 @@
     %meta{:content => "width=device-width,initial-scale=1", :name => "viewport"}/
     = csrf_meta_tags
     = csp_meta_tag
-    -# = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
-    = include_gon
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
     %link{:href => "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css", :rel => "stylesheet"}/
@@ -50,6 +48,7 @@
           $('.edit-playlist').css("display", "none");
           });
       });
+    = include_gon
     = javascript_pack_tag 'side_bar.js', data: {"turbolinks" => false}
     - if @infos.present?
       = javascript_pack_tag 'audio_player.js', data: {"turbolinks" => false}

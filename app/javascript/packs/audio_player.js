@@ -1,6 +1,6 @@
 var audio = document.getElementById('audio');
 var audioPlayer = document.getElementById("foot-audio-player");
-var infos = gon.infos_j
+let infos = gon.infos_j
 var max = infos.length
 function changeInfo(){
   var artistElement = document.getElementById("track-artist");
