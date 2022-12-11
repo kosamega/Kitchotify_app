@@ -1,6 +1,6 @@
 .music-info.rounded.d-flex
   .album-info-jaket.m-4.d-inline-block
-    = image_tag(@music.album.img_path, class: "album-jaket-img")
+    = image_tag(@music.album.jacket.variant(resize: "300").processed, class: "album-jaket-img")
   .d-inline-flex.flex-column.justify-content-center
     = link_to(@music.album.name, "/albums/#{@music.album.id}")
     %h2= @music.name
@@ -53,5 +53,5 @@
       - @artistsmusics.each do |music|
         %li
           .musics-suggested
-            .jacket-s= image_tag(music.album.img_path, class: "musics-suggested-jacket", width: "50px")
+            .jacket-s= image_tag(music.album.jacket.variant(resize: "300").processed, class: "musics-suggested-jacket", width: "50px")
             .suggestion-wrap= link_to("#{music.name}", "/musics/#{music.id}", class: "name-s")

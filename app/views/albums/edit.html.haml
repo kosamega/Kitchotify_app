@@ -6,6 +6,6 @@
     .col-form-label 
     .col= form.file_field :jacket, class: "form-control"
   .row
-    .col= form.submit '作成', class: "btn btn-primary"
+    .col= form.submit '更新', class: "btn btn-primary"
     
 .btn.btn-danger=link_to "削除", album_path(@album), method: :delete, data: { confirm: "本当に消しますか" }
