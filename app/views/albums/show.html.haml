@@ -1,8 +1,9 @@
 .album-info.mb-4
   .album-info-jaket
-    = image_tag(@album.img_path, class: "album-jaket-img")
+    -# = image_tag(@album.img_path, class: "album-jaket-img")
+    = image_tag(@album.jacket, class: "album-jaket-img")
   .album-info-text
     %div
       %h1= @album.name
-    
+   
 = render "musics/music"
