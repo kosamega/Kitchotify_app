@@ -29,6 +29,6 @@ class ApplicationController < ActionController::Base
     end
 
     def admin_user
-        redirect_to("/") unless current_user == User.find(1)
+        redirect_to("/") unless current_user.admin?
     end
 end
