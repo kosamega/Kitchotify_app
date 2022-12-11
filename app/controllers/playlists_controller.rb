@@ -50,6 +50,7 @@ class PlaylistsController < ApplicationController
         @infos.push({url: url, name: relation.music.name, artist: relation.music.artist})
       end
       gon.infos_j = @infos
+      gon.playlist_id = @playlist.id
     else
       render "shared/not_found"
     end
