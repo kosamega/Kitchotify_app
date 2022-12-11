@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_12_11_114610) do
-
+ActiveRecord::Schema[7.0].define(version: 2022_12_11_160447) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,7 +19,7 @@ ActiveRecord::Schema.define(version: 2022_12_11_114610) do
     t.string "record_type", null: false
     t.bigint "record_id", null: false
     t.bigint "blob_id", null: false
-    t.datetime "created_at", null: false
+    t.datetime "created_at", precision: nil, null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
@@ -32,8 +31,8 @@ ActiveRecord::Schema.define(version: 2022_12_11_114610) do
     t.text "metadata"
     t.string "service_name", null: false
     t.bigint "byte_size", null: false
-    t.string "checksum", null: false
-    t.datetime "created_at", null: false
+    t.string "checksum"
+    t.datetime "created_at", precision: nil, null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
@@ -46,16 +45,16 @@ ActiveRecord::Schema.define(version: 2022_12_11_114610) do
   create_table "albums", force: :cascade do |t|
     t.string "name"
     t.string "img_path"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer "editor_id"
   end
 
   create_table "comments", force: :cascade do |t|
     t.text "content"
     t.integer "user_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer "music_id"
   end
 
@@ -64,23 +63,23 @@ ActiveRecord::Schema.define(version: 2022_12_11_114610) do
     t.integer "range"
     t.string "name"
     t.integer "false_count"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "likes", force: :cascade do |t|
     t.integer "music_id"
     t.integer "user_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["music_id", "user_id"], name: "index_likes_on_music_id_and_user_id", unique: true
   end
 
   create_table "music_playlist_relations", force: :cascade do |t|
     t.integer "music_id"
     t.integer "playlist_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer "position"
   end
 
@@ -90,15 +89,15 @@ ActiveRecord::Schema.define(version: 2022_12_11_114610) do
     t.integer "album_id"
     t.integer "track"
     t.string "audio_path"
-    t.datetime "created_at", precision: 6
-    t.datetime "updated_at", precision: 6
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "playlists", force: :cascade do |t|
     t.integer "user_id"
     t.text "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer "public"
     t.text "comment"
   end
@@ -107,16 +106,16 @@ ActiveRecord::Schema.define(version: 2022_12_11_114610) do
     t.integer "user_id"
     t.integer "intro_quiz_id"
     t.integer "time"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.string "password_digest"
-    t.datetime "created_at", precision: 6
-    t.datetime "updated_at", precision: 6
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.text "bio"
     t.text "remember_digest"
     t.boolean "admin", default: false
