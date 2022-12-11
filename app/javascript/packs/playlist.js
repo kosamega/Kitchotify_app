@@ -43,7 +43,7 @@ document.querySelectorAll(".track").forEach(elm => {
                 infos.splice(dragged_id, 1)
                 infos.splice(dropped_id - 1, 0, info)
                 if (!(dragged_id - dropped_id == 1)){
-                    await fetch(`/playlists/#{@playlist.id}/sort?drag=${dragged_id}&drop=${dropped_id - 1}`, {method: 'POST'})
+                    await fetch(`/playlists/${gon.playlist_id}/sort?drag=${dragged_id}&drop=${dropped_id - 1}`, {method: 'POST'})
                 }
             //マウスカーソルの位置が要素の半分より下
             } else {
@@ -57,7 +57,7 @@ document.querySelectorAll(".track").forEach(elm => {
                 info = infos[dragged_id]
                 infos.splice(dragged_id, 1)
                 infos.splice(dropped_id, 0, info)
-                await fetch(`/playlists/#{@playlist.id}/sort?drag=${dragged_id}&drop=${dropped_id}`, {method: 'POST'})
+                await fetch(`/playlists/${gon.playlist_id}/sort?drag=${dragged_id}&drop=${dropped_id}`, {method: 'POST'})
             }
         // 下から上
         }else if(dragged_id>dropped_id){
@@ -73,7 +73,7 @@ document.querySelectorAll(".track").forEach(elm => {
                 info = infos[dragged_id]
                 infos.splice(dragged_id, 1)
                 infos.splice(dropped_id, 0, info)
-                await fetch(`/playlists/#{@playlist.id}/sort?drag=${dragged_id}&drop=${dropped_id}`, {method: 'POST'})
+                await fetch(`/playlists/${gon.playlist_id}/sort?drag=${dragged_id}&drop=${dropped_id}`, {method: 'POST'})
             //マウスカーソルの位置が要素の半分より下
             } else {
                 for(let i=dragged_id-1; dropped_id<i; i--){
@@ -86,7 +86,7 @@ document.querySelectorAll(".track").forEach(elm => {
                 info = infos[dragged_id]
                 infos.splice(dragged_id, 1)
                 infos.splice(dropped_id + 1, 0, info)
-                await fetch(`/playlists/#{@playlist.id}/sort?drag=${dragged_id}&drop=${dropped_id + 1}`, {method: 'POST'})
+                await fetch(`/playlists/${gon.playlist_id}/sort?drag=${dragged_id}&drop=${dropped_id + 1}`, {method: 'POST'})
             }
         }
         this.style.borderTop = '';
