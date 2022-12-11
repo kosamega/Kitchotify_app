@@ -52,5 +52,7 @@
     = javascript_pack_tag 'side_bar.js', data: {"turbolinks" => false}
     - if @infos.present?
       = javascript_pack_tag 'audio_player.js', data: {"turbolinks" => false}
+    - if current_user == @playlist&.user && @at_playlist_show == true
+      = javascript_pack_tag 'playlist.js', data: {"turbolinks" => false}
     
 
