@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
   root to: "static_pages#home"
 
-  resources :albums, only: %i[show]
+  resources :albums, only: %i[new create edit update show] do
+    resources :musics, only: %i[new create edit update show]
+  end
   resources :comments, only: %i[create]
   resources :likes, only: %i[create destroy index]
   resources :music_playlist_relations, only: %i[create destroy]
-  resources :musics, only: %i[show]
   resources :playlists, only: %i[create update destroy index show]
   post '/playlists/:id/sort', to: "playlists#sort"
   resources :users, only: %i[new create show edit update index]
