@@ -338,7 +338,7 @@ DEPENDENCIES
   net-smtp
   pg
   puma
-  rails (~> 7.0.0)
+  rails (~> 7.0.4)
   rails-controller-testing
   sass-rails
   selenium-webdriver
