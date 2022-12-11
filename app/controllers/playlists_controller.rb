@@ -1,6 +1,6 @@
 class PlaylistsController < ApplicationController
   before_action :logged_in_user
-  before_action :correct_user, only: [:update, :destroy, :sort]
+  before_action :correct_user, only: %i[update destroy sort]
   before_action :correct_user_or_public, only: [:show]
   before_action :not_kitchonkun, only: [:create, :update, :destroy]
   skip_before_action :verify_authenticity_token
