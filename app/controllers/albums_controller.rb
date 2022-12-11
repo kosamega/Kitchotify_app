@@ -1,5 +1,6 @@
 class AlbumsController < ApplicationController
     before_action :logged_in_user
+    before_action :admin_user, only: %i[new create edit update destroy]
     def new
     end
 
