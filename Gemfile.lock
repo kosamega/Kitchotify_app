@@ -152,6 +152,9 @@ GEM
       ruby_parser (~> 3.5)
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
+    image_processing (1.12.2)
+      mini_magick (>= 4.9.5, < 5)
+      ruby-vips (>= 2.0.17, < 3)
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
@@ -171,6 +174,7 @@ GEM
     marcel (1.0.2)
     matrix (0.4.2)
     method_source (1.0.0)
+    mini_magick (4.12.0)
     mini_mime (1.1.2)
     minitest (5.16.2)
     msgpack (1.5.4)
@@ -240,6 +244,8 @@ GEM
     request_store (1.5.1)
       rack (>= 1.4)
     rexml (3.2.5)
+    ruby-vips (2.1.4)
+      ffi (~> 1.12)
     ruby_parser (3.19.1)
       sexp_processor (~> 4.16)
     rubyzip (2.3.2)
@@ -315,6 +321,7 @@ DEPENDENCIES
   erb2haml
   gon
   haml-rails
+  image_processing (~> 1.2)
   jbuilder (~> 2.7)
   jquery-rails
   listen (~> 3.3)

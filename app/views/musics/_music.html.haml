@@ -6,7 +6,7 @@
         %th.play-button.tr-number-play.position-relative.pe-0{scope: "row"}
           .tr-number= number+1
           %i.fa-duotone.fa-play.fa.position-absolute.start-0.ms-2.tr-playbutton.pb-2
-        %td= link_to(image_tag("#{music.album.img_path}",class: "jaket-mini", width: "50px"), album_path(music.album))
+        %td= link_to(image_tag( music.album.jacket.variant(resize: "300").processed ,class: "jaket-mini", width: "50px"), album_path(music.album))
         %td
           = link_to(music.name, album_music_path(music.album, music))
           %br
