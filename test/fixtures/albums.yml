@@ -1,14 +1,14 @@
 g171:
   name: 月吉171号
   img_path: 171.png
-  id: 1
   created_at: "2022-08-16 12:25:57"
   updated_at: "2022-08-16 12:25:57"
+  editor_id: 1
 
 
 g172:
   name: 月吉172号
   img_path: 172.png
-  id: 2
   created_at: "2022-08-16 12:25:57"
   updated_at: "2022-08-16 12:25:57"
+  editor_id: 1
