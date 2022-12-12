@@ -1,4 +1,5 @@
-$('.new-playlist').css("display", "none");
+$('.new-playlist-bg').removeClass("d-flex");
+$('.new-playlist-bg').addClass("d-none");
 $('#playlists-side').prepend('<li><%= link_to(@playlist.name, "/playlists/#{@playlist.id}") %></li>');
 $('#flash').append('<div><p><%= @playlist.name %>を作成しました</p></div>');
 setTimeout(function(){
