@@ -133,7 +133,6 @@ setDeleteButton();
 
 function trDelete(evt){
   let trackNum = evt.currentTarget.closest('.track').id
-  console.log(trackNum);
   infos.splice(trackNum, 1);
   
   if(trackNum == index){

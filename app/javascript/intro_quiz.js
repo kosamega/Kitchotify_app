@@ -1,7 +1,6 @@
 // カウントダウン
 let rest = 2
 const countDown = ()=>{
-  console.log(rest)
   document.getElementById("count-down-number").innerText = rest
   rest--;
 };
@@ -30,7 +29,6 @@ const getCsrfToken = () => {
   const metas = document.getElementsByTagName('meta');
   for (let meta of metas) {
       if (meta.getAttribute('name') === 'csrf-token') {
-          console.log('csrf-token:', meta.getAttribute('content'));
           return meta.getAttribute('content');
       }
   }
@@ -142,10 +140,7 @@ function audioPlayer() {
   }
 
   function nowPlay(trackNum){
-    console.log("hoge")
-    console.log(trackNum)
     var track = document.getElementById(trackNum);
-    console.log(track)
     if(track == null) return;
     track.classList.add("now-play");
   }
@@ -212,7 +207,6 @@ function audioPlayer() {
         index = 0;
       }
       audio.src = infos[index]['url'];
-      console.log(index);
       nowPlay(index);
       changeInfo();
       await audio.play();
@@ -268,7 +262,6 @@ function audioPlayer() {
 
   function trDelete(evt){
     let trackNum = evt.currentTarget.closest('.track').id
-    console.log(trackNum);
     infos.splice(trackNum, 1);
     
     if(trackNum == index){

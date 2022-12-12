@@ -18,7 +18,7 @@ gem 'sass-rails'
 # Use Sass to process CSS
 # gem "sassc-rails"
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
-gem 'webpacker'
+# gem 'webpacker'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 # gem 'turbolinks'
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
