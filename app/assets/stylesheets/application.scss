@@ -1,4 +1,4 @@
-@import "~bootstrap/scss/bootstrap.scss";
+// @import "~bootstrap/scss/bootstrap.scss";
 @import "./albums.scss";
 @import "./comments.scss";
 @import "./intro_quizzes.scss";
@@ -280,13 +280,12 @@ body {
   color: #000000;
 }
 
-.new-playlist {
+.new-playlist-bg {
   width: 100%;
   height: 100%;
   position: fixed;
   z-index: 200;
   background-color: #0000004d;
-  display: none;
 }
 
 @media screen and (min-width: 1023px) {
@@ -485,7 +484,6 @@ a:hover {
   background-color: #d9eeff;
   width: 100px;
   padding: 0 7px;
-  display: none;
   z-index: 1;
   border-radius: 2px;
   ul {
