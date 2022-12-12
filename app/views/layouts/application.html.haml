@@ -6,11 +6,16 @@
     %meta{:content => "width=device-width,initial-scale=1", :name => "viewport"}/
     = csrf_meta_tags
     = csp_meta_tag
-    = stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
-    = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
-    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    = javascript_importmap_tags
+    -# bootstrap
+    %link{:href => "https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css",
+      :rel => "stylesheet",
+      :integrity => "sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC",
+      :crossorigin => "anonymous"}
+    -# fontawesome
     %link{:href => "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css", :rel => "stylesheet"}/
     = favicon_link_tag 'favicon.ico'
+    = stylesheet_link_tag "application"
   %body
     = render "playlists/new"
     .content
@@ -22,35 +27,12 @@
         = yield
       = render "layouts/footer"
     #flash
-    :javascript
-      $(function(){
-          $(".add_playlist-point").click(function(){
-            $(this).siblings().show();
-          });
-
-          $('.select-playlists-close').click(function(){
-            $(this).parent().parent().find(".select-playlists").hide();
-          });
-
-          $('#new-playlist').click(function(){
-            $('.new-playlist').css("display", "flex");
-          });
-
-          $('.x').click(function(){
-            $('.new-playlist').css("display", "none");
-          });
-
-          $('#edit-playlist').click(function(){
-          $('.edit-playlist').css("display", "flex");
-          });
-
-          $('.x').click(function(){
-          $('.edit-playlist').css("display", "none");
-          });
-      });
     = include_gon
-    = javascript_pack_tag 'side_bar.js', data: {"turbolinks" => false}
+    = javascript_include_tag 'side_bar.js', data: {"turbolinks" => false}
+    = javascript_include_tag 'new_playlist.js', data: {"turbolinks" => false}
     - if @infos.present?
-      = javascript_pack_tag 'audio_player.js', data: {"turbolinks" => false}
+      = javascript_include_tag 'audio_player.js', data: {"turbolinks" => false}
+    - if current_user == @playlist&.user && @at_playlist_show == true
+      = javascript_include_tag 'playlist.js', data: {"turbolinks" => false}
     
 

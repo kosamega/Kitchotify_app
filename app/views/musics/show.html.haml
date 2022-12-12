@@ -13,7 +13,7 @@
       .add-playlist.d-inline-block
         .add_playlist-point
           %i.fa-solid.fa-plus.fa-config
-        .select-playlists
+        .select-playlists.d-none
           .select-playlists-close.m-1
             %i.fa-solid.fa-xmark.fa-config
           %ul
@@ -54,4 +54,4 @@
         %li
           .musics-suggested
             .jacket-s= image_tag(music.album.jacket.variant(resize: "300").processed, class: "musics-suggested-jacket", width: "50px")
-            .suggestion-wrap= link_to("#{music.name}", "/musics/#{music.id}", class: "name-s")
+            .suggestion-wrap= link_to("#{music.name}", album_music_path(music.album, music), class: "name-s")

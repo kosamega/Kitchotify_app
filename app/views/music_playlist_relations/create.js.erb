@@ -1,4 +1,4 @@
-$(".select-playlists").hide();
+$(".select-playlists").addClass("d-none");
 $('#flash').append('<div><p><%= @playlist.name %>に追加しました</p></div>');
 setTimeout(function(){
 $('#flash div:first').remove();
