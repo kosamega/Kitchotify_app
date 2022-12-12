@@ -2,15 +2,22 @@ require "test_helper"
 
 class IntroQuizzesControllerTest < ActionDispatch::IntegrationTest
   def setup
-    @intro_quiz = intro_quiz(:one)
+    @user = users(:kosamega)
+    @intro_quiz = intro_quizzes(:one)
   end 
 
-  test "should get show" do
+  test "ログインすればshowにアクセスできて、しないとできない" do
+    get intro_quiz_path(@intro_quiz)
+    assert_redirected_to "/login"
+    log_in_as(@user)
     get intro_quiz_path(@intro_quiz)
     assert_response :success
   end
 
-  test "should get index" do
+  test "ログインすればindexにアクセスできて、しないとできない" do
+    get intro_quizzes_path
+    assert_redirected_to "/login"
+    log_in_as(@user)
     get intro_quizzes_path
     assert_response :success
   end
