@@ -1,4 +1,4 @@
-var infos = gon.infos_j
+// var infos = gon.infos_j
 document.querySelectorAll(".track").forEach(elm => {
     elm.ondragstart = function () {
         event.dataTransfer.setData('text/plain', event.target.id);
