@@ -8,3 +8,4 @@
 //= link new_playlist.js
 //= link edit_playlist.js
 //= link intro_quiz.js
+//= link music_new.js
