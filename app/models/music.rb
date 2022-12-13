@@ -4,4 +4,7 @@ class Music < ApplicationRecord
     has_many :playlists
     has_many :comments
     default_scope -> { order(id: :asc) }
+    validates :name, presence: true
+    validates :artist, presence: true
+    has_one_attached :audio
 end
