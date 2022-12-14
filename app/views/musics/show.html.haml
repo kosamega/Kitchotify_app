@@ -28,6 +28,8 @@
       - if current_user.admin?
         .btn.btn-danger
           =link_to "削除", [@album, @music], method: :delete, data: { confirm: "本当に消しますか" }
+        .btn.btn-primary
+          =link_to "編集", edit_album_music_path(@album, @music)
 
 .row.mt-4
   .col
