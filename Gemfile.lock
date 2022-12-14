@@ -245,6 +245,7 @@ GEM
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     regexp_parser (2.6.1)
+    remotipart (1.4.4)
     request_store (1.5.1)
       rack (>= 1.4)
     rexml (3.2.5)
@@ -332,6 +333,7 @@ DEPENDENCIES
   puma
   rails (~> 7.0.4)
   rails-controller-testing
+  remotipart
   sass-rails
   selenium-webdriver
   spring
