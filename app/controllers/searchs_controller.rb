@@ -1,5 +1,7 @@
 class SearchsController < ApplicationController
     before_action :logged_in_user
+    include MusicsHelper
+
     def index
         @playlists = current_user.playlists
         @params = params[:search][:content]
@@ -7,16 +9,7 @@ class SearchsController < ApplicationController
         @result_users = User.where("name LIKE ?", "%#{@params}%")
         @result_playlists = Playlist.where("name LIKE ?", "%#{@params}%").where(public: 1)
         @infos = []
-        require 'aws-sdk-s3'
-        s3 = Aws::S3::Client.new
-        signer = Aws::S3::Presigner.new(client: s3)
-        @musics.each do |music|
-          url = signer.presigned_url(:get_object, 
-                                      bucket: 'kitchotifyappstrage',
-                                      key: "audio/#{music.album.id}/#{music.audio_path}",
-                                      expires_in: 7200)
-          @infos.push({url: url, name: music.name, artist: music.artist})
-        end
+        set_infos(@musics)
         gon.infos_j = @infos
     end
 end
