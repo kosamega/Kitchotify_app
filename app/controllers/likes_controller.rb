@@ -1,6 +1,7 @@
 class LikesController < ApplicationController
   before_action :logged_in_user, :not_kitchonkun
   before_action :set_variables
+  include MusicsHelper
   
   def create
     @like = current_user.likes.build(music_id: params[:music_id])
@@ -33,16 +34,7 @@ class LikesController < ApplicationController
     @playlists = current_user.playlists
     @like_index = true
     @infos = []
-    require 'aws-sdk-s3'
-    s3 = Aws::S3::Client.new
-    signer = Aws::S3::Presigner.new(client: s3)
-    @likes.each do |like|
-      url = signer.presigned_url(:get_object, 
-                                  bucket: 'kitchotifyappstrage',
-                                  key: "audio/#{like.music.album.id}/#{like.music.audio_path}",
-                                  expires_in: 7200)
-      @infos.push({url: url, name: like.music.name, artist: like.music.artist})
-    end
+    set_infos(@musics)
     gon.infos_j = @infos
   end
 
