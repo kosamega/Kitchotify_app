@@ -35,10 +35,14 @@ class AlbumsController < ApplicationController
             s3 = Aws::S3::Client.new
             signer = Aws::S3::Presigner.new(client: s3)
             @musics.each do |music|
-              url = signer.presigned_url(:get_object, 
-                                          bucket: 'kitchotifyappstrage',
-                                          key: "audio/#{music.album.id}/#{music.audio_path}",
-                                          expires_in: 7200)
+              if music.audio.attached?
+                url = music.audio.url
+              else
+                url = signer.presigned_url(:get_object, 
+                                            bucket: 'kitchotifyappstrage',
+                                            key: "audio/#{music.album.id}/#{music.audio_path}",
+                                            expires_in: 7200)
+              end
               @infos.push({url: url, name: music.name, artist: music.artist})
             end
             gon.infos_j = @infos
