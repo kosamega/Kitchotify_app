@@ -28,6 +28,6 @@
       .col-form-label 
       .col= form.file_field :audio, class: "form-control"
     .row
-      .col= form.submit '作成', class: "btn btn-primary",data: { confirm: "曲を追加しますか" }
+      .col=button_tag '作成', type: :submit, class: "btn btn-primary", data: { confirm: "追加しますか" }
 
 = javascript_include_tag 'music_new.js', data: {"turbolinks" => false}

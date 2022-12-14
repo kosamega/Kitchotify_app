@@ -16,9 +16,16 @@ class MusicsController < ApplicationController
     end
 
     def edit
+        @music = Music.find_by(id: params[:id])
     end
 
     def update
+        Music.find_by(id: params[:id]).update(music_params)
+        @message = "更新しました"
+        respond_to do |format|
+            format.html {redirect_back_or "/"}
+            format.js
+        end
     end
 
     def destroy

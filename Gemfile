@@ -50,6 +50,8 @@ gem 'acts_as_list'
 gem 'gon'
 gem 'haml-rails'
 gem 'erb2haml'
+# 非同期でフォームでファイルを送信
+gem 'remotipart'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
