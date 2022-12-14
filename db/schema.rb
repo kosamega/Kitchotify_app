@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_11_160447) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_14_114910) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -91,6 +91,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_11_160447) do
     t.string "audio_path"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["album_id", "track"], name: "index_musics_on_album_id_and_track", unique: true
   end
 
   create_table "playlists", force: :cascade do |t|

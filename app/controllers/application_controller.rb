@@ -29,6 +29,9 @@ class ApplicationController < ActionController::Base
     end
 
     def admin_user
-        redirect_to("/") unless current_user.admin?
+        unless current_user.admin?
+            flash[:danger] = "管理者のみ有効な操作です"
+            redirect_to("/") 
+        end
     end
 end
