@@ -4,6 +4,7 @@ class PlaylistsController < ApplicationController
   before_action :correct_user_or_public, only: [:show]
   before_action :not_kitchonkun, only: [:create, :update, :destroy]
   skip_before_action :verify_authenticity_token
+  include MusicsHelper
 
   def create
     @playlist = current_user.playlists.build(playlist_params)
@@ -39,16 +40,7 @@ class PlaylistsController < ApplicationController
       @relations = @playlist.music_playlist_relations.sort_by{ |a| a[:position] }
       @musics = @relations.map{|relation|relation.music}
       @infos = []
-      require 'aws-sdk-s3'
-      s3 = Aws::S3::Client.new
-      signer = Aws::S3::Presigner.new(client: s3)
-      @relations.each do |relation|
-        url = signer.presigned_url(:get_object, 
-                                    bucket: 'kitchotifyappstrage',
-                                    key: "audio/#{relation.music.album.id}/#{relation.music.audio_path}",
-                                    expires_in: 7200)
-        @infos.push({url: url, name: relation.music.name, artist: relation.music.artist})
-      end
+      set_infos(@musics)
       gon.infos_j = @infos
       gon.playlist_id = @playlist.id
     else
