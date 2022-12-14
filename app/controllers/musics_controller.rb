@@ -6,6 +6,9 @@ class MusicsController < ApplicationController
         @music = @album.musics.build(music_params)
         if @music.save
             @message = "曲を追加しました"
+            @number = params[:music][:track].to_i - 1
+            @playlists = current_user.playlists
+            @at_album_show = params[:at_album_show]
         else
             @message = "追加に失敗しました"
         end
