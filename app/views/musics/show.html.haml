@@ -25,8 +25,9 @@
                   = hidden_field_tag :at_playlist_show, false
                   = button_tag type: :submit, class: "text-start border-0 bg-transparent" do
                     = playlist.name
-      .btn.btn-danger
-        =link_to "削除", [@album, @music], method: :delete, data: { confirm: "本当に消しますか" }
+      - if current_user.admin?
+        .btn.btn-danger
+          =link_to "削除", [@album, @music], method: :delete, data: { confirm: "本当に消しますか" }
 
 .row.mt-4
   .col

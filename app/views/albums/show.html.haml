@@ -8,27 +8,28 @@
    
 = render "musics/music"
 
-.container-fluid.mb-2.h-auto.overflow-hidden
-  .btn.btn-info#add-music.float-end.d-inline-block 曲を追加
-  %button.btn.btn-info.float-end.me-2.d-inline-block
-    =link_to "アルバムを編集", edit_album_path(@album)
+-if current_user.admin?
+  .container-fluid.mb-2.h-auto.overflow-hidden
+    .btn.btn-info#add-music.float-end.d-inline-block 曲を追加
+    %button.btn.btn-info.float-end.me-2.d-inline-block
+      =link_to "アルバムを編集", edit_album_path(@album)
 
-.d-none#add-music-form
-  =form_with(model: [@album, @album.musics.build], local: false) do |form|
-    .row
-      .col-form-label 曲名
-      .col= form.text_field :name, class: "form-control"
-    .row
-      .col-form-label アーティスト名
-      .col= form.text_field :artist, class: "form-control"
-    .row
-      .col-form-label トラック
-      .col= form.text_field :track, class: "form-control"
-    .row
-      .col-form-label 
-      .col= form.file_field :audio, class: "form-control"
-    = hidden_field_tag :at_album_show, true
-    .row.mt-3
-      .col=button_tag '作成', type: :submit, class: "btn btn-primary", data: { confirm: "追加しますか" }
+  .d-none#add-music-form
+    =form_with(model: [@album, @album.musics.build], local: false) do |form|
+      .row
+        .col-form-label 曲名
+        .col= form.text_field :name, class: "form-control"
+      .row
+        .col-form-label アーティスト名
+        .col= form.text_field :artist, class: "form-control"
+      .row
+        .col-form-label トラック
+        .col= form.text_field :track, class: "form-control"
+      .row
+        .col-form-label 
+        .col= form.file_field :audio, class: "form-control"
+      = hidden_field_tag :at_album_show, true
+      .row.mt-3
+        .col=button_tag '作成', type: :submit, class: "btn btn-primary", data: { confirm: "追加しますか" }
 
-= javascript_include_tag 'music_new.js', data: {"turbolinks" => false}
+  = javascript_include_tag 'music_new.js', data: {"turbolinks" => false}
