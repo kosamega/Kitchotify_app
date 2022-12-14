@@ -29,5 +29,11 @@
 # To learn more, please read the Rails Internationalization guide
 # available at https://guides.rubyonrails.org/i18n.html.
 
-en:
-  hello: "Hello world"
+ja:
+  activerecord:
+    attributes:
+      music:
+        name: 名前
+        artist: アーティスト名
+        track: トラック
+        audio: audioファイル
