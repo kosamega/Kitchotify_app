@@ -1,6 +1,6 @@
 - number = 0
 %table.table.align-middle
-  %thead
+  %thead#tracks
     - @musics.each do |music|
       %tr.align-middle.track{id: number, draggable: "#{true if @at_playlist_show}"}
         %th.play-button.tr-number-play.position-relative.pe-0{scope: "row"}
