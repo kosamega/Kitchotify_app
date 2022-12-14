@@ -28,11 +28,11 @@
       = render "layouts/footer"
     #flash
     = include_gon
-    = javascript_include_tag 'side_bar.js', data: {"turbolinks" => false}
-    = javascript_include_tag 'new_playlist.js', data: {"turbolinks" => false}
+    = javascript_include_tag 'side_bar.js'
+    = javascript_include_tag 'new_playlist.js'
     - if @infos.present?
-      = javascript_include_tag 'audio_player.js', data: {"turbolinks" => false}
+      = javascript_include_tag 'audio_player.js'
     - if current_user == @playlist&.user && @at_playlist_show == true
-      = javascript_include_tag 'playlist.js', data: {"turbolinks" => false}
+      = javascript_include_tag 'playlist.js'
     
 
