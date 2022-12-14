@@ -1,6 +1,7 @@
 class MusicsController < ApplicationController
     before_action :logged_in_user
     before_action :set_album
+    before_action :admin_user, only: %i[create edit update destroy]
 
     def create
         @music = @album.musics.build(music_params)

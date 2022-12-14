@@ -33,7 +33,7 @@ ja:
   activerecord:
     attributes:
       music:
-        name: 名前
+        name: 曲名
         artist: アーティスト名
         track: トラック
         audio: audioファイル

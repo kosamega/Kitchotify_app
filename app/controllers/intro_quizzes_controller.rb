@@ -1,4 +1,6 @@
 class IntroQuizzesController < ApplicationController
+  before_action :logged_in_user
+
   def show
     @playlists = current_user.playlists
     quiz = IntroQuiz.find_by(id: params[:id])
