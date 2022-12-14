@@ -9,8 +9,10 @@ class MusicsController < ApplicationController
             @number = params[:music][:track].to_i - 1
             @playlists = current_user.playlists
             @at_album_show = params[:at_album_show]
+            @save = true
         else
-            @message = "追加に失敗しました"
+            @message = @music.errors.full_messages
+            @save = false
         end
         respond_to do |format|
             format.html {redirect_back_or "/"}
