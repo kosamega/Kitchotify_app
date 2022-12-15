@@ -7,13 +7,13 @@ class MusicsController < ApplicationController
     def create
         @music = @album.musics.build(music_params)
         if @music.save
-            @message = "曲を追加しました"
+            @messages = "曲を追加しました"
             @number = params[:music][:track].to_i - 1
             @playlists = current_user.playlists
             @at_album_show = params[:at_album_show]
             @save = true
         else
-            @message = @music.errors.full_messages
+            @messages = @music.errors.full_messages
             @save = false
         end
         respond_to do |format|
@@ -27,8 +27,13 @@ class MusicsController < ApplicationController
     end
 
     def update
-        Music.find_by(id: params[:id]).update(music_params)
-        @message = "更新しました"
+        music = Music.find_by(id: params[:id])
+        music.update(music_params)
+        if music.errors.full_messages.present?
+            @messages = music.errors.full_messages
+        else
+            @messages = "更新しました"
+        end
         respond_to do |format|
             format.html {redirect_back_or "/"}
             format.js
