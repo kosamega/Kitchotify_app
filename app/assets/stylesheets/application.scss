@@ -87,6 +87,11 @@ body {
   .album-container {
     text-align: center;
   }
+
+  #index-info {
+    height: 500px;
+    width: 300px;
+  }
 }
 
 // 太いとき
@@ -150,6 +155,11 @@ body {
       "left right"
       / 300px 1fr;
       z-index: 100;
+  }
+
+  #index-info {
+    height: 500px;
+    width: 400px;
   }
 }
 
@@ -383,11 +393,6 @@ body {
   .fa-rotate {
     color: rgb(0, 0, 0);
   }
-}
-
-#index-info {
-  height: 500px;
-  width: 400px;
 }
 
 #index-info-content {
