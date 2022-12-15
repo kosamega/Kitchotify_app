@@ -163,6 +163,7 @@ function trDelete(evt){
 // インデックス情報
 const infoBtn = document.getElementById('index-info-btn')
 const indexInfo = document.getElementById('index-info')
+const indexCloseBtn = document.getElementById('close-index-info')
 
 function indexShow (){
   indexInfo.classList.remove('d-none')
@@ -177,3 +178,4 @@ function indexHide (){
 }
 
 infoBtn.addEventListener('click', indexShow)
+indexCloseBtn.addEventListener('click', indexHide)
