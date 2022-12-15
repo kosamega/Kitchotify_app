@@ -3,7 +3,14 @@
     .col-form-label 名前
     .col= form.text_field :name, class: "form-control"
   .row
+    .col-form-label 聴き大会をやった年・月
+    .col= form.text_field :kiki_taikai_yr_mon, class: "form-control"
+  .row
     .col-form-label ジャケット
     .col= form.file_field :jacket, class: "form-control"
+  .row.mt-3
+    .col
+      リリース
+      = form.check_box :public
   .row.mt-3
     .col= form.submit action, class: "btn btn-primary"
