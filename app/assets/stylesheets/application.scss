@@ -51,7 +51,6 @@ body {
   .main-container {
     grid-row: 2/18;
     grid-column: 1/3;
-    // overflow-x: hidden;
     overflow-y: scroll;
     padding: 20px 10px 10px 10px;
     background-color: rgb(255, 255, 255);
@@ -354,15 +353,15 @@ body {
 .audio-player-wrapper {
   display: grid;
   grid-template:
-  "pre player next loop" auto
-  / 50px 10fr 50px 50px;
+  "pre player next loop index-btn index" auto
+  / 50px 10fr 50px 50px 50px 50px;
 }
 
 .audio-player-wrapper-music-show {
   display: grid;
   grid-template:
   "player loop ." auto
-  / 10fr 50px 1fr;
+  / 10fr 50px 50px  1fr;
 }
 
 .track-info {
@@ -384,6 +383,15 @@ body {
   .fa-rotate {
     color: rgb(0, 0, 0);
   }
+}
+
+#index-info {
+  height: 500px;
+  width: 400px;
+}
+
+#index-info-content {
+  height: 95%;
 }
 
 /* 文字 */

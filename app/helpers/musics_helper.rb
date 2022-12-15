@@ -12,7 +12,7 @@ module MusicsHelper
                                     key: "audio/#{music.album.id}/#{music.audio_path}",
                                     expires_in: 7200)
       end
-      @infos.push({url: url, name: music.name, artist: music.artist})
+      @infos.push({url: url, name: music.name, artist: music.artist, index_info: music.index_info})
     end
   end
 end
