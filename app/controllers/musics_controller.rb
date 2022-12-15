@@ -1,7 +1,7 @@
 class MusicsController < ApplicationController
     before_action :logged_in_user
     before_action :set_album
-    before_action :admin_user, only: %i[create edit update destroy]
+    before_action :admin_user, only: %i[create destroy]
     include MusicsHelper
 
     def create
@@ -27,17 +27,14 @@ class MusicsController < ApplicationController
     end
 
     def update
-        music = Music.find_by(id: params[:id])
-        music.update(music_params)
-        if music.errors.full_messages.present?
-            @messages = music.errors.full_messages
+        @music = Music.find_by(id: params[:id])
+        @music.update(music_params)
+        if @music.errors.full_messages.present?
+            flash[:danger] = @music.errors.full_messages
         else
-            @messages = "更新しました"
+            flash[:success] = "更新されました"
         end
-        respond_to do |format|
-            format.html {redirect_back_or "/"}
-            format.js
-        end
+        redirect_to [@album, @music]
     end
 
     def destroy
