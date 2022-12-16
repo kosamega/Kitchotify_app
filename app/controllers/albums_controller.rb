@@ -42,6 +42,6 @@ class AlbumsController < ApplicationController
 
     private 
         def album_params
-            params.require(:album).permit(:name, :jacket)
+            params.require(:album).permit(:name, :jacket, :kiki_taikai_date, :released)
         end
 end
