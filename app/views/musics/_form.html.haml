@@ -9,7 +9,7 @@
         .col= form.text_field :artist, class: "form-control"
       .row
         .col-form-label トラック
-        .col= form.text_field :track, class: "form-control"
+        .col= form.number_field :track, class: "form-control", min: 1
       .row
         .col-form-label 
         .col= form.file_field :audio, class: "form-control"
