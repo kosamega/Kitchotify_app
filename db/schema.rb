@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_14_141943) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_16_151045) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -48,6 +48,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_14_141943) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "editor_id"
+    t.boolean "released", default: false
+    t.date "kiki_taikai_date"
   end
 
   create_table "comments", force: :cascade do |t|
