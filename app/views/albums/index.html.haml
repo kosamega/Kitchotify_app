@@ -1,0 +1,5 @@
+.album-container
+  - @albums.each do |album|
+    = link_to(image_tag(album.jacket.variant(resize: "300").processed ,class: "album-item", width: "130px"), "albums/#{album.id}", class: "album-background")
+-if current_user.admin?
+  =render "form", album: Album.new, action: "作成"
