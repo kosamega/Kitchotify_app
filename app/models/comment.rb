@@ -11,7 +11,7 @@ class Comment < ApplicationRecord
         http = Net::HTTP.new(uri.host, uri.port)
         http.use_ssl = true
 
-        params = {content: ":new: comment",
+        params = {content: "",
                   embeds: [
                     {
                     title: "#{self.music.artist} - #{self.music.name}",
