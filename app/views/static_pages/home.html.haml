@@ -8,7 +8,7 @@
     - if @comments
       - @comments.each do |comment|
         %ul.comment-card
-          %li= link_to(comment.music.name, "/musics/#{comment.music.id}")
+          %li= link_to comment.music.name, album_music_path(comment.music.album, comment.music)
           %li.new-comment-item.comment-user
             = comment.user.name + " "
             = comment.created_at.strftime("%F %R")
