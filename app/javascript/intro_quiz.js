@@ -64,7 +64,6 @@ const correct = async ()=>{
     document.getElementById("clear-time").textContent = `${m_s}:${s_s}.${ms_s}`
     document.getElementById("clear").classList.replace("d-none", "show")
     document.querySelector("footer").classList.replace("d-none", "show")
-    audioPlayer();
 
     const clearTime = m*60000 + s*1000 + ms
 
