@@ -10,9 +10,27 @@ class Comment < ApplicationRecord
         http = Net::HTTP.new(uri.host, uri.port)
         http.use_ssl = true
 
-        params = {content: "#{self.user.name}  :arrow_right:  #{self.music.name}\r> #{self.content}"}
+        params = {content: ":new: comment",
+                  embeds: [
+                    {
+                    title: "#{self.music.artist} - #{self.music.name}",
+                    description: self.content,
+                    url: Rails.application.routes.url_helpers.album_music_path(self.music.album, self.music),
+                    color: 10070709,
+                    thumbnail: {
+                        url: self.music.album.jacket.url
+                    },
+                    author: {
+                        name: self.user.name,
+                        url: Rails.application.routes.url_helpers.user_path(self.user)
+                        # icon_url: ""
+                    }
+                    }]
+                  }
         headers = { 'Content-Type' => 'application/json' }
 
         response = http.post(uri.path, params.to_json, headers)
+        puts response.body
+        puts response.code
     end
 end
