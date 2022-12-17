@@ -4,6 +4,7 @@ class Comment < ApplicationRecord
     default_scope -> { order(created_at: :desc) }
     validates :content, presence: true
     validates :user_id, presence: true
+    include Rails.application.routes.url_helpers
 
     def webhook
         uri = URI.parse(ENV['WEBHOOK_URL_NEW_COMMENT'])
@@ -15,14 +16,14 @@ class Comment < ApplicationRecord
                     {
                     title: "#{self.music.artist} - #{self.music.name}",
                     description: self.content,
-                    url: Rails.application.routes.url_helpers.album_music_path(self.music.album, self.music),
+                    url: album_music_url(self.music.album, self.music, host: "kitchotify-app.herokuapp.com"),
                     color: 10070709,
                     thumbnail: {
                         url: self.music.album.jacket.url
                     },
                     author: {
                         name: self.user.name,
-                        url: Rails.application.routes.url_helpers.user_path(self.user)
+                        url: user_url(self.user, host: "kitchotify-app.herokuapp.com")
                         # icon_url: ""
                     }
                     }]
