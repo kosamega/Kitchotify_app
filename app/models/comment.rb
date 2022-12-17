@@ -10,7 +10,7 @@ class Comment < ApplicationRecord
         http = Net::HTTP.new(uri.host, uri.port)
         http.use_ssl = true
 
-        params = {content: "#{self.user.name}  :arrow_right:  #{self.music.name}\r#{self.content}"}
+        params = {content: "#{self.user.name}  :arrow_right:  #{self.music.name}\r> #{self.content}"}
         headers = { 'Content-Type' => 'application/json' }
 
         response = http.post(uri.path, params.to_json, headers)
