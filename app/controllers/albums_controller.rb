@@ -27,6 +27,10 @@ class AlbumsController < ApplicationController
         redirect_to "/"
     end
 
+    def index
+        @albums = Album.all
+    end
+
     def show
         if @album = Album.find_by(id: params[:id])
             @musics = @album.musics
