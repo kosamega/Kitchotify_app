@@ -14,6 +14,9 @@
         .col-form-label 
         .col= form.file_field :audio, class: "form-control"
       = hidden_field_tag :at_album_show, at_album_show
+      .row
+        .col
+          = @music&.audio&.attached? ? "audioが存在します" : "audioが存在しません"
     .col
       .col-form-label インデックス情報
       .col.h-100= form.text_area :index_info, class: "form-control h-75"
