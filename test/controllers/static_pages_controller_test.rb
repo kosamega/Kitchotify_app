@@ -1,17 +1,17 @@
-require "test_helper"
+require 'test_helper'
 
-class StaticPagesControllerTest < ActionDispatch::IntegrationTest   
+class StaticPagesControllerTest < ActionDispatch::IntegrationTest
   def setup
     @user = users(:kosamega)
   end
 
-  test "@userが有効" do
+  test '@userが有効' do
     assert @user.valid?
   end
 
-  test "ホーム描写" do
+  test 'ホーム描写' do
     log_in_as(@user)
-    get "/"
+    get '/'
     assert_response :success
   end
 end
