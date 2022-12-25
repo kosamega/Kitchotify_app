@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_16_151045) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_25_145313) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -90,7 +90,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_16_151045) do
     t.string "artist"
     t.integer "album_id"
     t.integer "track"
-    t.string "audio_path"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string "index_info"
