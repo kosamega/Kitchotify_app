@@ -1,6 +1,7 @@
 class AlbumsController < ApplicationController
   before_action :logged_in_user
   before_action :admin_user, only: %i[new create edit update destroy]
+  before_action :released, only: %i[show]
   include MusicsHelper
 
   def index
@@ -47,5 +48,11 @@ class AlbumsController < ApplicationController
 
   def album_params
     params.require(:album).permit(:name, :jacket, :kiki_taikai_date, :released)
+  end
+
+  def released
+    return unless Album.find_by(id: params[:id]).present? && !Album.find_by(id: params[:id]).released? && !current_user.admin?
+    flash[:danger] = 'まだリリースされていません'
+    redirect_to root_path
   end
 end

@@ -1,7 +1,12 @@
 .album-container
-  - @albums.each do |album|
+  - @albums.where(released: true).each do |album|
     = link_to(image_tag(album.jacket.variant(resize: "300").processed ,class: "album-item", width: "130px"), "albums/#{album.id}", class: "album-background")
 
 - if current_user.admin?
   .over-flow-hidden
     .btn.btn-primary.m-3.float-end=link_to "作成", new_album_path, class: "text-white"
+
+  .album-container.mt-5
+    %h3 未リリース
+    - @albums.where(released: false).each do |album|
+      = link_to(image_tag(album.jacket.variant(resize: "300").processed ,class: "album-item", width: "130px"), "albums/#{album.id}", class: "album-background")
