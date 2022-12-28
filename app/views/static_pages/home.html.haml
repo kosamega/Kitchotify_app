@@ -24,6 +24,6 @@
         %ul.playlist-card
           %li
             = link_to playlist.user.name, user_path(playlist.user), class: "me-2"
-            = link_to playlist.name, playlist_path(playlist)
+            = link_to playlist.name, playlist_path(playlist), class: "fw-normal"
           %li
             %p=playlist.comment

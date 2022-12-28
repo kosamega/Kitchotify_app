@@ -547,3 +547,8 @@ a:hover {
   }
 }
 
+.clearfix:after{
+	content: "";
+	clear: both;
+	display: block;
+}
