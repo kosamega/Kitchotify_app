@@ -2,18 +2,18 @@
   .side-bar-content.position-relative
     #close-side-bar
       %i.fa-solid.fa-xmark.fa-config.h1
-    %div{:casll => "side-bar-content-1"}
+    .side-bar-content-1.border-bottom.border-2.me-4
       = link_to("Kitchotify", "/", id: "logo")
       %ul
         %li
           %span.icon
             %i.fa-light.fa-house.home-icon.fa-config
           = link_to("ホーム", "/")
-        - unless current_user == User.find(2)
-          %li
-            %span.icon
-              %i.fa-regular.fa-heart.like-icon.fa-config
-            = link_to("お気に入り", "/likes")
+        %li
+          %span.icon
+            %i.fa-regular.fa-heart.like-icon.fa-config
+          = link_to("お気に入り", "/likes")
+        -if logged_in?
           %li#new-playlist
             %span.icon>
               %i.fa-light.fa-plus.pluse-icon.fa-config
