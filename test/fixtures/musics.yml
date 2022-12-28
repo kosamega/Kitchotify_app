@@ -4,7 +4,6 @@ hikari:
   name: hikari
   artist: aaa
   track: 1
-  audio_path: MyString
   album: g171
   id : 1
 
@@ -12,6 +11,5 @@ waopo:
   name: waopo
   artist: MyString
   track: 2
-  audio_path: MyString
   album: g171
   id : 2
