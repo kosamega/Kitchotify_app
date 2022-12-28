@@ -1,8 +1,9 @@
-.music-info.rounded.d-flex
+.music-info.rounded.d-flex.border-2.border-dark
   .album-info-jaket.m-4.d-inline-block
     = image_tag(@music.album.jacket.variant(resize: "300").processed, class: "album-jaket-img")
   .d-inline-flex.flex-column.justify-content-center
-    = link_to(@music.album.name, "/albums/#{@music.album.id}")
+    = link_to @music.album.name, album_path(@music.album)
+    = @album.kiki_taikai_date
     %h2= @music.name
     %h3= @music.artist
     .like-add-playlist
@@ -25,9 +26,11 @@
                   = hidden_field_tag :at_playlist_show, false
                   = button_tag type: :submit, class: "text-start border-0 bg-transparent" do
                     = playlist.name
+      .btn.btn-primary.ms-3
+        =link_to "編集", edit_album_music_path(@album, @music), class: "text-white"
       - if current_user.admin?
-        .btn.btn-danger
-          =link_to "削除", [@album, @music], method: :delete, data: { confirm: "本当に消しますか" }
+        .btn.btn-danger.ms-3
+          =link_to "削除", [@album, @music], method: :delete, data: { confirm: "本当に消しますか" }, class: "text-white"
 
 .row.mt-4
   .col

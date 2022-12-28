@@ -1,62 +1,41 @@
-- if logged_in?
-  %nav.side-bar
-    .side-bar-content.position-relative
-      #close-side-bar
-        %i.fa-solid.fa-xmark.fa-config.h1
-      %div{:casll => "side-bar-content-1"}
-        = link_to("Kitchotify", "/", id: "logo")
-        %ul
-          %li
-            %span.icon
-              %i.fa-light.fa-house.home-icon.fa-config
-            = link_to("ホーム", "/")
-          - unless current_user == User.find(2)
-            %li
-              %span.icon
-                %i.fa-regular.fa-heart.like-icon.fa-config
-              = link_to("お気に入り", "/likes")
-            %li#new-playlist
-              %span.icon>
-                %i.fa-light.fa-plus.pluse-icon.fa-config
-              .ms-1.d-inline-block 新しいプレイリスト
-          %li
-            %span.icon
-              %i.fa-solid.fa-users.fa-config
-            = link_to("全てのユーザー", "/users")
-          %li
-            %span.icon
-              %i.fa-solid.fa-play.fa-config
-            = link_to("全てのプレイリスト", "/playlists")
-          %li
-            %span.icon
-              %i.fa-solid.fa-question.fa-config
-            = link_to("イントロクイズ", "/intro_quizzes")
+%nav.side-bar.border
+  .side-bar-content.position-relative
+    #close-side-bar
+      %i.fa-solid.fa-xmark.fa-config.h1
+    .side-bar-content-1.border-bottom.border-2.me-4
+      = link_to "Kitchotify", root_path, id: "logo"
+      %ul
+        %li
+          %span.icon
+            %i.fa-light.fa-house.home-icon.fa-config
+          = link_to "ホーム", root_path
+        %li
+          %span.icon
+            %i.fa-regular.fa-heart.like-icon.fa-config
+          = link_to "お気に入り", likes_path
+        -if logged_in?
+          %li#new-playlist
+            %span.icon>
+              %i.fa-light.fa-plus.pluse-icon.fa-config
+            .ms-1.d-inline-block 新しいプレイリスト
+        %li
+          %span.icon
+            %i.fa-solid.fa-users.fa-config
+          = link_to "全てのユーザー", users_path
+        %li
+          %span.icon
+            %i.fa-solid.fa-compact-disc.fa-config
+          = link_to "全てのアルバム", albums_path
+        %li
+          %span.icon
+            %i.fa-solid.fa-play.fa-config
+          = link_to "全てのプレイリスト", playlists_path
+        %li
+          %span.icon
+            %i.fa-solid.fa-question.fa-config
+          = link_to "イントロクイズ", intro_quizzes_path
+    -if logged_in?
       .side-bar-content-2
         %ul#playlists-side
-          - current_user.playlists.each do |p|
-            %li= link_to(p.name, "/playlists/#{p.id}", id: "playlist-#{p.id}")
-
-- else
-  %nav.side-bar
-    .side-bar-content
-      #close-side-bar
-        %i.fa-solid.fa-xmark.fa-config.h1
-      %div{:casll => "side-bar-content-1"}
-        = link_to("Kitchotify", "/", id: "logo")
-        %ul
-          %li
-            %span.icon
-              %i.fa-light.fa-house.home-icon.fa-config
-            = link_to("ホーム", "/")
-          %li
-            %span.icon
-              %i.fa-regular.fa-heart.like-icon.fa-config
-            = link_to("お気に入り", "/likes")
-          %li
-            %span.icon
-              %i.fa-solid.fa-users.fa-config
-            = link_to("全てのユーザー", "/users")
-          %li
-            %span.icon
-              %i.fa-solid.fa-play.fa-config
-            = link_to("全てのプレイリスト", "/playlists")
+          - current_user.playlists.each do |playlist|
+            %li= link_to playlist.name, playlist_path(playlist), id: "playlist-#{playlist.id}"

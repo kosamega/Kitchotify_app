@@ -5,14 +5,14 @@ ruby '3.1.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 7.0.4'
-gem "sprockets-rails"
+gem 'sprockets-rails'
 # Use sqlite3 as the database for Active Record
 # gem 'sqlite3', '~> 1.4'
 gem 'pg'
 # Use Puma as the app server
 gem 'puma'
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
-gem "importmap-rails"
+gem 'importmap-rails'
 # Use SCSS for stylesheets
 gem 'sass-rails'
 # Use Sass to process CSS
@@ -22,9 +22,9 @@ gem 'sass-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 # gem 'turbolinks'
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
-gem "turbo-rails"
+gem 'turbo-rails'
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
-gem "stimulus-rails"
+gem 'stimulus-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder'
 # Use Redis adapter to run Action Cable in production
@@ -38,18 +38,20 @@ gem 'image_processing'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', require: false
 
+gem 'acts_as_list'
+gem 'aws-sdk-rails'
+gem 'aws-sdk-s3'
+gem 'dotenv-rails'
+gem 'erb2haml'
+gem 'gon'
+gem 'haml-rails'
+gem 'jquery-rails'
 gem 'net-imap'
 gem 'net-pop'
 gem 'net-smtp'
 gem 'rails-controller-testing'
-gem "jquery-rails"
-gem 'aws-sdk-s3'
-gem 'aws-sdk-rails'
-gem 'dotenv-rails'
-gem 'acts_as_list'
-gem 'gon'
-gem 'haml-rails'
-gem 'erb2haml'
+gem 'rubocop'
+gem 'rubocop-rails'
 # 非同期でフォームでファイルを送信
 gem 'remotipart'
 # 日本語化
@@ -57,7 +59,7 @@ gem 'rails-i18n'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'byebug', platforms: %i[mri mingw x64_mingw]
 end
 
 group :development do
@@ -80,4 +82,4 @@ group :test do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]

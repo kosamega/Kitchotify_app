@@ -1,4 +1,4 @@
-require "test_helper"
+require 'test_helper'
 
 class QuizResultsControllerTest < ActionDispatch::IntegrationTest
   # test "should get create" do

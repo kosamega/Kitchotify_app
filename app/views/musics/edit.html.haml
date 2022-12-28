@@ -1,16 +1,2 @@
 #add-music-form
-  =form_with(model: [@album, @music], local: false) do |form|
-    .row
-      .col-form-label 曲名
-      .col= form.text_field :name, class: "form-control"
-    .row
-      .col-form-label アーティスト名
-      .col= form.text_field :artist, class: "form-control"
-    .row
-      .col-form-label トラック
-      .col= form.text_field :track, class: "form-control"
-    .row
-      .col-form-label 
-      .col= file_field_tag :audio, class: "form-control"
-    .row
-      .col= form.submit '更新', class: "btn btn-primary"
+  =render "form", album: @album, music: @music, action: "更新", confirm: "更新しますか", at_album_show: false, local: true

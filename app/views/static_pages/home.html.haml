@@ -1,5 +1,5 @@
 %h1 最新リリース
-.album-container
+.album-container.border-bottom.pb-2
   - @albums.each do |album|
     = link_to(image_tag(album.jacket.variant(resize: "300").processed ,class: "album-item", width: "130px"), "albums/#{album.id}", class: "album-background")
 .sita-container.mt-4
@@ -8,9 +8,13 @@
     - if @comments
       - @comments.each do |comment|
         %ul.comment-card
-          %li= link_to(comment.music.name, "/musics/#{comment.music.id}")
+          %li
+            = link_to image_tag(comment.music.album.jacket.variant(resize: "300").processed ,class: "album-item", width: "50px"), album_path(comment.music.album)
+            = link_to comment.music.artist, album_music_path(comment.music.album, comment.music)
+            %p.d-inline-block -
+            = link_to comment.music.name, album_music_path(comment.music.album, comment.music)
           %li.new-comment-item.comment-user
-            = comment.user.name + " "
+            = link_to comment.user.name, user_path(comment.user)
             = comment.created_at.strftime("%F %R")
           %li.new-comment-item= comment.content
   .new-playlists
@@ -18,4 +22,8 @@
     - if @playlists
       - @playlists.each do |playlist|
         %ul.playlist-card
-          %li= link_to("#{playlist.user.name}　#{playlist.name}", "/playlists/#{playlist.id}")
+          %li
+            = link_to playlist.user.name, user_path(playlist.user), class: "me-2"
+            = link_to playlist.name, playlist_path(playlist)
+          %li
+            %p=playlist.comment

@@ -1,11 +1,1 @@
-=form_with(model: @album) do |form|
-  .row
-    .col-form-label 名前
-    .col= form.text_field :name, class: "form-control"
-  .row
-    .col-form-label 
-    .col= form.file_field :jacket, class: "form-control"
-  .row
-    .col= form.submit '更新', class: "btn btn-primary"
-    
-.btn.btn-danger=link_to "削除", album_path(@album), method: :delete, data: { confirm: "本当に消しますか" }
+=render "form", album: @album, action: "更新"

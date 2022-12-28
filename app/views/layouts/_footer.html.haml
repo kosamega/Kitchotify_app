@@ -1,4 +1,4 @@
-%footer{class: "#{'d-none' if @intro_quiz}"}
+%footer.position-relative.border{class: "#{'d-none' if @intro_quiz}"}
   - if @infos.present?
     .track-info-wrapper
       .track-info
@@ -16,6 +16,10 @@
           .loop
             %button#loop-btn
               %i.fa-solid.fa-rotate
+          .index-info-wrapper
+            %button#index-info-btn.btn.btn-info index          
+      = render "layouts/index_info" 
+
     - else
       .audio-player.d-flex.justify-content-center
         .audio-player-wrapper.w-100
@@ -30,3 +34,8 @@
           .loop
             %button#loop-btn
               %i.fa-solid.fa-rotate
+          .index-info-wrapper
+            #index-info-btn.btn.btn-info index     
+      = render "layouts/index_info" 
+            
+  
