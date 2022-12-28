@@ -17,5 +17,4 @@
 
   .d-none#add-music-form
     =render "musics/form", album: @album, music: @album.musics.build, action: "作成", confirm: "追加しますか", at_album_show: true, local: false
-
   = javascript_include_tag 'music_new.js'
