@@ -43,7 +43,7 @@
           = form_with(model: Comment.new, local: false) do |f|
             %div= hidden_field_tag :music_id, @music.id
             = f.text_area :content, class: "comment-textarea"
-            = f.submit "送信", class: "comment-submit"
+            = f.submit "送信", class: "btn btn-primary float-end mt-3"
       %ul#comments
         - @comments.each do |comment|
           %li.comment-user
