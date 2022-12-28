@@ -2,7 +2,7 @@
   .album-info-jaket.m-4.d-inline-block
     = image_tag(@music.album.jacket.variant(resize: "300").processed, class: "album-jaket-img")
   .d-inline-flex.flex-column.justify-content-center
-    = link_to(@music.album.name, "/albums/#{@music.album.id}")
+    = link_to @music.album.name, album_path(@music.album)
     = @album.kiki_taikai_date
     %h2= @music.name
     %h3= @music.artist
