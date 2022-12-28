@@ -7,9 +7,9 @@
 
   .top-bar-right
     - if logged_in?
-      = link_to("ログアウト", "/logout", {method: :delete})
-      = link_to(current_user.name, "/users/#{current_user.id}")
+      = link_to "ログアウト", "/logout", {method: :delete}
+      = link_to current_user.name, user_path(current_user)
       #user-ddmenu
         %ul
           %li 設定
-          %li= link_to("ログアウト", "/logout", {method: :delete})
+          %li= link_to "ログアウト", "/logout", {method: :delete}
