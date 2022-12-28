@@ -3,9 +3,11 @@ kosamega:
   email: kosamega@gmail.com
   password_digest: <%= User.digest('password') %>
   id: 1
+  admin: true
   
 posamega:
   name: posamega
   email: posamega@gmail.com
   password_digest: <%= User.digest('password') %>
   id: 2
+  admin: false
