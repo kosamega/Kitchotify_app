@@ -1,0 +1,24 @@
+=form_with(model: [album, music], local: local) do |form|
+  .row
+    .col
+      .row
+        .col-form-label 曲名
+        .col= form.text_field :name, class: "form-control"
+      .row
+        .col-form-label アーティスト名
+        .col= form.text_field :artist, class: "form-control"
+      .row
+        .col-form-label トラック
+        .col= form.number_field :track, class: "form-control", min: 1
+      .row
+        .col-form-label 
+        .col= form.file_field :audio, class: "form-control"
+      = hidden_field_tag :at_album_show, at_album_show
+      .row
+        .col
+          = @music&.audio&.attached? ? "audioが存在します" : "audioが存在しません"
+    .col
+      .col-form-label インデックス情報
+      .col.h-100= form.text_area :index_info, class: "form-control h-75"
+  .row.mt-3
+    .col.overflow-hidden=button_tag action, type: :submit, class: "btn btn-primary float-end", data: { confirm: confirm }

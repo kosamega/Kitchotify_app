@@ -1,5 +1,5 @@
 .new-playlist-bg.d-none
-  .new-playlist-form
+  .new-playlist-form.border
     .new-playlist-form-content
       .x
         %i.fa-solid.fa-x.x-icon.fa-config
@@ -14,4 +14,4 @@
               %li
                 = f.check_box  :public , checked: false
                 %span 公開する
-            %li= f.submit "作成", class: "new-playlist-submit-btn"
+            %li= f.submit "作成", class: "btn btn-primary float-end"

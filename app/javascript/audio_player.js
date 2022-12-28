@@ -2,12 +2,16 @@ var audio = document.getElementById('audio');
 var audioPlayer = document.getElementById("foot-audio-player");
 let infos = gon.infos_j
 var max = infos.length
+const indexIncoContent = document.getElementById('index-info-content')
+
 function changeInfo(){
   var artistElement = document.getElementById("track-artist");
   artistElement.innerHTML = infos[index]['artist'];
 
   var nameElement = document.getElementById("track-name");
   nameElement.innerHTML = infos[index]['name'];
+
+  indexIncoContent.innerText = infos[index]['index_info']
 }
 
 function nowPlay(trackNum){
@@ -32,6 +36,7 @@ var index = 0
 changeInfo();
 nowPlay(0);
 
+// 再生が終わったら
 audio.addEventListener('ended', async function(){
   endPlay(index);
   index++
@@ -154,3 +159,23 @@ function trDelete(evt){
   setPlayButton();
   setDeleteButton();
 }
+
+// インデックス情報
+const infoBtn = document.getElementById('index-info-btn')
+const indexInfo = document.getElementById('index-info')
+const indexCloseBtn = document.getElementById('close-index-info')
+
+function indexShow (){
+  indexInfo.classList.remove('d-none')
+  infoBtn.removeEventListener('click', indexShow)
+  infoBtn.addEventListener('click', indexHide)
+}
+
+function indexHide (){
+  indexInfo.classList.add("d-none")
+  infoBtn.removeEventListener('click', indexHide)
+  infoBtn.addEventListener('click', indexShow)
+}
+
+infoBtn.addEventListener('click', indexShow)
+indexCloseBtn.addEventListener('click', indexHide)

@@ -1,10 +1,1 @@
-=form_with(model: Album.new) do |form|
-  .row
-    .col-form-label 名前
-    .col= form.text_field :name, class: "form-control"
-  .row
-    .col-form-label 
-    .col= form.file_field :jacket, class: "form-control"
-  .row
-    .col= form.submit '作成', class: "btn btn-primary"
-    
+=render "form", album: Album.new, action: "作成"

@@ -1,4 +1,4 @@
-require "test_helper"
+require 'test_helper'
 
 class LikesControllerTest < ActionDispatch::IntegrationTest
     def setup
@@ -6,9 +6,9 @@ class LikesControllerTest < ActionDispatch::IntegrationTest
         @music = musics(:waopo)
     end
 
-    test "ユーザーが有効" do
-        assert @user.valid?
-    end
+  test 'ユーザーが有効' do
+    assert @user.valid?
+  end
 
     test "ログインしないとlikeを作成出来なく、するとできる" do
         post likes_path, params: {music_id: @music.id, user_id: @user.id}

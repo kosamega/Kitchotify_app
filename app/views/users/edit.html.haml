@@ -1,5 +1,5 @@
 %h1 ユーザー設定
-= form_with(url: "/users/#{current_user.id}", scope: :user, method: :patch, local: true) do |f|
+= form_with(model: current_user, method: :patch, local: true) do |f|
   %ul
     %li= f.label :名前
     %li= f.text_field :name, class: "form-name", value: "#{current_user.name}"

@@ -1,0 +1,16 @@
+require: rubocop-rails
+AllCops:
+  NewCops: enable
+  Exclude:
+    - "vendor/**/*" # rubocop config/default.yml
+    - "db/**/*"
+    - "bin/**/*"
+    - "node_modules/**/*"
+Style/AsciiComments:
+  Enabled: false
+Documentation:
+  Enabled: false
+Style/FrozenStringLiteralComment:
+  Enabled: false
+Style/ClassAndModuleChildren:
+  Enabled: false

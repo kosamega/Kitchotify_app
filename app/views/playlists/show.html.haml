@@ -22,13 +22,13 @@
     %span.plivate-public 公開
   - else
     %span.plivate-public 非公開
-  %h3= link_to(@playlist.user.name, "/users/#{@playlist.user.id}")
+  %h3= link_to @playlist.user.name, user_path(@playlist.user)
   .playlist-comment
     %p#playlist-comment-content
       = @playlist.comment
   - if current_user == @playlist.user
     .playlist-edit-delete
-      = link_to("削除", "/playlists/#{@playlist.id}", method: :delete, data: { confirm: "本当に消しますか" })
+      = link_to "削除", playlist_path(@playlist), method: :delete, data: { confirm: "本当に消しますか" }
       %span#edit-playlist 編集
 
 = render "musics/music"
