@@ -8,6 +8,9 @@
   .row
     .col-form-label ジャケット
     .col= form.file_field :jacket, class: "form-control"
+  .row
+    .col
+      = album&.jacket&.attached? ? "jacketが存在します" : "jacketが存在しません"
   .row.mt-3
     .col
       リリース
