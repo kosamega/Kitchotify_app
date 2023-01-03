@@ -51,7 +51,10 @@ class AlbumsController < ApplicationController
   end
 
   def released
-    return unless Album.find_by(id: params[:id]).present? && !Album.find_by(id: params[:id]).released? && !current_user.admin?
+    unless Album.find_by(id: params[:id]).present? && !Album.find_by(id: params[:id]).released? && !current_user.admin?
+      return
+    end
+
     flash[:danger] = 'まだリリースされていません'
     redirect_to root_path
   end

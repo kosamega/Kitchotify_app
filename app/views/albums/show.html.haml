@@ -9,11 +9,15 @@
    
 = render "musics/music"
 
--if current_user.admin?
-  .container-fluid.mb-2.h-auto.overflow-hidden
+.container-fluid.mb-2.h-auto.overflow-hidden
+  -if current_user.admin?
     .btn.btn-info#add-music.float-end.d-inline-block 曲を追加
     %button.btn.btn-info.float-end.me-2.d-inline-block
       =link_to "アルバムを編集", edit_album_path(@album)
+  %button.btn.btn-info.float-end.me-2.d-inline-block
+    =link_to "インデックス情報ダウンロード", "/download_index/#{@album.id}", method: :post
+  %button.btn.btn-info.float-end.me-2.d-inline-block
+    =link_to "曲リストダウンロード", "/download_music_list/#{@album.id}", method: :post
 
   .d-none#add-music-form
     =render "musics/form", album: @album, music: @album.musics.build, action: "作成", confirm: "追加しますか", at_album_show: true, local: false
