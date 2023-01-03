@@ -18,4 +18,7 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
 
   get '/search/result', to: 'searchs#index'
+
+  post '/download_index/:id', to: 'download_indexes#create'
+  post '/download_music_list/:id', to: 'download_music_lists#create'
 end
