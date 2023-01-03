@@ -7,6 +7,7 @@ class Comment < ApplicationRecord
 
   def webhook
     return if Rails.env.development?
+
     uri = URI.parse(ENV.fetch('WEBHOOK_URL_NEW_COMMENT', nil))
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
