@@ -5,7 +5,8 @@ class User < ApplicationRecord
   has_many :comments
   validates :name, presence: true, uniqueness: true
   attr_accessor :remember_token
-
+  enum role:{member: 0, seisan: 1}
+ 
   default_scope -> { order(created_at: :asc) }
   # 渡された文字列のハッシュ値を返す
   def self.digest(string)
