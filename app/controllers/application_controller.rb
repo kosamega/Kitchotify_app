@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
 
     store_location
     flash[:danger] = 'ログインしてください'
-    redirect_to '/login'
+    redirect_to new_sessions_path
   end
 
   def not_kitchonkun
@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
 
     store_location
     flash[:danger] = 'ログインしてください'
-    redirect_to '/login'
+    redirect_to new_sessions_path
   end
 
   def correct_user
