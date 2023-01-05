@@ -1,16 +1,20 @@
 %h1= @user.name
 %p= @user.bio
 - if @user == current_user && !(@user.id == 2)
-  = link_to "編集", edit_user_path(current_user), class: "edit-btn"
-- unless @user.id == 2
-  - if @user == current_user
-    %h2 プレイリスト
-    %ul
-      - @playlists.each do |playlist|
-        %li= link_to playlist.name, playlist_path(playlist)
-  - else
-    %h2 公開プレイリスト
-    %ul
-      - @playlists.each do |playlist|
-        - if playlist.public == 1
-          %li= link_to playlist.name, playlist_path(playlist)
+  = link_to "編集", edit_user_path(current_user), class: "btn btn-primary"
+
+
+.playlist.pt-3
+- if @user == current_user
+  %h2 プレイリスト
+  - @playlists.each do |playlist|
+    %ul.playlist-card
+      %li= link_to playlist.name, playlist_path(playlist), class: "h6"
+      %li= playlist.comment
+- else
+  %h2 公開プレイリスト
+  - @playlists.where(public: 1).each do |playlist|
+    %ul.playlist-card
+      %li= link_to playlist.name, playlist_path(playlist)
+      %li= playlist.comment
+

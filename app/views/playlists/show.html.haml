@@ -14,9 +14,9 @@
               %li
                 = f.check_box :public
                 %span 公開する
-            %li= f.submit "更新", class: "new-playlist-submit-btn"
+            %li= f.submit "更新", class: "btn btn-primary float-end"
 
-.playlist-info.mb-3
+.playlist-info.mb-3.clearfix.pb-3
   %h1#playlist-name.mt-3= @playlist.name
   - if @playlist.public == 1
     %span.plivate-public 公開
@@ -27,9 +27,9 @@
     %p#playlist-comment-content
       = @playlist.comment
   - if current_user == @playlist.user
-    .playlist-edit-delete
-      = link_to "削除", playlist_path(@playlist), method: :delete, data: { confirm: "本当に消しますか" }
-      %span#edit-playlist 編集
+    .mb-2
+      = link_to "削除", playlist_path(@playlist), method: :delete, data: { confirm: "本当に消しますか" }, class: "btn btn-danger float-end"
+      %span#edit-playlist.btn.btn-primary.float-end.mx-2 編集
 
 = render "musics/music"
 = javascript_include_tag 'edit_playlist.js'

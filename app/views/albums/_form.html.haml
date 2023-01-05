@@ -8,6 +8,9 @@
   .row
     .col-form-label ジャケット
     .col= form.file_field :jacket, class: "form-control"
+  .row
+    .col
+      = album&.jacket&.attached? ? "jacketが存在します" : "jacketが存在しません"
   .row.mt-3
     .col
       リリース
@@ -15,4 +18,3 @@
   .row.mt-3.d-inline-block
     .col
       = form.submit action, class: "btn btn-primary"
-      .btn.btn-danger.d-inline-block=link_to "削除", album_path(@album), method: :delete, data: { confirm: "本当に消しますか" }, class: "text-white"

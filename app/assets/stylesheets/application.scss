@@ -5,7 +5,7 @@
 @import "./music_playlist_relations.scss";
 @import "./musics.scss";
 @import "./playlists.scss";
-@import "./searchs.scss";
+@import "./searches.scss";
 @import "./sessions.scss";
 @import "./static_pages.scss";
 @import "./users.scss";
@@ -216,15 +216,6 @@ body {
 .top-bar p {
   margin-right: 30px;
 }
-
-#user-ddmenu {
-  display: none;
-  width: 100px;
-  height: 100px;
-  background-color: rgb(224, 224, 224);
-}
-
-
 
 /* サイドバー */
 .side-bar-content {
@@ -547,3 +538,8 @@ a:hover {
   }
 }
 
+.clearfix:after{
+	content: "";
+	clear: both;
+	display: block;
+}

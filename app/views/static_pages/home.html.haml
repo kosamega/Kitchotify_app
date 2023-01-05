@@ -1,6 +1,6 @@
 %h1 最新リリース
-.album-container.border-bottom.pb-2
-  - @albums.each do |album|
+.album-container.border-bottom.pb-2.border-2
+  - @albums_released.each do |album|
     = link_to(image_tag(album.jacket.variant(resize: "300").processed ,class: "album-item", width: "130px"), "albums/#{album.id}", class: "album-background")
 .sita-container.mt-4
   .new-comments
@@ -22,8 +22,8 @@
     - if @playlists
       - @playlists.each do |playlist|
         %ul.playlist-card
-          %li
+          %li.ms-2
             = link_to playlist.user.name, user_path(playlist.user), class: "me-2"
-            = link_to playlist.name, playlist_path(playlist)
-          %li
+            = link_to playlist.name, playlist_path(playlist), class: "fw-normal"
+          %li.ms-3
             %p=playlist.comment

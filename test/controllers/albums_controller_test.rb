@@ -15,6 +15,6 @@ class AlbumsControllerTest < ActionDispatch::IntegrationTest
   test 'ログインしなければshowにアクセスできない' do
     get '/albums/1'
     assert_not flash.empty?
-    assert_redirected_to '/login'
+    assert_redirected_to new_sessions_path
   end
 end
