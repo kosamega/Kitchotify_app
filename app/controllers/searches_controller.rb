@@ -1,4 +1,4 @@
-class SearchsController < ApplicationController
+class SearchesController < ApplicationController
   before_action :logged_in_user
   include MusicsHelper
 
