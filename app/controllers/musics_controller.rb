@@ -1,7 +1,7 @@
 class MusicsController < ApplicationController
   before_action :logged_in_user
   before_action :set_album
-  before_action :admin_user, only: %i[create destroy]
+  before_action :admin_or_seisan, only: %i[create destroy]
   include MusicsHelper
 
   def show

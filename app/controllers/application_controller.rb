@@ -34,4 +34,10 @@ class ApplicationController < ActionController::Base
     flash[:danger] = '管理者のみ有効な操作です'
     redirect_to('/')
   end
+
+  def admin_or_seisan
+    return if current_user.admin? || current_user.role = seisan
+    flash[:danger] = '管理者か生産のみ有効な操作です'
+    redirect_to('/')
+  end
 end
