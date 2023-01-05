@@ -8,7 +8,7 @@ class IntroQuizzesControllerTest < ActionDispatch::IntegrationTest
 
   test "ログインすればshowにアクセスできて、しないとできない" do
     get intro_quiz_path(@intro_quiz)
-    assert_redirected_to "/login"
+    assert_redirected_to new_sessions_path
     log_in_as(@user)
     get intro_quiz_path(@intro_quiz)
     assert_response :success
@@ -16,7 +16,7 @@ class IntroQuizzesControllerTest < ActionDispatch::IntegrationTest
 
   test "ログインすればindexにアクセスできて、しないとできない" do
     get intro_quizzes_path
-    assert_redirected_to "/login"
+    assert_redirected_to new_sessions_path
     log_in_as(@user)
     get intro_quizzes_path
     assert_response :success
