@@ -29,7 +29,7 @@ class MusicPlaylistRelationsController < ApplicationController
   private
 
   def correct_user
-    playlist_user = Playlist.find(params[:playlist_id]).user
+    playlist_user = Playlist.find_by(id: params[:playlist_id]).user
     redirect_to('/') unless playlist_user == current_user
   end
 end
