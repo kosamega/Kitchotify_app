@@ -17,7 +17,7 @@ class LikesControllerTest < ActionDispatch::IntegrationTest
   test 'ログインしないとlikeを作成出来なく、するとできる' do
     post likes_path, params: { music_id: 1, user_id: 1 }
     assert_not flash.empty?
-    assert_redirected_to '/login'
+    assert_redirected_to new_sessions_path
     log_in_as(@user)
     assert_difference 'Like.count', 1 do
       post likes_path, params: { music_id: 1, user_id: 1 }
@@ -27,7 +27,7 @@ class LikesControllerTest < ActionDispatch::IntegrationTest
   test 'ログインしないとlikeを削除できなく、するとできる' do
     delete like_path(@like)
     assert_not flash.empty?
-    assert_redirected_to '/login'
+    assert_redirected_to new_sessions_path
     assert_difference 'Like.count', -1 do
       delete like_path(@like)
     end
@@ -36,6 +36,6 @@ class LikesControllerTest < ActionDispatch::IntegrationTest
   test 'ログインしないとlike一覧にアクセスできない' do
     get '/likes'
     assert_not flash.empty?
-    assert_redirected_to '/login'
+    assert_redirected_to new_sessions_path
   end
 end
