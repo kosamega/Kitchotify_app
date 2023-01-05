@@ -6,26 +6,26 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
   end
 
   test 'ログイン失敗' do
-    get '/login'
+    get new_sessions_path
     assert_template 'sessions/new'
-    post '/login', params: { session: { name: '', password: '' } }
+    post sessions_path, params: { session: { name: '', password: '' } }
     assert_not is_logged_in?
     assert_template 'sessions/new'
     assert flash.any?
   end
 
   test 'ログイン成功・ログアウト成功' do
-    get '/login'
+    get new_sessions_path
     assert_template 'sessions/new'
-    post '/login', params: { session: { name: @user.name,
+    post sessions_path, params: { session: { name: @user.name,
                                         password: 'password' } }
     assert is_logged_in?
     assert_redirected_to '/'
     follow_redirect!
     assert_template 'static_pages/home'
-    delete '/logout'
+    delete sessions_path
     assert_not is_logged_in?
-    assert_redirected_to '/login'
+    assert_redirected_to new_sessions_path
     follow_redirect!
     assert_template 'sessions/new'
   end

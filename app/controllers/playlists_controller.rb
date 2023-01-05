@@ -1,9 +1,8 @@
 class PlaylistsController < ApplicationController
   before_action :logged_in_user
-  before_action :correct_user, only: %i[update destroy sort]
+  before_action :correct_user, only: %i[update destroy]
   before_action :correct_user_or_public, only: [:show]
   before_action :not_kitchonkun, only: %i[create update destroy]
-  skip_before_action :verify_authenticity_token
   include MusicsHelper
 
   def index
@@ -46,12 +45,6 @@ class PlaylistsController < ApplicationController
   def destroy
     Playlist.find_by(id: params[:id]).destroy
     redirect_to '/'
-  end
-
-  def sort
-    return unless params[:drag] != params[:drop]
-
-    MusicPlaylistRelation.find_by(playlist_id: params[:id], position: params[:drag]).insert_at(params[:drop].to_i)
   end
 
   private

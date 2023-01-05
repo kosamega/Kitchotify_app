@@ -1,6 +1,6 @@
 .login-forms
   %h1 ログイン
-  = form_with(url: "/login", scope: :session, local: true) do |f|
+  = form_with(url: sessions_path, scope: :session, local: true) do |f|
     %ul
       %li= f.label :ユーザーネーム
       %li= f.text_field :name, value: @name

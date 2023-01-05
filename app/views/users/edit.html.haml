@@ -5,4 +5,4 @@
     %li= f.text_field :name, class: "form-name", value: "#{current_user.name}"
     %li= f.label :bio
     %li= f.text_area :bio, class: "form-bio", value: "#{current_user.bio}"
-    %li= f.submit "変更"
+    %li= f.submit "変更", class: "btn btn-primary"
