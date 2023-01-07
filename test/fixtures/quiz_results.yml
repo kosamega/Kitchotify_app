@@ -2,10 +2,8 @@
 
 one:
   user_id: 1
-  rule_id: 1
   time: 1
 
 two:
   user_id: 1
-  rule_id: 1
   time: 1

@@ -1,19 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  id: 1
-  name: "わくわく"
-  created_at: "2022-08-16 12:25:57"
-  updated_at: "2022-08-16 12:25:57"
-  public: 1
-  comment: "testes"
   user: kosamega
+  name: わくわく
+  public: 1
+  comment: testes
 
 two:
-  id: 2
-  name: "hikari"
-  created_at: "2022-08-16 12:25:57"
-  updated_at: "2022-08-16 12:25:57"
-  public: 1
-  comment: "testes"
   user: kosamega
+  name: hikari
+  public: 1
+  comment: testes

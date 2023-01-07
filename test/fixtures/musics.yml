@@ -3,17 +3,13 @@
 hikari:
   name: hikari
   artist: aaa
-  album_id: 1
   track: 1
-  audio_path: MyString
-  album: 171
+  album: g171
   id : 1
 
 waopo:
   name: waopo
   artist: MyString
-  album_id: 1
-  track: 1
-  audio_path: MyString
-  album: 171
+  track: 2
+  album: g171
   id : 2
