@@ -19,13 +19,13 @@ class CommentTest < ActiveSupport::TestCase
     assert_not @comment.valid?
   end
 
-  # test "user_idを持っている" do
-  #   @comment.user_id = nil
-  #   assert_not @comment.valid?
-  # end
+  test "user_idを持っている" do
+    @comment.user_id = nil
+    assert_not @comment.valid?
+  end
 
-  # test "music_idを持っている" do
-  #   @comment.music_id = nil
-  #   assert_not @comment.valid?
-  # end
+  test "music_idを持っている" do
+    @comment.music_id = nil
+    assert_not @comment.valid?
+  end
 end
