@@ -38,22 +38,35 @@ gem 'image_processing'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', require: false
 
-gem 'acts_as_list'
-gem 'aws-sdk-rails'
-gem 'aws-sdk-s3'
-gem 'dotenv-rails'
-gem 'erb2haml'
-gem 'gon'
-gem 'haml-rails'
-gem 'jquery-rails'
 gem 'net-imap'
 gem 'net-pop'
 gem 'net-smtp'
 gem 'rails-controller-testing'
+
+# プレイリストの曲順並び替え
+gem 'acts_as_list'
+
+# AWS
+gem 'aws-sdk-rails'
+gem 'aws-sdk-s3'
+
+#　環境変数
+gem 'dotenv-rails'
+gem 'gon'
+
+# haml
+gem 'haml-rails'
+
+# jquery
+gem 'jquery-rails'
+
+# コード自動修正
 gem 'rubocop'
 gem 'rubocop-rails'
-# 非同期でフォームでファイルを送信
+
+#ajaxでファイル送信
 gem 'remotipart'
+
 # 日本語化
 gem 'rails-i18n'
 
