@@ -1,24 +1,41 @@
-# README
+# Kitchotify
+https://kitchotify-app.herokuapp.com/
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サービス概要
+吉田音楽製作所からリリースされているアルバムをストリーミング配信するサービス。
 
-Things you may want to cover:
+## 本サービスを開発した背景
+会員がそれぞれの曲を一度聴きあってそれっきりになっている。
+→会員が作った曲についてのコミュニケーションを活性化させたい。
 
-* Ruby version
+オンラインでのサークル活動が主になり、閉じた場所でのコミュニケーションが減っている。
+→閉じた場でのコミュニケーションを活性化させたい。
 
-* System dependencies
+## 主な機能
+ログイン機能
+再生プレイヤー
+お気に入り
+プレイリスト
+コメント
+イントロクイズ
 
-* Configuration
+## 使用技術
+バックエンド
+* Ruby 3.1.2
+* Ruby on Rails 7.0.4
 
-* Database creation
+主要gem
+* aws-sdk-s3
+* gon
+* acts_as_list
 
-* Database initialization
+フロントエンド
+* JavaScript
+* Bootstrap
 
-* How to run the test suite
+インフラ
+* Heroku
+* PostgreSQL
+* AmazonS3
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## ER図
