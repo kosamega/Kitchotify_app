@@ -1,4 +1,3 @@
-console.log(document.querySelectorAll(".add_playlist-point"))
 for(const el of document.querySelectorAll(".add_playlist-point")){
   el.addEventListener('click', ()=>{
     el.parentNode.querySelector(".select-playlists").classList.remove("d-none");

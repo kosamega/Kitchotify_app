@@ -138,6 +138,7 @@ setDeleteButton();
 
 function trDelete(evt){
   let trackNum = evt.currentTarget.closest('.track').id
+  console.log(trackNum)
   infos.splice(trackNum, 1);
   
   if(trackNum == index){
@@ -150,11 +151,15 @@ function trDelete(evt){
     nowPlay(index + 1);
   }
   max--;
+  console.log(trackNum)
   trackNum++;
+  console.log(trackNum)
   for(var i = trackNum; i <= max; i++){
     const track = document.getElementById(`${i}`)
+    console.log(track)
     track.setAttribute("id", `${i - 1}`);
     track.querySelector('.tr-number').innerHTML = i ;
+    track.querySelector('form').number.value = i - 1
   }
   setPlayButton();
   setDeleteButton();
