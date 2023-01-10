@@ -7,7 +7,7 @@ class PlaylistsController < ApplicationController
   include MusicsHelper
 
   def index
-    @playlists = Playlist.where(public: 1)
+    @playlists = Playlist.where(public: true)
   end
 
   def show
@@ -60,6 +60,6 @@ class PlaylistsController < ApplicationController
   def correct_user_or_public
     return unless (@playlist = Playlist.find_by(id: params[:id]))
 
-    redirect_to('/') unless (@playlist.user == current_user) || (@playlist.public == 1)
+    redirect_to('/') unless (@playlist.user == current_user) || @playlist.public?
   end
 end

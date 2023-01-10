@@ -3,11 +3,11 @@
 one:
   user: kosamega
   name: わくわく
-  public: 1
+  public: true
   comment: testes
 
 two:
   user: kosamega
   name: hikari
-  public: 1
+  public: true
   comment: testes

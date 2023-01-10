@@ -4,7 +4,7 @@ $('.edit-playlist').addClass("d-none");
 $('#playlist-name').html('<%=@playlist.name%>');
 $('#playlist-<%=@playlist.id%>').html('<%=@playlist.name%>');
 
-if (<%=@playlist.public%> == 1){
+if (<%=@playlist.public?%>){
   $('.plivate-public').html('公開');
 }else{
   $('.plivate-public').html('非公開');
