@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
     user = User.find_by(name: params[:session][:name])
     if user&.authenticate(params[:session][:password])
       log_in user
-      unless user.id == 2
+      unless user.name == kitchonkun
         params[:session][:remember_me] == '1' ? remember(user) : forget(user)
       end
       redirect_to '/'
