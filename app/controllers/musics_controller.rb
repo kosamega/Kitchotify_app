@@ -1,11 +1,12 @@
 class MusicsController < ApplicationController
   before_action :logged_in_user
   before_action :set_album
+  before_action :set_music
   before_action :admin_user, only: %i[create destroy]
   include MusicsHelper
 
   def show
-    if (@music = Music.find_by(id: params[:id]))
+    if @music.present?
       @playlists = current_user.playlists
       @same_artist_musics = Music.where(artist: @music.artist)
       @comments = @music.comments
@@ -19,9 +20,7 @@ class MusicsController < ApplicationController
     end
   end
 
-  def edit
-    @music = Music.find_by(id: params[:id])
-  end
+  def edit; end
 
   def create
     @music = @album.musics.build(music_params)
@@ -42,7 +41,6 @@ class MusicsController < ApplicationController
   end
 
   def update
-    @music = Music.find_by(id: params[:id])
     @music.update(music_params)
     if @music.errors.full_messages.present?
       flash[:danger] = @music.errors.full_messages
@@ -58,9 +56,12 @@ class MusicsController < ApplicationController
   end
 
   private
-
   def set_album
     @album = Album.find_by(id: params[:album_id])
+  end
+  
+  def set_music
+    @music = Music.find_by(id: params[:id])
   end
 
   def music_params
