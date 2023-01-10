@@ -50,7 +50,7 @@ gem 'acts_as_list'
 gem 'aws-sdk-rails'
 gem 'aws-sdk-s3'
 
-#　環境変数
+# 　環境変数
 gem 'dotenv-rails'
 gem 'gon'
 
@@ -64,7 +64,7 @@ gem 'jquery-rails'
 gem 'rubocop'
 gem 'rubocop-rails'
 
-#ajaxでファイル送信
+# ajaxでファイル送信
 gem 'remotipart'
 
 # 日本語化

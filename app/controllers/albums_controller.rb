@@ -2,6 +2,7 @@ class AlbumsController < ApplicationController
   before_action :logged_in_user
   before_action :admin_user, only: %i[new create edit update destroy]
   before_action :released, only: %i[show]
+  before_action :set_album, only: %i[show edit update destroy]
   include MusicsHelper
 
   def index
@@ -9,7 +10,7 @@ class AlbumsController < ApplicationController
   end
 
   def show
-    if (@album = Album.find_by(id: params[:id]))
+    if @album.present?
       @musics = @album.musics
       @playlists = current_user.playlists
       @at_album_show = true
@@ -23,9 +24,7 @@ class AlbumsController < ApplicationController
 
   def new; end
 
-  def edit
-    @album = Album.find_by(id: params[:id])
-  end
+  def edit; end
 
   def create
     @album = Album.create(album_params)
@@ -33,18 +32,21 @@ class AlbumsController < ApplicationController
   end
 
   def update
-    @album = Album.find_by(id: params[:id])
     @album.update(album_params)
     @album.update(editor_id: current_user.id)
     redirect_to @album
   end
 
   def destroy
-    Album.find_by(id: params[:id]).destroy
+    @album.destroy
     redirect_to '/'
   end
 
   private
+
+  def set_album
+    @album = Album.find_by(id: params[:id])
+  end
 
   def album_params
     params.require(:album).permit(:name, :jacket, :kiki_taikai_date, :released)
