@@ -3,14 +3,15 @@ class PlaylistsController < ApplicationController
   before_action :correct_user, only: %i[update destroy]
   before_action :correct_user_or_public, only: [:show]
   before_action :not_kitchonkun, only: %i[create update destroy]
+  before_action :set_playlist, only: %i[show update destroy]
   include MusicsHelper
 
   def index
-    @playlists = Playlist.where(public: 1)
+    @playlists = Playlist.where(public: true)
   end
 
   def show
-    if (@playlist = Playlist.find_by(id: params[:id]))
+    if @playlist.present?
       @at_playlist_show = true
       @playlists = current_user.playlists
       @relations = @playlist.music_playlist_relations.sort_by { |a| a[:position] }
@@ -34,7 +35,6 @@ class PlaylistsController < ApplicationController
   end
 
   def update
-    @playlist = Playlist.find_by(id: params[:id])
     @playlist.update(playlist_params)
     respond_to do |format|
       format.html { redirect_back_or '/' }
@@ -43,7 +43,7 @@ class PlaylistsController < ApplicationController
   end
 
   def destroy
-    Playlist.find_by(id: params[:id]).destroy
+    @playlist.destroy
     redirect_to '/'
   end
 
@@ -53,9 +53,13 @@ class PlaylistsController < ApplicationController
     params.require(:playlist).permit(:name, :public, :comment)
   end
 
+  def set_playlist
+    @playlist = Playlist.find_by(id: params[:id])
+  end
+
   def correct_user_or_public
     return unless (@playlist = Playlist.find_by(id: params[:id]))
 
-    redirect_to('/') unless (@playlist.user == current_user) || (@playlist.public == 1)
+    redirect_to('/') unless (@playlist.user == current_user) || @playlist.public?
   end
 end

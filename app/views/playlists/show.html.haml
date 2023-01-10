@@ -18,7 +18,7 @@
 
 .playlist-info.mb-3.clearfix.pb-3
   %h1#playlist-name.mt-3= @playlist.name
-  - if @playlist.public == 1
+  - if @playlist.public?
     %span.plivate-public 公開
   - else
     %span.plivate-public 非公開
