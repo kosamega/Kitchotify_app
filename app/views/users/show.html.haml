@@ -13,7 +13,7 @@
       %li= playlist.comment
 - else
   %h2 公開プレイリスト
-  - @playlists.where(public: 1).each do |playlist|
+  - @playlists.where(public: true).each do |playlist|
     %ul.playlist-card
       %li= link_to playlist.name, playlist_path(playlist)
       %li= playlist.comment
