@@ -4,28 +4,18 @@ class Album < ApplicationRecord
   default_scope -> { order(kiki_taikai_date: :desc) }
   validates :jacket, presence: true
 
-  def out_puts_index
-    File.open("public/#{name}インデックス情報.txt", 'w') do |file|
-      musics.each do |music|
-        file.puts("#{music.track}. #{music.name} / #{music.artist}\n")
-        return if music.track == self.musics.length && music.index_info.blank?
-        file.puts("\n")
-        if music.index_info.present?
-          file.puts("#{music.index_info}\n")
-          return if music.track == self.musics.length
-          file.puts("\n")
-        end
+  def index_infos
+    musics.map do |music|
+      info = "#{music.track}. #{music.name} / #{music.artist}\n"
+      if music.index_info.present?
+        info += "\n#{music.index_info}\n"
       end
-    end
+    end.join("\n")
   end
 
-  def out_puts_music_list
-    File.open("public/#{name}曲リスト.txt", 'w') do |file|
-      musics.each do |music|
-        file.puts("#{music.track}. #{music.name} / #{music.artist}\n")
-        return if music.track == self.musics.length
-        file.puts("\n")
-      end
-    end
+  def music_list
+    musics.map do |music|
+      "#{music.track}. #{music.name} / #{music.artist}\n"
+    end.join("\n")
   end
 end
