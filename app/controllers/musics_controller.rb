@@ -7,7 +7,7 @@ class MusicsController < ApplicationController
   def show
     if (@music = Music.find_by(id: params[:id]))
       @playlists = current_user.playlists
-      @artistsmusics = Music.where(artist: @music.artist)
+      @same_artist_musics = Music.where(artist: @music.artist)
       @comments = @music.comments
       @infos = []
       @musics = [@music]
