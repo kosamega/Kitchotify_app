@@ -5,9 +5,9 @@ class QuizResult < ApplicationRecord
   enum range: { full: 0 }
 
   def clear_time
-    m = time / 60_000
-    s =  (time - (m * 60_000)) / 1000
-    ms = time - (m * 60_000) - (s * 1000)
+    m = time / 1.minute / 1000
+    s =  time % (1.minute * 1000) / 1000
+    ms = time % 1000
     "#{m}:#{s}.#{ms}"
   end
 end
