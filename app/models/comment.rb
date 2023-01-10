@@ -5,10 +5,10 @@ class Comment < ApplicationRecord
   validates :content, presence: true
   include Rails.application.routes.url_helpers
 
-  def webhook
+  def send_discord
     return if Rails.env.development?
 
-    uri = URI.parse(ENV.fetch('WEBHOOK_URL_NEW_COMMENT', nil))
+    uri = URI.parse(ENV.fetch('DISCORD_WEBHOOK_URL_NEW_COMMENT', nil))
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
 

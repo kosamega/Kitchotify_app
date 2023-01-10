@@ -4,6 +4,6 @@ class StaticPagesController < ApplicationController
   def home
     @albums_released = Album.where(released: true)
     @comments = Comment.limit(10)
-    @playlists = Playlist.where(public: 1)[0..9]
+    @playlists = Playlist.where(public: true)[0..9]
   end
 end

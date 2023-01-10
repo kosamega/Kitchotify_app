@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   end
 
   def not_kitchonkun
-    return unless current_user == User.find(2)
+    return unless current_user.name == "kitchonkun"
 
     store_location
     flash[:danger] = 'ログインしてください'

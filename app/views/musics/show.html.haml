@@ -55,7 +55,7 @@
       = @music.artist
       の曲
     %ul
-      - @artistsmusics.each do |music|
+      - @same_artist_musics.each do |music|
         %li
           .musics-suggested
             .jacket-s= image_tag(music.album.jacket.variant(resize: "300").processed, class: "musics-suggested-jacket", width: "50px")
