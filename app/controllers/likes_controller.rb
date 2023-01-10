@@ -24,7 +24,7 @@ class LikesController < ApplicationController
   end
 
   def destroy
-    @like = Like.find_by(id: params[:like_id])
+    @like = current_user.likes.find_by(id: params[:like_id])
     @music = @like.music
     @number = params[:number]
     @like_id = "like#{params[:number]}"
