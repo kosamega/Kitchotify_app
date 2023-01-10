@@ -38,9 +38,4 @@ class LikesController < ApplicationController
       format.js
     end
   end
-
-  private
-
-  def set_variables
-  end
 end
