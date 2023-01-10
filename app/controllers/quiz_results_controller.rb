@@ -6,7 +6,6 @@ class QuizResultsController < ApplicationController
   def show; end
 
   def create
-    @result = QuizResult.new(user_id: current_user.id, time: params[:time], intro_quiz_id: params[:intro_quiz_id])
-    @result.save!
+    current_user.quiz_results.create!(time: params[:time], intro_quiz_id: params[:intro_quiz_id])
   end
 end
