@@ -1,6 +1,5 @@
 class LikesController < ApplicationController
   before_action :logged_in_user, :not_kitchonkun
-  before_action :set_variables
   include MusicsHelper
 
   def index
@@ -17,6 +16,7 @@ class LikesController < ApplicationController
     @like = current_user.likes.build(music_id: params[:music_id])
     @like.save
     @number = params[:number]
+    @like_id = "like#{params[:number]}"
     respond_to do |format|
       format.html { redirect_back_or '/' }
       format.js
@@ -27,6 +27,7 @@ class LikesController < ApplicationController
     @like = Like.find_by(id: params[:like_id])
     @music = @like.music
     @number = params[:number]
+    @like_id = "like#{params[:number]}"
     return unless @like.user == current_user
 
     @unliked_music = @like.music
@@ -41,7 +42,5 @@ class LikesController < ApplicationController
   private
 
   def set_variables
-    @track_id = params[:number]
-    @like_id = "like#{params[:number]}"
   end
 end

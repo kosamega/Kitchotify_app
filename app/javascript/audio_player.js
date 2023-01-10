@@ -155,6 +155,7 @@ function trDelete(evt){
     const track = document.getElementById(`${i}`)
     track.setAttribute("id", `${i - 1}`);
     track.querySelector('.tr-number').innerHTML = i ;
+    track.querySelector('form').number.value = i - 1
   }
   setPlayButton();
   setDeleteButton();
