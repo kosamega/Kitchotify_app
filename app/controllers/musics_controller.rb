@@ -56,10 +56,11 @@ class MusicsController < ApplicationController
   end
 
   private
+
   def set_album
     @album = Album.find_by(id: params[:album_id])
   end
-  
+
   def set_music
     @music = Music.find_by(id: params[:id])
   end
