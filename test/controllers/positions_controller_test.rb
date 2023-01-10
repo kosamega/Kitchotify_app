@@ -1,4 +1,4 @@
-require "test_helper"
+require 'test_helper'
 
 class PositionsControllerTest < ActionDispatch::IntegrationTest
   # test "should get update" do

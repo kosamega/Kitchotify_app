@@ -22,7 +22,7 @@ class ActionDispatch::IntegrationTest
   # テストユーザーとしてログインする
   def log_in_as(user, password: 'password', remember_me: '1')
     post sessions_path, params: { session: { name: user.name,
-                                          password:,
-                                          remember_me: } }
+                                             password:,
+                                             remember_me: } }
   end
 end
