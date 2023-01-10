@@ -1,4 +1,4 @@
-require "test_helper"
+require 'test_helper'
 
 class AddMusicToPlaylistTest < ActionDispatch::IntegrationTest
   def setup
@@ -16,14 +16,15 @@ class AddMusicToPlaylistTest < ActionDispatch::IntegrationTest
     assert @playlist.valid?
   end
 
-  test "有効な曲" do
+  test '有効な曲' do
     assert @music.valid?
   end
 
-  test "持ち主はプレイリストに曲を追加できる" do
+  test '持ち主はプレイリストに曲を追加できる' do
     log_in_as(@user)
     assert_difference 'MusicPlaylistRelation.count', 1 do
-      post music_playlist_relations_path, params: { music_id: @music.id, playlist_id: @playlist.id, at_playlist_show: false  }
+      post music_playlist_relations_path,
+           params: { music_id: @music.id, playlist_id: @playlist.id, at_playlist_show: false }
     end
   end
 

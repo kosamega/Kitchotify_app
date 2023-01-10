@@ -7,9 +7,7 @@ class Album < ApplicationRecord
   def index_infos
     musics.map do |music|
       info = "#{music.track}. #{music.name} / #{music.artist}\n"
-      if music.index_info.present?
-        info += "\n#{music.index_info}\n"
-      end
+      info += "\n#{music.index_info}\n" if music.index_info.present?
     end.join("\n")
   end
 

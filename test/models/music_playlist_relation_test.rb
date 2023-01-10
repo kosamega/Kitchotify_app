@@ -9,14 +9,13 @@ class MusicPlaylistRelationTest < ActiveSupport::TestCase
     assert @relation.valid?
   end
 
-  test "playlist_idを持っている" do
+  test 'playlist_idを持っている' do
     @relation.playlist_id = nil
     assert_not @relation.valid?
   end
 
-  test "music_idを持っている" do
+  test 'music_idを持っている' do
     @relation.music_id = nil
     assert_not @relation.valid?
   end
-
 end

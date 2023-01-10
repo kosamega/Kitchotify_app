@@ -19,7 +19,7 @@ class PlaylistTest < ActiveSupport::TestCase
     assert_not @playlist.valid?
   end
 
-  test "user_idを持っている" do
+  test 'user_idを持っている' do
     @playlist.user_id = nil
     assert_not @playlist.valid?
   end
