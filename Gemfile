@@ -52,6 +52,8 @@ gem 'aws-sdk-s3'
 
 # 　環境変数
 gem 'dotenv-rails'
+
+# rubyのハッシュをjavascriptに渡す
 gem 'gon'
 
 # haml
