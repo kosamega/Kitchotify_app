@@ -1,5 +1,8 @@
 # Kitchotify
-https://kitchotify-app.herokuapp.com/
+* URL
+  * https://kitchotify-app.herokuapp.com/
+* 詳細
+  * https://qiita.com/kosamega/items/7e3e116ccba5069cdf86
 
 ## サービス概要
 吉田音楽製作所からリリースされているアルバムをストリーミング配信するサービス。
@@ -16,8 +19,10 @@ https://kitchotify-app.herokuapp.com/
 * 再生プレイヤー
 * お気に入り
 * プレイリスト
+* 検索
 * コメント
 * イントロクイズ
+* アルバム・曲の登録
 
 ## 使用技術
 バックエンド
@@ -31,7 +36,8 @@ https://kitchotify-app.herokuapp.com/
 
 フロントエンド
 * JavaScript
-* Bootstrap
+* Bootstrap 5.0.2
+* Haml
 
 インフラ
 * Heroku
@@ -39,3 +45,4 @@ https://kitchotify-app.herokuapp.com/
 * AmazonS3
 
 ## ER図
+![kitchotify_erd](https://user-images.githubusercontent.com/104709001/211757592-035f5bac-efa7-4f40-9f18-8200110d0a59.png)
