@@ -19,6 +19,6 @@
     %button.btn.btn-info.float-end.me-2.d-inline-block
       =link_to "曲リストダウンロード", album_music_list_path(@album), method: :post
 
-  .d-none#add-music-form
-    =render "musics/form", album: @album, music: @album.musics.build, action: "作成", confirm: "追加しますか", at_album_show: true, local: false
-  = javascript_include_tag 'music_new.js'
+.d-none#add-music-form
+  =render "musics/form", album: @album, music: @album.musics.build, action: "作成", confirm: "追加しますか", at_album_show: true, local: false
+= javascript_include_tag 'music_new.js'
