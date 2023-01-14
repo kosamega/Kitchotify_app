@@ -1,9 +1,11 @@
 class MusicsController < ApplicationController
-  before_action :logged_in_user
+  before_action :logged_in_user, only: %i[show edit update destroy]
   before_action :set_album
   before_action :set_music
-  before_action :admin_user, only: %i[create destroy]
+  before_action :admin_user, only: %i[destroy]
   include MusicsHelper
+
+  def new; end
 
   def show
     if @music.present?
@@ -30,12 +32,14 @@ class MusicsController < ApplicationController
       @playlists = current_user.playlists
       @at_album_show = params[:at_album_show]
       @save = true
+      flash.now[:success] = @messages
     else
-      @messages = @music.errors.full_messages
+      @messages = @music.errors.full_messages.join("<br>")
       @save = false
+      flash.now[:danger] = @messages
     end
     respond_to do |format|
-      format.html { redirect_back_or '/' }
+      format.html { render "new" }
       format.js
     end
   end

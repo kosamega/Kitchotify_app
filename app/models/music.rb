@@ -6,6 +6,6 @@ class Music < ApplicationRecord
   default_scope -> { order(id: :asc) }
   validates :name, presence: true
   validates :artist, presence: true
-  validates :track, presence: true, uniqueness: { scope: :album_id }, numericality: { only_integer: true }
+  validates :track, uniqueness: { scope: :album_id }
   has_one_attached :audio
 end
