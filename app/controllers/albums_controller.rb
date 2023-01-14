@@ -27,8 +27,14 @@ class AlbumsController < ApplicationController
   def edit; end
 
   def create
-    @album = Album.create(album_params)
-    redirect_to @album
+    @album = Album.new(album_params)
+    if @album.save
+      flash[:success] = "#{@album.name}が追加されました"
+      redirect_to @album
+    else
+      flash[:danger] = @album.errors.full_messages.join('<br>')
+      render 'new'
+    end
   end
 
   def update
