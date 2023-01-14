@@ -5,8 +5,6 @@ class MusicsController < ApplicationController
   before_action :admin_user, only: %i[destroy]
   include MusicsHelper
 
-  def new; end
-
   def show
     if @music.present?
       @playlists = current_user.playlists
@@ -22,24 +20,26 @@ class MusicsController < ApplicationController
     end
   end
 
+  def new; end
+
   def edit; end
 
   def create
     @music = @album.musics.build(music_params)
     if @music.save
-      @messages = '曲を追加しました'
+      @messages = "以下の内容で曲を追加しました<br>曲名：#{@music.name}<br>アーティスト：#{@music.artist}<br>インデックス情報：<br>#{@music.index_info}"
       @number = params[:music][:track].to_i - 1
-      @playlists = current_user.playlists
+      @playlists = current_user&.playlists
       @at_album_show = params[:at_album_show]
       @save = true
       flash.now[:success] = @messages
     else
-      @messages = @music.errors.full_messages.join("<br>")
+      @messages = @music.errors.full_messages.join('<br>')
       @save = false
       flash.now[:danger] = @messages
     end
     respond_to do |format|
-      format.html { render "new" }
+      format.html { render 'new' }
       format.js
     end
   end
@@ -47,11 +47,12 @@ class MusicsController < ApplicationController
   def update
     @music.update(music_params)
     if @music.errors.full_messages.present?
-      flash[:danger] = @music.errors.full_messages
+      flash.now[:danger] = @music.errors.full_messages.join('<br>')
+      render 'edit'
     else
       flash[:success] = '更新されました'
+      redirect_to [@album, @music]
     end
-    redirect_to [@album, @music]
   end
 
   def destroy
