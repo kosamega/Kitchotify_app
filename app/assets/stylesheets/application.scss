@@ -423,12 +423,13 @@ a:hover {
   display: grid;
   grid-template:
   "jaket text" 250px
-  / 300px 1fr;
+  / 250px 1fr;
 }
 
 .album-jaket-img {
   width: 250px;
 }
+
 .album-info-text {
   display: flex;
   align-items: center;
@@ -542,4 +543,12 @@ a:hover {
 	content: "";
 	clear: both;
 	display: block;
+}
+
+.opacity-50 {
+  opacity: 0.5;
+}
+
+.tr-number-play {
+  cursor: pointer;
 }

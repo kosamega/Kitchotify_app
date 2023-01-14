@@ -1,8 +1,8 @@
 class Album < ApplicationRecord
   has_many :musics, class_name: 'Music', dependent: :destroy
   has_one_attached :jacket
+  validates :name, presence: true
   default_scope -> { order(kiki_taikai_date: :desc) }
-  validates :jacket, presence: true
 
   def index_infos
     musics.map do |music|

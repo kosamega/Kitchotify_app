@@ -1,4 +1,4 @@
-$('#flash').append('<div><p><%= @messages %></p></div>');
+$('#flash').append('<div><p><%= @messages.html_safe %></p></div>');
 setTimeout(function(){
 $('#flash div:first').remove();
 }, 3000);
