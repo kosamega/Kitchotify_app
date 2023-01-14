@@ -1,0 +1,8 @@
+.album-info.mb-4
+  .album-info-jaket
+    = image_tag(@album.jacket.variant(resize: "300").processed, class: "album-jaket-img")
+  .album-info-text
+    %div
+      %h1= @album.name
+      %h6.mt-3= @album.kiki_taikai_date
+=render "musics/form", album: @album, music: @album.musics.build, action: "作成", confirm: "追加しますか", at_album_show: true, local: true
