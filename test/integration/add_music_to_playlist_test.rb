@@ -31,7 +31,7 @@ class AddMusicToPlaylistTest < ActionDispatch::IntegrationTest
   test '持ち主以外はプレイリストに曲を追加できない' do
     log_in_as(@other_user)
     assert_no_difference 'MusicPlaylistRelation.count' do
-      post music_playlist_relations_path, params: { music_id: 1, playlist_id: 1 }
+      post music_playlist_relations_path, params: { music_id: @music.id, playlist_id: @playlist.id }
     end
   end
 end

@@ -9,4 +9,6 @@
     - if logged_in?
       = link_to "ログアウト", sessions_path, {method: :delete}
       = link_to current_user.name, user_path(current_user)
+    - else
+      = link_to "ログイン", new_sessions_path
 
