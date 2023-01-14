@@ -1,9 +1,15 @@
 
 .album-info.mb-4
   .album-info-jaket
-    = image_tag(@album.jacket.variant(resize: "300").processed, class: "album-jaket-img")
+    - if @album.jacket.attached?
+      = image_tag(@album.jacket.variant(resize: "300").processed ,class: "album-jaket-img")
+    - else
+      .position-relative
+        = image_tag("kakukiti" ,class: "album-jaket-img opacity-50 position-relative")
+        .h4.position-absolute.top-50.start-50.translate-middle.bg-primary.text-white.p-3= @album.name
+
   .album-info-text
-    %div
+    %div.ms-5
       %h1= @album.name
       %h6.mt-3= @album.kiki_taikai_date
    
@@ -18,6 +24,8 @@
       =link_to "インデックス情報ダウンロード", album_index_path(@album), method: :post
     %button.btn.btn-info.float-end.me-2.d-inline-block
       =link_to "曲リストダウンロード", album_music_list_path(@album), method: :post
+    %button.btn.btn-info.float-end.me-2.d-inline-block
+      =link_to "インデックス情報登録フォーム", new_album_music_path(@album)
 
 .d-none#add-music-form
   =render "musics/form", album: @album, music: @album.musics.build, action: "作成", confirm: "追加しますか", at_album_show: true, local: false
