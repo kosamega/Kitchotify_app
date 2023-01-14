@@ -1,17 +1,19 @@
 %tr.align-middle.track{id: number, draggable: "#{true if @at_playlist_show}"}
   %th.play-button.tr-number-play.position-relative.pe-0{scope: "row"}
     .tr-number= number+1
-    %i.fa-duotone.fa-play.fa.position-absolute.start-0.ms-2.tr-playbutton.pb-2
-  %td= link_to(image_tag( music.album.jacket.variant(resize: "300").processed ,class: "jaket-mini", width: "50px"), album_path(music.album))
+    .position-absolute.top-50.translate-middle.ms-2
+      %i.fa-duotone.fa-play.fa.tr-playbutton
+  - if !@at_album_show
+    %td= link_to(image_tag( music.album.jacket.variant(resize: "300").processed ,class: "jaket-mini", width: "50px"), album_path(music.album))
   %td
     = link_to(music.name, album_music_path(music.album, music))
     %br
     .artist-name-small= link_to(music.artist, album_music_path(music.album, music))
-  - if !at_album_show
+  - if !@at_album_show
     %td.album-name-big= link_to(music.album.name, album_path(music.album))
   %td.artist-name-big= link_to(music.artist, album_music_path(music.album, music))
   - if @like_index
-    %td= render "shared/unlike", like: music.likes.find_by(user_id: current_user.id), like_index: true, number: number
+    %td.like-btn= render "shared/unlike", like: music.likes.find_by(user_id: current_user.id), like_index: true, number: number
   - else
     - if like = Like.find_by(user_id: current_user.id, music_id: music.id)
       %td{id: "like#{number}"}= render "shared/unlike", like: like , like_index: false, number: number
@@ -32,3 +34,16 @@
               = hidden_field_tag :at_playlist_show, false
               = button_tag type: :submit, class: "text-start border-0 bg-transparent" do
                 = playlist.name
+  - if @at_playlist_show == true
+    %td
+      - if @playlist.user == current_user
+        = form_with(model: @relations[number], local: false, method: "delete") do |f|
+          = hidden_field_tag :music_id, music.id
+          = hidden_field_tag :playlist_id, @playlist.id
+          = button_tag type: :submit, class: "delete-btn border-0 bg-transparent" do
+            削除
+  - if current_user.admin?
+    %td
+      .btn.btn-primary.ms-3
+        =link_to "編集", edit_album_music_path(music.album, music), class: "text-white"
+
