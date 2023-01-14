@@ -32,7 +32,7 @@ class AlbumsController < ApplicationController
       flash[:success] = "#{@album.name}が追加されました"
       redirect_to @album
     else
-      flash[:danger] = @album.errors.full_messages.join('<br>')
+      flash.now[:danger] = @album.errors.full_messages.join('<br>')
       render 'new'
     end
   end
