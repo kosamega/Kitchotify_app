@@ -21,12 +21,19 @@ class ArtistsController < ApplicationController
   def create
     @artist = Artist.new(artist_params)
     if @artist.save
+      @save = true
       flash[:success] = "#{@artist.name}を作成しました"
-      # redirect_to artist_path(@artist)
-      redirect_to new_artist_path
+      respond_to do |format|
+        format.html {redirect_to artists_path}
+        format.js
+      end
     else
       flash[:danger] = @artist.errors.full_messages.join('<br>')
-      render 'new'
+      @save = false
+      respond_to do |format|
+        format.html {render 'new'}
+        format.js
+      end
     end
   end
 

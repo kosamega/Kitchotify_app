@@ -10,6 +10,7 @@ class AlbumsController < ApplicationController
   end
 
   def show
+    @artists = Artist.all
     if @album.present?
       @musics = @album.musics
       @playlists = current_user.playlists
