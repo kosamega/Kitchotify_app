@@ -8,10 +8,10 @@
   %td
     = link_to(music.name, album_music_path(music.album, music))
     %br
-    .artist-name-small= link_to(music.artist, album_music_path(music.album, music))
+    .artist-name-small= link_to(music.artist.name, album_music_path(music.album, music))
   - if !@at_album_show
     %td.album-name-big= link_to(music.album.name, album_path(music.album))
-  %td.artist-name-big= link_to(music.artist, album_music_path(music.album, music))
+  %td.artist-name-big= link_to(music.artist.name, album_music_path(music.album, music))
   - if @like_index
     %td.like-btn= render "shared/unlike", like: music.likes.find_by(user_id: current_user.id), like_index: true, number: number
   - else

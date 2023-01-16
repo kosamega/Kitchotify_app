@@ -15,7 +15,7 @@ class Comment < ApplicationRecord
     params = { content: '',
                embeds: [
                  {
-                   title: "#{music.artist} - #{music.name}",
+                   title: "#{music.artist.name} - #{music.name}",
                    description: content,
                    url: album_music_url(music.album, music, host: 'kitchotify-app.herokuapp.com'),
                    color: 10_070_709,

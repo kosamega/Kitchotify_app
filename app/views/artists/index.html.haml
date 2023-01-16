@@ -1,23 +1,21 @@
 %h1 全てのアーティスト
 
-%table
+%table.table.align-middle
   %thead
     %tr
-      %th Name
-      %th User
-      %th
-      %th
-      %th
+      %th id
+      %th 名前
+
 
   %tbody
     - @artists.each do |artist|
       %tr
-        %td= artist.name
-        %td= artist.user_id
-        %td= link_to 'Show', artist
-        %td= link_to 'Edit', edit_artist_path(artist)
-        %td= link_to 'Destroy', artist, method: :delete, data: { confirm: 'Are you sure?' }
+        %td= artist.id
+        %td= link_to artist.name, artist_path(artist)
+        -# %td= link_to 'Show', artist
+        -# %td= link_to 'Edit', edit_artist_path(artist)
+        -# %td= link_to 'Destroy', artist, method: :delete, data: { confirm: 'Are you sure?' }
 
 %br
 
-= link_to 'New Artist', new_artist_path
+.btn.btn-primary.m-3.float-end=link_to "アーティストを追加", new_artist_path, class: "text-white"

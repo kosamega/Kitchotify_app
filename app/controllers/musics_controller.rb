@@ -8,7 +8,7 @@ class MusicsController < ApplicationController
   def show
     if @music.present?
       @playlists = current_user.playlists
-      @same_artist_musics = Music.where(artist: @music.artist)
+      @same_artist_musics = @music.artist.musics
       @comments = @music.comments
       @infos = []
       @musics = [@music]
@@ -20,14 +20,19 @@ class MusicsController < ApplicationController
     end
   end
 
-  def new; end
+  def new
+    @artists = Artist.all
+    @artist = Artist.new
+  end
 
-  def edit; end
+  def edit
+    @artists = Artist.all
+  end
 
   def create
     @music = @album.musics.build(music_params)
     if @music.save
-      @messages = "以下の内容で曲を追加しました<br>曲名：#{@music.name}<br>アーティスト：#{@music.artist}<br>インデックス情報：<br>#{@music.index_info}"
+      @messages = "以下の内容で曲を追加しました<br>曲名：#{@music.name}<br>アーティスト：#{@music.artist.name}<br>インデックス情報：<br>#{@music.index_info}"
       @number = params[:music][:track].to_i - 1
       @playlists = current_user&.playlists
       @at_album_show = params[:at_album_show]
@@ -46,6 +51,7 @@ class MusicsController < ApplicationController
 
   def update
     @music.update(music_params)
+    @muisc.update!(artist_id: Artist.find_by(name: music_params[:artist]).id)
     if @music.errors.full_messages.present?
       flash.now[:danger] = @music.errors.full_messages.join('<br>')
       render 'edit'
