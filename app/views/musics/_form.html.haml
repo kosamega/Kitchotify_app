@@ -5,8 +5,16 @@
         .col-form-label 曲名
         .col= form.text_field :name, class: "form-control"
       .row
-        .col-form-label アーティスト名
-        .col= form.text_field :artist, class: "form-control"
+        .col-form-label アーティスト
+        .col= form.text_field :artist, class: "form-control", list: 'artist-list', value: music.artist.name
+        %datalist#artist-list
+          - @artists.each do |artist|
+            %option{value: artist.name}
+      -# .row
+      -#   .col-form-label アーティストを追加
+      -#   .col= form.fields_for :artist do |artist|
+      -#     =artist.text_field :name, class: "form-control"
+
       .row
         .col-form-label トラック
         .col= form.number_field :track, class: "form-control", min: 1

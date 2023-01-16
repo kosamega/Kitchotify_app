@@ -1,12 +1,6 @@
-%p#notice= notice
+%h1=@artist.name
 
-%p
-  %b Name:
-  = @artist.name
-%p
-  %b User:
-  = @artist.user_id
+%h2ディスコグラフィー
+= render "musics/music"   
 
-= link_to 'Edit', edit_artist_path(@artist)
-\|
-= link_to 'Back', artists_path
+.btn.btn-primary.m-3.float-end=link_to "編集", edit_artist_path(@artist), class: "text-white"
