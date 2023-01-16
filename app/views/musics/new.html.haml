@@ -7,8 +7,8 @@
         = image_tag("kakukiti" ,class: "album-jaket-img opacity-50 position-relative")
         .h4.position-absolute.top-50.start-50.translate-middle.bg-primary.text-white.p-3= @album.name
 
-  .album-info-text
+  .album-info-text.ms-4
     %div
       %h1= @album.name
       %h6.mt-3= @album.kiki_taikai_date
-=render "musics/form", album: @album, music: @album.musics.build, action: "作成", confirm: "追加しますか", at_album_show: true, local: true
+=render "musics/form", album: @album, music: @album.musics.build, action: "曲を追加", confirm: "追加しますか", at_album_show: true, local: true
