@@ -2,10 +2,10 @@
   .row
     .col-5
       .row.mb-2
-        .col-2.col-form-label 曲名(必須)
+        .col-2.col-form-label 曲名*
         .col= form.text_field :name, class: "form-control"
       .row
-        .col-2.col-form-label 名義(必須)
+        .col-2.col-form-label 名義*
         .col= form.text_field :artist_name, class: "form-control", list: 'artist-list', value: music.artist&.name
       .row.mb-2
         .col-2

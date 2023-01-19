@@ -15,7 +15,7 @@
    
 = render "musics/music"
 
-.container-fluid.mb-2.h-auto.overflow-hidden
+.container-fluid.mb-4.h-auto.overflow-hidden
   -if current_user.admin?
     .btn.btn-info#add-music.float-end.d-inline-block 曲を追加
     %button.btn.btn-info.float-end.me-2.d-inline-block
@@ -28,5 +28,5 @@
       =link_to "インデックス情報登録フォーム", new_album_music_path(@album)
 
 .d-none#add-music-form
-  =render "musics/form", album: @album, music: @music, action: "作成", confirm: "追加しますか", at_album_show: true, local: false
+  =render "musics/form", album: @album, music: @album.musics.build, action: "作成", confirm: "追加しますか", at_album_show: true, local: false
 = javascript_include_tag 'music_new.js'
