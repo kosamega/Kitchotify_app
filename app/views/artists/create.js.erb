@@ -1,0 +1,10 @@
+if(<%=@save%>){
+  $('#artist-list').append("<%= option{value: @artist.name} %>");
+  $('#flash').append('<div><p><%= @artistを追加しました %></p></div>');
+}else{
+    $('#flash').append('<div><p><%= @artist.errors.full_messages %></p></div>');
+}
+
+setTimeout(function(){
+$('#flash div:first').remove();
+}, 30000);

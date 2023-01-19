@@ -1,0 +1,6 @@
+%h1=@artist.name
+
+%h2ディスコグラフィー
+= render "musics/music"   
+
+.btn.btn-primary.m-3.float-end=link_to "編集", edit_artist_path(@artist), class: "text-white"

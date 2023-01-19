@@ -1,0 +1,7 @@
+=form_with(model: @artist) do |form|
+  .row
+    .col-form-label 名前
+    .col= form.text_field :name, class: "form-control"
+  .row.mt-3.d-inline-block.float-end
+    .col
+      = form.submit action, class: "btn btn-primary"
