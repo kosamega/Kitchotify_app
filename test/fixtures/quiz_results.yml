@@ -1,9 +1,11 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  user_id: 1
+quiz_result1:
+  user: user1
   time: 1
+  intro_quiz: intro_quiz1
 
-two:
-  user_id: 1
+quiz_result2:
+  user: user2
   time: 1
+  intro_quiz: intro_quiz2

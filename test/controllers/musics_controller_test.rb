@@ -2,7 +2,7 @@ require 'test_helper'
 
 class MusicsControllerTest < ActionDispatch::IntegrationTest
   def setup
-    @album = albums(:g171)
+    @album = albums(:album1)
     @user = users(:user1)
     @artist = artists(:artist1)
   end
