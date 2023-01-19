@@ -3,7 +3,7 @@ require 'test_helper'
 class AlbumsControllerTest < ActionDispatch::IntegrationTest
   def setup
     @album = albums(:g171)
-    @user = users(:kosamega)
+    @user = users(:user1)
   end
 
   test 'ログインすればshowが表示される' do

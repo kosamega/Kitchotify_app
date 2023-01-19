@@ -1,9 +1,9 @@
-kosamega:
-  name: kosamega
+user1:
+  name: user1
   password_digest: <%= User.digest('password') %>
   admin: true
   
-posamega:
-  name: posamega
+user2:
+  name: user2
   password_digest: <%= User.digest('password') %>
   admin: false

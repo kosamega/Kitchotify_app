@@ -1,11 +1,11 @@
 one:
-  user: kosamega
+  user: user1
   name: わくわく
   public: true
   comment: testes
 
 two:
-  user: kosamega
+  user: user1
   name: music1
   public: true
   comment: testes
