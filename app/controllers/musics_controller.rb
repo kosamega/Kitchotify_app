@@ -32,10 +32,10 @@ class MusicsController < ApplicationController
 
   def create
     if Artist.find_by(name: music_params[:artist_name]).blank?
-      flash[:danger] = "#{music_params[:artist_name]}というアーティストは存在しません。ページ下部からアーティストを追加してください。"
+      flash.now[:danger] = "#{music_params[:artist_name]}というアーティストは存在しません。ページ下部からアーティストを追加してください。"
       return redirect_to new_album_music_path(@album)
     end
-    
+
     @music = @album.musics.build(
       name: music_params[:name],
       track: music_params[:track],

@@ -6,6 +6,5 @@ class Music < ApplicationRecord
   has_many :comments, dependent: :destroy
   default_scope -> { order(id: :asc) }
   validates :name, presence: true
-  validates :artist, presence: true
   has_one_attached :audio
 end

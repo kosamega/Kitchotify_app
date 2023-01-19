@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root to: 'static_pages#home'
-  
+
   resources :albums do
     resources :musics, only: %i[new create edit update show destroy]
     resource :index, only: %i[create]
@@ -10,9 +10,9 @@ Rails.application.routes.draw do
   resources :artists
 
   resources :comments, only: %i[create]
-  
+
   resources :likes, only: %i[create destroy index]
-  
+
   resources :music_playlist_relations, only: %i[create destroy]
   resources :playlists, only: %i[create update destroy index show] do
     resource :positions, only: %i[update]

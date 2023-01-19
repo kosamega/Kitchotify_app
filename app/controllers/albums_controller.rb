@@ -10,14 +10,15 @@ class AlbumsController < ApplicationController
   end
 
   def show
-    return render 'shared/not_found' unless @album.present?
+    return render 'shared/not_found' if @album.blank?
+
     @musics = @album.musics
     @playlists = current_user.playlists
     @at_album_show = true
     @infos = []
     set_infos(@musics)
     gon.infos_j = @infos
-      
+
     @artists = Artist.all
   end
 
