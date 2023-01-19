@@ -2,7 +2,7 @@ require 'test_helper'
 
 class UserSignupTest < ActionDispatch::IntegrationTest
   def setup
-    @user = users(:kosamega)
+    @user = users(:user1)
   end
 
   test '無効なユーザー登録は失敗する' do

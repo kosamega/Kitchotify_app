@@ -2,7 +2,7 @@ require 'test_helper'
 
 class IntroQuizzesControllerTest < ActionDispatch::IntegrationTest
   def setup
-    @user = users(:kosamega)
+    @user = users(:user1)
     @intro_quiz = intro_quizzes(:one)
   end
 

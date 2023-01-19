@@ -2,7 +2,7 @@ require 'test_helper'
 
 class LikesControllerTest < ActionDispatch::IntegrationTest
   def setup
-    @user = users(:kosamega)
+    @user = users(:user1)
     @music = musics(:music2)
   end
 

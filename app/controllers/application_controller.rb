@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :store_location
   include SessionsHelper
+
   # 最後にgetリクエストを送ったURLを覚えておく
   def store_location
     session[:forwarding_url] = request.original_url if request.get?
