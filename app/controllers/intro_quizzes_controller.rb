@@ -11,8 +11,8 @@ class IntroQuizzesController < ApplicationController
     quiz = IntroQuiz.find_by(id: params[:id])
     @q_num = quiz.q_num
     if (quiz.range = 'full')
-      @ids = (1..Music.all.length).to_a.sample(@q_num)
       @musics_all = Music.all
+      @ids = @musics_all.map(&:id).sample(@q_num)
     end
     @infos = []
     @musics = @ids.map { |id| Music.find_by(id:) }
