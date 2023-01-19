@@ -3,7 +3,7 @@ require 'test_helper'
 class IntroQuizzesControllerTest < ActionDispatch::IntegrationTest
   def setup
     @user = users(:user1)
-    @intro_quiz = intro_quizzes(:one)
+    @intro_quiz = intro_quizzes(:intro_quiz1)
   end
 
   test 'ログインすればshowにアクセスできて、しないとできない' do
