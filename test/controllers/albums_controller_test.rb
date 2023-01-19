@@ -2,11 +2,11 @@ require 'test_helper'
 
 class AlbumsControllerTest < ActionDispatch::IntegrationTest
   def setup
-    @album = albums(:g171)
+    @album = albums(:album1)
     @user = users(:user1)
   end
 
-  test 'ログインすればshowが表示される' do
+  test 'ログインすればshowが表示され、' do
     log_in_as(@user)
     get album_path(@album)
     assert_response :success

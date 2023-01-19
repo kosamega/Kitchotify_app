@@ -4,10 +4,10 @@ music1:
   name: music1
   artist: artist1
   track: 1
-  album: g171
+  album: album1
 
 music2:
   name: music2
   artist: artist2
   track: 2
-  album: g171
+  album: album1

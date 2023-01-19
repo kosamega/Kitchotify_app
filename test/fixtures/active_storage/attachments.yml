@@ -1,9 +1,9 @@
-g171_jacket:
+album1_jacket:
   name: jacket
-  record: g171 (Album)
-  blob: g171_jacket_blob
+  record: album1 (Album)
+  blob: album1_jacket_blob
 
-g172_jacket:
+album2_jacket:
   name: jacket
-  record: g172 (Album)
-  blob: g172_jacket_blob
+  record: album2 (Album)
+  blob: album2_jacket_blob
