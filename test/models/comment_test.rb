@@ -2,7 +2,7 @@ require 'test_helper'
 
 class CommentTest < ActiveSupport::TestCase
   def setup
-    @user = users(:kosamega)
+    @user = users(:user1)
     @music = musics(:music1)
     @comment = @user.comments.build(content: 'iijan', music_id: @music.id)
   end

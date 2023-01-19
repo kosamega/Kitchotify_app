@@ -2,7 +2,7 @@ require 'test_helper'
 
 class UsersLoginTest < ActionDispatch::IntegrationTest
   def setup
-    @user = users(:kosamega)
+    @user = users(:user1)
   end
 
   test 'ログイン失敗' do

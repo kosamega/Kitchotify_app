@@ -2,7 +2,7 @@ require 'test_helper'
 
 class StaticPagesControllerTest < ActionDispatch::IntegrationTest
   def setup
-    @user = users(:kosamega)
+    @user = users(:user1)
   end
 
   test '@userが有効' do

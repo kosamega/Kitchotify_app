@@ -10,15 +10,12 @@ class AlbumsController < ApplicationController
   end
 
   def show
-    return render 'shared/not_found' if @album.blank?
-
     @musics = @album.musics
     @playlists = current_user.playlists
     @at_album_show = true
     @infos = []
     set_infos(@musics)
     gon.infos_j = @infos
-
     @artists = Artist.all
   end
 
@@ -51,7 +48,7 @@ class AlbumsController < ApplicationController
   private
 
   def set_album
-    @album = Album.find_by(id: params[:id])
+    @album = Album.find(params[:id])
   end
 
   def album_params

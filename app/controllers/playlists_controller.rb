@@ -11,18 +11,14 @@ class PlaylistsController < ApplicationController
   end
 
   def show
-    if @playlist.present?
-      @at_playlist_show = true
-      @playlists = current_user.playlists
-      @relations = @playlist.music_playlist_relations.sort_by { |a| a[:position] }
-      @musics = @relations.map(&:music)
-      @infos = []
-      set_infos(@musics)
-      gon.infos_j = @infos
-      gon.playlist_id = @playlist.id
-    else
-      render 'shared/not_found'
-    end
+    @at_playlist_show = true
+    @playlists = current_user.playlists
+    @relations = @playlist.music_playlist_relations.sort_by { |a| a[:position] }
+    @musics = @relations.map(&:music)
+    @infos = []
+    set_infos(@musics)
+    gon.infos_j = @infos
+    gon.playlist_id = @playlist.id
   end
 
   def create
@@ -54,7 +50,7 @@ class PlaylistsController < ApplicationController
   end
 
   def set_playlist
-    @playlist = Playlist.find_by(id: params[:id])
+    @playlist = Playlist.find(params[:id])
   end
 
   def correct_user_or_public
