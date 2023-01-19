@@ -1,15 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-hikari:
-  name: hikari
-  artist: kosamega
+music1:
+  name: music1
+  artist: artist1
   track: 1
   album: g171
-  id : 1
 
-waopo:
-  name: waopo
-  artist: コサメガ
+music2:
+  name: music2
+  artist: artist2
   track: 2
   album: g171
-  id : 2
