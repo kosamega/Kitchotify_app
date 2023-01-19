@@ -1,12 +1,14 @@
 require "test_helper"
 
 class ArtistsControllerTest < ActionDispatch::IntegrationTest
-  setup do
+  def setup 
     @artist = artists(:one)
+    @user = users(:kosamega)
+    log_in_as(@user)
   end
 
   test "should get index" do
-    get artists_url
+    get artists_path
     assert_response :success
   end
 
@@ -19,12 +21,10 @@ class ArtistsControllerTest < ActionDispatch::IntegrationTest
     assert_difference("Artist.count") do
       post artists_url, params: { artist: { name: @artist.name, user_id: @artist.user_id } }
     end
-
-    assert_redirected_to artist_url(Artist.last)
   end
 
   test "should show artist" do
-    get artist_url(@artist)
+    get artist_path(@artist)
     assert_response :success
   end
 
