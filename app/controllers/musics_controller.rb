@@ -23,6 +23,7 @@ class MusicsController < ApplicationController
   def new
     @artists = Artist.all
     @artist = Artist.new
+    @music = @album.musics.build
   end
 
   def edit
@@ -30,8 +31,8 @@ class MusicsController < ApplicationController
   end
 
   def create
-    if Artist.find_by(name: music_params[:artist]).blank?
-      flash[:danger] = "#{music_params[:artist]}というアーティストは存在しません。ページ下部からアーティストを追加してください。"
+    if Artist.find_by(name: music_params[:artist_name]).blank?
+      flash[:danger] = "#{music_params[:artist_name]}というアーティストは存在しません。ページ下部からアーティストを追加してください。"
       return redirect_to new_album_music_path(@album)
     end
     
@@ -39,7 +40,7 @@ class MusicsController < ApplicationController
       name: music_params[:name],
       track: music_params[:track],
       index_info: music_params[:index_info],
-      artist_id: Artist.find_by(name: music_params[:artist]).id
+      artist_id: Artist.find_by(name: music_params[:artist_name]).id
     )
     if @music.save
       @messages = "以下の内容で曲を追加しました<br>曲名：#{@music.name}<br>アーティスト：#{@music.artist.name}<br>インデックス情報：<br>#{@music.index_info}"
@@ -65,7 +66,7 @@ class MusicsController < ApplicationController
       name: music_params[:name],
       track: music_params[:track],
       index_info: music_params[:index_info],
-      artist_id: Artist.find_by(name: music_params[:artist]).id
+      artist_id: Artist.find_by(name: music_params[:artist_name]).id
     )
     if @music.errors.full_messages.present?
       flash.now[:danger] = @music.errors.full_messages.join('<br>')
@@ -92,6 +93,6 @@ class MusicsController < ApplicationController
   end
 
   def music_params
-    params.require(:music).permit(:name, :artist, :track, :audio, :index_info)
+    params.require(:music).permit(:name, :artist_name, :track, :audio, :index_info)
   end
 end
