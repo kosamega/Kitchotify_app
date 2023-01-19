@@ -1,7 +1,7 @@
 class MusicsController < ApplicationController
   before_action :logged_in_user, only: %i[show edit update destroy]
   before_action :set_album
-  before_action :set_music
+  before_action :set_music, only: %i[show edit update destroy]
   before_action :admin_user, only: %i[destroy]
   include MusicsHelper
 
@@ -85,11 +85,11 @@ class MusicsController < ApplicationController
   private
 
   def set_album
-    @album = Album.find_by(id: params[:album_id])
+    @album = Album.find(params[:album_id])
   end
 
   def set_music
-    @music = Music.find_by(id: params[:id])
+    @music = Music.find(params[:id])
   end
 
   def music_params

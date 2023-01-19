@@ -3,17 +3,14 @@ class UsersController < ApplicationController
   before_action :not_kitchonkun, only: %i[edit update]
   before_action :admin_user, only: %i[new create]
   before_action :correct_user_edit, only: %i[edit update]
+  before_action :set_user, only: %i[show edit update destroy]
 
   def index
     @users = User.all
   end
 
   def show
-    if (@user = User.find_by(id: params[:id]))
-      @playlists = @user.playlists
-    else
-      render 'shared/not_found'
-    end
+    @playlists = @user.playlists
   end
 
   def new
@@ -34,7 +31,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    if current_user.update(user_params)
+    if @user.update(user_params)
       redirect_to user_path(current_user)
     else
       flash[:danger] = 'すでに存在する名前です'
@@ -48,8 +45,12 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name, :password, :password_confirmation, :bio)
   end
 
-  def correct_user_edit
+  def correct_user
     @user = User.find_by(id: params[:id])
     redirect_to('/') unless @user == current_user
+  end
+
+  def set_user
+    @user = User.find(id: params[:id])
   end
 end

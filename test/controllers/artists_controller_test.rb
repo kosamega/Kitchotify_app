@@ -2,9 +2,10 @@ require 'test_helper'
 
 class ArtistsControllerTest < ActionDispatch::IntegrationTest
   def setup
-    @artist = artists(:one)
-    @user = users(:kosamega)
-    log_in_as(@user)
+    @artist = artists(:artist1)
+    @user1 = users(:user1)
+    @user2 = users(:user2)
+    log_in_as(@user1)
   end
 
   test 'should get index' do
@@ -19,7 +20,7 @@ class ArtistsControllerTest < ActionDispatch::IntegrationTest
 
   test 'should create artist' do
     assert_difference('Artist.count') do
-      post artists_url, params: { artist: { name: @artist.name, user_id: @artist.user_id } }
+      post artists_url, params: { artist: { name: "hoge", user_id: @user1.id } }
     end
   end
 
@@ -34,7 +35,7 @@ class ArtistsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should update artist' do
-    patch artist_url(@artist), params: { artist: { name: @artist.name, user_id: @artist.user_id } }
+    patch artist_url(@artist), params: { artist: { name: "update", user_id: @user2.id } }
     assert_redirected_to artist_url(@artist)
   end
 

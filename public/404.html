@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>The page you were looking for doesn't exist (404)</title>
+  <title>Kitchotify(404)</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <style>
   .rails-default-error-page {
@@ -14,7 +14,7 @@
 
   .rails-default-error-page div.dialog {
     width: 95%;
-    max-width: 33em;
+    max-width: 70em;
     margin: 4em auto 0;
   }
 
@@ -51,17 +51,26 @@
     color: #666;
     box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
   }
+
+  .kakukiti {
+    margin: 30px;
+  }
   </style>
 </head>
 
 <body class="rails-default-error-page">
   <!-- This file lives in public/404.html -->
+  <div class="kakukiti">
+    <img src="/assets/kakukiti.png">
+  </div>
+  <div>
+    <a href="/">👉ホームへ👈</a>
+  </div>
   <div class="dialog">
     <div>
-      <h1>The page you were looking for doesn't exist.</h1>
-      <p>You may have mistyped the address or the page may have moved.</p>
+      <h1>ページが見つかりません</h1>
+      <p>お探しのページは一時的にアクセスができない状況にあるか、移動もしくは削除された可能性があります。<br>URL、ファイル名にタイプミスがないか再度ご確認ください。</p>
     </div>
-    <p>If you are the application owner check the logs for more information.</p>
   </div>
 </body>
 </html>

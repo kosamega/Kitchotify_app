@@ -2,7 +2,7 @@ require 'test_helper'
 
 class PlaylistTest < ActiveSupport::TestCase
   def setup
-    @user = users(:kosamega)
+    @user = users(:user1)
     @playlist = @user.playlists.build(name: 'playlist1')
   end
 
