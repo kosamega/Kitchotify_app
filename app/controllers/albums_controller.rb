@@ -10,7 +10,6 @@ class AlbumsController < ApplicationController
   end
 
   def show
-    @artists = Artist.all
     if @album.present?
       @musics = @album.musics
       @playlists = current_user.playlists
@@ -21,6 +20,8 @@ class AlbumsController < ApplicationController
     else
       render 'shared/not_found'
     end
+    @artists = Artist.all
+    @music = @album.musics.build
   end
 
   def new; end

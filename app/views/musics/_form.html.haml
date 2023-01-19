@@ -6,7 +6,7 @@
         .col= form.text_field :name, class: "form-control"
       .row
         .col-2.col-form-label 名義(必須)
-        .col= form.text_field :artist, class: "form-control", list: 'artist-list', value: music.artist&.name
+        .col= form.text_field :artist_name, class: "form-control", list: 'artist-list', value: music.artist&.name
       .row.mb-2
         .col-2
         .col.form-text 名義が存在しない場合は下のフォームから追加してください。
