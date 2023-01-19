@@ -7,16 +7,16 @@ class Album < ApplicationRecord
   def index_infos
     musics.map do |music|
       if music.index_info.present?
-        "#{music.track}. #{music.name} / #{music.artist}\n\n#{music.index_info}\n"
+        "#{music.track}. #{music.name} / #{music.artist.name}\n\n#{music.index_info}\n"
       else
-        info = "#{music.track}. #{music.name} / #{music.artist}\n"
+        info = "#{music.track}. #{music.name} / #{music.artist.name}\n"
       end
     end.join("\n")
   end
 
   def music_list
     musics.map do |music|
-      "#{music.track}. #{music.name} / #{music.artist}\n"
+      "#{music.track}. #{music.name} / #{music.artist.name}\n"
     end.join("\n")
   end
 end

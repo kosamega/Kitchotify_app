@@ -1,0 +1,21 @@
+%h1 全てのアーティスト
+
+%table.table.align-middle
+  %thead
+    %tr
+      %th id
+      %th 名前
+
+
+  %tbody
+    - @artists.each do |artist|
+      %tr
+        %td= artist.id
+        %td= link_to artist.name, artist_path(artist)
+        -# %td= link_to 'Show', artist
+        -# %td= link_to 'Edit', edit_artist_path(artist)
+        -# %td= link_to 'Destroy', artist, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+.btn.btn-primary.m-3.float-end=link_to "アーティストを追加", new_artist_path, class: "text-white"

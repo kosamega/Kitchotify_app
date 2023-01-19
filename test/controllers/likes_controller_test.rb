@@ -3,7 +3,7 @@ require 'test_helper'
 class LikesControllerTest < ActionDispatch::IntegrationTest
   def setup
     @user = users(:kosamega)
-    @music = musics(:waopo)
+    @music = musics(:music2)
   end
 
   test 'ユーザーが有効' do

@@ -8,7 +8,7 @@ class MusicsController < ApplicationController
   def show
     if @music.present?
       @playlists = current_user.playlists
-      @same_artist_musics = Music.where(artist: @music.artist)
+      @same_artist_musics = @music.artist.musics
       @comments = @music.comments
       @infos = []
       @musics = [@music]
@@ -20,14 +20,30 @@ class MusicsController < ApplicationController
     end
   end
 
-  def new; end
+  def new
+    @artists = Artist.all
+    @artist = Artist.new
+    @music = @album.musics.build
+  end
 
-  def edit; end
+  def edit
+    @artists = Artist.all
+  end
 
   def create
-    @music = @album.musics.build(music_params)
+    if Artist.find_by(name: music_params[:artist_name]).blank?
+      flash.now[:danger] = "#{music_params[:artist_name]}というアーティストは存在しません。ページ下部からアーティストを追加してください。"
+      return redirect_to new_album_music_path(@album)
+    end
+
+    @music = @album.musics.build(
+      name: music_params[:name],
+      track: music_params[:track],
+      index_info: music_params[:index_info],
+      artist_id: Artist.find_by(name: music_params[:artist_name]).id
+    )
     if @music.save
-      @messages = "以下の内容で曲を追加しました<br>曲名：#{@music.name}<br>アーティスト：#{@music.artist}<br>インデックス情報：<br>#{@music.index_info}"
+      @messages = "以下の内容で曲を追加しました<br>曲名：#{@music.name}<br>アーティスト：#{@music.artist.name}<br>インデックス情報：<br>#{@music.index_info}"
       @number = params[:music][:track].to_i - 1
       @playlists = current_user&.playlists
       @at_album_show = params[:at_album_show]
@@ -38,6 +54,7 @@ class MusicsController < ApplicationController
       @save = false
       flash.now[:danger] = @messages
     end
+    @artists = Artist.all
     respond_to do |format|
       format.html { render 'new' }
       format.js
@@ -45,7 +62,12 @@ class MusicsController < ApplicationController
   end
 
   def update
-    @music.update(music_params)
+    @music.update(
+      name: music_params[:name],
+      track: music_params[:track],
+      index_info: music_params[:index_info],
+      artist_id: Artist.find_by(name: music_params[:artist_name]).id
+    )
     if @music.errors.full_messages.present?
       flash.now[:danger] = @music.errors.full_messages.join('<br>')
       render 'edit'
@@ -71,6 +93,6 @@ class MusicsController < ApplicationController
   end
 
   def music_params
-    params.require(:music).permit(:name, :artist, :track, :audio, :index_info)
+    params.require(:music).permit(:name, :artist_name, :track, :audio, :index_info)
   end
 end

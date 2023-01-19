@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     resource :music_list, only: %i[create]
   end
 
+  resources :artists
+
   resources :comments, only: %i[create]
 
   resources :likes, only: %i[create destroy index]

@@ -34,4 +34,8 @@ class ApplicationController < ActionController::Base
     flash[:danger] = '管理者のみ有効な操作です'
     redirect_to('/')
   end
+
+  def set_playlist
+    @playlists = current_user.playlists
+  end
 end

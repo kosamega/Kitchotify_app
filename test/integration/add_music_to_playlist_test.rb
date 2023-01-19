@@ -5,7 +5,7 @@ class AddMusicToPlaylistTest < ActionDispatch::IntegrationTest
     @user = users(:kosamega)
     @other_user = users(:posamega)
     @playlist = playlists(:one)
-    @music = musics(:hikari)
+    @music = musics(:music1)
   end
 
   test '有効なユーザー' do

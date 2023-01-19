@@ -6,7 +6,7 @@ class Comment < ApplicationRecord
   include Rails.application.routes.url_helpers
 
   def send_discord
-    return if Rails.env.development? or Rails.env.test?
+    return if Rails.env.development? || Rails.env.test?
 
     uri = URI.parse(ENV.fetch('DISCORD_WEBHOOK_URL_NEW_COMMENT', nil))
     http = Net::HTTP.new(uri.host, uri.port)
@@ -15,7 +15,7 @@ class Comment < ApplicationRecord
     params = { content: '',
                embeds: [
                  {
-                   title: "#{music.artist} - #{music.name}",
+                   title: "#{music.artist.name} - #{music.name}",
                    description: content,
                    url: album_music_url(music.album, music, host: 'kitchotify-app.herokuapp.com'),
                    color: 10_070_709,

@@ -1,11 +1,9 @@
 kosamega:
   name: kosamega
   password_digest: <%= User.digest('password') %>
-  id: 1
   admin: true
   
 posamega:
   name: posamega
   password_digest: <%= User.digest('password') %>
-  id: 2
   admin: false
