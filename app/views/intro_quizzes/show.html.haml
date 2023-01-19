@@ -28,8 +28,8 @@
   .answers
     - @musics_all.each do |music|
       .btn.btn-secondary.m-1.answer-btn{id: "ans#{music.id}"}
-        = music[:artist]
-        \- #{music[:name]}
+        = music.artist.name
+        \- #{music.name}
 
 #clear.d-none
   .h1 クリアー！！！！！
