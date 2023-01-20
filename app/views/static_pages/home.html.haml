@@ -10,7 +10,7 @@
         %ul.comment-card
           %li
             = link_to image_tag(comment.music.album.jacket.variant(resize: "300").processed ,class: "album-item", width: "50px"), album_path(comment.music.album)
-            = link_to comment.music.artist.name, album_music_path(comment.music.album, comment.music)
+            = link_to comment.music.artist.name, artist_path(comment.music.artist)
             %p.d-inline-block -
             = link_to comment.music.name, album_music_path(comment.music.album, comment.music)
           %li.new-comment-item.comment-user
