@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_many :playlists
   has_many :comments
   has_many :quiz_results
+  has_many :artists
   validates :name, presence: true, uniqueness: true
   attr_accessor :remember_token
 
