@@ -1,7 +1,7 @@
 class ArtistsController < ApplicationController
-  before_action :logged_in_user
+  before_action :logged_in_user, only: %i[index show new edit update destroy]
   before_action :set_artist, only: %i[show edit update destroy]
-  before_action :set_playlist
+  before_action :set_current_user_playlists, only: %i[show]
 
   def index
     @artists = Artist.all
@@ -15,33 +15,49 @@ class ArtistsController < ApplicationController
     @artist = Artist.new
   end
 
-  def edit; end
+  def edit
+    @users = User.all
+  end
 
   def create
-    @artist = Artist.new(artist_params)
+    @artist = Artist.new(
+      name: artist_params[:name],
+      bio: artist_params[:bio],
+      user_id: User.find_by(name: artist_params[:user_name])&.id
+    )
+
     if @artist.save
       @save = true
-      flash[:success] = "#{@artist.name}を作成しました"
       respond_to do |format|
-        format.html { redirect_to artists_path }
+        format.html do
+          flash[:success] = "#{@artist.name}を作成しました"
+          redirect_to artists_path
+        end
         format.js
       end
     else
-      flash[:danger] = @artist.errors.full_messages.join('<br>')
       @save = false
       respond_to do |format|
-        format.html { render 'new' }
+        format.html do
+          flash.now[:danger] = @artist.errors.full_messages.join('<br>')
+          render 'new'
+        end
         format.js
       end
     end
   end
 
   def update
-    if @artist.update(artist_params)
+    if @artist.update(
+      name: artist_params[:name],
+      bio: artist_params[:bio],
+      user_id: User.find_by(name: artist_params[:user_name])&.id
+    )
       flash[:success] = '更新しました'
       redirect_to artist_path(@artist)
     else
       flash[:danger] = @artist.errors.full_messages.join('<br>')
+      redirect_to edit_artist_path(@artist)
     end
   end
 
@@ -52,13 +68,11 @@ class ArtistsController < ApplicationController
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_artist
     @artist = Artist.find(params[:id])
   end
 
-  # Only allow a list of trusted parameters through.
   def artist_params
-    params.require(:artist).permit(:name, :user_id)
+    params.require(:artist).permit(:name, :user_id, :bio, :user_name)
   end
 end
