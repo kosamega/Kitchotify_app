@@ -34,8 +34,9 @@ class UsersController < ApplicationController
   def update
     if @user.update(user_params)
       return redirect_to user_path(current_user) if user_params[:editor].nil?
+
       flash[:success] = "エディターモードを#{@user.editor? ? 'オン' : 'オフ'}にしました"
-      redirect_back_or "/"
+      redirect_back_or '/'
     else
       flash[:danger] = @artist.errors.full_messages.join('<br>')
       redirect_to edit_user_path(current_user)
