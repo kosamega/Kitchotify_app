@@ -11,4 +11,5 @@
     %div
       %h1= @album.name
       %h6.mt-3= @album.kiki_taikai_date
+      
 =render "musics/form", album: @album, music: @album.musics.build, action: "曲を追加", confirm: "追加しますか", at_album_show: true, local: true

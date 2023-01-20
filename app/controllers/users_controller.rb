@@ -11,6 +11,7 @@ class UsersController < ApplicationController
 
   def show
     @playlists = @user.playlists
+    @artists = @user.artists
   end
 
   def new
