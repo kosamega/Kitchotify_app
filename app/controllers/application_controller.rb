@@ -36,7 +36,7 @@ class ApplicationController < ActionController::Base
     redirect_to('/')
   end
 
-  def set_playlist
-    @playlists = current_user.playlists
+  def set_current_user_playlists
+    @playlists = current_user&.playlists
   end
 end

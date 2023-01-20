@@ -3,11 +3,11 @@ class MusicsController < ApplicationController
   before_action :set_album
   before_action :set_music, only: %i[show edit update destroy]
   before_action :admin_user, only: %i[destroy]
+  before_action :set_current_user_playlists, only: %i[show create]
   include MusicsHelper
 
   def show
     if @music.present?
-      @playlists = current_user.playlists
       @same_artist_musics = @music.artist.musics
       @comments = @music.comments
       @infos = []
@@ -45,7 +45,6 @@ class MusicsController < ApplicationController
     if @music.save
       @messages = "以下の内容で曲を追加しました<br>曲名：#{@music.name}<br>アーティスト：#{@music.artist.name}<br>インデックス情報：<br>#{@music.index_info}"
       @number = params[:music][:track].to_i - 1
-      @playlists = current_user&.playlists
       @at_album_show = params[:at_album_show]
       @save = true
       flash.now[:success] = @messages

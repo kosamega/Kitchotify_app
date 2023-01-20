@@ -3,6 +3,8 @@ class AlbumsController < ApplicationController
   before_action :admin_user, only: %i[new create edit update destroy]
   before_action :released, only: %i[show]
   before_action :set_album, only: %i[show edit update destroy]
+  before_action :set_current_user_playlists, only: %i[show]
+
   include MusicsHelper
 
   def index
@@ -11,7 +13,6 @@ class AlbumsController < ApplicationController
 
   def show
     @musics = @album.musics
-    @playlists = current_user.playlists
     @at_album_show = true
     @infos = []
     set_infos(@musics)
