@@ -1,6 +1,12 @@
 .music-info.rounded.d-flex.border-2.border-dark
   .album-info-jaket.m-4.d-inline-block
-    = image_tag(@music.album.jacket.variant(resize: "300").processed, class: "album-jaket-img")
+    -if @album.jacket.attached?
+      = image_tag(@music.album.jacket.variant(resize: "300").processed, class: "album-jaket-img")
+    - else
+      .position-relative
+        = image_tag("kakukiti" ,class: "album-jaket-img position-relative")
+        .h4.position-absolute.top-50.start-50.translate-middle.bg-primary.text-white.p-3= @album.name      
+
   .d-inline-flex.flex-column.justify-content-center
     = link_to @music.album.name, album_path(@music.album)
     = @album.kiki_taikai_date
@@ -36,7 +42,7 @@
   .col
     %h2 コメント
     .comment-item
-      - if current_user == User.find(2)
+      - if current_user == User.find_by(id: 2)
         %div kitchonkun以外でログインするとコメントができます
       - else
         .comment-form
@@ -58,5 +64,9 @@
       - @same_artist_musics.each do |music|
         %li
           .musics-suggested
-            .jacket-s= image_tag(music.album.jacket.variant(resize: "300").processed, class: "musics-suggested-jacket", width: "50px")
+            .jacket-s
+              -if music.album.jacket.attached?
+                = link_to(image_tag( music.album.jacket.variant(resize: "300").processed ,class: "jaket-mini", width: "50px"), album_path(music.album))
+              -else
+                = link_to(image_tag("kakukiti" ,class: "jaket-mini", width: "50px"), album_path(music.album))
             .suggestion-wrap= link_to("#{music.name}", album_music_path(music.album, music), class: "name-s")
