@@ -11,10 +11,23 @@
     を含む曲は見つかりませんでした
 
 %h2 ユーザー
-- if @result_users.present?
-  %ul
-    - @result_users.each do |user|
-      %li= link_to user.name, user_path(user)
+- if @users.present?
+  %table.table.align-middle
+    %thead
+      %tr
+        %th 名前
+        -# %th ユーザー
+        %th bio
+
+
+    %tbody
+      - @users.each do |user|
+        %tr
+          %td= link_to user.name, user_path(user)
+          -# %td
+          -#   = link_to artist.user.name, user_path(artist.user) if artist.user.present?
+          %td= user.bio
+
 - else
   %p
     = @params
@@ -23,10 +36,42 @@
 
 %h2 プレイリスト
 - if @result_playlists.present?
-  %ul
-    - @result_playlists.each do |playlist|
-      %li= link_to "#{playlist.user.name}　#{playlist.name}", "/playlists/#{playlist.id}"
+  %table.table.align-middle
+    %thead
+      %tr
+        %th ユーザー
+        %th プレイリスト
+        %th 説明
+
+
+    %tbody
+      - @result_playlists.each do |playlist|
+        %tr
+          %td= link_to playlist.user.name, user_path(playlist.user)
+          %td= link_to playlist.name, playlist_path(playlist)
+          -# %td
+          -#   = link_to playlist.user.name, user_path(playlist.user) if playlist.user.present?
+          %td= playlist.comment
 - else
   %p
     = @params
     を含むプレイリストは見つかりませんでした
+
+%h2 アーティスト
+- if @artists.present?
+  %table.table.align-middle
+    %thead
+      %tr
+        %th 名義
+        -# %th ユーザー
+        %th bio
+
+
+    %tbody
+      - @artists.each do |artist|
+        %tr
+          %td= link_to artist.name, artist_path(artist)
+          -# %td
+          -#   = link_to artist.user.name, user_path(artist.user) if artist.user.present?
+          %td= artist.bio
+
