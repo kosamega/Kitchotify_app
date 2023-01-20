@@ -5,7 +5,7 @@
     = link_to @music.album.name, album_path(@music.album)
     = @album.kiki_taikai_date
     %h2= @music.name
-    %h3= @music.artist.name
+    .h3=link_to @music.artist.name, artist_path(@music.artist)
     .like-add-playlist
       - if @like = Like.find_by(user_id: current_user.id, music_id: @music.id)
         #like0.d-inline-block= render "shared/unlike", like: @like , like_index: false, number: "0"
