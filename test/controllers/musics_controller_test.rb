@@ -5,6 +5,8 @@ class MusicsControllerTest < ActionDispatch::IntegrationTest
     @album = albums(:album1)
     @user = users(:user1)
     @artist = artists(:artist1)
+    @music = musics(:music1)
+    log_in_as(@user)
   end
 
   test 'ログインしていなくてもmusicを作成できる' do
@@ -14,5 +16,28 @@ class MusicsControllerTest < ActionDispatch::IntegrationTest
                                                          index_info: 'インデックス情報',
                                                          artist_name: @artist.name } }
     end
+  end
+
+  test 'should get new' do
+    get new_album_music_path(@album)
+    assert_response :success
+  end
+
+  test 'should show music' do
+    get album_music_path(@album, @music)
+    assert_response :success
+  end
+
+  test 'should get edit' do
+    get edit_album_music_path(@album, @music)
+    assert_response :success
+  end
+
+  test 'should destroy music' do
+    assert_difference('Music.count', -1) do
+      delete album_music_path(@album, @music)
+    end
+
+    assert_redirected_to album_path(@album)
   end
 end
