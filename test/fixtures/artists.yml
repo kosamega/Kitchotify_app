@@ -7,3 +7,7 @@ artist1:
 artist2:
   name: artist2
   user_id: 1
+
+artist3:
+  name: artist3
+  user_id: 1
