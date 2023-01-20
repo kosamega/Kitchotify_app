@@ -1,11 +1,11 @@
 class LikesController < ApplicationController
   before_action :logged_in_user, :not_kitchonkun
+  before_action :set_current_user_playlists, only: %i[index]
   include MusicsHelper
 
   def index
     @likes = current_user.likes
     @musics = @likes.map(&:music)
-    @playlists = current_user.playlists
     @like_index = true
     @infos = []
     set_infos(@musics)

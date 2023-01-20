@@ -1,5 +1,7 @@
 class IntroQuizzesController < ApplicationController
   before_action :logged_in_user
+  before_action :set_current_user_playlists, only: %i[show]
+
   include MusicsHelper
 
   def index
@@ -7,7 +9,6 @@ class IntroQuizzesController < ApplicationController
   end
 
   def show
-    @playlists = current_user.playlists
     quiz = IntroQuiz.find_by(id: params[:id])
     @q_num = quiz.q_num
     if (quiz.range = 'full')
