@@ -25,8 +25,8 @@
         .col= @music&.audio&.attached? ? "audioが存在します" : "audioが存在しません"
     .col
       .row.h-100
-        .col-2.col-form-label インデックス情報
-        .col.h-100= form.text_area :index_info, class: "form-control h-100"
+        .col-1.col-form-label その他
+        .col.h-100= form.text_area :index_info, class: "form-control h-100", placeholder: "ジャンル：□□□\nBPM：△△△\nコメント：▽▽▽\n歌詞：～～\nのように記述してください。"
   .row.mt-3
     .overflow-hidden.col=button_tag action, type: :submit, class: "btn btn-primary float-end", data: { confirm: confirm }
 

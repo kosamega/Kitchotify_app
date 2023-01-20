@@ -1,4 +1,3 @@
-
 .album-info.mb-4
   .album-info-jaket
     - if @album.jacket.attached?
@@ -6,7 +5,7 @@
     - else
       .position-relative
         = image_tag("kakukiti" ,class: "album-jaket-img opacity-50 position-relative")
-        .h4.position-absolute.top-50.start-50.translate-middle.bg-primary.text-white.p-3= @album.name
+        .h4.position-absolute.top-50.start-50.translate-middle.bg-primary.text-white.p-3.text-center= @album.name
 
   .album-info-text
     %div.ms-5
@@ -16,17 +15,23 @@
 = render "musics/music"
 
 .container-fluid.mb-4.h-auto.overflow-hidden
-  -if current_user.admin?
-    .btn.btn-info#add-music.float-end.d-inline-block 曲を追加
-    %button.btn.btn-info.float-end.me-2.d-inline-block
-      =link_to "アルバムを編集", edit_album_path(@album)
-    %button.btn.btn-info.float-end.me-2.d-inline-block
-      =link_to "インデックス情報ダウンロード", album_index_path(@album), method: :post
-    %button.btn.btn-info.float-end.me-2.d-inline-block
-      =link_to "曲リストダウンロード", album_music_list_path(@album), method: :post
-    %button.btn.btn-info.float-end.me-2.d-inline-block
-      =link_to "インデックス情報登録フォーム", new_album_music_path(@album)
+  -if current_user.editor?
+    .add-edit.clearfix.mb-2
+      .btn.btn-info#add-music.d-inline-block.me-2 曲を追加
+      %button.btn.btn-info.me-2.d-inline-block
+        =link_to "アルバムを編集", edit_album_path(@album)
+    .download.clearfix.mb-2
+      %button.btn.btn-info.me-2.d-inline-block
+        =link_to "インデックス情報ダウンロード", album_index_path(@album), method: :post
+      %button.btn.btn-info.me-2.d-inline-block
+        =link_to "曲リストダウンロード", album_music_list_path(@album), method: :post
+    .index-info-form.clearfix.mb-2
+      %button.btn.btn-info.me-2.d-inline-block
+        =link_to "インデックス情報登録フォーム", new_album_music_path(@album)
+      %button.btn.btn-light.me-2.d-inline-block#copy-form-link
+        %i.fa-solid.fa-paperclip
 
 .d-none#add-music-form
   =render "musics/form", album: @album, music: @album.musics.build, action: "作成", confirm: "追加しますか", at_album_show: true, local: false
 = javascript_include_tag 'music_new.js'
+= javascript_include_tag 'copy_link.js'
