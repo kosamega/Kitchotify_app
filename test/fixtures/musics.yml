@@ -11,3 +11,9 @@ music2:
   artist: artist2
   track: 2
   album: album1
+
+music3:
+  name: music3
+  artist: artist3
+  track: 3
+  album: album3
