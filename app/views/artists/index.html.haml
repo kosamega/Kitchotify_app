@@ -3,17 +3,18 @@
 %table.table.align-middle
   %thead
     %tr
-      %th id
-      %th 名前
+      %th 名義
+      -# %th ユーザー
+      %th bio
 
 
   %tbody
     - @artists.each do |artist|
       %tr
-        %td= artist.id
         %td= link_to artist.name, artist_path(artist)
-        -# %td= link_to 'Show', artist
-        -# %td= link_to 'Edit', edit_artist_path(artist)
-        -# %td= link_to 'Destroy', artist, method: :delete, data: { confirm: 'Are you sure?' }
+        -# %td
+        -#   = link_to artist.user.name, user_path(artist.user) if artist.user.present?
+        %td= artist.bio
+
 
 .btn.btn-primary.mb-3.float-end=link_to "アーティストを追加", new_artist_path, class: "text-white"
