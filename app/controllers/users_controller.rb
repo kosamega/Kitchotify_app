@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :logged_in_user
   before_action :not_kitchonkun, only: %i[edit update]
   before_action :admin_user, only: %i[new create]
-  before_action :correct_user_edit, only: %i[edit update]
+  before_action :correct_user, only: %i[edit update]
   before_action :set_user, only: %i[show edit update destroy]
 
   def index
@@ -33,9 +33,11 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to user_path(current_user)
+      return redirect_to user_path(current_user) if user_params[:editor].nil?
+      flash[:success] = "エディターモードを#{@user.editor? ? 'オン' : 'オフ'}にしました"
+      redirect_back_or "/"
     else
-      flash[:danger] = 'すでに存在する名前です'
+      flash[:danger] = @artist.errors.full_messages.join('<br>')
       redirect_to edit_user_path(current_user)
     end
   end
@@ -43,7 +45,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :password, :password_confirmation, :bio)
+    params.require(:user).permit(:name, :password, :password_confirmation, :bio, :editor)
   end
 
   def correct_user
