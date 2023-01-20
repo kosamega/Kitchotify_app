@@ -42,7 +42,7 @@
           = hidden_field_tag :playlist_id, @playlist.id
           = button_tag type: :submit, class: "delete-btn border-0 bg-transparent" do
             削除
-  - if current_user.admin?
+  - if current_user.editor?
     %td
       .btn.btn-primary.ms-3
         =link_to "編集", edit_album_music_path(music.album, music), class: "text-white"

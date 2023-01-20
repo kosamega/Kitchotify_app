@@ -13,6 +13,8 @@
       %th{scope: "col"} 
       - if @playlist&.user == current_user
         %th{scope: "col"} 
+      - if current_user.editor?
+        %th{scope: "col"} 
 
   %tbody#tracks
     - @musics.each do |music|
