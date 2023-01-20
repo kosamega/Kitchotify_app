@@ -5,16 +5,20 @@
 
 
 .playlist.pt-3
-- if @user == current_user
-  %h2 プレイリスト
-  - @playlists.each do |playlist|
-    %ul.playlist-card
-      %li= link_to playlist.name, playlist_path(playlist), class: "h6"
-      %li= playlist.comment
-- else
-  %h2 公開プレイリスト
-  - @playlists.where(public: true).each do |playlist|
-    %ul.playlist-card
-      %li= link_to playlist.name, playlist_path(playlist)
-      %li= playlist.comment
+  - if @user == current_user
+    %h2 プレイリスト
+    - @playlists.each do |playlist|
+      %ul.playlist-card
+        %li= link_to playlist.name, playlist_path(playlist), class: "h6"
+        %li= playlist.comment
+  - else
+    %h2 公開プレイリスト
+    - @playlists.where(public: true).each do |playlist|
+      %ul.playlist-card
+        %li= link_to playlist.name, playlist_path(playlist)
+        %li= playlist.comment
 
+.artists.mt-3
+  %h2 名義
+  - @artists.each do |artist|
+    =lint_to artist.name artist_path(artist)
