@@ -1,4 +1,3 @@
-
 .album-info.mb-4
   .album-info-jaket
     - if @album.jacket.attached?
@@ -16,7 +15,7 @@
 = render "musics/music"
 
 .container-fluid.mb-4.h-auto.overflow-hidden
-  -if current_user.admin?
+  -if current_user.editor?
     .btn.btn-info#add-music.float-end.d-inline-block 曲を追加
     %button.btn.btn-info.float-end.me-2.d-inline-block
       =link_to "アルバムを編集", edit_album_path(@album)
