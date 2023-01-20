@@ -14,8 +14,7 @@ class AlbumsController < ApplicationController
   def show
     @musics = @album.musics
     @at_album_show = true
-    @infos = []
-    set_infos(@musics)
+    @infos = set_infos(@musics)
     gon.infos_j = @infos
     @artists = Artist.all
   end
