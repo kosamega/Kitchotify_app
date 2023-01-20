@@ -539,3 +539,11 @@ a:hover {
 .tr-number-play {
   cursor: pointer;
 }
+
+.description {
+  ul, li {
+    list-style: inside !important;
+    padding: 0;
+    margin: 0;
+  }
+}

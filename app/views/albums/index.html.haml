@@ -9,9 +9,9 @@
           = image_tag("kakukiti" ,class: "album-item opacity-50 position-relative", width: "130px")
           .h6.position-absolute.top-50.start-50.translate-middle.bg-primary.text-white.p-1= album.name
 
-
-.over-flow-hidden
-  .btn.btn-primary.m-3.float-end=link_to "作成", new_album_path, class: "text-white"
+- if current_user.editor?
+  .over-flow-hidden
+    .btn.btn-primary.m-3.float-end=link_to "作成", new_album_path, class: "text-white"
 
 .album-container.mt-5
   %h3 未リリース
@@ -22,4 +22,4 @@
       - else
         .position-relative
           = image_tag("kakukiti" ,class: "album-item opacity-50 position-relative", width: "130px")
-          .h6.position-absolute.top-50.start-50.translate-middle.bg-primary.text-white.p-1= album.name
+          .h5.position-absolute.top-50.start-50.translate-middle.bg-primary.text-white.p-1.text-center= album.name

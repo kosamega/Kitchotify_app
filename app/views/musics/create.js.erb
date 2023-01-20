@@ -1,7 +1,8 @@
+console.log('aaaa')
 if(<%=@save%>){
   $('#tracks').append("<%= escape_javascript(render('shared/track_row', music: @music , like_index: false, number: @number, at_album_show: @at_album_show)) if @save %>");
 }
 $('#flash').append('<div><p><%= @messages.html_safe %></p></div>');
 setTimeout(function(){
-$('#flash div:first').remove();
-}, 30000);
+  $('#flash div:first').remove();
+}, 6000);

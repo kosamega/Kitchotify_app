@@ -9,7 +9,15 @@
 
   .album-info-text.ms-4
     %div
-      %h1= @album.name
+      .h1=link_to @album.name, album_path(@album)
       %h6.mt-3= @album.kiki_taikai_date
+
+.description.mb-4
+  %ul
+    %li ジャンル、BPM等は自由項目です。書いていただければインデクスに記入いたします。記入例にない項目でも書いていただいてかまいません。
+    %li 基本的にはコピー＆ペーストでインデクスを制作し、提出いただいたものを決定版として扱いますので、情報に誤字脱字等がないようご確認をお願いします(こちらから確認はいたしません)。
+    %li 締め切りに遅れますとサーバーに上げられているものを参考にして曲名、および名義を記入します。提出曲が仮称ですと決定版と異なる場合が考えられますので締め切りはお守りください。
+    %li 日本語、英語で用いられる文字以外(ex,繁体字、キリル文字、ウムラウト付きの文字)の文字、あるいは記号(ex,؟,؛)を用いられた場合、インデクス情報の提出がないとこちらで対応できない可能性もあります(コピー＆ペーストができない等)。
+
       
 =render "musics/form", album: @album, music: @album.musics.build, action: "曲を追加", confirm: "追加しますか", at_album_show: true, local: true

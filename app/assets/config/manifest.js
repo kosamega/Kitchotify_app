@@ -9,3 +9,4 @@
 //= link edit_playlist.js
 //= link intro_quiz.js
 //= link music_new.js
+//= link copy_link.js
