@@ -3,12 +3,16 @@ class ArtistsController < ApplicationController
   before_action :set_artist, only: %i[show edit update destroy]
   before_action :set_current_user_playlists, only: %i[show]
 
+  include MusicsHelper
+
   def index
     @artists = Artist.all
   end
 
   def show
     @musics = @artist.musics
+    @infos = set_infos(@musics)
+    gon.infos_j = @infos
   end
 
   def new

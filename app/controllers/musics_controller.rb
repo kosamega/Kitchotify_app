@@ -10,9 +10,8 @@ class MusicsController < ApplicationController
     if @music.present?
       @same_artist_musics = @music.artist.musics
       @comments = @music.comments
-      @infos = []
       @musics = [@music]
-      set_infos(@musics)
+      @infos = set_infos(@musics)
       gon.infos_j = @infos
       @music_show = true
     else

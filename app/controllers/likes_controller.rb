@@ -7,8 +7,7 @@ class LikesController < ApplicationController
     @likes = current_user.likes
     @musics = @likes.map(&:music)
     @like_index = true
-    @infos = []
-    set_infos(@musics)
+    @infos = set_infos(@musics)
     gon.infos_j = @infos
   end
 
