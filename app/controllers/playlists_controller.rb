@@ -4,6 +4,7 @@ class PlaylistsController < ApplicationController
   before_action :correct_user_or_public, only: [:show]
   before_action :not_kitchonkun, only: %i[create update destroy]
   before_action :set_playlist, only: %i[show update destroy]
+  before_action :set_current_user_playlists, only: %i[show]
   include MusicsHelper
 
   def index
@@ -12,7 +13,6 @@ class PlaylistsController < ApplicationController
 
   def show
     @at_playlist_show = true
-    @playlists = current_user.playlists
     @relations = @playlist.music_playlist_relations.sort_by { |a| a[:position] }
     @musics = @relations.map(&:music)
     @infos = []
