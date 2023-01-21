@@ -12,8 +12,7 @@
       = form_with(model: current_user) do |form|
         = form.hidden_field :editor, :value => !current_user.editor?
         =button_tag "エディターモード", type: :submit, class: "btn btn-sm float-end me-2 #{current_user.editor? ? 'btn-success' : 'btn-light'}"
-      
-      = link_to "アカウント作成", new_user_path, class: "btn btn-primary btn-sm float-end me-2"
+      = link_to "アカウント作成", new_user_path, class: "btn btn-primary btn-sm float-end me-2" if current_user.admin_or_kitchonkun?
       
         
     - else
