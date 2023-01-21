@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
   before_action :logged_in_user
   before_action :not_kitchonkun, only: %i[edit update]
-  before_action :admin_user, only: %i[new create]
-  before_action :correct_user, only: %i[edit update]
+  before_action :admin_user_or_kitchonkun, only: %i[new create]
   before_action :set_user, only: %i[show edit update destroy]
+  before_action :correct_user, only: %i[edit update]
 
   def index
     @users = User.all
@@ -46,15 +46,20 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :password, :password_confirmation, :bio, :editor)
+    params.require(:user).permit(:name, :password, :password_confirmation, :bio, :editor, :join_date)
   end
 
   def correct_user
-    @user = User.find_by(id: params[:id])
     redirect_to('/') unless @user == current_user
   end
 
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def admin_user_or_kitchonkun
+    return if current_user.admin? || current_user.name == 'kitchonkun'
+    flash[:danger] = '管理者かkitchonkunアカウントでしかできない操作です'
+    redirect_to '/'
   end
 end
