@@ -58,8 +58,8 @@ class UsersController < ApplicationController
   end
 
   def admin_user_or_kitchonkun
-    return current_user.admin? || current_user.name = 'kitchonkun'
+    return if current_user.admin? || current_user.name == 'kitchonkun'
     flash[:danger] = '管理者かkitchonkunアカウントでしかできない操作です'
-    redirect_back_or '/'
+    redirect_to '/'
   end
 end

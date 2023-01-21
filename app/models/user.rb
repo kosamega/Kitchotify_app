@@ -41,6 +41,10 @@ class User < ApplicationRecord
     update_attribute(:remember_digest, nil)
   end
 
+  def admin_or_kitchonkun?
+    admin? || name == 'kitchonkun'
+  end
+
   def graduate
     return if join_date.nil?
 
