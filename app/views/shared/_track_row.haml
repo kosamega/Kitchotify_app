@@ -5,7 +5,7 @@
       %i.fa-duotone.fa-play.fa.tr-playbutton
   - if !@at_album_show
     - if music.album.jacket.attached?
-      %td= link_to(image_tag( music.album.jacket.variant(resize: "300").processed ,class: "jaket-mini", width: "50px"), album_path(music.album))
+      %td= link_to(image_tag( music.album.jacket ,class: "jaket-mini", width: "50px"), album_path(music.album))
     - else
       %td= link_to(image_tag("kakukiti" ,class: "jaket-mini", width: "50px"), album_path(music.album))
   %td
@@ -18,7 +18,7 @@
   - if @like_index
     %td.like-btn= render "shared/unlike", like: music.likes.find_by(user_id: current_user.id), like_index: true, number: number
   - else
-    - if like = Like.find_by(user_id: current_user.id, music_id: music.id)
+    - if like = music.likes.find_by(user_id: current_user.id)
       %td{id: "like#{number}"}= render "shared/unlike", like: like , like_index: false, number: number
     - else
       %td{id: "like#{number}"}= render "shared/like", unliked_music: music, like_index: false, number: number
@@ -37,14 +37,13 @@
               = hidden_field_tag :at_playlist_show, false
               = button_tag type: :submit, class: "text-start border-0 bg-transparent" do
                 = playlist.name
-  - if @at_playlist_show == true
+  - if @at_playlist_show == true && @playlist.user == current_user
     %td
-      - if @playlist.user == current_user
-        = form_with(model: @relations[number], local: false, method: "delete") do |f|
-          = hidden_field_tag :music_id, music.id
-          = hidden_field_tag :playlist_id, @playlist.id
-          = button_tag type: :submit, class: "delete-btn border-0 bg-transparent" do
-            削除
+      = form_with(model: @relations[number], local: false, method: "delete") do |f|
+        = hidden_field_tag :music_id, music.id
+        = hidden_field_tag :playlist_id, @playlist.id
+        = button_tag type: :submit, class: "delete-btn border-0 bg-transparent" do
+          削除
   - if current_user.editor?
     %td
       .btn.btn-primary.ms-3

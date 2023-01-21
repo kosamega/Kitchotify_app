@@ -8,7 +8,7 @@ class PlaylistsController < ApplicationController
   include MusicsHelper
 
   def index
-    @playlists = Playlist.where(public: true)
+    @playlists = Playlist.where(public: true).includes(:user)
   end
 
   def show
