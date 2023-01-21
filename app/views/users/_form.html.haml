@@ -1,0 +1,20 @@
+.clearfix
+  =form_with(model: @user) do |form|
+    .row
+      .col-form-label 名前
+      .col= form.text_field :name, class: "form-control", value: @user.name
+    .row
+      .col-form-label bio
+      .col= form.text_area :bio, class: "form-control", value: @user.bio
+    .row
+      .col-form-label 入会日
+      .col= form.date_select :join_date, class: "form-control", value: @user.join_date
+    .row
+      .col-form-label= new ? "パスワード" : "新しいパスワード"
+      .col= form.password_field :password, class: "form-control"
+    .row
+      .col-form-label= new ? "パスワード" : "新しいパスワード"
+      .col= form.password_field :password_confirmation, class: "form-control"
+    .row.mt-3.d-inline-block.float-end
+      .col
+        = form.submit action, class: "btn btn-primary"

@@ -1,5 +1,5 @@
 class LikesController < ApplicationController
-  before_action :logged_in_user, :not_kitchonkun
+  before_action :logged_in_user
   before_action :set_current_user_playlists, only: %i[index]
   include MusicsHelper
 
