@@ -49,4 +49,16 @@ class User < ApplicationRecord
   def unlike(music)
     liked_musics.find_by(music_id: music.id).destroy
   end
+
+  def admin_or_kitchonkun?
+    admin? || name == 'kitchonkun'
+  end
+
+  def graduate
+    return if join_date.nil?
+
+    today_y = Date.today.month <= 2 ? (Date.today.year - 1) : Date.today.year
+    join_date_y = join_date.month <= 2 ? (join_date.year - 1) : join_date.year
+    join_date_y - join_date_y + 1
+  end
 end
