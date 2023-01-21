@@ -1,5 +1,4 @@
 = form_with(model:like, local: false, html: {method: :delete}) do |f|
-  = hidden_field_tag :like_id, like.id
   = hidden_field_tag :number, number
   = hidden_field_tag :like_index, like_index
   - if like_index

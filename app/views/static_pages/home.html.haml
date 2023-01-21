@@ -2,7 +2,7 @@
 .album-container.border-bottom.pb-2.border-2
   - @albums_released.each do |album|
     - if album.jacket.attached?
-      = link_to(image_tag(album.jacket.variant(resize: "300").processed ,class: "album-item", width: "130px"), album_path(album), class: "album-background")
+      = link_to(image_tag(album.jacket ,class: "album-item", width: "130px"), album_path(album), class: "album-background")
     - else
       = link_to(image_tag("kakukiti" ,class: "album-item", width: "130px"), album_path(album))
       
@@ -13,7 +13,7 @@
       - @comments.each do |comment|
         %ul.comment-card
           %li
-            = link_to image_tag(comment.music.album.jacket.variant(resize: "300").processed ,class: "album-item", width: "50px"), album_path(comment.music.album)
+            = link_to image_tag(comment.music.album.jacket ,class: "album-item", width: "50px"), album_path(comment.music.album)
             = link_to comment.music.artist.name, artist_path(comment.music.artist)
             %p.d-inline-block -
             = link_to comment.music.name, album_music_path(comment.music.album, comment.music)

@@ -8,11 +8,11 @@ class AlbumsController < ApplicationController
   include MusicsHelper
 
   def index
-    @albums = Album.all
+    @albums = Album.with_attached_jacket
   end
 
   def show
-    @musics = @album.musics
+    @musics = @album.musics.includes(:artist, :likes, audio_attachment: :blob)
     @at_album_show = true
     @infos = set_infos(@musics)
     gon.infos_j = @infos
@@ -56,9 +56,7 @@ class AlbumsController < ApplicationController
   end
 
   def released
-    unless Album.find_by(id: params[:id]).present? && !Album.find_by(id: params[:id]).released? && !current_user.admin?
-      return
-    end
+    return unless Album.find_by(id: params[:id]).present? && !Album.find_by(id: params[:id]).released? && !current_user.admin?
 
     flash[:danger] = 'まだリリースされていません'
     redirect_to root_path

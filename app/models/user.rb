@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_secure_password
   has_many :likes
+  has_many :liked_musics, through: :likes, source: :music
   has_many :playlists
   has_many :comments
   has_many :quiz_results
@@ -39,5 +40,13 @@ class User < ApplicationRecord
   # ユーザーのログイン情報を破棄する
   def forget
     update_attribute(:remember_digest, nil)
+  end
+
+  def like(music)
+    liked_musics << music
+  end
+
+  def unlike(music)
+    liked_musics.find_by(music_id: music.id).destroy
   end
 end
