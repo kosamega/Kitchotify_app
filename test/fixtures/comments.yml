@@ -2,8 +2,11 @@ one:
   content: いいね
   user: user1
   music: music1
+  album: album1
 
 two:
   content: 悪いね
   user: user1
   music: music1
+  album: album1
+

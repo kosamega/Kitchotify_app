@@ -47,7 +47,8 @@
       - else
         .comment-form
           = form_with(model: Comment.new, local: false) do |f|
-            %div= hidden_field_tag :music_id, @music.id
+            = f.hidden_field :music_id, value: @music.id
+            = f.hidden_field :album_id, value: @album.id
             = f.text_area :content, class: "comment-textarea"
             = f.submit "送信", class: "btn btn-primary float-end mt-3"
       %ul#comments

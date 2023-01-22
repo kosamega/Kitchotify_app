@@ -5,7 +5,8 @@ class LikesController < ApplicationController
   include MusicsHelper
 
   def index
-    @musics = current_user.liked_musics.includes({album: [jacket_attachment: :blob]}, [audio_attachment: :blob], :artist, :likes)
+    @musics = current_user.liked_musics.includes({ album: [jacket_attachment: :blob] }, [audio_attachment: :blob],
+                                                 :artist, :likes)
     @like_index = true
     @infos = set_infos(@musics)
     gon.infos_j = @infos
@@ -23,6 +24,7 @@ class LikesController < ApplicationController
 
   def destroy
     return unless @like.user == current_user
+
     @music = @like.music
     @number = params[:number]
     @like_id = "like#{params[:number]}"
