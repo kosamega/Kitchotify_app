@@ -2,7 +2,7 @@
   %h2 ルール
   %ul
     - @intro_quizzes.each do |quiz|
-      %li{"list-style": "sqare"}= link_to quiz.name, intro_quiz_path(quiz), class: "h5"
+      %li= link_to quiz.name, intro_quiz_path(quiz), class: "h5"
 
 .rank.mt-5
   %h2.mb-4 ランキング
