@@ -7,16 +7,11 @@ class MusicsController < ApplicationController
   include MusicsHelper
 
   def show
-    if @music.present?
-      @same_artist_musics = @music.artist.musics
-      @comments = @music.comments
-      @musics = [@music]
-      @infos = set_infos(@musics)
-      gon.infos_j = @infos
-      @music_show = true
-    else
-      render 'shared/not_found'
-    end
+    @same_artist_musics = @music.artist.musics.includes(album: [jacket_attachment: :blob])
+    @comments = @music.comments.includes(:user)
+    @infos = set_infos([@music])
+    gon.infos_j = @infos
+    @music_show = true
   end
 
   def new
@@ -84,7 +79,7 @@ class MusicsController < ApplicationController
   end
 
   def destroy
-    @album.musics.find_by(id: params[:id]).destroy
+    @music.destroy
     redirect_to album_path(@album)
   end
 

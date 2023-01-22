@@ -15,7 +15,7 @@ class IntroQuizzesController < ApplicationController
       @musics_all = Music.includes(:artist)
       @ids = @musics_all.map(&:id).sample(@q_num)
     end
-    @musics = @ids.map{ |id| Music.find_by(id:) }
+    @musics = @ids.map { |id| Music.find_by(id:) }
     @infos = set_infos(@musics)
     gon.infos_j = @infos
     gon.ids = @ids

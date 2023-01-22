@@ -20,4 +20,4 @@
     %li 日本語、英語で用いられる文字以外(ex,繁体字、キリル文字、ウムラウト付きの文字)の文字、あるいは記号(ex,؟,؛)を用いられた場合、インデクス情報の提出がないとこちらで対応できない可能性もあります(コピー＆ペーストができない等)。
 
       
-=render "musics/form", album: @album, music: @album.musics.build, action: "曲を追加", confirm: "追加しますか", at_album_show: true, local: true
+=render "form", album: @album, music: @album.musics.build, action: "曲を追加", edit: false, confirm: "追加しますか", at_album_show: true, local: true

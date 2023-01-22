@@ -1,18 +1,15 @@
 class SessionsController < ApplicationController
   before_action :logged_in_user, only: :destroy
 
-  def new
-    @name = ''
-    @password = ''
-  end
+  def new; end
 
   def create
     user = User.find_by(name: params[:session][:name])
     if user&.authenticate(params[:session][:password])
       log_in user
-      unless user.name == 'kitchonkun'
-        params[:session][:remember_me] == '1' ? remember(user) : forget(user)
-      end
+      return redirect_to '/' if user.name == 'kitchonkun'
+
+      params[:session][:remember_me] == '1' ? remember(user) : forget(user)
       redirect_to '/'
     else
       @name = params[:session][:name]
