@@ -30,15 +30,16 @@
   .row.mt-3
     .overflow-hidden.col=button_tag action, type: :submit, class: "btn btn-primary float-end", data: { confirm: confirm }
 
-.mt-2
-  =form_with(model: Artist.new, local: false) do |form|
-    .col-2.form-label=form.label :"新規名義*", class: "mt-"
-    =form.text_field :name, class: "form-control"
-    .col-2.form-label=form.label :bio, class: "mt-2"
-    =form.text_field :bio, class: "form-control"
-    .col.overflow-hidden.mt-3
-      .col.overflow-hidden=button_tag "名義を追加", type: :submit, class: "btn btn-primary float-end", data: { confirm: confirm }
+- if !edit
+  .mt-2
+    =form_with(model: Artist.new, local: false) do |form|
+      .col-2.form-label=form.label :"新規名義*", class: "mt-"
+      =form.text_field :name, class: "form-control"
+      .col-2.form-label=form.label :bio, class: "mt-2"
+      =form.text_field :bio, class: "form-control"
+      .col.overflow-hidden.mt-3
+        .col.overflow-hidden=button_tag "名義を追加", type: :submit, class: "btn btn-primary float-end", data: { confirm: confirm }
 
-- if edit
+- if edit && current_user.admin?
   %button.btn.btn-danger.float-end.mt-3= link_to '削除', album_music_path(album, music), method: :delete, data: { confirm: "本当に消しますか" }, class: "text-white"
 
