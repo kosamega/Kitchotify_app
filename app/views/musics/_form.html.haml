@@ -22,7 +22,7 @@
       = hidden_field_tag :at_album_show, at_album_show
       .row
         .col-2
-        .col= @music&.audio&.attached? ? "audioが存在します" : "audioが存在しません"
+        .col= music&.audio&.attached? ? "audioが存在します" : "audioが存在しません"
     .col
       .row.h-100
         .col-1.col-form-label その他
@@ -38,3 +38,7 @@
     =form.text_field :bio, class: "form-control"
     .col.overflow-hidden.mt-3
       .col.overflow-hidden=button_tag "名義を追加", type: :submit, class: "btn btn-primary float-end", data: { confirm: confirm }
+
+- if edit
+  %button.btn.btn-danger.float-end.mt-3= link_to '削除', album_music_path(album, music), method: :delete, data: { confirm: "本当に消しますか" }, class: "text-white"
+

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_21_020512) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_22_061102) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -65,6 +65,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_21_020512) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "music_id"
+    t.integer "album_id"
   end
 
   create_table "intro_quizzes", force: :cascade do |t|

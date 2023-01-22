@@ -4,7 +4,8 @@ class CommentTest < ActiveSupport::TestCase
   def setup
     @user = users(:user1)
     @music = musics(:music1)
-    @comment = @user.comments.build(content: 'iijan', music_id: @music.id)
+    @album = albums(:album1)
+    @comment = @user.comments.build(content: 'iijan', music_id: @music.id, album_id: @album.id)
   end
 
   test 'ユーザーが有効' do

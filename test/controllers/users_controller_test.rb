@@ -10,7 +10,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   test 'adminかkitchonkunだけusers newにアクセス出来る' do
     log_in_as(@not_admin)
     get new_user_path
-    assert_redirected_to "/"
+    assert_redirected_to '/'
     delete sessions_path
     log_in_as(@admin)
     get new_user_path

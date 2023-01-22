@@ -8,11 +8,11 @@ class AlbumsController < ApplicationController
   include MusicsHelper
 
   def index
-    @albums = Album.all
+    @albums = Album.with_attached_jacket
   end
 
   def show
-    @musics = @album.musics
+    @musics = @album.musics.includes(:artist, :likes, audio_attachment: :blob)
     @at_album_show = true
     @infos = set_infos(@musics)
     gon.infos_j = @infos
