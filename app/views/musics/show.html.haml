@@ -1,7 +1,7 @@
 .music-info.rounded.d-flex.border-2.border-dark
   .album-info-jaket.m-4.d-inline-block
     -if @album.jacket.attached?
-      = image_tag(@music.album.jacket.variant(resize: "300").processed, class: "album-jaket-img")
+      = image_tag(@music.album.jacket, class: "album-jaket-img")
     - else
       .position-relative
         = image_tag("kakukiti" ,class: "album-jaket-img position-relative")
@@ -47,7 +47,8 @@
       - else
         .comment-form
           = form_with(model: Comment.new, local: false) do |f|
-            %div= hidden_field_tag :music_id, @music.id
+            = f.hidden_field :music_id, value: @music.id
+            = f.hidden_field :album_id, value: @album.id
             = f.text_area :content, class: "comment-textarea"
             = f.submit "送信", class: "btn btn-primary float-end mt-3"
       %ul#comments
@@ -66,7 +67,7 @@
           .musics-suggested
             .jacket-s
               -if music.album.jacket.attached?
-                = link_to(image_tag( music.album.jacket.variant(resize: "300").processed ,class: "jaket-mini", width: "50px"), album_path(music.album))
+                = link_to(image_tag( music.album.jacket ,class: "jaket-mini", width: "50px"), album_path(music.album))
               -else
                 = link_to(image_tag("kakukiti" ,class: "jaket-mini", width: "50px"), album_path(music.album))
             .suggestion-wrap= link_to("#{music.name}", album_music_path(music.album, music), class: "name-s")

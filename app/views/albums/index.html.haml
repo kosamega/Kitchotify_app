@@ -3,7 +3,7 @@
   - @albums.where(released: true).each do |album|
     = link_to album_path(album), class: "album-background" do
       - if album.jacket.attached?
-        = image_tag(album.jacket.variant(resize: "300").processed ,class: "album-item", width: "130px")
+        = image_tag(album.jacket ,class: "album-item", width: "130px")
       - else
         .position-relative
           = image_tag("kakukiti" ,class: "album-item opacity-50 position-relative", width: "130px")
@@ -18,7 +18,7 @@
   - @albums.where(released: false).each do |album|
     = link_to album_path(album), class: "album-background" do
       - if album.jacket.attached?
-        = image_tag(album.jacket.variant(resize: "300").processed ,class: "album-item", width: "130px")
+        = image_tag(album.jacket ,class: "album-item", width: "130px")
       - else
         .position-relative
           = image_tag("kakukiti" ,class: "album-item opacity-50 position-relative", width: "130px")

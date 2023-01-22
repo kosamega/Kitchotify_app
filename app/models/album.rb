@@ -1,5 +1,6 @@
 class Album < ApplicationRecord
-  has_many :musics, class_name: 'Music', dependent: :destroy
+  has_many :musics, dependent: :destroy
+  has_many :comments
   has_one_attached :jacket
   validates :name, presence: true
   default_scope -> { order(kiki_taikai_date: :desc) }
