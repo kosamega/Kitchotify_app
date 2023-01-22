@@ -59,6 +59,6 @@ class User < ApplicationRecord
 
     today_y = Date.today.month <= 2 ? (Date.today.year - 1) : Date.today.year
     join_date_y = join_date.month <= 2 ? (join_date.year - 1) : join_date.year
-    join_date_y - join_date_y + 1
+    today_y - join_date_y + 1
   end
 end

@@ -7,8 +7,8 @@
       .col-form-label bio
       .col= form.text_area :bio, class: "form-control", value: @user.bio
     .row
-      .col-form-label 入会日
-      .col= form.date_select :join_date, class: "form-control", value: @user.join_date
+      .col-form-label 入会
+      .col= form.date_select :join_date, start_year: 2000, discard_day: true, class: "form-control", value: @user.join_date
     .row
       .col-form-label= new ? "パスワード" : "新しいパスワード"
       .col= form.password_field :password, class: "form-control"
