@@ -2,7 +2,7 @@ require 'application_system_test_case'
 
 class ArtistsTest < ApplicationSystemTestCase
   setup do
-    @artist = artists(:one)
+    @artist = artists(:artist1)
   end
 
   test 'visiting the index' do

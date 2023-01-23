@@ -1,12 +1,11 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
+relation1:
   music: music1
-  playlist: one
+  playlist: playlist1
   position: 0
 
 
-two:
+relation2:
   music: music2
-  playlist: two
-  position: 0
+  playlist: playlist1
+  position: 1

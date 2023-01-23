@@ -1,12 +1,12 @@
-one:
+playlist1:
   user: user1
-  name: わくわく
+  name: playlist1
   public: true
   comment: testes
 
-two:
+playlist2:
   user: user1
-  name: music1
+  name: playlist2
   public: true
   comment: testes
   

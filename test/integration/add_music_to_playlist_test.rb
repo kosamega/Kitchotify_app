@@ -4,7 +4,7 @@ class AddMusicToPlaylistTest < ActionDispatch::IntegrationTest
   def setup
     @user = users(:user1)
     @other_user = users(:user2)
-    @playlist = playlists(:one)
+    @playlist = playlists(:playlist1)
     @music = musics(:music1)
   end
 
