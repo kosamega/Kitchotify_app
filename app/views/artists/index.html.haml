@@ -1,4 +1,5 @@
 %h1 全てのアーティスト
+.btn.btn-primary=link_to "アーティストを追加", new_artist_path, class: "text-white"
 
 %table.table.align-middle.table-striped
   %thead
@@ -17,4 +18,3 @@
         %td= artist.bio
 
 
-.btn.btn-primary.mb-3.float-end=link_to "アーティストを追加", new_artist_path, class: "text-white"
