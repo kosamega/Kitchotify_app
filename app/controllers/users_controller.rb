@@ -34,8 +34,8 @@ class UsersController < ApplicationController
   def update
     if @user.update(user_params)
       if user_params[:editor].nil?
-        flash[:success] = "ユーザーを更新しました"
-        redirect_to user_path(current_user) 
+        flash[:success] = 'ユーザーを更新しました'
+        redirect_to user_path(current_user)
       else
         flash[:success] = "エディターモードを#{@user.editor? ? 'オン' : 'オフ'}にしました"
         redirect_back_or '/'
