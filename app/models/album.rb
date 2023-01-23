@@ -1,5 +1,5 @@
 class Album < ApplicationRecord
-  has_many :musics, dependent: :destroy
+  has_many :musics, -> { order(track: :asc) }, dependent: :destroy
   has_many :comments
   has_one_attached :jacket
   validates :name, presence: true
