@@ -57,7 +57,7 @@ class ArtistsController < ApplicationController
       bio: artist_params[:bio],
       user_id: User.find_by(name: artist_params[:user_name])&.id
     )
-      flash[:success] = '更新しました'
+      flash[:success] = 'アーティスト情報を更新しました'
       redirect_to artist_path(@artist)
     else
       flash[:danger] = @artist.errors.full_messages.join('<br>')
