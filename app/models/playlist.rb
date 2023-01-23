@@ -1,7 +1,9 @@
 class Playlist < ApplicationRecord
   belongs_to :user
   has_many :music_playlist_relations, -> { order(position: :asc) }, dependent: :destroy
-  has_many :included_musics, through: :music_playlist_relations, source: :music
+  has_many :included_musics, lambda {
+                               order 'music_playlist_relations.position'
+                             }, through: :music_playlist_relations, source: :music
   validates :name, presence: true
   default_scope -> { order(id: :desc) }
 

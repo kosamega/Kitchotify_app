@@ -37,7 +37,7 @@ class AlbumsController < ApplicationController
   def update
     if @album.update(album_params)
       @album.update(editor_id: current_user.id)
-      flash[:success] = "アルバムを更新しました"
+      flash[:success] = 'アルバムを更新しました'
       redirect_to @album
     else
       flash.now[:danger] = @album.errors.full_messages.join('<br>')
