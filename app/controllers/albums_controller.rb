@@ -35,9 +35,14 @@ class AlbumsController < ApplicationController
   end
 
   def update
-    @album.update(album_params)
-    @album.update(editor_id: current_user.id)
-    redirect_to @album
+    if @album.update(album_params)
+      @album.update(editor_id: current_user.id)
+      flash[:success] = "アルバムを更新しました"
+      redirect_to @album
+    else
+      flash.now[:danger] = @album.errors.full_messages.join('<br>')
+      render 'edit'
+    end
   end
 
   def destroy
