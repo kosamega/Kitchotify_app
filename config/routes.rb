@@ -15,7 +15,7 @@ Rails.application.routes.draw do
 
   resources :music_playlist_relations, only: %i[create destroy]
   resources :playlists, only: %i[create update destroy index show] do
-    resource :positions, only: %i[update]
+    resource :position, only: %i[update]
   end
 
   resource :sessions, only: %i[new create destroy]
