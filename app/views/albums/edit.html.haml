@@ -1,2 +1,3 @@
 =render "form", album: @album, action: "更新"
-.btn.btn-danger.d-inline-block.mt-2=link_to "削除", album_path(@album), method: :delete, data: { confirm: "本当に消しますか" }, class: "text-white"
+- if current_user.admin?
+  .btn.btn-danger.d-inline-block.mt-2=link_to "削除", album_path(@album), method: :delete, data: { confirm: "本当に消しますか" }, class: "text-white"

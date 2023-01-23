@@ -33,5 +33,7 @@
 
 .d-none#add-music-form
   =render "musics/form", album: @album, music: @album.musics.build, action: "作成", edit: false, confirm: "追加しますか", at_album_show: true, local: false
-= javascript_include_tag 'music_new.js'
-= javascript_include_tag 'copy_link.js'
+
+-if current_user.editor?
+  = javascript_include_tag 'music_new.js'
+  = javascript_include_tag 'copy_link.js'
