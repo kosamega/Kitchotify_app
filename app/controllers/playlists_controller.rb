@@ -14,7 +14,7 @@ class PlaylistsController < ApplicationController
   def show
     @at_playlist_show = true
     @relations = @playlist.music_playlist_relations.sort_by { |a| a[:position] }
-    @musics = @playlist.included_musics
+    @musics = @playlist.included_musics.includes(:artist, album: [jacket_attachment: :blob], audio_attachment: :blob)
     @infos = set_infos(@musics)
     gon.infos_j = @infos
     gon.playlist_id = @playlist.id
