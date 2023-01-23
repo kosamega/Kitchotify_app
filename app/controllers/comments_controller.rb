@@ -2,10 +2,20 @@ class CommentsController < ApplicationController
   before_action :logged_in_user, :not_kitchonkun
   def create
     @comment = current_user.comments.build(comment_params)
-    @comment.send_discord if @comment.save
-    respond_to do |format|
-      format.html { redirect_back_or '/' }
-      format.js
+    if @comment.save
+      @save = true
+      respond_to do |format|
+        format.html { redirect_back_or '/' }
+        format.js
+      end
+      @comment.send_discord
+    else
+      @save = false
+      @messages = @comment.errors.full_messages
+      respond_to do |format|
+        format.html { redirect_back_or '/' }
+        format.js
+      end
     end
   end
 
