@@ -1,1 +1,8 @@
-$('#comments').prepend('<li class="comment-user" ><%=@comment.user.name + " "%><%=@comment.created_at.strftime("%F %R")%></li><li class="comment-content"><%= @comment.content %></li>');
+if(<%=@save%>){
+  $('#comments').prepend('<li class="comment-user" ><%=@comment.user.name + " "%><%=@comment.created_at&.strftime("%F %R")%></li><li class="comment-content"><%= @comment.content %></li>');
+}else{
+  $('#flash').append("<div><p><%= @messages.join('\n') %></p></div>");
+  setTimeout(function(){
+  $('#flash div:first').remove();
+  }, 3000);
+}
