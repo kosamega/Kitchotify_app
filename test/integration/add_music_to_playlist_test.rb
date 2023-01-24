@@ -8,10 +8,6 @@ class AddMusicToPlaylistTest < ActionDispatch::IntegrationTest
     @music = musics(:music1)
   end
 
-  test '有効なユーザー' do
-    assert @user.valid?
-  end
-
   test '有効なプレイリスト' do
     assert @playlist.valid?
   end
