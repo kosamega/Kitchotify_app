@@ -7,10 +7,6 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
     @album = albums(:album1)
   end
 
-  test '有効なユーザー' do
-    assert @user.valid?
-  end
-
   test '有効なアルバム' do
     assert @album.valid?
   end

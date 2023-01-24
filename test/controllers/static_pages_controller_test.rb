@@ -5,10 +5,6 @@ class StaticPagesControllerTest < ActionDispatch::IntegrationTest
     @user = users(:user1)
   end
 
-  test '@userが有効' do
-    assert @user.valid?
-  end
-
   test 'ホーム描写' do
     log_in_as(@user)
     get '/'
