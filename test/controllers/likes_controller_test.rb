@@ -6,10 +6,6 @@ class LikesControllerTest < ActionDispatch::IntegrationTest
     @music = musics(:music2)
   end
 
-  test 'ユーザーが有効' do
-    assert @user.valid?
-  end
-
   test 'ログインしないとlikeを作成出来なく、するとできる' do
     post likes_path, params: { music_id: @music.id, user_id: @user.id }
     assert_not flash.empty?

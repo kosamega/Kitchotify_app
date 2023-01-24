@@ -6,10 +6,6 @@ class PlaylistTest < ActiveSupport::TestCase
     @playlist = @user.playlists.build(name: 'playlist1')
   end
 
-  test 'ユーザーが有効' do
-    assert @user.valid?
-  end
-
   test 'プレイリストが有効' do
     assert @playlist.valid?
   end
