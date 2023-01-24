@@ -2,7 +2,7 @@ require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
   def setup
-    @user = users(:user1)
+    @user = User.new(name: 'example', password: 'password', password_confirmation: 'password')
   end
 
   test '@userがvalid' do
@@ -16,6 +16,22 @@ class UserTest < ActiveSupport::TestCase
 
   test 'nameが一意' do
     duplicate_user = @user.dup
+    @user.save
     assert_not duplicate_user.valid?
+  end
+
+  test 'nameが50文字以下' do
+    @user.name = 'a' * 51
+    assert_not @user.valid?
+  end
+
+  test 'passwordが空でない' do
+    @user.password = @user.password_confirmation = ' ' * 6
+    assert_not @user.valid?
+  end
+
+  test 'passwordは8文字以上' do
+    @user.password = @user.password_confirmation = 'a' * 7
+    assert_not @user.valid?
   end
 end
