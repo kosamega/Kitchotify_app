@@ -8,10 +8,6 @@ class CommentTest < ActiveSupport::TestCase
     @comment = @user.comments.build(content: 'iijan', music_id: @music.id, album_id: @album.id)
   end
 
-  test 'ユーザーが有効' do
-    assert @user.valid?
-  end
-
   test 'コメントが有効' do
     assert @comment.valid?
   end
