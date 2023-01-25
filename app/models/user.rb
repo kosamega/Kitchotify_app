@@ -7,7 +7,7 @@ class User < ApplicationRecord
   has_many :quiz_results
   has_many :artists
   validates :name, presence: true, uniqueness: true, length: { maximum: 50 }
-  validates :password, presence: true, length: { minimum: 8 }
+  validates :password, presence: true, length: { minimum: 8 }, allow_nil: true
   attr_accessor :remember_token
 
   default_scope -> { order(created_at: :asc) }
