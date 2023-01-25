@@ -41,7 +41,7 @@ class UsersController < ApplicationController
         redirect_back_or '/'
       end
     else
-      flash[:danger] = @artist.errors.full_messages.join('<br>')
+      flash[:danger] = @user.errors.full_messages.join('<br>')
       redirect_to edit_user_path(current_user)
     end
   end
