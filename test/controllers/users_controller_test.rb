@@ -58,4 +58,24 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     end
     assert_template 'users/new'
   end
+
+  test 'userを更新できる' do
+    log_in_as(@not_admin)
+    get edit_user_path(@not_admin)
+    assert_template 'users/edit'
+    name = 'updated_not_admin'
+    patch user_path(@not_admin), params: { user: { name:, password: '', password_confirmation: '' } }
+    assert_not flash.empty?
+    assert_redirected_to @not_admin
+    @not_admin.reload
+    assert_equal name, @not_admin.name
+  end
+
+  test 'エディターモードのオンオフができる' do
+    log_in_as(@not_admin)
+    assert_not @not_admin.editor?
+    patch user_path(@not_admin), params: { user: { editor: true } }
+    @not_admin.reload
+    assert @not_admin.editor?
+  end
 end
