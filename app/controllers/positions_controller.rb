@@ -1,6 +1,6 @@
 class PositionsController < ApplicationController
-  skip_before_action :verify_authenticity_token
   before_action :correct_user
+  protect_from_forgery with: :null_session
 
   def update
     return if params[:drag] == params[:drop]
