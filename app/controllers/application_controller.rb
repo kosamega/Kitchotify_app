@@ -41,7 +41,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_current_user_volume
-    gon.user = {id: current_user.id, volume: current_user.volume}
+    gon.user = { id: current_user.id, volume: current_user.volume }
   end
 
   def set_csrf_token_header
