@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :store_location
+  protect_from_forgery with: :null_session
+  
   include SessionsHelper
 
   # 最後にgetリクエストを送ったURLを覚えておく
