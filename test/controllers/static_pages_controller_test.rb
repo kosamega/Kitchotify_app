@@ -9,5 +9,6 @@ class StaticPagesControllerTest < ActionDispatch::IntegrationTest
     log_in_as(@user)
     get '/'
     assert_response :success
+    assert_select 'title', 'Kitchotify - Home'
   end
 end
