@@ -52,7 +52,7 @@
           %td= link_to playlist.name, playlist_path(playlist)
           -# %td
           -#   = link_to playlist.user.name, user_path(playlist.user) if playlist.user.present?
-          %td= playlist.comment
+          %td= playlist.description
 - else
   %p
     = @params
