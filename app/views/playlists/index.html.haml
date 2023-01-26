@@ -1,18 +1,3 @@
 -provide(:title, "全てのプレイリスト")
 %h1 全てのプレイリスト
-%table.table.align-middle.table-striped
-  %thead
-    %tr
-      %th ユーザー
-      %th プレイリスト
-      %th 説明
-
-
-  %tbody
-    - @playlists.each do |playlist|
-      %tr
-        %td= link_to playlist.user.name, user_path(playlist.user)
-        %td= link_to playlist.name, playlist_path(playlist)
-        -# %td
-        -#   = link_to playlist.user.name, user_path(playlist.user) if playlist.user.present?
-        %td= playlist.comment
+=render 'playlists'
