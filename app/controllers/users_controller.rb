@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   before_action :admin_user_or_kitchonkun, only: %i[new create]
   before_action :set_user, only: %i[show edit update destroy]
   before_action :correct_user, only: %i[edit update]
+  protect_from_forgery with: :null_session
 
   def index
     @users = User.all
@@ -33,12 +34,14 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      if user_params[:editor].nil?
-        flash[:success] = 'ユーザーを更新しました'
-        redirect_to user_path(current_user)
-      else
+      return if user_params[:volume].present?
+
+      if user_params[:editor].present?
         flash[:success] = "エディターモードを#{@user.editor? ? 'オン' : 'オフ'}にしました"
         redirect_back_or root_path
+      else
+        flash[:success] = 'ユーザーを更新しました'
+        redirect_to user_path(current_user)
       end
     else
       flash[:danger] = @user.errors.full_messages.join('<br>')
@@ -49,7 +52,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :password, :password_confirmation, :bio, :editor, :join_date)
+    params.require(:user).permit(:name, :password, :password_confirmation, :bio, :editor, :join_date, :volume)
   end
 
   def correct_user

@@ -1,6 +1,7 @@
 class SearchesController < ApplicationController
   before_action :logged_in_user
   before_action :set_current_user_playlists, only: %i[index]
+  before_action :set_current_user_volume, only: %i[index]
   include MusicsHelper
 
   def index
