@@ -1,0 +1,28 @@
+%table.table.align-middle.table-striped
+  %thead
+    %tr
+      - if @at_playlists_index
+        %th ユーザー
+      %th プレイリスト名
+      - if @user == current_user
+        %th 公開
+      %th 説明
+
+
+  %tbody
+    - if @user == current_user || @at_playlists_index
+      - @playlists.each do |playlist|
+        %tr
+          - if @at_playlists_index
+            %td= link_to playlist.user.name, user_path(playlist.user)
+          %td= link_to playlist.name, playlist_path(playlist)
+          - if @user == current_user
+            %td= playlist.public? ? '〇' : ''
+          %td= playlist.comment
+    - else
+      - @playlists.where(public: true).each do |playlist|
+        %tr
+          - if @at_playlists_index
+            %td= link_to playlist.user.name, user_path(playlist.user)
+          %td= link_to playlist.name, playlist_path(playlist)
+          %td= playlist.comment

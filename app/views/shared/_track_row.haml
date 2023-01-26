@@ -1,4 +1,4 @@
-%tr.align-middle.track{id: number, draggable: "#{true if @at_playlist_show}"}
+%tr.align-middle.track{id: number, draggable: "#{true if @at_playlists_show}"}
   %th.play-button.tr-number-play.position-relative.pe-0{scope: "row"}
     .tr-number= number+1
     .position-absolute.top-50.translate-middle.ms-2
@@ -37,7 +37,7 @@
               = hidden_field_tag :at_playlist_show, false
               = button_tag type: :submit, class: "text-start border-0 bg-transparent" do
                 = playlist.name
-  - if @at_playlist_show == true && @playlist.user == current_user
+  - if @at_playlists_show == true && @playlist.user == current_user
     %td
       = form_with(model: @relations[number], local: false, method: "delete") do |f|
         = hidden_field_tag :music_id, music.id
