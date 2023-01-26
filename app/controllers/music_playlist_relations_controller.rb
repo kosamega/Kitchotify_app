@@ -5,7 +5,7 @@ class MusicPlaylistRelationsController < ApplicationController
     @music = Music.find(params[:music_id])
     @playlist = Playlist.find(params[:playlist_id])
     @playlist.add(@music)
-    @at_playlist_show = params[:at_playlist_show]
+    @at_playlists_show = params[:at_playlist_show]
     respond_to do |format|
       format.html { redirect_back_or root_path }
       format.js

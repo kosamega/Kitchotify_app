@@ -10,10 +10,11 @@ class PlaylistsController < ApplicationController
 
   def index
     @playlists = Playlist.where(public: true).includes(:user)
+    @at_playlists_index = true
   end
 
   def show
-    @at_playlist_show = true
+    @at_playlists_show = true
     @relations = @playlist.music_playlist_relations.sort_by { |a| a[:position] }
     @musics = @playlist.included_musics.includes(:artist, album: [jacket_attachment: :blob], audio_attachment: :blob)
     @infos = set_infos(@musics)
