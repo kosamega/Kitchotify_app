@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
     if @comment.save
       @save = true
       respond_to do |format|
-        format.html { redirect_back_or '/' }
+        format.html { redirect_back_or root_path }
         format.js
       end
       @comment.send_discord
@@ -13,7 +13,7 @@ class CommentsController < ApplicationController
       @save = false
       @messages = @comment.errors.full_messages
       respond_to do |format|
-        format.html { redirect_back_or '/' }
+        format.html { redirect_back_or root_path }
         format.js
       end
     end

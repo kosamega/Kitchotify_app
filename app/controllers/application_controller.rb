@@ -26,14 +26,14 @@ class ApplicationController < ActionController::Base
 
   def correct_user
     @user = Playlist.find_by(id: params[:id]).user
-    redirect_to('/') unless @user == current_user
+    redirect_to root_path unless @user == current_user
   end
 
   def admin_user
     return if current_user.admin?
 
     flash[:danger] = '管理者のみ有効な操作です'
-    redirect_to('/')
+    redirect_to root_path
   end
 
   def set_current_user_playlists

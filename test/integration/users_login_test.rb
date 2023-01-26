@@ -20,7 +20,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     post sessions_path, params: { session: { name: @user.name,
                                              password: 'password' } }
     assert is_logged_in?
-    assert_redirected_to '/'
+    assert_redirected_to root_path
     follow_redirect!
     assert_template 'static_pages/home'
     delete sessions_path

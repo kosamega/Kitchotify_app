@@ -38,7 +38,7 @@ class UsersController < ApplicationController
         redirect_to user_path(current_user)
       else
         flash[:success] = "エディターモードを#{@user.editor? ? 'オン' : 'オフ'}にしました"
-        redirect_back_or '/'
+        redirect_back_or root_path
       end
     else
       flash[:danger] = @user.errors.full_messages.join('<br>')
@@ -53,7 +53,7 @@ class UsersController < ApplicationController
   end
 
   def correct_user
-    redirect_to('/') unless @user == current_user
+    redirect_to root_path unless @user == current_user
   end
 
   def set_user
@@ -64,6 +64,6 @@ class UsersController < ApplicationController
     return if current_user.admin? || current_user.name == 'kitchonkun'
 
     flash[:danger] = '管理者かkitchonkunアカウントでしかできない操作です'
-    redirect_to '/'
+    redirect_to root_path
   end
 end

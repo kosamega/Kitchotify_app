@@ -17,7 +17,7 @@ class LikesController < ApplicationController
     @number = params[:number]
     @like_id = "like#{params[:number]}"
     respond_to do |format|
-      format.html { redirect_back_or '/' }
+      format.html { redirect_back_or root_path }
       format.js
     end
   end
@@ -33,7 +33,7 @@ class LikesController < ApplicationController
     @like.destroy
     @like_index = params[:like_index]
     respond_to do |format|
-      format.html { redirect_back_or '/' }
+      format.html { redirect_back_or root_path }
       format.js
     end
   end
