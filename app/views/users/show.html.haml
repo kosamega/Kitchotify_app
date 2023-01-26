@@ -1,3 +1,4 @@
+-provide(:title, @user.name)
 %h1
   = @user.name
   = "(#{@user.graduate})" if @user.join_date.present?

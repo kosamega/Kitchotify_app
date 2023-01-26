@@ -1,3 +1,4 @@
+-provide(:title, "アルバム一覧")
 .album-container
   %h3 既リリース
   - @albums.where(released: true).each do |album|
