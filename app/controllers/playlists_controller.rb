@@ -24,7 +24,7 @@ class PlaylistsController < ApplicationController
     @playlist = current_user.playlists.build(playlist_params)
     @playlist.save
     respond_to do |format|
-      format.html { redirect_back_or '/' }
+      format.html { redirect_back_or root_path }
       format.js
     end
   end
@@ -32,14 +32,14 @@ class PlaylistsController < ApplicationController
   def update
     @playlist.update(playlist_params)
     respond_to do |format|
-      format.html { redirect_back_or '/' }
+      format.html { redirect_back_or root_path }
       format.js
     end
   end
 
   def destroy
     @playlist.destroy
-    redirect_to '/'
+    redirect_to root_path
   end
 
   private
@@ -55,6 +55,6 @@ class PlaylistsController < ApplicationController
   def correct_user_or_public
     return unless (@playlist = Playlist.find_by(id: params[:id]))
 
-    redirect_to('/') unless (@playlist.user == current_user) || @playlist.public?
+    redirect_to root_path unless (@playlist.user == current_user) || @playlist.public?
   end
 end

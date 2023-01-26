@@ -7,7 +7,7 @@ class StaticPagesControllerTest < ActionDispatch::IntegrationTest
 
   test 'ホーム描写' do
     log_in_as(@user)
-    get '/'
+    get root_path
     assert_response :success
     assert_select 'title', 'Kitchotify - Home'
   end

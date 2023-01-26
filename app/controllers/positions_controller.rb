@@ -12,6 +12,6 @@ class PositionsController < ApplicationController
   private
 
   def correct_user
-    redirect_to '/' unless current_user == Playlist.find(params[:playlist_id]).user
+    redirect_to root_path unless current_user == Playlist.find(params[:playlist_id]).user
   end
 end

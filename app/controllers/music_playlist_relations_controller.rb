@@ -7,7 +7,7 @@ class MusicPlaylistRelationsController < ApplicationController
     @playlist.add(@music)
     @at_playlist_show = params[:at_playlist_show]
     respond_to do |format|
-      format.html { redirect_back_or '/' }
+      format.html { redirect_back_or root_path }
       format.js
     end
   end
@@ -19,7 +19,7 @@ class MusicPlaylistRelationsController < ApplicationController
     @playlist = Playlist.find(params[:playlist_id])
     @music = Music.find(params[:music_id])
     respond_to do |format|
-      format.html { redirect_back_or '/' }
+      format.html { redirect_back_or root_path }
       format.js
     end
   end
@@ -28,6 +28,6 @@ class MusicPlaylistRelationsController < ApplicationController
 
   def correct_user
     playlist_user = Playlist.find_by(id: params[:playlist_id]).user
-    redirect_to('/') unless playlist_user == current_user
+    redirect_to root_path unless playlist_user == current_user
   end
 end

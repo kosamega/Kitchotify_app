@@ -10,7 +10,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   test 'adminかkitchonkunだけusers newにアクセス出来る' do
     log_in_as(@not_admin)
     get new_user_path
-    assert_redirected_to '/'
+    assert_redirected_to root_path
     delete sessions_path
     log_in_as(@admin)
     get new_user_path
@@ -28,7 +28,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
                                          password: 'password',
                                          password_confirmation: 'password' } }
     end
-    assert_redirected_to '/'
+    assert_redirected_to root_path
     log_in_as(@admin)
     assert_difference 'User.count', 1 do
       post users_path, params: { user: { name: 'new_user1',
