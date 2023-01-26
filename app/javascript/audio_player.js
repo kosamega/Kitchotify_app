@@ -27,7 +27,7 @@ function endPlay(trackNum){
   track.classList.remove("now-play");
 }
 
-audio.volume = 0.08;
+audio.volume = gon.user.volume;
 audio.controls = true;
 audio.controlsList.add("nodownload");
 
@@ -180,3 +180,10 @@ function indexHide (){
 
 infoBtn.addEventListener('click', indexShow)
 indexCloseBtn.addEventListener('click', indexHide)
+
+// volume
+audio.addEventListener('volumechange', async function(event){
+  const url = `/users/${gon.user.id}`
+  const params = {user: {volume: event.target.volume}};
+  await fetch(url, {method: 'PUT', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(params)})
+});

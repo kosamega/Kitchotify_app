@@ -5,6 +5,7 @@ class PlaylistsController < ApplicationController
   before_action :not_kitchonkun, only: %i[create update destroy]
   before_action :set_playlist, only: %i[show update destroy]
   before_action :set_current_user_playlists, only: %i[show]
+  before_action :set_current_user_volume, only: %i[show]
   include MusicsHelper
 
   def index
