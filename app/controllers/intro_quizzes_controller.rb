@@ -1,6 +1,7 @@
 class IntroQuizzesController < ApplicationController
   before_action :logged_in_user
   before_action :set_current_user_playlists, only: %i[show]
+  before_action :set_current_user_volume, only: %i[show]
   before_action :set_intro_quiz, only: %i[show]
 
   include MusicsHelper

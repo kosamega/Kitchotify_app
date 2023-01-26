@@ -4,6 +4,7 @@ class MusicsController < ApplicationController
   before_action :set_music, only: %i[show edit update destroy]
   before_action :admin_user, only: %i[destroy]
   before_action :set_current_user_playlists, only: %i[show create]
+  before_action :set_current_user_volume, only: %i[show]
   include MusicsHelper
 
   def show

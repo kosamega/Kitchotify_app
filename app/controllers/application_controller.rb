@@ -39,4 +39,12 @@ class ApplicationController < ActionController::Base
   def set_current_user_playlists
     @playlists = current_user&.playlists
   end
+
+  def set_current_user_volume
+    gon.user = {id: current_user.id, volume: current_user.volume}
+  end
+
+  def set_csrf_token_header
+    response.set_header('X-CSRF-Token', form_authenticity_token)
+  end
 end
