@@ -10,7 +10,7 @@
             %li= f.label :プレイリスト名
             %li= f.text_field :name, class: "form-name", value: @playlist.name
             %li= f.label :説明・コメント
-            %li= f.text_area :comment, class: "new-playlist-comment", value: @playlist.comment
+            %li= f.text_area :comment, class: "new-playlist-comment", value: @playlist.description
             = f.label :public, :公開する do
               %li
                 = f.check_box :public
@@ -26,7 +26,7 @@
   %h3= link_to @playlist.user.name, user_path(@playlist.user)
   .playlist-comment
     %p#playlist-comment-content
-      = @playlist.comment
+      = @playlist.description
   - if current_user == @playlist.user
     .mb-2
       = link_to "削除", playlist_path(@playlist), method: :delete, data: { confirm: "本当に消しますか" }, class: "btn btn-danger float-end"
