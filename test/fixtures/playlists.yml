@@ -2,11 +2,11 @@ playlist1:
   user: user1
   name: playlist1
   public: true
-  comment: testes
+  description: testes
 
 playlist2:
   user: user1
   name: playlist2
   public: true
-  comment: testes
+  description: testes
   
