@@ -9,7 +9,7 @@
             %li= f.label :プレイリスト名
             %li= f.text_field :name, class: "form-name", value: ""
             %li= f.label :説明・コメント
-            %li= f.text_area :comment, class: "new-playlist-comment", value: ""
+            %li= f.text_area :description, class: "new-playlist-comment", value: ""
             = f.label :public, :公開する do
               %li
                 = f.check_box  :public , checked: false
