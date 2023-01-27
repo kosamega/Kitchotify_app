@@ -15,7 +15,7 @@ class PlaylistsControllerTest < ActionDispatch::IntegrationTest
 
   test 'プレイリストを新規作成できる' do
     assert_difference('Playlist.count') do
-      post playlists_url, params: { playlist: { name: 'hoge', public: true, description: 'aaa'} }
+      post playlists_url, params: { playlist: { name: 'hoge', public: true, description: 'aaa' } }
     end
   end
 
@@ -25,7 +25,8 @@ class PlaylistsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'プレイリストをアップデートできる' do
-    patch playlist_path(@playlist1), params: { playlist: { name: 'hoge', public: true, description: 'new description'} }
+    patch playlist_path(@playlist1),
+          params: { playlist: { name: 'hoge', public: true, description: 'new description' } }
     @playlist1.reload
     assert_equal 'new description', @playlist1.description
   end
