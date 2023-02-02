@@ -15,7 +15,7 @@
           %option{value: artist.name}
       .row.mb-2
         .col-2.col-form-label Tr.
-        .col= form.number_field :track, class: "form-control", min: 1
+        .col= form.number_field :track, class: "form-control", min: 0
       .row
         .col-2.col-form-label 音源
         .col= form.file_field :audio, class: "form-control"
