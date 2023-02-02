@@ -1,5 +1,6 @@
 class ArtistsController < ApplicationController
   before_action :logged_in_user, only: %i[index show new edit update destroy]
+  before_action :admin_user, only: %i[destroy]
   before_action :set_artist, only: %i[show edit update destroy]
   before_action :set_current_user_playlists, only: %i[show]
   before_action :set_current_user_volume, only: %i[show]
