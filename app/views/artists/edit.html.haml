@@ -2,3 +2,6 @@
 %h1="#{@artist.name}を編集"
 
 = render 'form', action: "更新"
+
+- if current_user.admin?
+  .btn.btn-danger.d-inline-block.mt-2=link_to "削除", artist_path(@artist), method: :delete, data: { confirm: "本当に消しますか" }, class: "text-white"
