@@ -16,6 +16,9 @@
       .row.mb-2
         .col-2.col-form-label Tr.
         .col= form.number_field :track, class: "form-control", min: 0
+      .row.mb-2
+        .col-2
+        .col.form-text 曲順が決まっていない場合は適当な数字で登録してください。
       .row
         .col-2.col-form-label 音源
         .col= form.file_field :audio, class: "form-control"
