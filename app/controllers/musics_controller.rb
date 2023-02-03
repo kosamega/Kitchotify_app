@@ -45,6 +45,7 @@ class MusicsController < ApplicationController
       index_info: music_params[:index_info],
       artist_id: Artist.find_by(name: music_params[:artist_name]).id
     )
+    @music.audio.attach(music_params[:audio])
     if @music.save
       @messages = "以下の内容で曲を追加しました<br>曲名：#{@music.name}<br>アーティスト：#{@music.artist.name}<br>インデックス情報：<br>#{@music.index_info}"
       @number = params[:music][:track].to_i - 1
@@ -70,6 +71,7 @@ class MusicsController < ApplicationController
       index_info: music_params[:index_info],
       artist_id: Artist.find_by(name: music_params[:artist_name]).id
     )
+    @music.audio.attach(music_params[:audio])
     if @music.errors.full_messages.present?
       flash.now[:danger] = @music.errors.full_messages.join('<br>')
       render 'edit'

@@ -6,5 +6,5 @@ class Music < ApplicationRecord
   has_many :comments, dependent: :destroy
 
   validates :name, presence: true
-  has_one_attached :audio
+  has_one_attached :audio, dependent: :destroy
 end
