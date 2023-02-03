@@ -12,7 +12,7 @@ class ArtistsController < ApplicationController
   end
 
   def show
-    @musics = @artist.musics.includes(:album, :likes, audio_attachment: :blob)
+    @musics = @artist.musics.includes([album: [jacket_attachment: [blob: :variant_records]]], :likes, :artist, audio_attachment: :blob)
     @infos = set_infos(@musics)
     gon.infos_j = @infos
   end
