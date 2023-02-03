@@ -68,7 +68,7 @@
           .musics-suggested
             .jacket-s
               -if music.album.jacket.attached?
-                = link_to(image_tag( music.album.jacket ,class: "jaket-mini", width: "50px"), album_path(music.album))
+                = link_to(image_tag( music.album.jacket_small ,class: "jaket-mini", width: "50px"), album_path(music.album))
               -else
                 = link_to(image_tag("kakukiti" ,class: "jaket-mini", width: "50px"), album_path(music.album))
             .suggestion-wrap= link_to("#{music.name}", album_music_path(music.album, music), class: "name-s")

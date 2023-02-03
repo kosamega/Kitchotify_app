@@ -9,7 +9,7 @@ class AlbumsController < ApplicationController
   include MusicsHelper
 
   def index
-    @albums = Album.with_attached_jacket
+    @albums = Album.includes(jacket_attachment: [blob: :variant_records])
   end
 
   def show
