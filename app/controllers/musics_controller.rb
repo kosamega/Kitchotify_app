@@ -8,7 +8,7 @@ class MusicsController < ApplicationController
   include MusicsHelper
 
   def show
-    @same_artist_musics = @music.artist.musics.includes(album: [jacket_attachment: :blob])
+    @same_artist_musics = @music.artist.musics.includes(album: [jacket_attachment: [blob: :variant_records]])
     @comments = @music.comments.includes(:user)
     @infos = set_infos([@music])
     gon.infos_j = @infos
