@@ -20,4 +20,12 @@ class Album < ApplicationRecord
       "#{music.track}. #{music.name} / #{music.artist.name}\n"
     end.join("\n")
   end
+
+  def jacket_middle
+    jacket.variant(resize: '300x300').processed
+  end
+
+  def jacket_small
+    jacket.variant(resize: '64x64').processed
+  end
 end
