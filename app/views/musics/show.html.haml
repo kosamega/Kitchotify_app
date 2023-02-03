@@ -2,7 +2,7 @@
 .music-info.rounded.d-flex.border-2.border-dark
   .album-info-jaket.m-4.d-inline-block
     -if @album.jacket.attached?
-      = image_tag(@music.album.jacket, class: "album-jaket-img")
+      = image_tag(@music.album.jacket_middle, class: "album-jaket-img")
     - else
       .position-relative
         = image_tag("kakukiti" ,class: "album-jaket-img position-relative")

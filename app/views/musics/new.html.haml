@@ -3,7 +3,7 @@
 .album-info.mb-4
   .album-info-jaket
     - if @album.jacket.attached?
-      = image_tag(@album.jacket ,class: "album-jaket-img")
+      = image_tag(@album.jacket_middle ,class: "album-jaket-img")
     - else
       .position-relative
         = image_tag("kakukiti" ,class: "album-jaket-img opacity-50 position-relative")
