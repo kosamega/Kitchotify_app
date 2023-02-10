@@ -4,7 +4,8 @@ class Music < ApplicationRecord
   has_many :likes
   has_many :playlists
   has_many :comments, dependent: :destroy
+  has_one_attached :audio, dependent: :destroy
 
   validates :name, presence: true
-  has_one_attached :audio, dependent: :destroy
+  validates :audio, content_type: { in: %w[audio/mpeg], message: '：mp3であげてください' }
 end
