@@ -7,7 +7,7 @@
     .col= form.date_select :kiki_taikai_date, class: "form-control"
   .row
     .col-form-label ジャケット
-    .col= form.file_field :jacket, class: "form-control"
+    .col= form.file_field :jacket, class: "form-control", accept: "image/jpeg, image/png"
   .row
     .col
       = album&.jacket&.attached? ? "jacketが存在します" : "jacketが存在しません"

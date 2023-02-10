@@ -3,6 +3,8 @@ class Album < ApplicationRecord
   has_many :comments
   has_one_attached :jacket
   validates :name, presence: true
+  validates :jacket, content_type: { in: %w[image/jpeg image/png], message: '：jpegかpngであげてください' },
+                     size: { less_than: 5.megabytes, message: '5MB以上のファイルはアップロードできません' }
   default_scope -> { order(kiki_taikai_date: :desc) }
 
   def index_infos

@@ -21,7 +21,7 @@
         .col.form-text 曲順が決まっていない場合は適当な数字で登録してください。
       .row
         .col-2.col-form-label 音源
-        .col= form.file_field :audio, class: "form-control"
+        .col= form.file_field :audio, class: "form-control", accept: "audio/mpeg"
       = hidden_field_tag :at_album_show, at_album_show
       .row
         .col-2
