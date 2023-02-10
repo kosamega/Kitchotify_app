@@ -1,3 +1,4 @@
+json.status 200
 json.albums do
   json.array! @albums do |album|
     json.name album.name
