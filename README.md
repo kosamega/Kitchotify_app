@@ -46,3 +46,170 @@
 
 ## ER図
 ![kitchotify_erd](https://user-images.githubusercontent.com/104709001/211757592-035f5bac-efa7-4f40-9f18-8200110d0a59.png)
+
+## Kitchotify API
+### ステータスコード
+下記のコードを返却します
+| ステータスコード | 説明 |
+| ---- | ---- |
+|200|リクエスト成功|
+|400|不正なリクエストパラメータを指定している|
+|401|API keyが不正|
+|500|不明なエラー|
+
+### 曲検索API
+HTTPリクエスト
+```
+GET https://kitchotify-app.herokuapp.com/api/musics?api_key=xxxxx&name=(検索したい曲名）
+```
+リクエストパラメータ
+
+| パラメータ | 内容 |
+| ---- | ---- |
+|api_key|Kitchotifyが発行するAPI key|
+|name|検索したい曲名|
+
+レスポンス例
+```
+GET https://kitchotify-app.herokuapp.com/api/musics?api_key=xxxxx&name=kamogawa
+```
+```
+{
+  "status":200,
+  "musics":[
+    {
+      "name":"Kamogawa Hallucination",
+      "album":"月吉174号",
+      "track":9,
+      "artist":"kosamega",
+      "url":"https://kitchotify-app.herokuapp.com/albums/4/musics/52"
+    },
+    {
+      "name":"Kamogawa Somato",
+      "album":"月吉177号",
+      "track":4,
+      "artist":"kosamega",
+      "url":"https://kitchotify-app.herokuapp.com/albums/7/musics/119"
+    }
+  ]
+}
+```
+
+### アルバム検索API
+HTTPリクエスト
+```
+GET https://kitchotify-app.herokuapp.com/api/albums?api_key=xxxxx&name=(検索したいアルバム名）
+```
+リクエストパラメータ
+
+| パラメータ | 内容 |
+| ---- | ---- |
+|api_key|Kitchotifyが発行するAPI key|
+|name|検索したいアルバム名|
+
+レスポンス例
+```
+GET https://kitchotify-app.herokuapp.com/api/albums?api_key=xxxxx&name=party
+```
+```
+{
+  "status":200,
+  "albums":[
+    {
+      "name":"kitchon party! vol.2",
+      "kiki_taikai_date":"2022-09-24",
+      "url":"https://kitchotify-app.herokuapp.com/albums/18",
+      "musics":[
+        {
+          "name":"FAQ",
+          "album":"kitchon party! vol.2",
+          "track":1,
+          "artist":"ボカロック部",
+          "url":"https://kitchotify-app.herokuapp.com/albums/18/musics/273"
+        },
+        {
+          "name":"一陽来復",
+          "album":"kitchon party! vol.2",
+          "track":2,"artist":"ベイビージャック",
+          "url":"https://kitchotify-app.herokuapp.com/albums/18/musics/274"
+        },
+        {
+          ……
+        }
+      ]
+    },
+    {
+      "name":"kitchon party! ～combination​-​compilation～",
+      "kiki_taikai_date":"2021-09-26",
+      "url":"https://kitchotify-app.herokuapp.com/albums/11",
+      "musics":[
+        {
+          "name":"消えたポラリス",
+          "album":"kitchon party! ～combination​-​compilation～",
+          "track":1,
+          "artist":"ソニオル+一葉+なずしろ",
+          "url":"https://kitchotify-app.herokuapp.com/albums/11/musics/110"
+        },
+        {
+          ……
+        }
+      ]
+    }
+  ]
+}
+```
+
+### アーティスト検索API
+HTTPリクエスト
+```
+GET https://kitchotify-app.herokuapp.com/api/artists?api_key=xxxxx&name=(検索したいアーティスト名）
+```
+リクエストパラメータ
+
+| パラメータ | 内容 |
+| ---- | ---- |
+|api_key|Kitchotifyが発行するAPI key|
+|name|検索したいアーティスト名|
+
+レスポンス例
+```
+GET https://kitchotify-app.herokuapp.com/api/artists?api_key=xxxxx&name=same
+```
+```
+{
+  "status":200,
+  "artists":[
+    {
+      "name":"kosamega",
+      "bio":"make光のmusic",
+      "url":"https://kitchotify-app.herokuapp.com/artists/17",
+      "musics":[
+        {
+          "name":"急げ！！！",
+          "album":"月吉186号",
+          "track":17,
+          "artist":"kosamega",
+          "url":"https://kitchotify-app.herokuapp.com/albums/36/musics/328"
+        },
+        {
+          "name":"Hikari_to_Kaze",
+          "album":"月吉182号",
+          "track":1,
+          "artist":"kosamega",
+          "url":"https://kitchotify-app.herokuapp.com/albums/14/musics/225"
+        },
+        {
+          "name":"No going through",
+          "album":"月吉180号",
+          "track":24,
+          "artist":"kosamega",
+          "url":"https://kitchotify-app.herokuapp.com/albums/10/musics/213"
+        },
+        {
+          ……
+        }
+      ]
+    }
+  ]
+}
+```
