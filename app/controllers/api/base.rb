@@ -9,6 +9,6 @@ class Api::Base < ApplicationController
   end
     
   def Authenticate
-    return render json: { status: '401', error: 'AccessKeyが間違っています' } if params[:AccessKey] != ENV.fetch('KITCHOTIFY_ACCESS_KEY')
+    return render json: { status: '401', error: 'AccessKeyが間違っています' } if params[:AccessKey] != ENV.fetch('KITCHOTIFY_API_KEY')
   end
 end
