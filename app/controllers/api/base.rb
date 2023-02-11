@@ -1,14 +1,22 @@
 class Api::Base < ApplicationController
+  before_action :authenticate
   before_action :parameter_exist?
-  before_action :Authenticate
+  
+  def authenticate
+    authenticate_api_token || render_unauthorized
+  end
+  
+  def authenticate_api_token
+    authenticate_with_http_token do |token|
+      token == ENV.fetch('KITCHOTIFY_API_TOKEN')
+    end
+  end
+  
+  def render_unauthorized
+    render json: { status: '401', error: 'tokenが間違っています' }
+  end
   
   def parameter_exist?
-    return render json: { status: '400', error: 'nameとapi_keyが足りません' } if params[:name].nil? && params[:api_key].nil?
     return render json: { status: '400', error: 'nameが足りません' } if params[:name].nil?
-    return render json: { status: '400', error: 'api_keyが足りません' } if params[:api_key].nil?
-  end
-    
-  def Authenticate
-    return render json: { status: '401', error: 'api_keyが間違っています' } if params[:api_key] != ENV.fetch('KITCHOTIFY_API_KEY')
   end
 end

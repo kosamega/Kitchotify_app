@@ -48,30 +48,36 @@
 ![kitchotify_erd](https://user-images.githubusercontent.com/104709001/211757592-035f5bac-efa7-4f40-9f18-8200110d0a59.png)
 
 ## Kitchotify API
+### アクセストークン
+すべてのリクエストに共通で、Kitchotifyが発行したAPI TokenをAuthorizationリクエストヘッダに付与してください。
+
+```
+Authorization: Bearer xxxxxxxxxxxxxx
+```
+
 ### ステータスコード
 下記のコードを返却します
 | ステータスコード | 説明 |
 | ---- | ---- |
 |200|リクエスト成功|
 |400|不正なリクエストパラメータを指定している|
-|401|API keyが不正|
+|401|API Tokenが不正|
 |500|不明なエラー|
 
 ### 曲検索API
 HTTPリクエスト
 ```
-GET https://kitchotify-app.herokuapp.com/api/musics?api_key=xxxxx&name=(検索したい曲名）
+GET https://kitchotify-app.herokuapp.com/api/musics?name=(検索したい曲名）
 ```
 リクエストパラメータ
 
 | パラメータ | 内容 |
 | ---- | ---- |
-|api_key|Kitchotifyが発行するAPI key|
 |name|検索したい曲名|
 
 レスポンス例
 ```
-GET https://kitchotify-app.herokuapp.com/api/musics?api_key=xxxxx&name=kamogawa
+GET https://kitchotify-app.herokuapp.com/api/musics?name=kamogawa
 ```
 ```
 {
@@ -98,18 +104,17 @@ GET https://kitchotify-app.herokuapp.com/api/musics?api_key=xxxxx&name=kamogawa
 ### アルバム検索API
 HTTPリクエスト
 ```
-GET https://kitchotify-app.herokuapp.com/api/albums?api_key=xxxxx&name=(検索したいアルバム名）
+GET https://kitchotify-app.herokuapp.com/api/albums?name=(検索したいアルバム名）
 ```
 リクエストパラメータ
 
 | パラメータ | 内容 |
 | ---- | ---- |
-|api_key|Kitchotifyが発行するAPI key|
 |name|検索したいアルバム名|
 
 レスポンス例
 ```
-GET https://kitchotify-app.herokuapp.com/api/albums?api_key=xxxxx&name=party
+GET https://kitchotify-app.herokuapp.com/api/albums?name=party
 ```
 ```
 {
@@ -162,18 +167,17 @@ GET https://kitchotify-app.herokuapp.com/api/albums?api_key=xxxxx&name=party
 ### アーティスト検索API
 HTTPリクエスト
 ```
-GET https://kitchotify-app.herokuapp.com/api/artists?api_key=xxxxx&name=(検索したいアーティスト名）
+GET https://kitchotify-app.herokuapp.com/api/artists?name=(検索したいアーティスト名）
 ```
 リクエストパラメータ
 
 | パラメータ | 内容 |
 | ---- | ---- |
-|api_key|Kitchotifyが発行するAPI key|
 |name|検索したいアーティスト名|
 
 レスポンス例
 ```
-GET https://kitchotify-app.herokuapp.com/api/artists?api_key=xxxxx&name=same
+GET https://kitchotify-app.herokuapp.com/api/artists?name=same
 ```
 ```
 {
