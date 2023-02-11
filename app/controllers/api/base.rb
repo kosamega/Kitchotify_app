@@ -13,10 +13,10 @@ class Api::Base < ApplicationController
   end
   
   def render_unauthorized
-    render json: { status: '401', error: 'tokenが間違っています' }
+    render json: { message: 'tokenが間違っています' }, status: :unauthorized
   end
   
   def parameter_exist?
-    return render json: { status: '400', error: 'nameが足りません' } if params[:name].nil?
+    return render json: { error: 'nameが足りません' }, status: :bad_request if params[:name].nil?
   end
 end
