@@ -213,3 +213,5 @@ GET https://kitchotify-app.herokuapp.com/api/artists?api_key=xxxxx&name=same
   ]
 }
 ```
+## ライセンス
+このソフトウェアはMITライセンスのもとで公開されています。詳しくはLICENSE.txtをご覧ください。
