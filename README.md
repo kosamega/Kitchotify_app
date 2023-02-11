@@ -81,7 +81,6 @@ GET https://kitchotify-app.herokuapp.com/api/musics?name=kamogawa
 ```
 ```
 {
-  "status":200,
   "musics":[
     {
       "name":"Kamogawa Hallucination",
@@ -118,7 +117,6 @@ GET https://kitchotify-app.herokuapp.com/api/albums?name=party
 ```
 ```
 {
-  "status":200,
   "albums":[
     {
       "name":"kitchon party! vol.2",
@@ -181,7 +179,6 @@ GET https://kitchotify-app.herokuapp.com/api/artists?name=same
 ```
 ```
 {
-  "status":200,
   "artists":[
     {
       "name":"kosamega",
