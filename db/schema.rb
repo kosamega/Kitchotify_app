@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_26_132425) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_13_121548) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -49,6 +49,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_26_132425) do
     t.integer "editor_id"
     t.boolean "released", default: false
     t.date "kiki_taikai_date"
+    t.index ["name"], name: "index_albums_on_name", unique: true
   end
 
   create_table "artists", force: :cascade do |t|
@@ -57,6 +58,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_26_132425) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "bio"
+    t.index ["name"], name: "index_artists_on_name"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -101,6 +103,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_26_132425) do
     t.datetime "updated_at"
     t.string "index_info"
     t.integer "artist_id"
+    t.index ["name"], name: "index_musics_on_name"
   end
 
   create_table "playlists", force: :cascade do |t|
