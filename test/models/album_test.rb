@@ -13,4 +13,9 @@ class AlbumTest < ActiveSupport::TestCase
     @album.name = '   '
     assert_not @album.valid?
   end
+
+  test 'nameがunique' do
+    duplicate_album = @album.dup
+    assert_not duplicate_album.valid?
+  end
 end
