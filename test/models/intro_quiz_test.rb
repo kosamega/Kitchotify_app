@@ -14,6 +14,11 @@ class IntroQuizTest < ActiveSupport::TestCase
     assert_not @intro_quiz.valid?
   end
 
+  test '名前が一意' do
+    duplicate_intro_quiz = @intro_quiz.dup
+    assert_not duplicate_intro_quiz.valid?
+  end
+
   test '範囲が空でない' do
     @intro_quiz.range = nil
     assert_not @intro_quiz.valid?
