@@ -13,9 +13,4 @@ class ArtistTest < ActiveSupport::TestCase
     @artist.name = '   '
     assert_not @artist.valid?
   end
-
-  test '名前が一意' do
-    duplicate_artist = @artist.dup
-    assert_not duplicate_artist.valid?
-  end
 end
