@@ -1,13 +1,11 @@
 class Api::Base < ApplicationController
-  before_action :authenticate
-
-  def authenticate
-    authenticate_api_token || render_unauthorized
+  def authenticate_search_api
+    authenticate_search_api_token || render_unauthorized
   end
 
-  def authenticate_api_token
+  def authenticate_search_api_token
     authenticate_with_http_token do |token|
-      token == ENV.fetch('KITCHOTIFY_API_TOKEN')
+      token == ENV.fetch('KITCHOTIFY_SEARCH_API_TOKEN')
     end
   end
 
