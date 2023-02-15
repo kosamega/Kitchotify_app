@@ -38,11 +38,11 @@ class AlbumsControllerTest < ActionDispatch::IntegrationTest
 
   test 'should create album' do
     assert_no_difference('Album.count') do
-      post albums_url, params: { album: { name: 'new_album', kiki_taikai_date: 2099-01-01 } }
+      post albums_url, params: { album: { name: 'new_album', kiki_taikai_date: 2099 - 0o1 - 0o1 } }
     end
     log_in_as(@user)
     assert_difference('Album.count') do
-      post albums_url, params: { album: { name: 'new_album', kiki_taikai_date: 2099-01-01 } }
+      post albums_url, params: { album: { name: 'new_album', kiki_taikai_date: 2099 - 0o1 - 0o1 } }
     end
   end
 
