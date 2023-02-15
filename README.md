@@ -254,7 +254,7 @@ POST https://kitchotify-app.herokuapp.com/api/albums?name=test_album&kiki_taikai
   "album":{
     "name": "test_album",
     "kiki_taikai_date": "2099-01-01",
-    "url": "https://kitchotify-app.herokuapp.com/albums/38"
+    "form_url": "https://kitchotify-app.herokuapp.com/albums/38/musics/new"
   }
 }
 ```
