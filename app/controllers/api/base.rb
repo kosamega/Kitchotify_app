@@ -1,6 +1,5 @@
 class Api::Base < ApplicationController
   before_action :authenticate
-  before_action :parameter_exist?
 
   def authenticate
     authenticate_api_token || render_unauthorized
@@ -13,10 +12,10 @@ class Api::Base < ApplicationController
   end
 
   def render_unauthorized
-    render json: { message: 'tokenが間違っています' }, status: :unauthorized
+    render json: { messages: ['tokenが間違っています'] }, status: :unauthorized
   end
 
-  def parameter_exist?
-    return render json: { error: 'nameが足りません' }, status: :bad_request if params[:name].nil?
+  def name_exist?
+    return render json: { messages: 'nameが足りません' }, status: :bad_request if params[:name].nil?
   end
 end
