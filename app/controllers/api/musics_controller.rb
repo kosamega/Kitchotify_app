@@ -1,4 +1,5 @@
 class Api::MusicsController < Api::Base
+  before_action :authenticate_search_api, only: %i[index]
   before_action :name_exist?
 
   def index

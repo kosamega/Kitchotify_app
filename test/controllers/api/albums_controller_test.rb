@@ -13,14 +13,14 @@ class Api::AlbumsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'パラメータにnameが足らないときは400を返す' do
-    get api_albums_path, headers: { 'Authorization': "Bearer #{ENV.fetch('KITCHOTIFY_API_TOKEN')}" }
+    get api_albums_path, headers: { 'Authorization': "Bearer #{ENV.fetch('KITCHOTIFY_SEARCH_API_TOKEN')}" }
     assert_response 400
     res = JSON.parse(response.body)
     assert_equal 'nameが足りません', res['messages']
   end
 
   test '成功したときは200を返す' do
-    get api_albums_path, headers: { 'Authorization': "Bearer #{ENV.fetch('KITCHOTIFY_API_TOKEN')}" }, params: {name: @album.name}
+    get api_albums_path, headers: { 'Authorization': "Bearer #{ENV.fetch('KITCHOTIFY_SEARCH_API_TOKEN')}" }, params: {name: @album.name}
     assert_response 200
     res = JSON.parse(response.body)
     assert_equal @album.name, res['albums'][0]['name']
