@@ -47,9 +47,9 @@
 ## ER図
 ![kitchotify_erd](https://user-images.githubusercontent.com/104709001/211757592-035f5bac-efa7-4f40-9f18-8200110d0a59.png)
 
-## Kitchotify API
+## Kitchotify Search API
 ### アクセストークン
-すべてのリクエストに共通で、Kitchotifyが発行したAPI TokenをAuthorizationリクエストヘッダに付与してください。
+Kitchotifyが発行したSearch API TokenをAuthorizationリクエストヘッダに付与してください。
 
 ```
 Authorization: Bearer xxxxxxxxxxxxxx
@@ -212,6 +212,50 @@ GET https://kitchotify-app.herokuapp.com/api/artists?name=same
       ]
     }
   ]
+}
+```
+
+## Kitchotify Create API
+### アクセストークン
+Kitchotifyが発行したCreate API TokenをAuthorizationリクエストヘッダに付与してください。
+
+```
+Authorization: Bearer xxxxxxxxxxxxxx
+```
+
+### ステータスコード
+下記のコードを返却します
+| ステータスコード | 説明 |
+| ---- | ---- |
+|200|リクエスト成功|
+|400|不正なリクエストパラメータを指定している|
+|401|API Tokenが不正|
+|409|作成に失敗|
+|500|不明なエラー|
+
+### アルバム作成API
+HTTPリクエスト
+```
+POST https://kitchotify-app.herokuapp.com/api/albums?name=(作成したいアルバム名）&kiki_taikai_date=(聴き大会開催日)
+```
+リクエストパラメータ
+
+| パラメータ | 内容 |
+| ---- | ---- |
+|name|作成したいアルバム名|
+|kiki_taikai_date|聴き大会開催日|
+
+レスポンス例
+```
+POST https://kitchotify-app.herokuapp.com/api/musics?name=test_album&kiki_taikai_date=2099-01-01
+```
+```
+{
+  "album":{
+    "name": "test_album",
+    "kiki_taikai_date": "2099-01-01",
+    "url": "https://kitchotify-app.herokuapp.com/albums/38"
+  }
 }
 ```
 ## ライセンス
