@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   resources :searches, only: %i[index]
 
   namespace :api, defaults: { format: :json } do
-    resources :albums, only: %i[index]
+    resources :albums, only: %i[index create]
     resources :musics, only: %i[index]
     resources :artists, only: %i[index]
   end
