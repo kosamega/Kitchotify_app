@@ -48,7 +48,8 @@ class AlbumsController < ApplicationController
 
   def destroy
     @album.destroy
-    redirect_to root_path
+    flash[:success] = 'アルバムを削除しました'
+    redirect_to albums_path
   end
 
   private
