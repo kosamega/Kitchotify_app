@@ -1,6 +1,8 @@
 class Api::AlbumsController < Api::Base
   before_action :authenticate_search_api, only: %i[index]
-  before_action :name_exist?, only: %i[index]
+  before_action :authenticate_create_api, only: %i[create]
+  before_action :name_exist?
+  before_action :kiki_taikai_date_exist?, only: %i[create]
 
   def index
     @albums = Album.where('UPPER(name) LIKE ?', "%#{params[:name].upcase}%").includes(musics: %i[artist album])
