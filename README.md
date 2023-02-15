@@ -236,7 +236,7 @@ Authorization: Bearer xxxxxxxxxxxxxx
 ### アルバム作成API
 HTTPリクエスト
 ```
-POST https://kitchotify-app.herokuapp.com/api/albums?name=(作成したいアルバム名）&kiki_taikai_date=(聴き大会開催日)
+POST https://kitchotify-app.herokuapp.com/api/albums?name=(作成したいアルバム名)&kiki_taikai_date=(聴き大会開催日)
 ```
 リクエストパラメータ
 
@@ -247,7 +247,7 @@ POST https://kitchotify-app.herokuapp.com/api/albums?name=(作成したいアル
 
 レスポンス例
 ```
-POST https://kitchotify-app.herokuapp.com/api/musics?name=test_album&kiki_taikai_date=2099-01-01
+POST https://kitchotify-app.herokuapp.com/api/albums?name=test_album&kiki_taikai_date=2099-01-01
 ```
 ```
 {
