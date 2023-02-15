@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class Api::MusicsControllerTest < ActionDispatch::IntegrationTest
+class Api::MusicsSearchApiTest < ActionDispatch::IntegrationTest
   def setup
     @music = musics(:music1)
   end 
@@ -16,7 +16,7 @@ class Api::MusicsControllerTest < ActionDispatch::IntegrationTest
     get api_musics_path, headers: { 'Authorization': "Bearer #{ENV.fetch('KITCHOTIFY_SEARCH_API_TOKEN')}" }
     assert_response 400
     res = JSON.parse(response.body)
-    assert_equal 'nameが足りません', res['messages']
+    assert_equal ['nameが足りません'], res['messages']
   end
 
   test '成功したときは200を返す' do
