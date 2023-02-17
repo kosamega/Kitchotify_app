@@ -29,7 +29,7 @@ class MusicsController < ApplicationController
     if Artist.find_by(name: music_params[:artist_name]).nil?
       return respond_to do |format|
         format.html do
-          flash.now[:danger] = "#{music_params[:artist_name]}というアーティストは存在しません。<br>ページ下部からアーティストを追加してください。"
+          flash[:danger] = "#{music_params[:artist_name]}というアーティストは存在しません。<br>ページ下部からアーティストを追加してください。"
           redirect_to new_album_music_path(@album)
         end
         format.js do

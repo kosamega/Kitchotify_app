@@ -24,7 +24,7 @@
       = render "layouts/top_bar"
       .main-container
         - flash.each do |message_type, message|
-          %div{:class => "alert alert-#{message_type}"}= message.html_safe
+          %div{:class => "alert alert-#{message_type}"}= sanitize message, tags: %w(br)
         = yield
       = render "layouts/footer"
       
