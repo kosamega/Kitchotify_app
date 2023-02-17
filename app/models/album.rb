@@ -12,7 +12,7 @@ class Album < ApplicationRecord
       if music.index_info.present?
         "#{music.track}. #{music.name} / #{music.artist.name}\n\n#{music.index_info}\n"
       else
-        info = "#{music.track}. #{music.name} / #{music.artist.name}\n"
+        "#{music.track}. #{music.name} / #{music.artist.name}\n"
       end
     end.join("\n")
   end
