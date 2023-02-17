@@ -18,4 +18,24 @@ class AlbumTest < ActiveSupport::TestCase
     duplicate_album = @album.dup
     assert_not duplicate_album.valid?
   end
+
+  test 'kiki_taikai_dateが空でない' do
+    @album.kiki_taikai_date = ""
+    assert_not @album.valid?
+  end
+
+  test 'kiki_taikai_dateがyyyy-MM-dd形式なら通す' do
+    valid_dates = %w[2022-01-30 2022-11-01]
+    valid_dates.each do |date|
+      @album.kiki_taikai_date = date
+      assert @album.valid?
+    end
+  end
+  test 'kiki_taikai_dateがyyyy-MM-dd形式でなかったらはじく' do
+    invalid_dates = %w[2022-00-21 2022--00-21]
+    invalid_dates.each do |date|
+      @album.kiki_taikai_date = date
+      assert_not @album.valid?, "#{date.inspect} should be invalid"
+    end
+  end
 end
