@@ -2,10 +2,14 @@
 %h1 最新リリース
 .album-container.border-bottom.pb-2.border-2
   - @albums_released.each do |album|
-    - if album.jacket.attached?
-      = link_to(image_tag(album.jacket_middle ,class: "album-item", width: "130px"), album_path(album), class: "album-background")
-    - else
-      = link_to(image_tag("kakukiti" ,class: "album-item", width: "130px"), album_path(album))
+    = link_to album_path(album), class: "album-background" do
+      - if album.jacket.attached?
+        = image_tag(album.jacket_middle ,class: "album-item", width: "130px")
+      - else
+        .position-relative
+          = image_tag("kakukiti" ,class: "album-item", width: "130px")
+          .h6.position-absolute.top-50.start-50.translate-middle.bg-primary.text-white.p-1.text-center= album.name
+
       
 .sita-container.mt-4
   .new-comments
@@ -14,7 +18,10 @@
       - @comments.each do |comment|
         %ul.comment-card
           %li
-            = link_to image_tag(comment.album.jacket_small ,class: "album-item", width: "50px"), album_path(comment.album)
+            - if comment.album.jacket.attached?
+              = link_to image_tag(comment.album.jacket_small ,class: "album-item", width: "50px"), album_path(comment.album)
+            - else
+              = link_to image_tag("kakukiti" ,class: "album-item", width: "50px"), album_path(comment.album)
             = link_to comment.music.artist.name, artist_path(comment.music.artist)
             %p.d-inline-block -
             = link_to comment.music.name, album_music_path(comment.album, comment.music)
