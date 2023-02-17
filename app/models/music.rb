@@ -7,5 +7,6 @@ class Music < ApplicationRecord
   has_one_attached :audio
 
   validates :name, presence: true
+  validates :artist_id, presence: true
   validates :audio, content_type: { in: %w[audio/mpeg], message: '：mp3であげてください' }
 end
