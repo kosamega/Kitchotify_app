@@ -31,8 +31,9 @@ class AlbumTest < ActiveSupport::TestCase
       assert @album.valid?
     end
   end
+  
   test 'kiki_taikai_dateがyyyy-MM-dd形式でなかったらはじく' do
-    invalid_dates = %w[2022-00-21 2022--00-21]
+    invalid_dates = %w[2022-00-21 2022--00-21 2022-02-31]
     invalid_dates.each do |date|
       @album.kiki_taikai_date = date
       assert_not @album.valid?, "#{date.inspect} should be invalid"
