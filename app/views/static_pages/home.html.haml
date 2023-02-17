@@ -4,7 +4,7 @@
   - @albums_released.each do |album|
     = link_to album_path(album), class: "album-background" do
       - if album.jacket.attached?
-        = image_tag(album.jacket_middle ,class: "album-item", width: "130px")
+        = image_tag album.jacket_middle ,class: "album-item", width: "130px"
       - else
         .position-relative
           = image_tag("kakukiti" ,class: "album-item", width: "130px")
