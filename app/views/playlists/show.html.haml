@@ -8,7 +8,7 @@
         = form_with(model: @playlist, local: false) do |f|
           %ul
             %li= f.label :プレイリスト名
-            %li= f.text_field :name, class: "form-name", value: @playlist.name
+            %li= f.text_field :name, class: "form-name", value: @playlist.name, required: :required
             %li= f.label :説明・コメント
             %li= f.text_area :description, class: "new-playlist-comment", value: @playlist.description
             = f.label :public, :公開する do

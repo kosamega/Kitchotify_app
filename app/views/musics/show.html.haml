@@ -50,7 +50,7 @@
           = form_with(model: Comment.new, local: false) do |f|
             = f.hidden_field :music_id, value: @music.id
             = f.hidden_field :album_id, value: @album.id
-            = f.text_area :content, class: "comment-textarea"
+            = f.text_area :content, class: "comment-textarea", required: :required
             = f.submit "送信", class: "btn btn-primary float-end mt-3"
       %ul#comments
         - @comments.each do |comment|

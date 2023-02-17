@@ -3,10 +3,10 @@
     .col-5
       .row.mb-2
         .col-2.col-form-label 曲名*
-        .col= form.text_field :name, class: "form-control"
+        .col= form.text_field :name, class: "form-control", required: :required
       .row
         .col-2.col-form-label 名義*
-        .col= form.text_field :artist_name, class: "form-control", list: 'artist-list', value: music.artist&.name
+        .col= form.text_field :artist_name, class: "form-control", list: 'artist-list', value: music.artist&.name, required: :required
       .row.mb-2
         .col-2
         .col.form-text 名義が存在しない場合は下のフォームから追加してください。
@@ -37,7 +37,7 @@
   .mt-2
     =form_with(model: Artist.new, local: false) do |form|
       .col-2.form-label=form.label :"新規名義*", class: "mt-"
-      =form.text_field :name, class: "form-control"
+      =form.text_field :name, class: "form-control", required: :required
       .col-2.form-label=form.label :bio, class: "mt-2"
       =form.text_field :bio, class: "form-control"
       .col.overflow-hidden.mt-3
