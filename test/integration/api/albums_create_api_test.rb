@@ -33,7 +33,7 @@ class Api::AlbumsCreateApiTest < ActionDispatch::IntegrationTest
                           params: { name: @album.name, kiki_taikai_date: '2099-01-01' }
     assert_response 409
     res = JSON.parse(response.body)
-    assert_equal ["Nameはすでに存在します"], res['messages']
+    assert_equal ['Nameはすでに存在します'], res['messages']
   end
 
   test '成功したときは200を返す' do
@@ -45,7 +45,7 @@ class Api::AlbumsCreateApiTest < ActionDispatch::IntegrationTest
     @new_album = Album.find_by(name: 'new_album')
     res = JSON.parse(response.body)
     assert_equal @new_album.name, res['album']['name']
-    assert_equal @new_album.kiki_taikai_date.strftime("%Y-%m-%d"), res['album']['kiki_taikai_date']
+    assert_equal @new_album.kiki_taikai_date.strftime('%Y-%m-%d'), res['album']['kiki_taikai_date']
     assert_equal new_album_music_url(@new_album), res['album']['form_url']
   end
 end

@@ -25,7 +25,7 @@ class Api::AlbumsSearchApiTest < ActionDispatch::IntegrationTest
     assert_response 200
     res = JSON.parse(response.body)
     assert_equal @album.name, res['albums'][0]['name']
-    assert_equal @album.kiki_taikai_date.strftime("%Y-%m-%d"), res['albums'][0]['kiki_taikai_date']
+    assert_equal @album.kiki_taikai_date.strftime('%Y-%m-%d'), res['albums'][0]['kiki_taikai_date']
     assert_equal album_url(@album), res['albums'][0]['url']
   end
 end

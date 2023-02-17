@@ -20,7 +20,7 @@ class AlbumTest < ActiveSupport::TestCase
   end
 
   test 'kiki_taikai_dateが空でない' do
-    @album.kiki_taikai_date = ""
+    @album.kiki_taikai_date = ''
     assert_not @album.valid?
   end
 
