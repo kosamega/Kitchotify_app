@@ -1,9 +1,12 @@
 album1:
   name: album1
+  kiki_taikai_date: 2022-01-01
 
 
 album2:
   name: album2
+  kiki_taikai_date: 2022-01-01
 
 album3:
   name: album3
+  kiki_taikai_date: 2022-01-01
