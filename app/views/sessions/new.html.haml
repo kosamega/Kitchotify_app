@@ -5,9 +5,9 @@
     = form_with(url: sessions_path, scope: :session, local: true) do |f|
       %ul
         %li= f.label :ユーザーネーム
-        %li= f.text_field :name, value: @name
+        %li= f.text_field :name, value: @name, required: :required
         %li= f.label :password
-        %li= f.password_field :password, value: @password
+        %li= f.password_field :password, value: @password, required: :required
         = f.label :remember_me, class: "checkbox inline" do
           %li
             = f.check_box :remember_me
