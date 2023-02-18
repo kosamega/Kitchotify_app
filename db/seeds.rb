@@ -23,7 +23,8 @@ Playlist.create!(
 5.times do |n|
   Album.create!(
     name: "月吉#{180+n}号",
-    released: true
+    released: true,
+    kiki_taikai_date: '2023-01-01'
   )
 
   Artist.create!(
