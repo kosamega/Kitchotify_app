@@ -1,6 +1,7 @@
 const audio = document.getElementById('audio');
 const audioPlayer = document.getElementById("foot-audio-player");
 const infos = gon.infos_j
+const relations = gon.relations
 const indexIncoContent = document.getElementById('index-info-content')
 let max = infos.length
 
@@ -142,10 +143,12 @@ function setDeleteButton(){
 
 setDeleteButton();
 
-function trDelete(evt){
+async function trDelete(evt){
   let track = evt.currentTarget.closest('.track')
   let trackId = track.id
   let trackPosition = infos.findIndex(info => info.id == trackId)
+  let relation_id = relations[trackId]['id']
+  await fetch(`/music_playlist_relations/${relation_id}`, {method: 'DELETE'})
   track.remove()
   infos.splice(trackPosition, 1);
 
