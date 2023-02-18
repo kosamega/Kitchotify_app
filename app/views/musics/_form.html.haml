@@ -15,7 +15,7 @@
           %option{value: artist.name}
       .row.mb-2
         .col-2.col-form-label Tr.
-        .col= form.number_field :track, class: "form-control", min: 0
+        .col= form.number_field :track, class: "form-control", min: 0, max: 999
       .row.mb-2
         .col-2
         .col.form-text 曲順が決まっていない場合は適当な数字で登録してください。
