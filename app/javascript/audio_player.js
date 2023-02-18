@@ -1,28 +1,28 @@
-var audio = document.getElementById('audio');
-var audioPlayer = document.getElementById("foot-audio-player");
-let infos = gon.infos_j
-var max = infos.length
+const audio = document.getElementById('audio');
+const audioPlayer = document.getElementById("foot-audio-player");
+const infos = gon.infos_j
 const indexIncoContent = document.getElementById('index-info-content')
+let max = infos.length
 
-function changeInfo(){
-  var artistElement = document.getElementById("track-artist");
+function changeInfo(index){
+  let artistElement = document.getElementById("track-artist");
   artistElement.innerHTML = infos[index]['artist'];
 
-  var nameElement = document.getElementById("track-name");
+  let nameElement = document.getElementById("track-name");
   nameElement.innerHTML = infos[index]['name'];
 
   indexIncoContent.innerText = infos[index]['index_info']
 }
 
-function nowPlay(trackNum){
-  var track = document.getElementById(trackNum);
+function nowPlay(id){
+  let track = document.getElementById(id);
   if(track == null) return;
   track.classList.add("now-play");
 }
 
 
-function endPlay(trackNum){
-  var track = document.querySelector('.now-play');
+function endPlay(){
+  let track = document.querySelector('.now-play');
   if(track == null) return;
   track.classList.remove("now-play");
 }
@@ -32,31 +32,31 @@ audio.controls = true;
 audio.controlsList.add("nodownload");
 
 audio.src = infos[0]['url'];
-var index = 0
-changeInfo();
+let index = 0
+changeInfo(index);
 nowPlay(0);
 
 // 再生が終わったら
 audio.addEventListener('ended', async function(){
-  endPlay(index);
+  endPlay();
   index++
   if ( index < max) {
       audio.src = infos[index]['url'];
-      changeInfo();
-      nowPlay(index);
+      changeInfo(index);
+      nowPlay(infos[index]['id']);
       await audio.play();
   }else{
       audio.src = infos[0]['url'];
       index = 0;
-      changeInfo();
-      nowPlay(index);
+      changeInfo(index);
+      nowPlay(infos[index]['id']);
   }
 });
 
 
 // audio player関連
 async function prev(){
-    endPlay(index);
+    endPlay();
     if (0 < index) {
         index--;
     }
@@ -64,8 +64,8 @@ async function prev(){
         index = 0;
     }
     audio.src = infos[index]['url'];
-    changeInfo();
-    nowPlay(index);
+    changeInfo(index);
+    nowPlay(infos[index]['id']);
     await audio.play();
 }
 
@@ -75,7 +75,7 @@ if(prevBtn != null){
 }
 
 async function next(){
-  endPlay(index);
+  endPlay();
     if ( index < (max - 1) ) {
       index++;
     }
@@ -83,8 +83,8 @@ async function next(){
       index = 0;
     }
     audio.src = infos[index]['url'];
-    nowPlay(index);
-    changeInfo();
+    nowPlay(infos[index]['id']);
+    changeInfo(index);
     await audio.play();
 }
       
@@ -95,7 +95,7 @@ if(nextBtn != null){
 
 function loop(){
   audio.loop = !audio.loop;
-  var loopbtn = document.getElementById("loop-btn");
+  let loopbtn = document.getElementById("loop-btn");
   if (audio.loop) {
     loopbtn.classList.add("loop-true");
   }
@@ -108,10 +108,10 @@ document.getElementById('loop-btn').addEventListener('click', loop)
 
 // トラックナンバーと再生ボタン
 function setPlayButton(){
-  for(var el of document.querySelectorAll('.track')){
+  for(let el of document.querySelectorAll('.track')){
     el.addEventListener('dblclick', playButton)
   }
-  for(var el of document.querySelectorAll('.tr-number-play')){
+  for(let el of document.querySelectorAll('.tr-number-play')){
     el.addEventListener('click', playButton)
   }
 }
@@ -119,17 +119,23 @@ function setPlayButton(){
 setPlayButton();
 
 async function playButton(evt){
-  endPlay(index);
-  index = evt.currentTarget.closest('.track').id;
-  audio.src = infos[index]['url'];
-  changeInfo();
-  nowPlay(index);
+  endPlay();
+  const id = Number(evt.currentTarget.closest('.track').id);
+  console.log(id)
+  const info = infos.find(el => el.id == id);
+  console.log(info)
+  console.log(infos)
+  audio.src = info['url'];
+  index = infos.indexOf(info)
+  console.log(index)
+  changeInfo(index);
+  nowPlay(id);
   await audio.play();
 }
 
 // プレイリストからトラックを削除したとき、like一覧でunlikeしたときにつじつまを合わせる
 function setDeleteButton(){
-  for(var el of document.querySelectorAll('.delete-btn')){
+  for(let el of document.querySelectorAll('.delete-btn')){
     el.addEventListener('click', trDelete)
   }
 }
@@ -137,26 +143,28 @@ function setDeleteButton(){
 setDeleteButton();
 
 function trDelete(evt){
-  let trackNum = evt.currentTarget.closest('.track').id
-  infos.splice(trackNum, 1);
+  let track = evt.currentTarget.closest('.track')
+  let trackId = track.id
+  let trackPosition = infos.findIndex(info => info.id == trackId)
+  track.remove()
+  infos.splice(trackPosition, 1);
+
   
-  if(trackNum == index){
+  if(trackPosition == index){
     if(index == (max-1)){
       index--;
     }
     audio.src = infos[index]['url'];
     audio.load();
-    changeInfo();
-    nowPlay(index + 1);
+    changeInfo(index);
+    nowPlay(infos[index+1]['id']);
   }
   max--;
-  trackNum++;
-  for(var i = trackNum; i <= max; i++){
-    const track = document.getElementById(`${i}`)
-    track.setAttribute("id", `${i - 1}`);
-    track.querySelector('.tr-number').innerHTML = i ;
-    track.querySelector('form').number.value = i - 1
-  }
+  trackPosition++;
+  console.log(document.querySelectorAll('.tr-number'))
+  document.querySelectorAll('.tr-number').forEach((el, index)=>{
+    el.innerHTML = index+1;
+  })
   setPlayButton();
   setDeleteButton();
 }
