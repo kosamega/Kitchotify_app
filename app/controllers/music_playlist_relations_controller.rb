@@ -14,7 +14,6 @@ class MusicPlaylistRelationsController < ApplicationController
 
   def destroy
     relation = MusicPlaylistRelation.find_by(music_id: params[:music_id], playlist_id: params[:playlist_id])
-    @track_id = relation.position
     relation.destroy
     @playlist = Playlist.find(params[:playlist_id])
     @music = Music.find(params[:music_id])
