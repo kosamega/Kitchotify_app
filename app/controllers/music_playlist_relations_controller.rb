@@ -1,5 +1,5 @@
 class MusicPlaylistRelationsController < ApplicationController
-  before_action :set_music_playlist_relation
+  before_action :set_music_playlist_relation, only: %i[destroy]
   before_action :logged_in_user, :not_kitchonkun, :correct_user
   protect_from_forgery with: :null_session
 
@@ -30,7 +30,7 @@ class MusicPlaylistRelationsController < ApplicationController
   end
 
   def correct_user
-    playlist_user = @music_playlist_relation.playlist.user
+    playlist_user = @music_playlist_relation&.playlist&.user || Playlist.find(params[:playlist_id]).user
     redirect_to root_path unless playlist_user == current_user
   end
 end
