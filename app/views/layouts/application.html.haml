@@ -33,6 +33,7 @@
     = javascript_include_tag 'new_playlist.js'
     - if @infos.present?
       = javascript_include_tag 'audio_player.js'
+      = javascript_include_tag 'like.js'
     - if current_user == @playlist&.user && @at_playlists_show == true
       = javascript_include_tag 'playlist.js'
     
