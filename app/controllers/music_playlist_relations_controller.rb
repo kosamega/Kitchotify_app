@@ -1,7 +1,6 @@
 class MusicPlaylistRelationsController < ApplicationController
   before_action :set_music_playlist_relation, only: %i[destroy]
   before_action :logged_in_user, :not_kitchonkun, :correct_user
-  protect_from_forgery with: :null_session
 
   def create
     @music = Music.find(params[:music_id])

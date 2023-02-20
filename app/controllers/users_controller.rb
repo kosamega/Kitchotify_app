@@ -4,7 +4,6 @@ class UsersController < ApplicationController
   before_action :admin_user_or_kitchonkun, only: %i[new create]
   before_action :set_user, only: %i[show edit update destroy]
   before_action :correct_user, only: %i[edit update]
-  protect_from_forgery with: :null_session
 
   def index
     @users = User.all
