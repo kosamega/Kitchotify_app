@@ -1,4 +1,3 @@
-console.log('aaaa')
 if(<%=@save%>){
   $('#tracks').append("<%= escape_javascript(render('shared/track_row', music: @music , like_index: false, number: @number, at_album_show: @at_album_show)) if @save %>");
 }

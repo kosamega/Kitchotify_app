@@ -108,47 +108,41 @@ function loop(){
 document.getElementById('loop-btn').addEventListener('click', loop)
 
 // トラックナンバーと再生ボタン
-function setPlayButton(){
+function setPlayBtn(){
   for(let el of document.querySelectorAll('.track')){
-    el.addEventListener('dblclick', playButton)
+    el.addEventListener('dblclick', playBtn)
   }
   for(let el of document.querySelectorAll('.tr-number-play')){
-    el.addEventListener('click', playButton)
+    el.addEventListener('click', playBtn)
   }
 }
 
-setPlayButton();
+setPlayBtn();
 
-async function playButton(evt){
+async function playBtn(evt){
   endPlay();
   const id = Number(evt.currentTarget.closest('.track').id);
-  console.log(id)
   const info = infos.find(el => el.id == id);
-  console.log(info)
-  console.log(infos)
   audio.src = info['url'];
   index = infos.indexOf(info)
-  console.log(index)
   changeInfo(index);
   nowPlay(id);
   await audio.play();
 }
 
 // プレイリストからトラックを削除したとき、like一覧でunlikeしたときにつじつまを合わせる
-function setDeleteButton(){
+function setDeleteBtn(){
   for(let el of document.querySelectorAll('.delete-btn')){
     el.addEventListener('click', trDelete)
   }
 }
 
-setDeleteButton();
+setDeleteBtn();
 
 async function trDelete(evt){
   let track = evt.currentTarget.closest('.track')
   let trackId = track.id
   let trackPosition = infos.findIndex(info => info.id == trackId)
-  let relation_id = relations[trackId]['id']
-  await fetch(`/music_playlist_relations/${relation_id}`, {method: 'DELETE'})
   track.remove()
   infos.splice(trackPosition, 1);
 
@@ -164,12 +158,11 @@ async function trDelete(evt){
   }
   max--;
   trackPosition++;
-  console.log(document.querySelectorAll('.tr-number'))
   document.querySelectorAll('.tr-number').forEach((el, index)=>{
     el.innerHTML = index+1;
   })
-  setPlayButton();
-  setDeleteButton();
+  setPlayBtn();
+  setDeleteBtn();
 }
 
 // インデックス情報
