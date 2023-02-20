@@ -1,5 +1,0 @@
-if (<%= @like_index %> == true) {
-    $("#<%=@number%>").remove();
-}else{
-    $("#<%=@like_id%>").html("<%= escape_javascript(render('shared/like', unliked_music: @music, like_index: false, number: @number)) %>");
-}

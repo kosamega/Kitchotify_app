@@ -15,13 +15,15 @@
   - if !@at_album_show
     %td.album-name-big= link_to(music.album.name, album_path(music.album))
   %td.artist-name-big= link_to(music.artist.name, artist_path(music.artist))
-  - if @like_index
-    %td.like-btn= render "shared/unlike", like: music.likes.find_by(user_id: current_user.id), like_index: true, number: number
-  - else
-    - if like = music.likes.find_by(user_id: current_user.id)
-      %td{id: "like#{number}"}= render "shared/unlike", like: like , like_index: false, number: number
+  %td{data:{music_id: music.id, like_id: Like.find_by(music_id: music.id, user_id: current_user.id)&.id}}
+    - if @like_index
+      %i.fa.fa-heart.liked-btn.delete-btn.delete-like-btn
     - else
-      %td{id: "like#{number}"}= render "shared/like", unliked_music: music, like_index: false, number: number
+      - if like = music.likes.find_by(user_id: current_user.id)
+        %i.fa.fa-heart.liked-btn.delete-like-btn
+      - else
+        %i.fa.fa-heart.unliked-btn.create-like-btn
+
   %td.add-playlist
     .add_playlist-point
       %i.fa-solid.fa-plus.fa-config
@@ -39,7 +41,7 @@
                 = playlist.name
   - if @at_playlists_show == true && @playlist.user == current_user
     %td
-      = button_tag class: "delete-btn border-0 bg-transparent" do
+      = button_tag class: "delete-btn relation-delete-btn border-0 bg-transparent" do
         削除
   - if current_user.editor?
     %td
