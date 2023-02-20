@@ -1,3 +1,4 @@
+// ドラッグアンドドロップで並び替え
 document.querySelectorAll(".track").forEach(elm => {
     elm.ondragstart = function () {
         event.dataTransfer.setData('text/plain', event.target.id);
@@ -69,3 +70,15 @@ document.querySelectorAll(".track").forEach(elm => {
         })
     };
 });
+
+// プレイリストから曲を削除
+function setRelationDeleteBtn(){
+    for(let el of document.querySelectorAll('.relation-delete-btn')){
+      el.addEventListener('click', async ()=>{
+        let relation_id = relations[trackId]['id']
+        await fetch(`/music_playlist_relations/${relation_id}`, {method: 'DELETE'})
+      })
+    }
+  }
+  
+  setRelationDeleteBtn();
