@@ -41,7 +41,7 @@
                 = playlist.name
   - if @at_playlists_show == true && @playlist.user == current_user
     %td
-      = button_tag class: "delete-btn relation-delete-btn border-0 bg-transparent" do
+      = button_tag class: "delete-btn relation-delete-btn border-0 bg-transparent", data: {relation_id: @relations[number].id} do
         削除
   - if current_user.editor?
     %td
