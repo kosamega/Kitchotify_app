@@ -25,15 +25,7 @@ const searchMusic = (e) => {
   }
 }
 
-const getCsrfToken = () => {
-  const metas = document.getElementsByTagName('meta');
-  for (let meta of metas) {
-      if (meta.getAttribute('name') === 'csrf-token') {
-          return meta.getAttribute('content');
-      }
-  }
-  return '';
-}
+
 
 quiz_index = 0
 answer_audio = document.getElementById("answer-audio")
@@ -67,7 +59,7 @@ const correct = async ()=>{
 
     const clearTime = m*60000 + s*1000 + ms
 
-    await fetch("/quiz_results", {
+    ("/quiz_results", {
       method: "POST", 
       headers: {"Content-Type": "application/json", 
                 'X-CSRF-Token': getCsrfToken()},

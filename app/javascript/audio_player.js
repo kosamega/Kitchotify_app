@@ -1,7 +1,6 @@
 const audio = document.getElementById('audio');
 const audioPlayer = document.getElementById("foot-audio-player");
 const infos = gon.infos_j
-const relations = gon.relations
 const indexIncoContent = document.getElementById('index-info-content')
 let max = infos.length
 
@@ -189,5 +188,5 @@ indexCloseBtn.addEventListener('click', indexHide)
 audio.addEventListener('volumechange', async function(event){
   const url = `/users/${gon.user.id}`
   const params = {user: {volume: event.target.volume}};
-  await fetch(url, {method: 'PUT', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(params)})
+  await fetch(url, {method: 'PUT', headers: {'Content-Type': 'application/json', 'X-CSRF-Token': getCsrfToken()}, body: JSON.stringify(params)})
 });

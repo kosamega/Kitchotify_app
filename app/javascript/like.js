@@ -1,3 +1,6 @@
+// csrf-tokenをセット
+
+
 // likeを削除
 function setDeleteLikeBtn(){
   for(let el of document.querySelectorAll('.delete-like-btn')){
@@ -8,12 +11,11 @@ function setDeleteLikeBtn(){
 async function deleteLike(evt){
   const likeBtn = evt.currentTarget 
   let likeId = likeBtn.parentNode.dataset.likeId
-  const token = document.getElementsByName('csrf-token')[0].content;
   await fetch(`/likes/${likeId}`, {
     method: 'DELETE',
     credentisls: 'include',
     headers: {
-      'X-CSRF-Token': token
+      'X-CSRF-Token': getCsrfToken()
     }
   })
   likeBtn.removeEventListener('click', deleteLike)
@@ -34,12 +36,11 @@ function setCreateLikeBtn(){
 async function createLike(evt){
   const likeBtn = evt.currentTarget 
   let musicId = likeBtn.parentNode.dataset.musicId
-  const token = document.getElementsByName('csrf-token')[0].content;
   const response = await fetch(`/likes?music_id=${musicId}`, {
     method: 'POST',
     credentisls: 'include',
     headers: {
-      'X-CSRF-Token': token
+      'X-CSRF-Token': getCsrfToken()
     }
   })
   const json = await response.json()

@@ -38,14 +38,26 @@ document.querySelectorAll(".track").forEach(elm => {
                 infos.splice(dragged_position, 1)
                 infos.splice(dropped_position - 1, 0, info)
                 if (!(dragged_position - dropped_position == 1)){
-                    await fetch(`/playlists/${gon.playlist_id}/position?drag=${dragged_position}&drop=${dropped_position - 1}`, {method: 'PUT'})
+                    await fetch(`/playlists/${gon.playlist_id}/position?drag=${dragged_position}&drop=${dropped_position - 1}`, {
+                        method: 'PUT',
+                        credentisls: 'include',
+                        headers: {
+                        'X-CSRF-Token': getCsrfToken()
+                        }
+                    })
                 }
             //マウスカーソルの位置が要素の半分より下
             } else {
                 this.parentNode.insertBefore(elm_drag, this.nextSibling);
                 infos.splice(dragged_position, 1)
                 infos.splice(dropped_position, 0, info)
-                await fetch(`/playlists/${gon.playlist_id}/position?drag=${dragged_position}&drop=${dropped_position}`, {method: 'PUT'})
+                await fetch(`/playlists/${gon.playlist_id}/position?drag=${dragged_position}&drop=${dropped_position}`, {
+                    method: 'PUT',
+                    credentisls: 'include',
+                    headers: {
+                    'X-CSRF-Token': getCsrfToken()
+                    }
+                })
             }
         // 下から上
         }else if(dragged_position>dropped_position){
@@ -54,13 +66,25 @@ document.querySelectorAll(".track").forEach(elm => {
                 this.parentNode.insertBefore(elm_drag, this);
                 infos.splice(dragged_position, 1)
                 infos.splice(dropped_position, 0, info)
-                await fetch(`/playlists/${gon.playlist_id}/position?drag=${dragged_position}&drop=${dropped_position}`, {method: 'PUT'})
+                await fetch(`/playlists/${gon.playlist_id}/position?drag=${dragged_position}&drop=${dropped_position}`, {
+                    method: 'PUT',
+                    credentisls: 'include',
+                    headers: {
+                    'X-CSRF-Token': getCsrfToken()
+                    }
+                })
             //マウスカーソルの位置が要素の半分より下
             } else {
                 this.parentNode.insertBefore(elm_drag, this.nextSibling);
                 infos.splice(dragged_position, 1)
                 infos.splice(dropped_position + 1, 0, info)
-                await fetch(`/playlists/${gon.playlist_id}/position?drag=${dragged_position}&drop=${dropped_position + 1}`, {method: 'PUT'})
+                await fetch(`/playlists/${gon.playlist_id}/position?drag=${dragged_position}&drop=${dropped_position + 1}`, {
+                    method: 'PUT',
+                    credentisls: 'include',
+                    headers: {
+                    'X-CSRF-Token': getCsrfToken()
+                    }
+                })
             }
         }
         this.style.borderTop = '';
@@ -75,10 +99,17 @@ document.querySelectorAll(".track").forEach(elm => {
 function setRelationDeleteBtn(){
     for(let el of document.querySelectorAll('.relation-delete-btn')){
       el.addEventListener('click', async ()=>{
-        let relation_id = relations[trackId]['id']
-        await fetch(`/music_playlist_relations/${relation_id}`, {method: 'DELETE'})
+        let relationId = el.dataset.relationId
+        console.log(relationId)
+        await fetch(`/music_playlist_relations/${relationId}`, {
+            method: 'DELETE',
+            credentisls: 'include',
+            headers: {
+            'X-CSRF-Token': getCsrfToken()
+            }        
+        })
       })
     }
-  }
+}
   
-  setRelationDeleteBtn();
+setRelationDeleteBtn();

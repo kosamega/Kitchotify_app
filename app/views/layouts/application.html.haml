@@ -29,6 +29,7 @@
       = render "layouts/footer"
       
     = include_gon
+    = javascript_include_tag 'get_csrf_token.js'
     = javascript_include_tag 'side_bar.js'
     = javascript_include_tag 'new_playlist.js'
     - if @infos.present?
