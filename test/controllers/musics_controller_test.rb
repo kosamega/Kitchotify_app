@@ -14,6 +14,7 @@ class MusicsControllerTest < ActionDispatch::IntegrationTest
     assert_difference('Music.count') do
       post album_musics_path(@album), params: { music: { name: 'hoge',
                                                          index_info: 'インデックス情報',
+                                                         track: 0,
                                                          artist_name: @artist.name } }
     end
   end

@@ -14,10 +14,11 @@
     %h2= @music.name
     .h3=link_to @music.artist.name, artist_path(@music.artist)
     .like-add-playlist
-      - if @like = Like.find_by(user_id: current_user.id, music_id: @music.id)
-        #like0.d-inline-block= render "shared/unlike", like: @like , like_index: false, number: "0"
-      - else
-        #like0.d-inline-block= render "shared/like", unliked_music: @music, like_index: false, number: "0"
+      %div.d-inline-block{data:{music_id: @music.id, like_id: Like.find_by(music_id: @music.id, user_id: current_user.id)&.id}}
+        - if @music.likes.find_by(user_id: current_user.id)
+          %i.fa.fa-heart.liked-btn.delete-like-btn
+        - else
+          %i.fa.fa-heart.unliked-btn.create-like-btn
       .add-playlist.d-inline-block
         .add_playlist-point
           %i.fa-solid.fa-plus.fa-config
