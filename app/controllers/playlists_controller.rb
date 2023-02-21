@@ -20,6 +20,7 @@ class PlaylistsController < ApplicationController
     @infos = set_infos(@musics)
     gon.infos_j = @infos
     gon.playlist_id = @playlist.id
+    gon.relations = @relations
   end
 
   def create

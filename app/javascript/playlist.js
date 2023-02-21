@@ -1,4 +1,4 @@
-// var infos = gon.infos_j
+// ドラッグアンドドロップで並び替え
 document.querySelectorAll(".track").forEach(elm => {
     elm.ondragstart = function () {
         event.dataTransfer.setData('text/plain', event.target.id);
@@ -25,71 +25,91 @@ document.querySelectorAll(".track").forEach(elm => {
         let dragged_id = Number(event.dataTransfer.getData('text/plain'));
         let elm_drag = document.getElementById(dragged_id);
         let dropped_id = Number(this.getAttribute("id"));
-        let elm_drop = document.getElementById(dropped_id);
+        const info = infos.find(el => el.id == dragged_id)
+        let dragged_position = infos.findIndex(el => el.id == dragged_id)
+        let dropped_position = infos.findIndex(el => el.id == dropped_id)
 
         let rect = this.getBoundingClientRect();
         // 上から下
-        if(dragged_id<dropped_id){
+        if(dragged_position<dropped_position){
             //マウスカーソルの位置が要素の半分より上のとき
             if ((event.clientY - rect.top) < (this.clientHeight / 2)) {
-                for(let i=dragged_id+1; i<dropped_id; i++){
-                    document.getElementById(i).querySelector(".tr-number").innerText = i;
-                    document.getElementById(i).setAttribute("id", `${i-1}`);
-                }
                 this.parentNode.insertBefore(elm_drag, this);
-                elm_drag.querySelector(".tr-number").innerHTML = dropped_id
-                elm_drag.setAttribute("id", dropped_id - 1);
-                info = infos[dragged_id]
-                infos.splice(dragged_id, 1)
-                infos.splice(dropped_id - 1, 0, info)
-                if (!(dragged_id - dropped_id == 1)){
-                    await fetch(`/playlists/${gon.playlist_id}/position?drag=${dragged_id}&drop=${dropped_id - 1}`, {method: 'PUT'})
+                infos.splice(dragged_position, 1)
+                infos.splice(dropped_position - 1, 0, info)
+                if (!(dragged_position - dropped_position == 1)){
+                    await fetch(`/playlists/${gon.playlist_id}/position?drag=${dragged_position}&drop=${dropped_position - 1}`, {
+                        method: 'PUT',
+                        credentisls: 'include',
+                        headers: {
+                        'X-CSRF-Token': getCsrfToken()
+                        }
+                    })
                 }
             //マウスカーソルの位置が要素の半分より下
             } else {
-                for(let i=dragged_id+1; i<=dropped_id; i++){
-                    document.getElementById(i).querySelector(".tr-number").innerText = i;
-                    document.getElementById(i).setAttribute("id", `${i-1}`);
-                }
                 this.parentNode.insertBefore(elm_drag, this.nextSibling);
-                elm_drag.setAttribute("id", dropped_id);
-                elm_drag.querySelector(".tr-number").innerHTML = dropped_id + 1;
-                info = infos[dragged_id]
-                infos.splice(dragged_id, 1)
-                infos.splice(dropped_id, 0, info)
-                await fetch(`/playlists/${gon.playlist_id}/position?drag=${dragged_id}&drop=${dropped_id}`, {method: 'PUT'})
+                infos.splice(dragged_position, 1)
+                infos.splice(dropped_position, 0, info)
+                await fetch(`/playlists/${gon.playlist_id}/position?drag=${dragged_position}&drop=${dropped_position}`, {
+                    method: 'PUT',
+                    credentisls: 'include',
+                    headers: {
+                    'X-CSRF-Token': getCsrfToken()
+                    }
+                })
             }
         // 下から上
-        }else if(dragged_id>dropped_id){
+        }else if(dragged_position>dropped_position){
             //マウスカーソルの位置が要素の半分より上
             if ((event.clientY - rect.top) < (this.clientHeight / 2)) {
-                for(let i=dragged_id-1; dropped_id<=i; i--){
-                    document.getElementById(i).querySelector(".tr-number").innerText = i + 2;
-                    document.getElementById(i).setAttribute("id", i + 1);
-                }
                 this.parentNode.insertBefore(elm_drag, this);
-                elm_drag.setAttribute("id", dropped_id);
-                elm_drag.querySelector(".tr-number").innerHTML = dropped_id + 1;
-                info = infos[dragged_id]
-                infos.splice(dragged_id, 1)
-                infos.splice(dropped_id, 0, info)
-                await fetch(`/playlists/${gon.playlist_id}/position?drag=${dragged_id}&drop=${dropped_id}`, {method: 'PUT'})
+                infos.splice(dragged_position, 1)
+                infos.splice(dropped_position, 0, info)
+                await fetch(`/playlists/${gon.playlist_id}/position?drag=${dragged_position}&drop=${dropped_position}`, {
+                    method: 'PUT',
+                    credentisls: 'include',
+                    headers: {
+                    'X-CSRF-Token': getCsrfToken()
+                    }
+                })
             //マウスカーソルの位置が要素の半分より下
             } else {
-                for(let i=dragged_id-1; dropped_id<i; i--){
-                    document.getElementById(i).querySelector(".tr-number").innerText = i + 2;
-                    document.getElementById(i).setAttribute("id", i + 1);
-                }
                 this.parentNode.insertBefore(elm_drag, this.nextSibling);
-                elm_drag.setAttribute("id", dropped_id + 1);
-                elm_drag.querySelector(".tr-number").innerHTML = dropped_id + 2;
-                info = infos[dragged_id]
-                infos.splice(dragged_id, 1)
-                infos.splice(dropped_id + 1, 0, info)
-                await fetch(`/playlists/${gon.playlist_id}/position?drag=${dragged_id}&drop=${dropped_id + 1}`, {method: 'PUT'})
+                infos.splice(dragged_position, 1)
+                infos.splice(dropped_position + 1, 0, info)
+                await fetch(`/playlists/${gon.playlist_id}/position?drag=${dragged_position}&drop=${dropped_position + 1}`, {
+                    method: 'PUT',
+                    credentisls: 'include',
+                    headers: {
+                    'X-CSRF-Token': getCsrfToken()
+                    }
+                })
             }
         }
         this.style.borderTop = '';
         this.style.borderBottom = '';
+        document.querySelectorAll('.tr-number').forEach((el, index)=>{
+            el.innerHTML = index+1;
+        })
     };
 });
+
+// プレイリストから曲を削除
+function setRelationDeleteBtn(){
+    for(let el of document.querySelectorAll('.relation-delete-btn')){
+      el.addEventListener('click', async ()=>{
+        let relationId = el.dataset.relationId
+        console.log(relationId)
+        await fetch(`/music_playlist_relations/${relationId}`, {
+            method: 'DELETE',
+            credentisls: 'include',
+            headers: {
+            'X-CSRF-Token': getCsrfToken()
+            }        
+        })
+      })
+    }
+}
+  
+setRelationDeleteBtn();

@@ -15,28 +15,12 @@ class LikesController < ApplicationController
 
   def create
     @like = current_user.likes.create(music_id: params[:music_id])
-    @number = params[:number]
-    @like_id = "like#{params[:number]}"
-    respond_to do |format|
-      format.html { redirect_back_or root_path }
-      format.js
-    end
+    render json: {like_id: @like.id}
   end
 
   def destroy
     return unless @like.user == current_user
-
-    @music = @like.music
-    @number = params[:number]
-    @like_id = "like#{params[:number]}"
-
-    @unliked_music = @like.music
     @like.destroy
-    @like_index = params[:like_index]
-    respond_to do |format|
-      format.html { redirect_back_or root_path }
-      format.js
-    end
   end
 
   def set_like

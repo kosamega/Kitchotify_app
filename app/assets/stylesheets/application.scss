@@ -439,12 +439,14 @@ a:hover {
 }
 
 .unliked-btn {
+  cursor: pointer;
   margin-right: 10px;
   color: #8899a6;
 
 }
 
 .liked-btn {
+  cursor: pointer;
   margin-right: 10px;
   color: #ff2581;
 }
@@ -488,13 +490,6 @@ a:hover {
   p {
     margin:7px 5px;
   }
-}
-
-.heart-btn {
-  border: none;
-  background-color:#00000000;
-  cursor: pointer;
-  padding: 0 0 0 5px;
 }
 
 .music-list {
