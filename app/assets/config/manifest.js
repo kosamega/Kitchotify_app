@@ -11,3 +11,4 @@
 //= link music_new.js
 //= link copy_link.js
 //= link like.js
+//= link get_csrf_token.js
