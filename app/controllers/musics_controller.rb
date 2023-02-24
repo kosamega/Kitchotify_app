@@ -73,11 +73,23 @@ class MusicsController < ApplicationController
     )
     @music.audio.attach(music_params[:audio])
     if @music.errors.full_messages.present?
-      flash.now[:danger] = @music.errors.full_messages.join('<br>')
-      render 'edit'
+      @save = false
+      respond_to do |format|
+        format.html do
+          flash.now[:danger] = @music.errors.full_messages.join('<br>')
+          render 'edit'
+        end
+        format.js
+      end
     else
-      flash[:success] = '更新されました'
-      redirect_to [@album, @music]
+      @save = true
+      respond_to do |format|
+        format.html do
+          flash[:success] = '更新されました'
+          redirect_to [@album, @music]
+        end
+        format.js
+      end  
     end
   end
 
