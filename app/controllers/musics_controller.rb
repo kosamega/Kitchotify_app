@@ -5,6 +5,7 @@ class MusicsController < ApplicationController
   before_action :admin_user, only: %i[destroy]
   before_action :set_current_user_playlists, only: %i[show create]
   before_action :set_current_user_volume, only: %i[show]
+  before_action :artist_exist?, only: %i[create]
   include MusicsHelper
 
   def show
@@ -26,18 +27,7 @@ class MusicsController < ApplicationController
   end
 
   def create
-    if Artist.find_by(name: music_params[:artist_name]).nil?
-      return respond_to do |format|
-        format.html do
-          flash[:danger] = "#{music_params[:artist_name]}というアーティストは存在しません。<br>ページ下部からアーティストを追加してください。"
-          redirect_to new_album_music_path(@album)
-        end
-        format.js do
-          @save = false
-          @messages = "#{music_params[:artist_name]}というアーティストは存在しません。<br>ページ下部からアーティストを追加してください。"
-        end
-      end
-    end
+    return if Artist.find_by(name: music_params[:artist_name]).nil?
 
     @music = @album.musics.build(
       name: music_params[:name],
@@ -73,11 +63,23 @@ class MusicsController < ApplicationController
     )
     @music.audio.attach(music_params[:audio])
     if @music.errors.full_messages.present?
-      flash.now[:danger] = @music.errors.full_messages.join('<br>')
-      render 'edit'
+      @save = false
+      respond_to do |format|
+        format.html do
+          flash.now[:danger] = @music.errors.full_messages.join('<br>')
+          render 'edit'
+        end
+        format.js
+      end
     else
-      flash[:success] = '更新されました'
-      redirect_to [@album, @music]
+      @save = true
+      respond_to do |format|
+        format.html do
+          flash[:success] = '更新されました'
+          redirect_to [@album, @music]
+        end
+        format.js
+      end
     end
   end
 
@@ -98,5 +100,20 @@ class MusicsController < ApplicationController
 
   def music_params
     params.require(:music).permit(:name, :artist_name, :track, :audio, :index_info)
+  end
+
+  def artist_exist?
+    return unless Artist.find_by(name: music_params[:artist_name]).nil?
+
+    respond_to do |format|
+      format.html do
+        flash[:danger] = "#{music_params[:artist_name]}というアーティストは存在しません。<br>ページ下部からアーティストを追加してください。"
+        redirect_to new_album_music_path(@album)
+      end
+      format.js do
+        @save = false
+        @messages = "#{music_params[:artist_name]}というアーティストは存在しません。<br>ページ下部からアーティストを追加してください。"
+      end
+    end
   end
 end

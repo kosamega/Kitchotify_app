@@ -1,4 +1,9 @@
-$('#flash').append("<div><p><%= sanitize @messages, tags: %w(br) %></p></div>");
+if (<%=@save%>){
+  $('#flash').append("<div><p>以下の内容で曲を更新しました<%= sanitize "<br>Tr.: #{@music.track}<br>曲名: #{@music.name}<br>アーティスト: #{@music.artist.name}<br>インデックス情報:<br>#{@music.index_info}", tags: %w(br)%></p></div>");
+}else{
+  $('#flash').append("<div><p><%= sanitize @messages, tags: %w(br) %></p></div>");
+}
+
 setTimeout(function(){
 $('#flash div:first').remove();
-}, 3000);
+}, 6000);
