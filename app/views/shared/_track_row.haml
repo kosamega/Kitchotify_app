@@ -48,3 +48,7 @@
       .btn.btn-primary.ms-3
         =link_to "編集", edit_album_music_path(music.album, music), class: "text-white"
 
+- if current_user.editor? && @at_album_show
+  %tr
+    %td{colspan: 6}
+      =render 'musics/form', album: music.album, music: music, action: '更新', edit: true, confirm: '更新しますか', at_album_show: true, local: false
