@@ -28,6 +28,7 @@ class MusicsController < ApplicationController
 
   def create
     return if Artist.find_by(name: music_params[:artist_name]).nil?
+
     @music = @album.musics.build(
       name: music_params[:name],
       track: music_params[:track],
@@ -78,7 +79,7 @@ class MusicsController < ApplicationController
           redirect_to [@album, @music]
         end
         format.js
-      end  
+      end
     end
   end
 
@@ -102,7 +103,8 @@ class MusicsController < ApplicationController
   end
 
   def artist_exist?
-    return if !Artist.find_by(name: music_params[:artist_name]).nil?
+    return unless Artist.find_by(name: music_params[:artist_name]).nil?
+
     respond_to do |format|
       format.html do
         flash[:danger] = "#{music_params[:artist_name]}というアーティストは存在しません。<br>ページ下部からアーティストを追加してください。"
