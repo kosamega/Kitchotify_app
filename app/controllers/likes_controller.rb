@@ -15,11 +15,12 @@ class LikesController < ApplicationController
 
   def create
     @like = current_user.likes.create(music_id: params[:music_id])
-    render json: {like_id: @like.id}
+    render json: { like_id: @like.id }
   end
 
   def destroy
     return unless @like.user == current_user
+
     @like.destroy
   end
 
