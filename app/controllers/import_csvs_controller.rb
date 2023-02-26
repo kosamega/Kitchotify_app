@@ -2,12 +2,10 @@ require 'csv'
 
 class ImportCsvsController < ApplicationController
   before_action :logged_in_user
-  
-  def show
-  end
 
-  def new
-  end
+  def show; end
+
+  def new; end
 
   def create
     rows = CSV.read(params[:csv], encoding: 'BOM|UTF-8', headers: true)
