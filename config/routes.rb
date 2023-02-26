@@ -26,7 +26,7 @@ Rails.application.routes.draw do
 
   resources :searches, only: %i[index]
 
-  resource :csrf, only: %i[show]
+  resource :import_csvs, only: %i[new show create]
 
   namespace :api, defaults: { format: :json } do
     resources :albums, only: %i[index create]

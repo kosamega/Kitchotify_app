@@ -1,0 +1,7 @@
+%h1 アルバム一括インポート
+
+= link_to 'テンプレートをダウンロード', import_csvs_path(format: :csv), class: 'btn btn-sm btn-outline-primary'
+
+= form_with(url: import_csvs_path, method: 'POST', local: true) do |form|
+  = form.file_field :csv
+  = form.submit 'インポート', class: 'btn btn-primary w-100'
