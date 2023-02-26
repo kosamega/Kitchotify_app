@@ -13,6 +13,7 @@
 - if current_user.editor?
   .over-flow-hidden
     .btn.btn-primary.m-3.float-end=link_to "作成", new_album_path, class: "text-white"
+    .btn.btn-primary.m-3.float-end=link_to "一括インポート", new_import_csvs_path, class: "text-white"
 
 .album-container.mt-5
   %h3 未リリース
