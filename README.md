@@ -45,7 +45,7 @@
 * AmazonS3
 
 ## ER図
-![kitchotify_erd](https://user-images.githubusercontent.com/104709001/211757592-035f5bac-efa7-4f40-9f18-8200110d0a59.png)
+![スクリーンショット 2023-01-27 162010](https://user-images.githubusercontent.com/104709001/221803659-cbca124a-69aa-4414-a485-ff86840d0d35.png)
 
 ## Kitchotify Search API
 ### アクセストークン
