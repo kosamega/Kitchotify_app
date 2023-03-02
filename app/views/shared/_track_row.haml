@@ -45,8 +45,7 @@
         削除
   - if current_user.editor?
     %td
-      .btn.btn-primary.ms-3
-        =link_to "編集", edit_album_music_path(music.album, music), class: "text-white"
+      =link_to "編集", edit_album_music_path(music.album, music), class: "text-white btn btn-primary ms-3"
 
 - if current_user.editor? && @at_album_show
   %tr

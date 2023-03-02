@@ -11,10 +11,10 @@
       .col= form.date_select :join_date, start_year: 2000, discard_day: true, class: "form-control", value: @user.join_date, required: :required
     .row
       .col-form-label= new ? "パスワード" : "新しいパスワード"
-      .col= form.password_field :password, class: "form-control", required: :required, minlength: 8
+      .col= form.password_field :password, class: "form-control", minlength: 8
     .row
       .col-form-label パスワードを確認
-      .col= form.password_field :password_confirmation, class: "form-control", required: :required, minlength: 8
+      .col= form.password_field :password_confirmation, class: "form-control", minlength: 8
     .row.mt-3.d-inline-block.float-end
       .col
         = form.submit action, class: "btn btn-primary"
