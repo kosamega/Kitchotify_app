@@ -1,6 +1,6 @@
 class Api::Base < ApplicationController
   protect_from_forgery with: :null_session
-  
+
   def authenticate_search_api
     authenticate_search_api_token || render_unauthorized
   end
