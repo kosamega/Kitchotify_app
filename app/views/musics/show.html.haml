@@ -34,11 +34,9 @@
                   = hidden_field_tag :at_playlist_show, false
                   = button_tag type: :submit, class: "text-start border-0 bg-transparent" do
                     = playlist.name
-      .btn.btn-primary.ms-3
-        =link_to "編集", edit_album_music_path(@album, @music), class: "text-white"
+      =link_to "編集", edit_album_music_path(@album, @music), class: "text-white btn btn-primary ms-3"
       - if current_user.admin?
-        .btn.btn-danger.ms-3
-          =link_to "削除", [@album, @music], method: :delete, data: { confirm: "本当に消しますか" }, class: "text-white"
+        =link_to "削除", [@album, @music], method: :delete, data: { confirm: "本当に消しますか" }, class: "text-white btn btn-danger ms-3"
 
 .row.mt-4
   .col

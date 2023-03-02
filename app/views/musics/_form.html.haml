@@ -44,5 +44,5 @@
         .col.overflow-hidden=button_tag "名義を追加", type: :submit, class: "btn btn-primary float-end", data: { confirm: confirm }
 
 - if edit && current_user.admin?
-  %button.btn.btn-danger.float-end.mt-3= link_to '削除', album_music_path(album, music), method: :delete, data: { confirm: "本当に消しますか" }, class: "text-white"
+  = link_to '削除', album_music_path(album, music), method: :delete, data: { confirm: "本当に消しますか" }, class: "text-white btn btn-danger float-end mt-3"
 

@@ -19,18 +19,13 @@
   -if current_user.editor?
     .add-edit.clearfix.mb-2
       .btn.btn-info#add-music.d-inline-block.me-2 曲を追加
-      %button.btn.btn-info.me-2.d-inline-block
-        =link_to "アルバムを編集", edit_album_path(@album)
+      =link_to "アルバムを編集", edit_album_path(@album), class: "btn btn-info me-2 d-inline-block"
     .download.clearfix.mb-2
-      %button.btn.btn-info.me-2.d-inline-block
-        =link_to "インデックス情報ダウンロード", album_index_path(@album), method: :post
-      %button.btn.btn-info.me-2.d-inline-block
-        =link_to "曲リストダウンロード", album_music_list_path(@album), method: :post
+      =link_to "インデックス情報ダウンロード", album_index_path(@album), method: :post, class: "btn btn-info me-2 d-inline-block"
+      =link_to "曲リストダウンロード", album_music_list_path(@album), method: :post, class: "btn btn-info me-2 d-inline-block"
     .index-info-form.clearfix.mb-2
-      %button.btn.btn-info.me-2.d-inline-block
-        =link_to "インデックス情報登録フォーム", new_album_music_path(@album)
-      %button.btn.btn-light.me-2.d-inline-block#copy-form-link
-        %i.fa-solid.fa-paperclip
+      =link_to "インデックス情報登録フォーム", new_album_music_path(@album), class: "btn btn-info me-2 d-inline-block"
+      %i.fa-solid.fa-paperclip.btn.btn-light.me-2.d-inline-block#copy-form-link
 
 .d-none#add-music-form
   =render "musics/form", album: @album, music: @album.musics.build, action: "作成", edit: false, confirm: "追加しますか", at_album_show: true, local: false

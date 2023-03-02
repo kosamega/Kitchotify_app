@@ -2,7 +2,7 @@
 .artist-info.clearfix
   %h1=@artist.name
   %p=@artist.bio
-  .btn.btn-primary.float-end=link_to "編集", edit_artist_path(@artist), class: "text-white"
+  =link_to "編集", edit_artist_path(@artist), class: "text-white btn btn-primary float-end"
 
 %h2ディスコグラフィー
 = render "musics/music"   
