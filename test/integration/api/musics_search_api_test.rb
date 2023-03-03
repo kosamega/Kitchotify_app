@@ -26,7 +26,7 @@ class Api::MusicsSearchApiTest < ActionDispatch::IntegrationTest
     res = JSON.parse(response.body)
     expected_response = [{ 'name' => @music.name, 'album' => @music.album.name, 'track' => @music.track,
                            'artist' => @music.artist.name, 'url' => album_music_url(@music.album, @music),
-                          'released' => @music.album.released}]
+                           'released' => @music.album.released }]
     assert_equal expected_response, res['musics']
   end
 end
