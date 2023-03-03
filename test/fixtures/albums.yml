@@ -11,4 +11,4 @@ album2:
 album3:
   name: album3
   kiki_taikai_date: 2022-01-01
-  released: true
+  released: false
