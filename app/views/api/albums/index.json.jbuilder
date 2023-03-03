@@ -8,5 +8,6 @@ json.albums do
         json.partial! 'api/musics/music', music:
       end
     end
+    json.released album.released
   end
 end
