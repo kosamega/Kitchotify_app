@@ -39,4 +39,8 @@ class AlbumTest < ActiveSupport::TestCase
       assert_not @album.valid?, "#{date.inspect} should be invalid"
     end
   end
+
+  test 'jacketが正常にattachされる' do
+    assert @album.jacket.attached?
+  end
 end
