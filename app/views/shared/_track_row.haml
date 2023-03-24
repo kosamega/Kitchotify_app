@@ -1,8 +1,8 @@
 %tr.align-middle.track{id: number, draggable: "#{true if @at_playlists_show}"}
   %th.play-button.tr-number-play.position-relative.pe-0{scope: "row"}
-    .tr-number= number+1
-    .position-absolute.top-50.translate-middle.ms-2
-      %i.fa-duotone.fa-play.fa.tr-playbutton
+    .tr-number= @at_album_show ? music.track : number+1
+    -# .position-absolute.top-50.translate-middle.ms-2
+    -#   %i.fa-duotone.fa-play.fa.tr-playbutton
   - if !@at_album_show
     - if music.album.jacket.attached?
       %td= link_to(image_tag( music.album.jacket_small ,class: "jaket-mini", width: "50px"), album_path(music.album))

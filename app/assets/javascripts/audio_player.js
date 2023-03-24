@@ -29,7 +29,8 @@ function endPlay(){
 
 audio.volume = gon.user.volume;
 audio.controls = true;
-audio.controlsList.add("nodownload");
+// サファリでバグる？
+// audio.controlsList.add("nodownload");
 
 audio.src = infos[0]['url'];
 let index = 0
