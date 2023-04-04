@@ -33,6 +33,14 @@ body {
     right: 5%;
   }
 
+  .wide{
+    display: none;
+  }
+
+  .narrow{
+    display: block;
+  }
+
   .content {
     height: 100vh;
     display: grid;
@@ -138,6 +146,15 @@ body {
   #open-side-bar{
     display: none;
   }
+
+  .wide{
+    display: block;
+  }
+
+  .narrow{
+    display: none;
+  }
+
 
   .track-info-wrapper {
     margin-left: 30px;
