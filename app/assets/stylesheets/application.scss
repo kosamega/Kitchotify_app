@@ -31,6 +31,15 @@ body {
     position: absolute;
     top: 3%;
     right: 5%;
+    cursor: pointer;
+  }
+
+  .wide{
+    display: none;
+  }
+
+  .narrow{
+    display: block;
   }
 
   .content {
@@ -68,6 +77,7 @@ body {
 
   #open-side-bar{
     display: inline-block;
+    cursor: pointer;
   }
 
   .track-info-wrapper{
@@ -138,6 +148,15 @@ body {
   #open-side-bar{
     display: none;
   }
+
+  .wide{
+    display: block;
+  }
+
+  .narrow{
+    display: none;
+  }
+
 
   .track-info-wrapper {
     margin-left: 30px;

@@ -7,13 +7,29 @@
 
   .top-bar-right
     - if logged_in?
-      = link_to "ログアウト", sessions_path, method: :delete, class: "btn btn-danger btn-sm float-end me-2"
-      = link_to current_user.name, user_path(current_user),  class: "btn btn-light btn-sm float-end me-2"
-      = form_with(model: current_user) do |form|
-        = form.hidden_field :editor, value: !current_user.editor?
-        =button_tag "エディターモード", type: :submit, class: "btn btn-sm float-end me-2 #{current_user.editor? ? 'btn-success' : 'btn-light'}"
-      = link_to "アカウント作成", new_user_path, class: "btn btn-primary btn-sm float-end me-2" if current_user.admin_or_kitchonkun?
-      
+      .wide
+        = link_to "ログアウト", sessions_path, method: :delete, class: "btn btn-danger btn-sm float-end me-2"
+        = link_to current_user.name, user_path(current_user),  class: "btn btn-light btn-sm float-end me-2"
+        = form_with(model: current_user) do |form|
+          = form.hidden_field :editor, value: !current_user.editor?
+          =button_tag "エディターモード", type: :submit, class: "btn btn-sm float-end me-2 #{current_user.editor? ? 'btn-success' : 'btn-light'}"
+        = link_to "アカウント作成", new_user_path, class: "btn btn-primary btn-sm float-end me-2" if current_user.admin_or_kitchonkun?
+
+      .narrow
+        .dropdown.float-end 
+          =button_tag class: "btn end-0 dropdown-toggle", id: "dropdownMenuButton", 'data-bs-toggle': 'dropdown', aria: {expanded: "false"}, type: "button" do
+            %i.fa-solid.fa-grip-lines.text-white.tow-line
+          %ul.dropdown-menu.dropdown-menu-end{aria: {labelledby: "dropdownMenuButton"}}
+            %li
+              = link_to "ログアウト", sessions_path, method: :delete, class: "dropdown-item"
+            %li
+              = link_to current_user.name, user_path(current_user),  class: "dropdown-item"
+            %li
+              = form_with(model: current_user) do |form|
+                = form.hidden_field :editor, value: !current_user.editor?
+                =button_tag "エディターモード", type: :submit, class: "btn dropdown-item #{current_user.editor? ? 'active' : ''}"
+            %li
+              = link_to "アカウント作成", new_user_path, class: "dropdown-item"  if current_user.admin_or_kitchonkun?
     - else
       = link_to "ログイン", new_sessions_path, class: "btn btn-primary btn-sm float-end me-2"
 
