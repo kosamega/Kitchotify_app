@@ -13,8 +13,6 @@
       %h1= @album.name
       %h6.mt-3= @album.kiki_taikai_date
    
-= render "musics/music"
-
 .container-fluid.mb-4.h-auto.overflow-hidden
   -if current_user.editor?
     .add-edit.clearfix.mb-2
@@ -29,6 +27,8 @@
 
 .d-none#add-music-form
   =render "musics/form", album: @album, music: @album.musics.build, action: "作成", edit: false, confirm: "追加しますか", at_album_show: true, local: false
+
+= render "musics/music"
 
 -if current_user.editor?
   = javascript_include_tag 'music_new.js'
