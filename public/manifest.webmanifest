@@ -1,0 +1,22 @@
+{
+  "name": "Kitchotify",
+  "short_name": "Kitchotify",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "white",
+  "background_color":"white",
+  "scope": "/",
+  "description": "吉田音楽製作所内音楽ストリーミングサービス",
+  "icons": [
+    {
+      "src": "/icon_192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon_512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
