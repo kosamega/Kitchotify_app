@@ -9,6 +9,8 @@ Rails.application.routes.draw do
 
   resources :artists
 
+  resources :designers
+
   resources :comments, only: %i[create]
 
   resources :likes, only: %i[create destroy index]
