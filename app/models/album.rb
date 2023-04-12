@@ -1,6 +1,7 @@
 class Album < ApplicationRecord
   has_many :musics, -> { order(track: :asc) }, dependent: :destroy
   has_many :comments
+  belongs_to :designer
   has_one_attached :jacket
   validates :name, presence: true, uniqueness: true
   VALIDATE_DATE_REGEX = /\A[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])\z/
