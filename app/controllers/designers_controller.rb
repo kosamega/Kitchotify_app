@@ -11,6 +11,7 @@ class DesignersController < ApplicationController
   def new
     @designer = Designer.new
   end
+
   def edit; end
 
   def create
@@ -26,6 +27,7 @@ class DesignersController < ApplicationController
   end
 
   def update; end
+
   def destroy; end
 
   private
