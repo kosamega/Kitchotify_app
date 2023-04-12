@@ -22,7 +22,9 @@ class AlbumsController < ApplicationController
 
   def new; end
 
-  def edit; end
+  def edit
+    @designers = Designer.all
+  end
 
   def create
     @album = Album.new(album_params)
