@@ -12,6 +12,10 @@
     %div.ms-5
       %h1= @album.name
       %h6.mt-3= @album.kiki_taikai_date
+      - if !@album.designer.nil?
+        %h6.mt-3
+          Designed by 
+          =link_to @album.designer.name, designer_path(@album.designer)
    
 .container-fluid.mb-4.h-auto.overflow-hidden
   -if current_user.editor?

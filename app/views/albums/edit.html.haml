@@ -1,4 +1,6 @@
 -provide(:title, "edit #{@album.name}")
+%h2 アルバムを編集
 =render "form", album: @album, action: "更新"
-- if current_user.admin?
-  =link_to "削除", album_path(@album), method: :delete, data: { confirm: "本当に消しますか" }, class: "text-white btn btn-danger d-inline-block mt-2"
+%hr
+%h2.mt-4 新規デザイナー
+=render 'designers/form', designer: Designer.new, action: "作成", local: false

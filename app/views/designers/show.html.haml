@@ -1,0 +1,14 @@
+-provide(:title, @designer.name)
+.designer-info.clearfix
+  %h1=@designer.name
+  =link_to "編集", edit_designer_path(@designer), class: "text-white btn btn-primary float-end"
+
+%h2ディスコグラフィー
+- @designer.albums.each do |album|
+  = link_to album_path(album), class: "album-background" do
+    - if album.jacket.attached?
+      = image_tag album.jacket_middle ,class: "album-item", width: "130px"
+    - else
+      .position-relative
+        = image_tag("kakukiti" ,class: "album-item", width: "130px")
+        .h6.position-absolute.top-50.start-50.translate-middle.bg-primary.text-white.p-1.text-center= album.name
