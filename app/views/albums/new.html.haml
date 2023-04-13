@@ -1,2 +1,5 @@
 -provide(:title, "アルバムを追加")
 =render "form", album: Album.new, action: "作成"
+%hr
+%h2.mt-4 新規デザイナー
+=render 'designers/form', designer: Designer.new, action: "作成", local: false

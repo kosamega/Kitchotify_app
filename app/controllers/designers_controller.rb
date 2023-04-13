@@ -18,11 +18,23 @@ class DesignersController < ApplicationController
     @designer = Designer.new(designer_params)
 
     if @designer.save
-      flash[:success] = "#{@designer.name}を作成しました"
-      redirect_to designers_path
+      @save = true
+      respond_to do |format|
+        format.html do
+          flash[:success] = "#{@designer.name}を作成しました"
+          redirect_to designers_path
+        end
+        format.js
+      end
     else
-      flash.now[:danger] = @designer.errors.full_messages.join('<br>')
-      render 'new'
+      @save = false
+      respond_to do |format|
+        format.html do
+          flash.now[:danger] = @designer.errors.full_messages.join('<br>')
+          render 'new'
+        end
+        format.js
+      end
     end
   end
 

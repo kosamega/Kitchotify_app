@@ -1,6 +1,6 @@
-=form_with(model: designer) do |form|
+=form_with(model: designer, local: local) do |form|
   .row
-    .col-form-label 名前
+    .col-2.col-form-label 名前
     .col= form.text_field :name, class: "form-control", required: :required
   .row.mt-3.d-inline-block
     .col
