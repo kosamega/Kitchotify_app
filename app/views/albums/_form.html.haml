@@ -1,9 +1,10 @@
+%h6.mb-3 *がついている項目は必須です
 =form_with(model: album) do |form|
   .row.mb-3
-    .col-2.col-form-label 名前
+    .col-2.col-form-label 名前*
     .col= form.text_field :name, class: "form-control", required: :required
   .row.mb-3
-    .col-2.col-form-label 聴き大会
+    .col-2.col-form-label 聴き大会*
     .col= form.date_select :kiki_taikai_date, required: :required
   .row
     .col-2.col-form-label ジャケット
@@ -17,7 +18,7 @@
       %input.form-control#search-field
   .row
     .col-2.col-form-label デザイナー
-    .col= form.select :designer_id, Designer.all.to_h{|designer|[designer.name, designer.id]}, {include_blank: '選択してください'}, class: "form-select", size: '5'
+    .col= form.select :designer_id, Designer.all.to_h{|designer|[designer.name, designer.id]}, {}, class: "form-select", size: '5'
   .row.mb-3
     .col-2
     .col.form-text ※デザイナーが存在しない場合は下のフォームから追加してください。
