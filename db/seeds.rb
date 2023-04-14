@@ -24,7 +24,8 @@ Playlist.create!(
   Album.create!(
     name: "月吉#{180+n}号",
     released: true,
-    kiki_taikai_date: '2023-01-01'
+    kiki_taikai_date: '2023-01-01',
+    designer_id: n+1
   )
 
   Artist.create!(
@@ -52,6 +53,10 @@ Playlist.create!(
   Like.create!(
     music_id: n+1,
     user_id: 1
+  )
+
+  Designer.create!(
+    name: "デザイナー#{n+1}"
   )
 end
 
