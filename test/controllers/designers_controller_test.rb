@@ -19,7 +19,7 @@ class DesignersControllerTest < ActionDispatch::IntegrationTest
 
   test 'should create designer' do
     assert_difference('Designer.count') do
-      post designers_url, params: { designer: { name: 'hoge'} }
+      post designers_url, params: { designer: { name: 'hoge' } }
     end
   end
 
@@ -34,7 +34,7 @@ class DesignersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should update designer' do
-    patch designer_url(@designer), params: { designer: { name: 'update'} }
+    patch designer_url(@designer), params: { designer: { name: 'update' } }
     assert_redirected_to designer_url(@designer)
   end
 
@@ -45,5 +45,4 @@ class DesignersControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to designers_url
   end
-
 end
