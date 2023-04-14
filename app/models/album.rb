@@ -38,7 +38,13 @@ class Album < ApplicationRecord
   def notify_new_release
     return if Rails.env.test?
 
-    uri = Rails.env.development? ? URI.parse(ENV.fetch('DISCORD_WEBHOOK_URL_TEST', nil)) : URI.parse(ENV.fetch('DISCORD_WEBHOOK_URL_NEW_RELEASE', nil))
+    uri = if Rails.env.development?
+            URI.parse(ENV.fetch('DISCORD_WEBHOOK_URL_TEST',
+                                nil))
+          else
+            URI.parse(ENV.fetch('DISCORD_WEBHOOK_URL_NEW_RELEASE',
+                                nil))
+          end
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
 
