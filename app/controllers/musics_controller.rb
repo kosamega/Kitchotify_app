@@ -61,7 +61,7 @@ class MusicsController < ApplicationController
       index_info: music_params[:index_info],
       artist_id: Artist.find_by(name: music_params[:artist_name]).id
     )
-    @music.audio.attach(music_params[:audio])
+    @music.audio.attach(music_params[:audio]) if @music.audio.nil?
     if @music.errors.full_messages.present?
       @save = false
       respond_to do |format|
