@@ -38,9 +38,21 @@ class DesignersController < ApplicationController
     end
   end
 
-  def update; end
+  def update
+    if @designer.update!(designer_params)
+      flash[:success] = 'デザイナーを更新しました'
+      redirect_to @designer
+    else
+      flash.now[:danger] = @designer.errors.full_messages.join('<br>')
+      render 'edit'
+    end
+  end
 
-  def destroy; end
+  def destroy
+    @designer.destroy
+    flash[:success] = 'アルバムを削除しました'
+    redirect_to designers_path
+  end
 
   private
 
