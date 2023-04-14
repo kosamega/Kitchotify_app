@@ -1,5 +1,9 @@
 class ApplicationController < ActionController::Base
   before_action :store_location
+  include ActionController::Cookies
+  include ActionController::RequestForgeryProtection
+
+  protect_from_forgery with: :exception
 
   include SessionsHelper
 
@@ -45,7 +49,9 @@ class ApplicationController < ActionController::Base
     gon.user = { id: current_user.id, volume: current_user.volume }
   end
 
-  def set_csrf_token_header
-    response.set_header('X-CSRF-Token', form_authenticity_token)
+  def set_csrf_token
+    cookies['CSRF-TOKEN'] = {
+      value: form_authenticity_token
+    }
   end
 end
