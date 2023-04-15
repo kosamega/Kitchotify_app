@@ -13,6 +13,13 @@ amazon:
   region:            <%= ENV['AWS_REGION'] %>
   bucket:            <%= ENV['AWS_BUCKET'] %>
 
+amazon_public:
+  service: S3
+  access_key_id:     <%= ENV['AWS_ACCESS_KEY'] %>
+  secret_access_key: <%= ENV['AWS_SECRET_KEY'] %>
+  region:            <%= ENV['AWS_REGION'] %>
+  bucket:            <%= ENV['AWS_PUBLIC_BUCKET'] %>
+
 test_fixtures:
   service: Disk
   root: <%= Rails.root.join("tmp/storage_fixtures") %>
