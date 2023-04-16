@@ -13,7 +13,7 @@ class IntroQuizzesController < ApplicationController
   def show
     @q_num = @quiz.q_num
     if (@quiz.range = 'full')
-      @musics_all = Music.includes(:artist)
+      @musics_all = Music.includes(:artist).filter{|music|music.album.released?}
       @ids = @musics_all.map(&:id).sample(@q_num)
     end
     @musics = @ids.map { |id| Music.find_by(id:) }
