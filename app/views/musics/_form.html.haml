@@ -1,3 +1,4 @@
+%h6.mb-3 *がついている項目は必須です
 =form_with(model: [album, music], local: local) do |form|
   .row
     .col-5
@@ -38,15 +39,9 @@
   .row.mt-3
     .overflow-hidden.col=button_tag action, type: :submit, class: "btn btn-primary float-end", data: { confirm: confirm }
 
-- if !edit
-  .mt-2
-    =form_with(model: Artist.new, local: false) do |form|
-      .col-2.form-label=form.label :"新規名義*", class: "mt-"
-      =form.text_field :name, class: "form-control", required: :required
-      .col-2.form-label=form.label :bio, class: "mt-2"
-      =form.text_field :bio, class: "form-control"
-      .col.overflow-hidden.mt-3
-        .col.overflow-hidden=button_tag "名義を追加", type: :submit, class: "btn btn-primary float-end", data: { confirm: confirm }
+%hr
+%h5 アーティストを追加
+=render 'artists/form', action: "作成", artist: Artist.new, local: false
 
 - if edit && current_user.admin?
   = link_to '削除', album_music_path(album, music), method: :delete, data: { confirm: "本当に消しますか" }, class: "text-white btn btn-danger float-end mt-3"
