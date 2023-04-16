@@ -6,22 +6,9 @@
 - if @user == current_user && !(@user.id == 2)
   = link_to "編集", edit_user_path(current_user), class: "btn btn-primary"
 
+%h3 プレイリスト
 =render 'playlists/playlists'
-
--# .artists.mt-3
--#   %h2 名義
--#   %table.table.align-middle
--#     %thead
--#       %tr
--#         %th 名義
--#         -# %th ユーザー
--#         %th bio
-
-
--#     %tbody
--#       - @artists.each do |artist|
--#         %tr
--#           %td= link_to artist.name, artist_path(artist)
--#           -# %td
--#           -#   = link_to artist.user.name, user_path(artist.user) if artist.user.present?
--#           %td= artist.bio
+%h3 アーティスト
+=render 'artists/index_table', artists: @user.artists
+%h3 デザイナー
+=render 'designers/index_table', designers: @user.designers
