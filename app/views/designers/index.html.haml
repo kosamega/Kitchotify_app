@@ -1,18 +1,4 @@
 -provide(:title, "デザイナー一覧")
 %h1 全てのデザイナー
 =link_to "デザイナーを追加", new_designer_path, class: "text-white btn btn-primary"
-
-%table.table.align-middle.table-striped
-  %thead
-    %tr
-      %th 名義
-      %th ユーザー
-      %th bio
-
-
-  %tbody
-    - @designers.each do |designer|
-      %tr
-        %td= link_to designer.name, designer_path(designer)
-        %td= link_to designer.user.name, user_path(designer.user) if designer.user.present?
-        %td= designer.bio
+=render 'index_table', designers: @designers
