@@ -1,6 +1,11 @@
 -provide(:title, @designer.name)
 .designer-info.clearfix
   %h1=@designer.name
+  %h6
+    ユーザー：
+    =link_to @designer.user.name, user_path(@designer.user) if @designer.user.present?
+  %p=@designer.bio
+
   =link_to "編集", edit_designer_path(@designer), class: "text-white btn btn-primary float-end"
 
 %h2ディスコグラフィー
