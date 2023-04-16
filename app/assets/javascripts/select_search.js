@@ -1,4 +1,4 @@
-const options = document.querySelectorAll('#album_designer_id option')
+const options = document.querySelectorAll('#select-div option')
 console.log(options)
 const searchField = document.getElementById('search-field')
 searchField.addEventListener('input', (e)=>{
