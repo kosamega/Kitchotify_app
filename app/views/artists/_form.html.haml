@@ -6,12 +6,15 @@
     .row
       .col-form-label bio
       .col= form.text_area :bio, class: "form-control"
-    -# .row
-    -#   .col-form-label ユーザー
-    -#   .col= form.text_field :user_name, class: "form-control", list: 'artist-list', value: @artist.user.name
-    -# %datalist#artist-list
-    -#   - @users.each do |user|
-    -#     %option{value: user.name}
+    .row
+      .col-form-label ユーザー検索
+      .col
+        %input.form-control#search-field-user
+    .row
+      .col-form-label ユーザー
+      #select-div-user.col= form.select :user_id, User.all.to_h{|user|[user.name, user.id]}, {include_blank: true}, class: "form-select", size: '5'
     .row.mt-3.d-inline-block.float-end
       .col
         = form.submit action, class: "btn btn-primary"
+
+=javascript_include_tag 'user/select_search'
