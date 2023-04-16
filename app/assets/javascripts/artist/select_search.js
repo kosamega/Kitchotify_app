@@ -1,9 +1,9 @@
-const options = document.querySelectorAll('#album_designer_id option')
-console.log(options)
-const searchField = document.getElementById('search-field')
+const artistOptions = document.querySelectorAll('#select-div-artist option')
+console.log(artistOptions)
+const artistSearchField = document.getElementById('search-field-artist')
 searchField.addEventListener('input', (e)=>{
   const word = e.target.value
-  options.forEach((option)=>{
+  artistOptions.forEach((option)=>{
     console.log(option.innerText)
     if(option.innerText.includes(word)){
       option.style.display = ''

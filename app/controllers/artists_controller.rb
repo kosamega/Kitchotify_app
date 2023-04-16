@@ -27,11 +27,7 @@ class ArtistsController < ApplicationController
   end
 
   def create
-    @artist = Artist.new(
-      name: artist_params[:name],
-      bio: artist_params[:bio],
-      user_id: User.find_by(name: artist_params[:user_name])&.id
-    )
+    @artist = Artist.new(artist_params)
 
     if @artist.save
       @save = true
@@ -55,11 +51,7 @@ class ArtistsController < ApplicationController
   end
 
   def update
-    if @artist.update(
-      name: artist_params[:name],
-      bio: artist_params[:bio],
-      user_id: User.find_by(name: artist_params[:user_name])&.id
-    )
+    if @artist.update(artist_params)
       flash[:success] = 'アーティスト情報を更新しました'
       redirect_to artist_path(@artist)
     else
@@ -80,6 +72,6 @@ class ArtistsController < ApplicationController
   end
 
   def artist_params
-    params.require(:artist).permit(:name, :user_id, :bio, :user_name)
+    params.require(:artist).permit(:name, :user_id, :bio)
   end
 end

@@ -15,10 +15,10 @@
   .row.mb-3
     .col-2.col-form-label デザイナー検索
     .col
-      %input.form-control#search-field
+      %input.form-control#search-field-designer
   .row
     .col-2.col-form-label デザイナー
-    .col= form.select :designer_id, Designer.all.to_h{|designer|[designer.name, designer.id]}, {include_blank: true}, class: "form-select", size: '5'
+    #select-div-designer.col= form.select :designer_id, Designer.all.to_h{|designer|[designer.name, designer.id]}, {include_blank: true}, class: "form-select", size: '5'
   .row.mb-3
     .col-2
     .col.form-text ※デザイナーが存在しない場合は下のフォームから追加してください。
@@ -34,4 +34,4 @@
       .col 
         =link_to "削除", album_path(@album), method: :delete, data: { confirm: "本当に消しますか" }, class: "text-white btn btn-danger d-inline-block mt-2"
 
-=javascript_include_tag 'select_search'
+=javascript_include_tag 'designer/select_search'

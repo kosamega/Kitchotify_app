@@ -1,0 +1,15 @@
+%table.table.align-middle.table-striped
+  %thead
+    %tr
+      %th 名義
+      %th ユーザー
+      %th bio
+
+
+  %tbody
+    - artists.each do |artist|
+      %tr
+        %td= link_to artist.name, artist_path(artist)
+        %td
+          = link_to artist.user.name, user_path(artist.user) if artist.user.present?
+        %td= artist.bio

@@ -1,0 +1,18 @@
+%table.table.align-middle.table-striped
+  %thead
+    %tr
+      %th 名義
+      %th ユーザー
+      %th bio
+      %th ジャケット
+
+
+  %tbody
+    - designers.each do |designer|
+      %tr
+        %td= link_to designer.name, designer_path(designer)
+        %td= link_to designer.user.name, user_path(designer.user) if designer.user.present?
+        %td= designer.bio
+        %td
+          - designer.albums.each do |album|
+            = link_to(image_tag(album.jacket_small ,class: "jaket-mini", width: "50px"), album_path(album)) if album.jacket.attached?

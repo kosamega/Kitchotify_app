@@ -1,7 +1,20 @@
+%h6.mb-3 *がついている項目は必須です
 =form_with(model: designer, local: local) do |form|
-  .row
-    .col-2.col-form-label 名前
+  .row.mb-3
+    .col-2.col-form-label 名前*
     .col= form.text_field :name, class: "form-control", required: :required
+  .row.mb-3
+    .col-2.col-form-label bio
+    .col= form.text_field :bio, class: "form-control"
+  .row.mb-3
+    .col-2.col-form-label ユーザー検索
+    .col
+      %input.form-control#search-field-user
+  .row.mb-3
+    .col-2.col-form-label ユーザー
+    #select-div-user.col= form.select :user_id, User.all.to_h{|user|[user.name, user.id]}, {include_blank: true}, class: "form-select", size: '5'
   .row.mt-3.d-inline-block
     .col
       = form.submit action, class: "btn btn-primary"
+
+=javascript_include_tag 'user/select_search'
