@@ -1,0 +1,2 @@
+class UserArtistOwnership < ApplicationRecord
+end
