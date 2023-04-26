@@ -4,7 +4,9 @@
   %h6
     ユーザー：
     -if @artist.users.present?
-      -@artist.users.each do |user|
+      -@artist.users.each_with_index do |user, n|
+        -if n>0
+          ,
         =link_to user.name, user_path(user)
   %p=@artist.bio
   =link_to "編集", edit_artist_path(@artist), class: "text-white btn btn-primary float-end"

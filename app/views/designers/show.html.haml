@@ -4,7 +4,9 @@
   %h6
     ユーザー：
     -if @designer.users.present?
-      -@designer.users.each do |user|
+      -@designer.users.each_with_index do |user, n|
+        -if n > 0
+          ,
         =link_to user.name, user_path(user)
   %p=@designer.bio
 
