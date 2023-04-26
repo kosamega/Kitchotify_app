@@ -1,0 +1,2 @@
+class UserDesignerOwnership < ApplicationRecord
+end
