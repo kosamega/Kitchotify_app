@@ -1,4 +1,10 @@
 -provide(:title, "デザイナー一覧")
 %h1 全てのデザイナー
 =link_to "デザイナーを追加", new_designer_path, class: "text-white btn btn-primary"
+%hr
+.row.mb-3
+  .col-2.col-form-label ユーザー検索
+  .col
+    %input.form-control#designer-search
 =render 'index_table', designers: @designers
+= javascript_include_tag 'designer/index'

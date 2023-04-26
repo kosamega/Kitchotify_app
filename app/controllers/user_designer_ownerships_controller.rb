@@ -9,8 +9,8 @@ class UserDesignerOwnershipsController < ApplicationController
             else
               false
             end
-    respond_to do |format| 
-      format.html {redirect_to root_url}
+    respond_to do |format|
+      format.html { redirect_to root_url }
       format.js
     end
   end
