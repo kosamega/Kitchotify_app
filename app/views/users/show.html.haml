@@ -6,9 +6,12 @@
 - if @user == current_user && !(@user.id == 2)
   .mb-3= link_to "編集", edit_user_path(current_user), class: "btn btn-primary"
 
-%h3 プレイリスト
-=render 'playlists/playlists'
-%h3 アーティスト
-=render 'artists/index_table', artists: @user.artists
-%h3 デザイナー
-=render 'designers/index_table', designers: @user.designers
+-if @user.playlists.present?
+  %h3 プレイリスト
+  =render 'playlists/playlists'
+-if @user.artists.present?
+  %h3 アーティスト
+  =render 'artists/index_table', artists: @user.artists
+-if @user.designers.present?
+  %h3 デザイナー
+  =render 'designers/index_table', designers: @user.designers
