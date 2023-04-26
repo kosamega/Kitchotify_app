@@ -30,7 +30,7 @@
     .col
       %input.form-control#search-field-designer-user
 
-  =form_with model: designer.user_designer_ownerships.build, local: local do |form|
+  =form_with model: designer.user_designer_ownerships.build, local: false do |form|
     .row.mb-3
       .col-2.col-form-label ユーザー
       #select-div-designer-user.col= form.select :user_id, User.all.filter{|user|UserDesignerOwnership.find_by(user_id: user.id, designer_id: designer.id).nil?}.to_h{|user|[user.name, user.id]}, {include_blank: true}, class: "form-select", size: '5', required: :required

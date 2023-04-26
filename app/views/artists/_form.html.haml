@@ -31,7 +31,7 @@
     .col
       %input.form-control#search-field-artist-user
 
-  =form_with model: artist.user_artist_ownerships.build, local: local do |form|
+  =form_with model: artist.user_artist_ownerships.build, local: false do |form|
     .row.mb-3
       .col-2.col-form-label ユーザー
       #select-div-artist-user.col= form.select :user_id, User.all.filter{|user|UserArtistOwnership.find_by(user_id: user.id, artist_id: artist.id).nil?}.to_h{|user|[user.name, user.id]}, {include_blank: true}, class: "form-select", size: '5', required: :required

@@ -1,4 +1,4 @@
 -provide(:title, "edit #{@artist.name}")
 %h1="#{@artist.name}を編集"
 
-= render 'form', action: "更新", artist: @artist, local: false, edit: true
+= render 'form', action: "更新", artist: @artist, local: true, edit: true
