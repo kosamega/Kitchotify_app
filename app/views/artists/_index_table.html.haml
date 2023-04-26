@@ -4,7 +4,7 @@
       %th 名義
       %th ユーザー
       %th bio
-
+      %th 編集
 
   %tbody
     - artists.each do |artist|
@@ -15,3 +15,4 @@
             - artist.users.each do |user|
               = link_to user.name, user_path(user) 
         %td= artist.bio
+        %td= link_to '編集', edit_artist_path(artist), class: 'btn btn-primary btn-sm'
