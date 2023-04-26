@@ -34,7 +34,7 @@
   =form_with model: artist.user_artist_ownerships.build, local: local do |form|
     .row.mb-3
       .col-2.col-form-label ユーザー
-      #select-div-artist-user.col= form.select :user_id, User.all.filter{|user|UserArtistOwnership.find_by(user_id: user.id).nil?}.to_h{|user|[user.name, user.id]}, {include_blank: true}, class: "form-select", size: '5', required: :required
+      #select-div-artist-user.col= form.select :user_id, User.all.filter{|user|UserArtistOwnership.find_by(user_id: user.id, artist_id: artist.id).nil?}.to_h{|user|[user.name, user.id]}, {include_blank: true}, class: "form-select", size: '5', required: :required
       = form.hidden_field :artist_id, value: artist.id
     .row.mt-3.d-inline-block.float-end
       .col
