@@ -11,7 +11,10 @@
     - designers.each do |designer|
       %tr
         %td= link_to designer.name, designer_path(designer)
-        %td= link_to designer.user.name, user_path(designer.user) if designer.user.present?
+        %td
+          -if designer.users.present?
+            - designer.users.each do |user|
+              = link_to user.name, user_path(user) 
         %td= designer.bio
         %td
           - designer.albums.each do |album|

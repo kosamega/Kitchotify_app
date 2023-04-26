@@ -3,7 +3,9 @@
   %h1=@designer.name
   %h6
     ユーザー：
-    =link_to @designer.user.name, user_path(@designer.user) if @designer.user.present?
+    -if @designer.users.present?
+      -@designer.users.each do |user|
+        =link_to user.name, user_path(user)
   %p=@designer.bio
 
   =link_to "編集", edit_designer_path(@designer), class: "text-white btn btn-primary float-end"

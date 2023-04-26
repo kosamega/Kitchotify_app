@@ -1,0 +1,2 @@
+module UserDesignerOwnershipsHelper
+end

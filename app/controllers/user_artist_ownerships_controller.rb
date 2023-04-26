@@ -1,6 +1,6 @@
 class UserArtistOwnershipsController < ApplicationController
   before_action :logged_in_user
-  before_action :set_ownership, only: %i[destroy]
+  before_action :set_user_artist_ownership, only: %i[destroy]
 
   def create
     @ownership = UserArtistOwnership.new(ownership_params)
@@ -24,7 +24,7 @@ class UserArtistOwnershipsController < ApplicationController
 
   private
 
-  def set_ownership
+  def set_user_artist_ownership
     @ownership = UserArtistOwnership.find(params[:id])
   end
 
