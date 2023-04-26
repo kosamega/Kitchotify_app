@@ -1,4 +1,6 @@
 -provide(:title, "edit #{@artist.name}")
-%h1="#{@artist.name}を編集"
+%h1
+  =link_to @artist.name, artist_path(@artist)
+  を編集
 
 = render 'form', action: "更新", artist: @artist, local: true, edit: true
