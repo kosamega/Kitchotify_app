@@ -6,7 +6,7 @@
 - if @user == current_user && !(@user.id == 2)
   .mb-3= link_to "編集", edit_user_path(current_user), class: "btn btn-primary"
 
--if @user.playlists.present?
+-if @user.playlists.filter{|playlist|playlist.public?}.present?
   %h3 プレイリスト
   =render 'playlists/playlists'
 -if @user.artists.present?
