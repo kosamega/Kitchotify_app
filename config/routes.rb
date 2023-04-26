@@ -20,6 +20,8 @@ Rails.application.routes.draw do
     resource :position, only: %i[update]
   end
 
+  resources :user_artist_ownerships, only: %i[create destroy]
+
   resource :sessions, only: %i[new create destroy]
   resources :users, only: %i[new create show edit update index]
 

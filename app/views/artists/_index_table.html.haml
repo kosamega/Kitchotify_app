@@ -11,5 +11,7 @@
       %tr
         %td= link_to artist.name, artist_path(artist)
         %td
-          = link_to artist.user.name, user_path(artist.user) if artist.user.present?
+          -if artist.users.present?
+            - artist.users.each do |user|
+              = link_to user.name, user_path(user) 
         %td= artist.bio

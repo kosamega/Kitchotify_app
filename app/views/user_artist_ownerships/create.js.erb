@@ -1,0 +1,15 @@
+if(<%=@save%>){
+  $("#users").append('<div class="row mb-3" id=<%="ownership#{@ownership.id}"%>><div class="col"><%=@ownership.user.name%></div><div class="col-2"><button name="button", type="submit", class="btn btn-danger ownership-delete-btn float-end", data-ownership-id=<%= @ownership.id%>>削除</button></div></div>');
+  $('#flash').append('<div><p><%= @ownership.user.name %>を<%= @ownership.artist.name %>に紐付けました</p></div>');
+  $.getScript(
+    "/assets/artist/addDelete.js"
+  ).done(function(){
+    $("#ownership<%=@ownership.id%> button")[0].addEventListener('click', addDelete)
+  })
+  $('#user_artist_ownership_user_id option[value=<%=@ownership.user.id%>]').remove()
+}else{
+  $('#flash').append('<div><p><%= @ownership.errors.full_messages %></p></div>');
+}
+setTimeout(function(){
+$('#flash div:first').remove();
+}, 3000);

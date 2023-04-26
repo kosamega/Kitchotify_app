@@ -7,15 +7,36 @@
     .row.mb-3
       .col-2.col-form-label bio
       .col= form.text_area :bio, class: "form-control"
-    .row.mb-3
-      .col-2.col-form-label ユーザー検索
-      .col
-        %input.form-control#search-field-user
-    .row.mb-3
-      .col-2.col-form-label ユーザー
-      #select-div-user.col= form.select :user_id, User.all.to_h{|user|[user.name, user.id]}, {include_blank: true}, class: "form-select", size: '5'
     .row.mt-3.d-inline-block.float-end
       .col
         = form.submit action, class: "btn btn-primary"
+      - if current_user&.admin? && action == "更新"
+        .col 
+          =link_to "削除", artist_path(@artist), method: :delete, data: { confirm: "本当に消しますか" }, class: "text-white btn btn-danger d-inline-block mt-2"
 
-=javascript_include_tag 'user/select_search'
+
+-if edit == true
+  %hr
+  %h5 ユーザーの紐付け
+  #users
+    -if artist.users.present?
+      -artist.user_artist_ownerships.each do |ownership|
+        .row.mb-3{id: "ownership#{ownership.id}"}
+          .col=ownership.user.name
+          .col-2
+            = button_tag class: "btn btn-danger ownership-delete-btn float-end", data: {ownership_id: ownership.id} do
+              削除
+  .row.mb-3
+    .col-2.col-form-label ユーザー検索
+    .col
+      %input.form-control#search-field-artist-user
+
+  =form_with model: artist.user_artist_ownerships.build, local: local do |form|
+    .row.mb-3
+      .col-2.col-form-label ユーザー
+      #select-div-artist-user.col= form.select :user_id, User.all.filter{|user|UserArtistOwnership.find_by(user_id: user.id).nil?}.to_h{|user|[user.name, user.id]}, {include_blank: true}, class: "form-select", size: '5', required: :required
+      = form.hidden_field :artist_id, value: artist.id
+    .row.mt-3.d-inline-block.float-end
+      .col
+        = form.submit 'ユーザーを追加', class: "btn btn-primary"
+  =javascript_include_tag 'artist/form', 'artist/select_search'
