@@ -1,7 +1,7 @@
 class Artist < ApplicationRecord
-  # belongs_to :user
   has_many :musics, -> { order(id: :desc) }
-  belongs_to :user, optional: true
+  has_many :user_artist_ownerships
+  has_many :users, through: :user_artist_ownerships
   validates :name, presence: true, uniqueness: true
   default_scope -> { order(id: :desc) }
 end
