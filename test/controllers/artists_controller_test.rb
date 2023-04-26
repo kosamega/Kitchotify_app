@@ -20,7 +20,7 @@ class ArtistsControllerTest < ActionDispatch::IntegrationTest
 
   test 'should create artist' do
     assert_difference('Artist.count') do
-      post artists_url, params: { artist: { name: 'hoge', user_id: @user1.id } }
+      post artists_url, params: { artist: { name: 'hoge' } }
     end
   end
 
