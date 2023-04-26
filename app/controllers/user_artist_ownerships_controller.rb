@@ -4,29 +4,26 @@ class UserArtistOwnershipsController < ApplicationController
 
   def create
     @ownership = UserArtistOwnership.new(ownership_params)
-    if @ownership.save
-      @save = true
-      respond_to do |format|
-        format.html { redirect_to root_url }
-        format.js
-      end
-    else
-      @save = false
-      respond_to do |format|
-        format.html { redirect_to root_url }
-        format.js
-      end
+    @save = if @ownership.save
+              true
+            else
+              false
+            end
+    respond_to do |format|
+      format.html { redirect_to root_url }
+      format.js
     end
   end
 
   def destroy
     user = @ownership.user
-    artist = @ownership.artist 
+    artist = @ownership.artist
     @ownership.destroy
-    render json: {message: "#{user.name}と#{artist.name}の紐付けを削除しました", user: user.name, user_id: user.id}
+    render json: { message: "#{user.name}と#{artist.name}の紐付けを削除しました", user: user.name, user_id: user.id }
   end
 
   private
+
   def set_ownership
     @ownership = UserArtistOwnership.find(params[:id])
   end

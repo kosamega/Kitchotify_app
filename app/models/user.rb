@@ -5,7 +5,6 @@ class User < ApplicationRecord
   has_many :playlists
   has_many :comments
   has_many :quiz_results
-  has_many :artists
   has_many :designers
   has_many :user_artist_ownerships
   has_many :artists, through: :user_artist_ownerships
