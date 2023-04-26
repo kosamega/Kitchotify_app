@@ -1,7 +1,4 @@
 -provide(:title, "edit #{@artist.name}")
 %h1="#{@artist.name}を編集"
 
-= render 'form', action: "更新", artist: @artist, local: true
-
-- if current_user.admin?
-  =link_to "削除", artist_path(@artist), method: :delete, data: { confirm: "本当に消しますか" }, class: "text-white btn btn-danger d-inline-block mt-2"
+= render 'form', action: "更新", artist: @artist, local: false, edit: true
