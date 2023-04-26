@@ -5,9 +5,10 @@ class User < ApplicationRecord
   has_many :playlists
   has_many :comments
   has_many :quiz_results
-  has_many :designers
   has_many :user_artist_ownerships
   has_many :artists, through: :user_artist_ownerships
+  has_many :user_designer_ownerships
+  has_many :designers, through: :user_designer_ownerships
   validates :name, presence: true, uniqueness: true, length: { maximum: 50 }
   validates :password, presence: true, length: { minimum: 8 }, allow_nil: true
   attr_accessor :remember_token

@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   end
 
   resources :user_artist_ownerships, only: %i[create destroy]
+  resources :user_designer_ownerships, only: %i[create destroy]
 
   resource :sessions, only: %i[new create destroy]
   resources :users, only: %i[new create show edit update index]
