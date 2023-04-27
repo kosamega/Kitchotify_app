@@ -15,6 +15,9 @@
     .row
       .col-form-label パスワードを確認
       .col= form.password_field :password_confirmation, class: "form-control", minlength: 8
+    .row
+      .col-form-label サーバーのパスワード
+      .col= password_field :auth, :kitchon_server_password, class: "form-control", required: :required
     .row.mt-3.d-inline-block.float-end
       .col
         = form.submit action, class: "btn btn-primary"

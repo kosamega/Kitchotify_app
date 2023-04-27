@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user
+  before_action :logged_in_user, only: %i[index show edit update destroy]
   before_action :not_kitchonkun, only: %i[edit update]
-  before_action :admin_user_or_kitchonkun, only: %i[new create]
   before_action :set_user, only: %i[show edit update destroy]
   before_action :correct_user, only: %i[edit update]
 
@@ -22,9 +21,16 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+
+    if params[:auth][:kitchon_server_password] != ENV['KITCHON_SERVER_PASSWORD']
+      flash.now[:danger] = 'サーバーのパスワードが間違っています'
+      return render 'new'
+    end
+
     if @user.save
       flash[:success] = 'ユーザー登録に成功しました'
-      redirect_to user_path(@user)
+      log_in @user
+      redirect_to root_path
     else
       flash.now[:danger] = 'ユーザー登録に失敗しました'
       render 'new'

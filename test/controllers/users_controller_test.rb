@@ -7,45 +7,33 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     @kitchonkun = users(:kitchonkun)
   end
 
-  test 'adminかkitchonkunだけusers newにアクセス出来る' do
-    log_in_as(@not_admin)
-    get new_user_path
-    assert_redirected_to root_path
+  test 'ログインしなくてもnewにアクセスできる' do
     delete sessions_path
-    log_in_as(@admin)
-    get new_user_path
-    assert_response :success
-    delete sessions_path
-    log_in_as(@kitchonkun)
     get new_user_path
     assert_response :success
   end
 
-  test 'adminかkitchonkunだけusersを作成できる' do
-    log_in_as(@not_admin)
-    assert_no_difference 'User.count' do
-      post users_path, params: { user: { name: 'fail',
-                                         password: 'password',
-                                         password_confirmation: 'password' } }
-    end
-    assert_redirected_to root_path
-    log_in_as(@admin)
+  test 'サーバーのパスワードが正しいときuserを作成できる' do
+    delete sessions_path
     assert_difference 'User.count', 1 do
       post users_path, params: { user: { name: 'new_user1',
                                          password: 'password',
-                                         password_confirmation: 'password' } }
+                                         password_confirmation: 'password' },
+                                 auth: { kitchon_server_password: ENV.fetch('KITCHON_SERVER_PASSWORD', nil) } }
     end
     follow_redirect!
-    assert_template 'users/show'
+    assert_template 'static_pages/home'
+  end
+
+  test 'サーバーのパスワードが間違っているときuserを作成できない' do
     delete sessions_path
-    log_in_as(@kitchonkun)
-    assert_difference 'User.count', 1 do
-      post users_path, params: { user: { name: 'new_user2',
+    assert_no_difference 'User.count' do
+      post users_path, params: { user: { name: 'new_user1',
                                          password: 'password',
-                                         password_confirmation: 'password' } }
+                                         password_confirmation: 'password' },
+                                 auth: { kitchon_server_password: 'wrong' } }
     end
-    follow_redirect!
-    assert_template 'users/show'
+    assert_template 'users/new'
   end
 
   test '無効なユーザー登録は失敗する' do
@@ -54,7 +42,8 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_no_difference 'User.count' do
       post users_path, params: { user: { name: '',
                                          password: 'foo',
-                                         password_confirmation: 'bar' } }
+                                         password_confirmation: 'bar' },
+                                 auth: { kitchon_server_password: ENV.fetch('KITCHON_SERVER_PASSWORD', nil) } }
     end
     assert_template 'users/new'
   end

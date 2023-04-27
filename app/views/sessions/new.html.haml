@@ -14,5 +14,8 @@
             %span パスワードを記憶する
         %li= f.submit "ログイン", class: "btn btn-primary"
   %ul.list-style-inside
-    %li ユーザーネームを「kitchonkun」、パスワードを「サーバーのパスワード」でログインできます。
-    %li アカウントを持っていない方はkitchonkunでログインした後アカウントを作成してください。
+    %li
+      アカウントを持っていない会員は
+      =link_to '>こちら<', new_user_path, class: 'text-decoration-underline'
+      から作成できます
+    %li ユーザーネームを「kitchonkun」、パスワードを「サーバーのパスワード」で制限付きのアカウントにログインできます。
