@@ -1,6 +1,6 @@
--provide(:title, @params)
+-provide(:title, "「#{@params}」での検索結果")
 %h1
-  = @params
+  = "「#{@params}」"
   での検索結果
 
 %h2 曲
@@ -10,6 +10,18 @@
   %p
     = @params
     を含む曲は見つかりませんでした
+
+%h2 アルバム
+- if @albums.present?
+  .album-container
+    - @albums.where(released: true).each do |album|
+      = link_to album_path(album), class: "album-background" do
+        - if album.jacket.attached?
+          = image_tag(album.jacket_middle ,class: "album-item", width: "130px")
+        - else
+          .position-relative
+            = image_tag("kakukiti" ,class: "album-item opacity-50 position-relative", width: "130px")
+            .h6.position-absolute.top-50.start-50.translate-middle.bg-primary.text-white.p-1= album.name
 
 %h2 ユーザー
 - if @users.present?
@@ -37,42 +49,26 @@
 
 %h2 プレイリスト
 - if @result_playlists.present?
-  %table.table.align-middle
-    %thead
-      %tr
-        %th ユーザー
-        %th プレイリスト
-        %th 説明
-
-
-    %tbody
-      - @result_playlists.each do |playlist|
-        %tr
-          %td= link_to playlist.user.name, user_path(playlist.user)
-          %td= link_to playlist.name, playlist_path(playlist)
-          -# %td
-          -#   = link_to playlist.user.name, user_path(playlist.user) if playlist.user.present?
-          %td= playlist.description
+  =render 'playlists/playlists', playlists: @result_playlists
 - else
   %p
     = @params
     を含むプレイリストは見つかりませんでした
 
+
 %h2 アーティスト
 - if @artists.present?
-  %table.table.align-middle
-    %thead
-      %tr
-        %th 名義
-        -# %th ユーザー
-        %th bio
+  =render 'artists/index_table', artists: @artists
+- else
+  %p
+    = @params
+    を含むアーティストは見つかりませんでした
 
-
-    %tbody
-      - @artists.each do |artist|
-        %tr
-          %td= link_to artist.name, artist_path(artist)
-          -# %td
-          -#   = link_to artist.user.name, user_path(artist.user) if artist.user.present?
-          %td= artist.bio
+%h2 デザイナー
+-if @designers.present?
+  =render 'designers/index_table', designers: @designers
+-else
+  %p
+    = @params
+    を含むデザイナーは見つかりませんでした
 
