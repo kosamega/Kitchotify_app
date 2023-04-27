@@ -12,7 +12,10 @@ class SearchesController < ApplicationController
     @users = User.where('name LIKE ?', "%#{@params}%")
     @result_playlists = Playlist.where('name LIKE ?', "%#{@params}%").where(public: true).includes(:user)
     @artists = Artist.where('name LIKE ?', "%#{@params}%")
+    @designers = Designer.where('name LIKE ?', "%#{@params}%")
+    @albums = Album.where('name LIKE ?', "%#{@params}%")
     @infos = set_infos(@musics)
+    @show_user = true
     gon.infos_j = @infos
   end
 end

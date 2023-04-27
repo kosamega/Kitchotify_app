@@ -8,7 +8,7 @@
 
 -if @user.playlists.filter{|playlist|playlist.public?}.present?
   %h3 プレイリスト
-  =render 'playlists/playlists'
+  =render 'playlists/playlists', playlists: @playlists
 -if @user.artists.present?
   %h3 アーティスト
   =render 'artists/index_table', artists: @user.artists

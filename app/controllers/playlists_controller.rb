@@ -10,7 +10,7 @@ class PlaylistsController < ApplicationController
 
   def index
     @playlists = Playlist.where(public: true).includes(:user)
-    @at_playlists_index = true
+    @show_user = true
   end
 
   def show
