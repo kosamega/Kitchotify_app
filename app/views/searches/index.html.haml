@@ -23,6 +23,30 @@
             = image_tag("kakukiti" ,class: "album-item opacity-50 position-relative", width: "130px")
             .h6.position-absolute.top-50.start-50.translate-middle.bg-primary.text-white.p-1= album.name
 
+%h2 アーティスト
+- if @artists.present?
+  =render 'artists/index_table', artists: @artists
+- else
+  %p
+    = @params
+    を含むアーティストは見つかりませんでした
+
+%h2 デザイナー
+-if @designers.present?
+  =render 'designers/index_table', designers: @designers
+-else
+  %p
+    = @params
+    を含むデザイナーは見つかりませんでした
+
+%h2 プレイリスト
+- if @result_playlists.present?
+  =render 'playlists/playlists', playlists: @result_playlists
+- else
+  %p
+    = @params
+    を含むプレイリストは見つかりませんでした
+
 %h2 ユーザー
 - if @users.present?
   %table.table.align-middle
@@ -40,35 +64,8 @@
           -# %td
           -#   = link_to artist.user.name, user_path(artist.user) if artist.user.present?
           %td= user.bio
-
 - else
   %p
     = @params
     を含むユーザーは見つかりませんでした
   %p
-
-%h2 プレイリスト
-- if @result_playlists.present?
-  =render 'playlists/playlists', playlists: @result_playlists
-- else
-  %p
-    = @params
-    を含むプレイリストは見つかりませんでした
-
-
-%h2 アーティスト
-- if @artists.present?
-  =render 'artists/index_table', artists: @artists
-- else
-  %p
-    = @params
-    を含むアーティストは見つかりませんでした
-
-%h2 デザイナー
--if @designers.present?
-  =render 'designers/index_table', designers: @designers
--else
-  %p
-    = @params
-    を含むデザイナーは見つかりませんでした
-
