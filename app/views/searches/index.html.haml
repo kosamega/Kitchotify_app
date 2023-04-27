@@ -22,6 +22,10 @@
           .position-relative
             = image_tag("kakukiti" ,class: "album-item opacity-50 position-relative", width: "130px")
             .h6.position-absolute.top-50.start-50.translate-middle.bg-primary.text-white.p-1= album.name
+- else
+  %p
+    = @params
+    を含む曲は見つかりませんでした
 
 %h2 アーティスト
 - if @artists.present?
