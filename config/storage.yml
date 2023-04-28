@@ -19,6 +19,7 @@ amazon_public:
   secret_access_key: <%= ENV['AWS_SECRET_KEY'] %>
   region:            <%= ENV['AWS_REGION_PUBLIC'] %>
   bucket:            <%= ENV['AWS_PUBLIC_BUCKET'] %>
+  public: true
 
 test_fixtures:
   service: Disk
