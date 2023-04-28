@@ -56,6 +56,6 @@ class DaikichiFormsController < ApplicationController
     end
 
     def daikichi_form_params
-      params.require(:daikichi_form).permit(:name, :three_point, :two_point, :one_point, :closed, :albums_for_voting)
+      params.require(:daikichi_form).permit(:name, :three_point, :two_point, :one_point, :closed, albums_for_voting: [])
     end
 end
