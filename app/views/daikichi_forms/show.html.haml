@@ -1,0 +1,24 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @daikichi_form.name
+%p
+  %b three_point:
+  = @daikichi_form.three_point
+%p
+  %b two_point:
+  = @daikichi_form.two_point
+%p
+  %b one_point:
+  = @daikichi_form.one_point
+%p
+  %b Closed:
+  = @daikichi_form.closed
+%p
+  %b Albums for voting:
+  = @daikichi_form.albums_for_voting
+
+= link_to 'Edit', edit_daikichi_form_path(@daikichi_form)
+\|
+= link_to 'Back', daikichi_forms_path

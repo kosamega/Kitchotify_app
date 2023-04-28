@@ -1,0 +1,28 @@
+= form_for @daikichi_form do |f|
+  - if @daikichi_form.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@daikichi_form.errors.count, "error")} prohibited this daikichi_form from being saved:"
+      %ul
+        - @daikichi_form.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :three_point
+    = f.number_field :three_point
+  .field
+    = f.label :two_point
+    = f.number_field :two_point
+  .field
+    = f.label :one_point
+    = f.number_field :one_point
+  .field
+    = f.label :closed
+    = f.check_box :closed
+  .field
+    = f.label :albums_for_voting
+    = f.text_field :albums_for_voting
+  .actions
+    = f.submit 'Save'

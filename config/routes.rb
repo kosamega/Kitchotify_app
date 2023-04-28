@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :daikichi_forms
   root to: 'static_pages#home'
 
   resources :albums do

@@ -1,0 +1,31 @@
+%h1 Listing daikichi_forms
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th three_point
+      %th two_point
+      %th one_point
+      %th Closed
+      %th Albums for voting
+      %th
+      %th
+      %th
+
+  %tbody
+    - @daikichi_forms.each do |daikichi_form|
+      %tr
+        %td= daikichi_form.name
+        %td= daikichi_form.three_point
+        %td= daikichi_form.two_point
+        %td= daikichi_form.one_point
+        %td= daikichi_form.closed
+        %td= daikichi_form.albums_for_voting
+        %td= link_to 'Show', daikichi_form
+        %td= link_to 'Edit', edit_daikichi_form_path(daikichi_form)
+        %td= link_to 'Destroy', daikichi_form, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Daikichi form', new_daikichi_form_path

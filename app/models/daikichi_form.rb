@@ -1,0 +1,2 @@
+class DaikichiForm < ApplicationRecord
+end
