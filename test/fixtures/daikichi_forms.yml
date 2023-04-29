@@ -1,17 +1,17 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+# # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  three_point: 1
-  two_point: 1
-  one_point: 1
-  closed: false
-  albums_for_voting: MyString
+# one:
+#   name: one
+#   three_point: 3
+#   two_point: 5
+#   one_point: 10
+#   closed: false
+#   albums_for_voting: ['']
 
-two:
-  name: MyString
-  three_point: 1
-  two_point: 1
-  one_point: 1
-  closed: false
-  albums_for_voting: MyString
+# two:
+#   name: MyString
+#   three_point: 1
+#   two_point: 1
+#   one_point: 1
+#   closed: false
+#   albums_for_voting: ['']

@@ -1,0 +1,28 @@
+
+= form_with model: [@daikichi_form, @daikichi_vote] do |f|
+  - if @daikichi_vote.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@daikichi_vote.errors.count, "error")} prohibited this daikichi_vote from being saved:"
+      %ul
+        - @daikichi_vote.errors.full_messages.each do |message|
+          %li= message
+  = f.hidden_field :user_id, value: current_user.id
+  
+  .row.mb-3
+    .col-2.col-form-label 3点を入れる曲
+    .col
+      - @daikichi_form.three_point.times do
+        =select_tag "daikichi_vote[three_point_musics][]", options_from_collection_for_select(@musics_for_voting, :id, :name),  class: 'form-select'
+  .row.mb-3
+    .col-2.col-form-label 2点を入れる曲
+    .col
+      - @daikichi_form.two_point.times do
+        =select_tag "daikichi_vote[two_point_musics][]", options_from_collection_for_select(@musics_for_voting, :id, :name),  class: 'form-select'
+  .row.mb-3
+    .col-2.col-form-label 1点を入れる曲
+    .col
+      - @daikichi_form.one_point.times do
+        =select_tag "daikichi_vote[one_point_musics][]", options_from_collection_for_select(@musics_for_voting, :id, :name),  class: 'form-select'
+
+  .actions
+    = f.submit 'Save'

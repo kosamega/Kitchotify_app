@@ -1,0 +1,15 @@
+# # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# one:
+#   user_id: 1
+#   daikichi_form_id: 1
+#   three_point_musics: ['']
+#   two_point_musics: ['']
+#   one_point_musics: ['']
+
+# two:
+#   user_id: 1
+#   daikichi_form_id: 1
+#   three_point_musics: ['']
+#   two_point_musics: ['']
+#   one_point_musics: ['']

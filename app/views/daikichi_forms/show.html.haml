@@ -1,24 +1,33 @@
 %p#notice= notice
 
+%p= @daikichi_form.name
 %p
-  %b Name:
-  = @daikichi_form.name
+  ルール
+%ul
+  %li
+    3点：
+    = @daikichi_form.three_point
+    曲
+  %li
+    2点：
+    = @daikichi_form.two_point
+    曲
+  %li
+    1点：
+    = @daikichi_form.one_point
+    曲
 %p
-  %b three_point:
-  = @daikichi_form.three_point
+  = @daikichi_form.closed ? "投票の受付は終了しました" : "投票受付中！"
 %p
-  %b two_point:
-  = @daikichi_form.two_point
-%p
-  %b one_point:
-  = @daikichi_form.one_point
-%p
-  %b Closed:
-  = @daikichi_form.closed
-%p
-  %b Albums for voting:
-  = @daikichi_form.albums_for_voting
-
-= link_to 'Edit', edit_daikichi_form_path(@daikichi_form)
+  投票対象アルバム
+  %ul
+  - @daikichi_form.albums_for_voting.each do |album_id|
+    %li=Album.find(album_id).name
+    
+-if daikichi_vote = DaikichiVote.find_by(user_id: current_user.id, daikichi_form_id: @daikichi_form.id)
+  = link_to '投票内容を確認する', daikichi_form_daikichi_vote_path(@daikichi_form, daikichi_vote)
+  = link_to '投票を編集する', edit_daikichi_form_daikichi_vote_path(@daikichi_form, daikichi_vote)
+-else
+  = link_to '投票する', new_daikichi_form_daikichi_vote_path(@daikichi_form)
 \|
 = link_to 'Back', daikichi_forms_path

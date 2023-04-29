@@ -1,0 +1,29 @@
+%h1 Listing daikichi_votes
+
+%table
+  %thead
+    %tr
+      %th User
+      %th Daikichi form
+      %th Three point musics
+      %th Two point musics
+      %th One point musics
+      %th
+      %th
+      %th
+
+  %tbody
+    - @daikichi_votes.each do |daikichi_vote|
+      %tr
+        %td= daikichi_vote.user_id
+        %td= daikichi_vote.daikichi_form_id
+        %td= daikichi_vote.three_point_musics
+        %td= daikichi_vote.two_point_musics
+        %td= daikichi_vote.one_point_musics
+        %td= link_to 'Show', daikichi_form_daikichi_vote_path(@daikichi_form, daikichi_vote)
+        %td= link_to 'Edit', edit_daikichi_form_daikichi_vote_path(@daikichi_form, daikichi_vote)
+        %td= link_to 'Destroy', daikichi_form_daikichi_vote_path(@daikichi_form, daikichi_vote), method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Daikichi vote', new_daikichi_form_daikichi_vote_path(@daikichi_form)

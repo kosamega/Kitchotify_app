@@ -1,30 +1,39 @@
-%h1 Listing daikichi_forms
+%h1 大吉投票フォーム
 
-%table
+%table.table.align-middle.table-striped
   %thead
     %tr
-      %th Name
-      %th three_point
-      %th two_point
-      %th one_point
-      %th Closed
-      %th Albums for voting
-      %th
+      %th 名前
+      %th 投票期限
+      %th 投票受付
+      %th 投票対象アルバム
+      %th 3点
+      %th 2点
+      %th 1点
       %th
       %th
 
   %tbody
     - @daikichi_forms.each do |daikichi_form|
       %tr
-        %td= daikichi_form.name
-        %td= daikichi_form.three_point
-        %td= daikichi_form.two_point
-        %td= daikichi_form.one_point
-        %td= daikichi_form.closed
-        %td= daikichi_form.albums_for_voting
-        %td= link_to 'Show', daikichi_form
-        %td= link_to 'Edit', edit_daikichi_form_path(daikichi_form)
-        %td= link_to 'Destroy', daikichi_form, method: :delete, data: { confirm: 'Are you sure?' }
+        %td= link_to daikichi_form.name, daikichi_form_path(daikichi_form, user_id: current_user.id)
+        %td= daikichi_form.accept_until.strftime("%F")
+        %td= daikichi_form.closed ? "投票を締め切りました" : "投票受付中"
+        %td
+          %ul
+          - daikichi_form.albums_for_voting.map{|album_id|Album.find(album_id)}.each do |album|
+            %li=link_to album.name, album_path(album)
+        %td
+          = daikichi_form.three_point
+          曲
+        %td
+          = daikichi_form.two_point
+          曲
+        %td
+          = daikichi_form.one_point
+          曲
+        %td= link_to '投票する', new_daikichi_form_daikichi_vote_path(daikichi_form)
+        %td= link_to '編集', edit_daikichi_form_path(daikichi_form)
 
 %br
 

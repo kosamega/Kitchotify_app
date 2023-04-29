@@ -42,6 +42,11 @@
           %span.icon
             %i.fa-solid.fa-question.fa-config
           = link_to "イントロクイズ", intro_quizzes_path
+        %li
+          %span.icon
+            %i.fa-regular.fa-hand.fa-config
+          = link_to "大吉投票", daikichi_forms_path
+
     -if logged_in?
       .side-bar-content-2
         %ul#playlists-side

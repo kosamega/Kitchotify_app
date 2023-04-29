@@ -3,5 +3,5 @@
 = render 'form'
 
 = link_to 'Show', @daikichi_form
-\|
 = link_to 'Back', daikichi_forms_path
+= link_to '削除', daikichi_form_path(@daikichi_form), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'

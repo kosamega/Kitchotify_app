@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :daikichi_forms
   root to: 'static_pages#home'
 
   resources :albums do
@@ -33,6 +32,10 @@ Rails.application.routes.draw do
   resources :searches, only: %i[index]
 
   resource :import_csvs, only: %i[new show create]
+
+  resources :daikichi_forms do
+    resources :daikichi_votes
+  end
 
   namespace :api, defaults: { format: :json } do
     resources :albums, only: %i[index create]

@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b User:
+  = @daikichi_vote.user.name
+%p
+  %b Daikichi form:
+  = @daikichi_vote.daikichi_form.name
+%p
+  %b Three point musics:
+  = @daikichi_vote.three_point_musics
+%p
+  %b Two point musics:
+  = @daikichi_vote.two_point_musics
+%p
+  %b One point musics:
+  = @daikichi_vote.one_point_musics
+
+= link_to 'Edit', edit_daikichi_form_daikichi_vote_path(@daikichi_form, @daikichi_vote)
+\|
+= link_to 'Back', daikichi_form_daikichi_votes_path
