@@ -16,7 +16,7 @@ class DaikichiResultsController < ApplicationController
         total_point = three_point*3 + two_point*2 + one_point
         {music_id: music.id, three_point: three_point, two_point: two_point, one_point: one_point, total_point: total_point}
       end.sort_by{|result|result[:total_point]}.reverse
-    @musics = @daikichi_form.musics_for_voting.sort_by{|music|@results.find{|result|result[:music_id] == music.id}[:total_point]}.reverse.includes(:artist, :likes, audio_attachment: :blob)
+    @musics = @daikichi_form.musics_for_voting.sort_by{|music|@results.find{|result|result[:music_id] == music.id}[:total_point]}
     @infos = set_infos(@musics)
     gon.infos_j = @infos
   end
