@@ -15,6 +15,12 @@
         %th{scope: "col"} 
       - if current_user.editor?
         %th{scope: "col"} 
+      - if @results.present?
+        %th 3点
+        %th 2点
+        %th 1点
+        %th 合計点
+      
 
   %tbody#tracks
     - musics.each do |music|

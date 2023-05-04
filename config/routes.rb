@@ -35,6 +35,7 @@ Rails.application.routes.draw do
 
   resources :daikichi_forms do
     resources :daikichi_votes
+    resource :daikichi_result, only: %i[show]
   end
 
   namespace :api, defaults: { format: :json } do

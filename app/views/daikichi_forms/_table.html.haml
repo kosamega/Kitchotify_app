@@ -12,6 +12,7 @@
       -if current_user.admin?
         %th
         %th
+      %th
 
   %tbody
     - daikichi_forms.each do |daikichi_form|
@@ -40,3 +41,6 @@
         -if current_user.admin?
           %td= link_to 'フォームを編集', edit_daikichi_form_path(daikichi_form), class: 'btn btn-primary'
           %td= link_to '投票一覧', daikichi_form_daikichi_votes_path(daikichi_form), class: 'btn btn-primary'
+        %td
+          -if daikichi_form.closed?
+            = link_to '投票結果', daikichi_form_daikichi_result_path(daikichi_form), class: 'btn btn-primary'
