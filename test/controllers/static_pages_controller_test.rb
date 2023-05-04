@@ -2,11 +2,11 @@ require 'test_helper'
 
 class StaticPagesControllerTest < ActionDispatch::IntegrationTest
   def setup
-    @user = users(:user1)
+    @admin_user = users(:admin_user)
   end
 
   test 'ホーム描写' do
-    log_in_as(@user)
+    log_in_as(@admin_user)
     get root_path
     assert_response :success
     assert_select 'title', 'Kitchotify - Home'

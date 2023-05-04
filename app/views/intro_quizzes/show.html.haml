@@ -39,6 +39,6 @@
   %div.my-3
     =link_to "→ランキングを確認する←", intro_quizzes_path, class: "btn btn-danger"
   .h6 答え
-  = render "musics/music"
+  = render "musics/music", musics: @musics
 
 = javascript_include_tag "intro_quiz.js"

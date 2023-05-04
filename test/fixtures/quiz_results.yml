@@ -1,11 +1,11 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 quiz_result1:
-  user: user1
+  user: admin_user
   time: 1
   intro_quiz: intro_quiz1
 
 quiz_result2:
-  user: user2
+  user: not_admin_user
   time: 1
   intro_quiz: intro_quiz2

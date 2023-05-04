@@ -2,10 +2,10 @@ require 'test_helper'
 
 class PlaylistsControllerTest < ActionDispatch::IntegrationTest
   def setup
-    @user1 = users(:user1)
-    @user2 = users(:user2)
+    @admin_user = users(:admin_user)
+    @not_admin_user = users(:not_admin_user)
     @playlist1 = playlists(:playlist1)
-    log_in_as(@user1)
+    log_in_as(@admin_user)
   end
 
   test 'プレイリスト一覧' do

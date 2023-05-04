@@ -4,7 +4,7 @@ class DaikichiVoteTest < ActiveSupport::TestCase
   def setup
     @form = DaikichiForm.new(name: 'touhyou', three_point: 1, two_point: 1, one_point: 2, closed: false,
                              albums_for_voting: [albums(:album1).id, albums(:album2).id])
-    @vote = @form.daikichi_votes.build(user_id: users(:user1).id, three_point_musics: [musics(:music1).id],
+    @vote = @form.daikichi_votes.build(user_id: users(:admin_user).id, three_point_musics: [musics(:music1).id],
                                        two_point_musics: [musics(:music2).id], one_point_musics: [musics(:music3).id, musics(:music4).id])
   end
 

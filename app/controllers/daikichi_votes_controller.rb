@@ -1,9 +1,12 @@
 class DaikichiVotesController < ApplicationController
   before_action :logged_in_user
+  before_action :admin_user, only: %i[index destroy]
   before_action :set_daikichi_form
   before_action :set_daikichi_vote, only: %i[show edit update destroy]
+  before_action :correct_user, only: %i[show edit update]
   before_action :set_musics_for_voting, only: %i[new edit create update]
   before_action :not_voted_yet, only: %i[new create]
+  before_action :form_clesed, only: %i[new edit create update]
 
   def index
     @daikichi_votes = @daikichi_form.daikichi_votes
@@ -20,33 +23,26 @@ class DaikichiVotesController < ApplicationController
 
   def create
     @daikichi_vote = @daikichi_form.daikichi_votes.build(daikichi_vote_params)
+    if daikichi_vote_params[:user_id] != current_user.id.to_s
+      flash[:danger] = '不正なユーザーです'
+      redirect_to daikichi_forms_path
+      return
+    end
 
-    respond_to do |format|
-      if @daikichi_vote.save
-        format.html do
-          redirect_to daikichi_form_daikichi_vote_url(@daikichi_form, @daikichi_vote),
-                      notice: 'Daikichi vote was successfully created.'
-        end
-        format.json { render :show, status: :created, location: @daikichi_vote }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @daikichi_vote.errors, status: :unprocessable_entity }
-      end
+    if @daikichi_vote.save
+      flash[:success] = '投票が完了しました'
+      redirect_to daikichi_form_path(@daikichi_form)
+    else
+      render :new
     end
   end
 
   def update
-    respond_to do |format|
-      if @daikichi_vote.update(daikichi_vote_params)
-        format.html do
-          redirect_to daikichi_form_daikichi_vote_url(@daikichi_form, @daikichi_vote),
-                      notice: 'Daikichi vote was successfully updated.'
-        end
-        format.json { render :show, status: :ok, location: @daikichi_vote }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @daikichi_vote.errors, status: :unprocessable_entity }
-      end
+    if @daikichi_vote.update(daikichi_vote_params)
+      flash[:success] = '投票内容を更新しました'
+      redirect_to daikichi_form_path(@daikichi_form)
+    else
+      render :edit
     end
   end
 
@@ -76,10 +72,22 @@ class DaikichiVotesController < ApplicationController
     @musics_for_voting = @daikichi_form.musics_for_voting
   end
 
+  def correct_user
+    return if @daikichi_vote.user_id == current_user.id || current_user.admin?
+    flash[:danger] = '不正なユーザーです'
+    redirect_to daikichi_forms_path
+  end
+
   def not_voted_yet
     return unless @daikichi_vote = @daikichi_form.daikichi_votes.find_by(user_id: current_user.id)
     flash[:danger] = '投票済みです'
     redirect_to edit_daikichi_form_daikichi_vote_path(@daikichi_form, @daikichi_vote)
+  end
+
+  def form_clesed
+    return if !@daikichi_form.closed? || current_user.admin?
+    flash[:danger] = '投票期間は終了しました'
+    redirect_to daikichi_forms_path
   end
 
   def daikichi_vote_params

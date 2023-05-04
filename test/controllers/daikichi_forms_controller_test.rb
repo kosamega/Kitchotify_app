@@ -2,47 +2,93 @@ require 'test_helper'
 
 class DaikichiFormsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @daikichi_form = daikichi_forms(:one)
+    @daikichi_form = DaikichiForm.create(name: 'touhyou', three_point: 1, two_point: 1, one_point: 2, closed: false,
+      albums_for_voting: [albums(:album1).id, albums(:album2).id], accept_until: '2099-01-01T00:00:00')
+    @admin_user = users(:admin_user)
+    @not_admin_user = users(:not_admin_user)
   end
 
-  test 'should get index' do
+  test 'ログインしないとindexにアクセスできない' do
+    get daikichi_forms_url
+    assert_not flash.empty?
+    assert_redirected_to new_sessions_path
+    log_in_as(@admin_user)
     get daikichi_forms_url
     assert_response :success
   end
 
-  test 'should get new' do
+  test 'adminのみnewにアクセスできる' do
+    log_in_as(@not_admin_user)
+    get new_daikichi_form_url
+    assert_not flash.empty?
+    assert_redirected_to root_path
+    delete sessions_path
+    log_in_as(@admin_user)
     get new_daikichi_form_url
     assert_response :success
   end
 
-  test 'should create daikichi_form' do
+  test 'adminのみformを作成できる' do
+    log_in_as(@not_admin_user)
+    assert_no_difference 'DaikichiForm.count' do
+      post daikichi_forms_url,
+      params: { daikichi_form: { one_point: 1, two_point: 2,
+                                 three_point: 2, albums_for_voting: @daikichi_form.albums_for_voting, closed: false, name: 'touhyo2', accept_until: '2099-01-01T00:00:00' } }
+    end
+    delete sessions_path
+    log_in_as(@admin_user)
     assert_difference('DaikichiForm.count') do
       post daikichi_forms_url,
-           params: { daikichi_form: { one_point: @daikichi_form.one_point, two_point: @daikichi_form.two_point,
-                                      three_point: @daikichi_form.three_point, albums_for_voting: @daikichi_form.albums_for_voting, closed: @daikichi_form.closed, name: @daikichi_form.name } }
+      params: { daikichi_form: { one_point: 1, two_point: 2,
+                                 three_point: 2, albums_for_voting: @daikichi_form.albums_for_voting, closed: false, name: 'touhyo2', accept_until: '2099-01-01T00:00:00' } }
     end
-
     assert_redirected_to daikichi_form_url(DaikichiForm.last)
   end
 
-  test 'should show daikichi_form' do
+  test 'ログインするとshowにアクセスできる' do
+    get daikichi_form_url(@daikichi_form)
+    assert_not flash.empty?
+    assert_redirected_to new_sessions_path
+    log_in_as(@not_admin_user)
     get daikichi_form_url(@daikichi_form)
     assert_response :success
   end
 
-  test 'should get edit' do
+  test 'adminのみeditにアクセスできる' do
+    log_in_as(@not_admin_user)
+    get edit_daikichi_form_url(@daikichi_form)
+    assert_not flash.empty?
+    assert_redirected_to root_path
+    delete sessions_path
+    log_in_as(@admin_user)
     get edit_daikichi_form_url(@daikichi_form)
     assert_response :success
   end
 
-  test 'should update daikichi_form' do
+  test 'adminのみformを更新できる' do
+    log_in_as(@not_admin_user)
+    patch daikichi_form_url(@daikichi_form),
+    params: { daikichi_form: { one_point: @daikichi_form.one_point, two_point: @daikichi_form.two_point,
+                               three_point: @daikichi_form.three_point, albums_for_voting: @daikichi_form.albums_for_voting, closed: @daikichi_form.closed, name: @daikichi_form.name, accept_until: '2099-01-01T00:00:00' } }
+    assert_redirected_to root_path
+
+    delete sessions_path
+    log_in_as(@admin_user)
     patch daikichi_form_url(@daikichi_form),
           params: { daikichi_form: { one_point: @daikichi_form.one_point, two_point: @daikichi_form.two_point,
-                                     three_point: @daikichi_form.three_point, albums_for_voting: @daikichi_form.albums_for_voting, closed: @daikichi_form.closed, name: @daikichi_form.name } }
+                                     three_point: @daikichi_form.three_point, albums_for_voting: @daikichi_form.albums_for_voting, closed: @daikichi_form.closed, name: @daikichi_form.name, accept_until: '2099-01-01T00:00:00' } }
     assert_redirected_to daikichi_form_url(@daikichi_form)
   end
 
-  test 'should destroy daikichi_form' do
+  test 'adminのみformを削除できる' do
+    log_in_as(@not_admin_user)
+    assert_no_difference('DaikichiForm.count') do
+      delete daikichi_form_url(@daikichi_form)
+    end
+    assert_redirected_to root_path
+
+    delete sessions_path
+    log_in_as(@admin_user)
     assert_difference('DaikichiForm.count', -1) do
       delete daikichi_form_url(@daikichi_form)
     end

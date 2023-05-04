@@ -1,37 +1,31 @@
 = form_with model: @daikichi_form do |f|
-  - if @daikichi_form.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@daikichi_form.errors.count, "error")} prohibited this daikichi_form from being saved:"
-      %ul
-        - @daikichi_form.errors.full_messages.each do |message|
-          %li= message
-
+  =render 'shared/errors', instance: @daikichi_form
   .row.mb-3
     .col-2.col-form-label 名前*
     .col= f.text_field :name, class: "form-control", required: :required
   .row.mb-3
     .col-2.col-form-label 3点の曲数*
-    .col= f.number_field :three_point, class: "form-control", required: :required, min: 0, max: 999
+    .col= f.number_field :three_point, class: "form-control", required: :required, min: 1, max: 999
   .row.mb-3
     .col-2.col-form-label 2点の曲数*
-    .col= f.number_field :two_point, class: "form-control", required: :required, min: 0, max: 999
+    .col= f.number_field :two_point, class: "form-control", required: :required, min: 1, max: 999
   .row.mb-3
     .col-2.col-form-label 1点の曲数*
-    .col= f.number_field :one_point, class: "form-control", required: :required, min: 0, max: 999
+    .col= f.number_field :one_point, class: "form-control", required: :required, min: 1, max: 999
   .row.mb-3
     .col-2.col-form-label 投票対象アルバム*
     .col
       - Album.all.where(released: true).order(:kiki_taikai_date).each do |album|
         .form-check
           %label.form-check-label
-            =check_box_tag "daikichi_form[albums_for_voting][]", album.id, checked: @daikichi_form.albums_for_voting.include?(album.id), class: 'form-check-input'
+            =check_box_tag "daikichi_form[albums_for_voting][]", album.id, @daikichi_form.albums_for_voting.include?(album.id.to_s), class: 'form-check-input'
             =album.name
   .row.mb-3
     .col-2.col-form-label 投票期限*
     .col= f.date_select :accept_until, required: :required  
   .row.mb-3
-    .col-2.col-form-label 投票締め切り*
+    .col-2.col-form-label 投票フォームを閉じる
     .col= f.check_box :closed
   .row.d-inline-block
     .col
-      .col= f.submit "作成", class: "btn btn-primary"
+      .col= f.submit action, class: "btn btn-primary"

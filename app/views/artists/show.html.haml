@@ -12,5 +12,5 @@
   =link_to "編集", edit_artist_path(@artist), class: "text-white btn btn-primary float-end"
 
 %h2ディスコグラフィー
-= render "musics/music"   
+= render "musics/music", musics: @musics
 

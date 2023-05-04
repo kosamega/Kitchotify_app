@@ -1,33 +1,13 @@
 %p#notice= notice
 
-%p= @daikichi_form.name
-%p
-  ルール
-%ul
-  %li
-    3点：
-    = @daikichi_form.three_point
-    曲
-  %li
-    2点：
-    = @daikichi_form.two_point
-    曲
-  %li
-    1点：
-    = @daikichi_form.one_point
-    曲
-%p
-  = @daikichi_form.closed ? "投票の受付は終了しました" : "投票受付中！"
-%p
-  投票対象アルバム
-  %ul
-  - @daikichi_form.albums_for_voting.each do |album_id|
-    %li=Album.find(album_id).name
-    
+%h1= @daikichi_form.name
+
+=render 'table', daikichi_forms: [@daikichi_form]
+
 -if daikichi_vote = DaikichiVote.find_by(user_id: current_user.id, daikichi_form_id: @daikichi_form.id)
-  = link_to '投票内容を確認する', daikichi_form_daikichi_vote_path(@daikichi_form, daikichi_vote)
-  = link_to '投票を編集する', edit_daikichi_form_daikichi_vote_path(@daikichi_form, daikichi_vote)
--else
-  = link_to '投票する', new_daikichi_form_daikichi_vote_path(@daikichi_form)
-\|
-= link_to 'Back', daikichi_forms_path
+  %h3 3点
+  =render 'musics/music', musics: @three_point_musics
+  %h3 2点
+  =render 'musics/music', musics: @two_point_musics
+  %h3 1点
+  =render 'musics/music', musics: @one_point_musics

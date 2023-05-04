@@ -2,8 +2,8 @@ require 'test_helper'
 
 class PlaylistTest < ActiveSupport::TestCase
   def setup
-    @user = users(:user1)
-    @playlist = @user.playlists.build(name: 'playlist1')
+    @admin_user = users(:admin_user)
+    @playlist = @admin_user.playlists.build(name: 'playlist1')
   end
 
   test 'プレイリストが有効' do

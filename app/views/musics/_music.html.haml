@@ -17,6 +17,6 @@
         %th{scope: "col"} 
 
   %tbody#tracks
-    - @musics.each do |music|
+    - musics.each do |music|
       = render "shared/track_row", music: music, number: number
       - number+=1

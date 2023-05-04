@@ -2,10 +2,10 @@ require 'test_helper'
 
 class CommentTest < ActiveSupport::TestCase
   def setup
-    @user = users(:user1)
+    @admin_user = users(:admin_user)
     @music = musics(:music1)
     @album = albums(:album1)
-    @comment = @user.comments.build(content: 'iijan', music_id: @music.id, album_id: @album.id)
+    @comment = @admin_user.comments.build(content: 'iijan', music_id: @music.id, album_id: @album.id)
   end
 
   test 'コメントが有効' do

@@ -32,5 +32,5 @@
       = link_to "削除", playlist_path(@playlist), method: :delete, data: { confirm: "本当に消しますか" }, class: "btn btn-danger float-end"
       %span#edit-playlist.btn.btn-primary.float-end.mx-2 編集
 
-= render "musics/music"
+= render "musics/music", musics: @musics
 = javascript_include_tag 'edit_playlist.js'

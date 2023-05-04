@@ -1,40 +1,7 @@
 %h1 大吉投票フォーム
 
-%table.table.align-middle.table-striped
-  %thead
-    %tr
-      %th 名前
-      %th 投票期限
-      %th 投票受付
-      %th 投票対象アルバム
-      %th 3点
-      %th 2点
-      %th 1点
-      %th
-      %th
-
-  %tbody
-    - @daikichi_forms.each do |daikichi_form|
-      %tr
-        %td= link_to daikichi_form.name, daikichi_form_path(daikichi_form, user_id: current_user.id)
-        %td= daikichi_form.accept_until.strftime("%F")
-        %td= daikichi_form.closed ? "投票を締め切りました" : "投票受付中"
-        %td
-          %ul
-          - daikichi_form.albums_for_voting.map{|album_id|Album.find(album_id)}.each do |album|
-            %li=link_to album.name, album_path(album)
-        %td
-          = daikichi_form.three_point
-          曲
-        %td
-          = daikichi_form.two_point
-          曲
-        %td
-          = daikichi_form.one_point
-          曲
-        %td= link_to '投票する', new_daikichi_form_daikichi_vote_path(daikichi_form)
-        %td= link_to '編集', edit_daikichi_form_path(daikichi_form)
+=render 'table', daikichi_forms: @daikichi_forms
 
 %br
-
-= link_to 'New Daikichi form', new_daikichi_form_path
+-if current_user.admin?
+  = link_to '投票フォームを作成', new_daikichi_form_path, class: 'btn btn-primary'

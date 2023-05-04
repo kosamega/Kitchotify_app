@@ -18,13 +18,13 @@ class DaikichiVote < ApplicationRecord
   def validate_valid_musics
     musics_for_voting = daikichi_form.musics_for_voting.map(&:id)
     (three_point_musics + two_point_musics + one_point_musics).each do |music_id|
-      errors.add(:three_point_musics, "#{Music.find(music_id).name}は投票対象外です") if musics_for_voting.exclude?(music_id.to_i)
+      errors.add(:投票対象外, "：#{Music.find(music_id).name}は投票対象外です") if musics_for_voting.exclude?(music_id.to_i)
     end
   end
 
   def validate_multiple_vote
     return if (three_point_musics + two_point_musics + one_point_musics).uniq.length == (three_point_musics + two_point_musics + one_point_musics).length
 
-    errors.add(:three_point_musics, '同一曲に複数投票することはできません')
+    errors.add(:重複投票, '：同一曲に複数投票することはできません')
   end
 end

@@ -2,8 +2,8 @@ require 'test_helper'
 
 class UsersControllerTest < ActionDispatch::IntegrationTest
   def setup
-    @admin = users(:user1)
-    @not_admin = users(:user2)
+    @admin = users(:admin_user)
+    @not_admin = users(:not_admin_user)
     @kitchonkun = users(:kitchonkun)
   end
 

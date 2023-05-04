@@ -3,9 +3,9 @@ require 'test_helper'
 class ArtistsControllerTest < ActionDispatch::IntegrationTest
   def setup
     @artist = artists(:artist1)
-    @user1 = users(:user1)
-    @user2 = users(:user2)
-    log_in_as(@user1)
+    @admin_user = users(:admin_user)
+    @not_admin_user = users(:not_admin_user)
+    log_in_as(@admin_user)
   end
 
   test 'should get index' do
@@ -35,7 +35,7 @@ class ArtistsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should update artist' do
-    patch artist_url(@artist), params: { artist: { name: 'update', user_id: @user2.id } }
+    patch artist_url(@artist), params: { artist: { name: 'update', user_id: @not_admin_user.id } }
     assert_redirected_to artist_url(@artist)
   end
 
