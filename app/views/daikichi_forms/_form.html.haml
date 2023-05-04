@@ -25,7 +25,7 @@
     .col= f.date_select :accept_until, required: :required  
   .row.mb-3
     .col-2.col-form-label 投票フォームを閉じる
-    .col= f.check_box :closed
+    .col= f.check_box :form_closed
   .row.d-inline-block
     .col
       .col= f.submit action, class: "btn btn-primary"

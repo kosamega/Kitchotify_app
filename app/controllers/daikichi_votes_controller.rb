@@ -85,7 +85,7 @@ class DaikichiVotesController < ApplicationController
   end
 
   def form_clesed
-    return if !@daikichi_form.closed? || current_user.admin?
+    return if !@daikichi_form.form_closed? || current_user.admin?
     flash[:danger] = '投票期間は終了しました'
     redirect_to daikichi_forms_path
   end

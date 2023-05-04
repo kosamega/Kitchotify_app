@@ -4,11 +4,11 @@ class DaikichiVotesControllerTest < ActionDispatch::IntegrationTest
   def setup
     @admin_user = users(:admin_user)
     @not_admin_user = users(:not_admin_user) 
-    @daikichi_form = DaikichiForm.create(name: 'touhyou', three_point: 1, two_point: 1, one_point: 2, closed: false,
+    @daikichi_form = DaikichiForm.create(name: 'touhyou', three_point: 1, two_point: 1, one_point: 2, form_closed: false,
       albums_for_voting: [albums(:album1).id, albums(:album2).id], accept_until: '2099-01-01T00:00:00')
     @daikichi_vote = @daikichi_form.daikichi_votes.build(user_id: users(:admin_user).id, three_point_musics: [musics(:music1).id],
     two_point_musics: [musics(:music2).id], one_point_musics: [musics(:music3).id, musics(:music4).id])
-    @daikichi_form_closed = DaikichiForm.create(name: 'closed', three_point: 1, two_point: 1, one_point: 2, closed: true,
+    @daikichi_form_closed = DaikichiForm.create(name: 'form_closed', three_point: 1, two_point: 1, one_point: 2, form_closed: true,
       albums_for_voting: [albums(:album1).id, albums(:album2).id], accept_until: '2099-01-01T00:00:00')
     @daikichi_vote_for_closed = @daikichi_form_closed.daikichi_votes.build(user_id: users(:admin_user).id, three_point_musics: [musics(:music1).id],
     two_point_musics: [musics(:music2).id], one_point_musics: [musics(:music3).id, musics(:music4).id])

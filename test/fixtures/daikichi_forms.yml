@@ -5,7 +5,7 @@
 #   three_point: 3
 #   two_point: 5
 #   one_point: 10
-#   closed: false
+#   form_closed: false
 #   albums_for_voting: ['']
 
 # two:
@@ -13,5 +13,5 @@
 #   three_point: 1
 #   two_point: 1
 #   one_point: 1
-#   closed: false
+#   form_closed: false
 #   albums_for_voting: ['']
