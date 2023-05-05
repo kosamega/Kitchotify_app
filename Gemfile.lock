@@ -136,6 +136,9 @@ GEM
       dotenv (= 2.8.1)
       railties (>= 3.2)
     erubi (1.11.0)
+    exception_notification (4.5.0)
+      actionmailer (>= 5.2, < 8)
+      activesupport (>= 5.2, < 8)
     ffi (1.15.5)
     globalid (1.0.0)
       activesupport (>= 5.0)
@@ -289,6 +292,7 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
+    slack-notifier (2.4.0)
     spring (4.1.0)
     sprockets (4.1.1)
       concurrent-ruby (~> 1.0)
@@ -340,6 +344,7 @@ DEPENDENCIES
   byebug
   capybara
   dotenv-rails
+  exception_notification
   gon
   haml-rails
   image_processing
@@ -360,6 +365,7 @@ DEPENDENCIES
   rubocop-rails
   sass-rails
   selenium-webdriver
+  slack-notifier
   spring
   sprockets-rails
   stimulus-rails

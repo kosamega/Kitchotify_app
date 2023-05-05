@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :store_location
+  before_action :set_notification
 
   include SessionsHelper
 
@@ -47,5 +48,10 @@ class ApplicationController < ActionController::Base
 
   def set_csrf_token_header
     response.set_header('X-CSRF-Token', form_authenticity_token)
+  end
+
+  def set_notification
+    request.env['exception_notifier.exception_data'] = { 'server' => request.env['SERVER_NAME'] }
+    # can be any key-value pairs
   end
 end
