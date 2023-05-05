@@ -52,7 +52,7 @@ class Album < ApplicationRecord
                embeds: [
                  {
                    title: name,
-                   description: "聴き大会：#{kiki_taikai_date}\nDesigned by #{designer.name}",
+                   description: "聴き大会：#{kiki_taikai_date}\nDesigned by #{designer&.name}",
                    url: album_url(self, host: 'kitchotify-app.herokuapp.com'),
                    color: 10_070_709,
                    thumbnail: {
