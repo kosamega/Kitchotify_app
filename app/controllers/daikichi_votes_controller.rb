@@ -73,7 +73,7 @@ class DaikichiVotesController < ApplicationController
   end
 
   def set_musics_for_voting
-    @musics_for_voting = @daikichi_form.musics_for_voting.sort_by{|music| music.name}
+    @musics_for_voting = @daikichi_form.musics_for_voting.sort_by(&:name)
   end
 
   def correct_user

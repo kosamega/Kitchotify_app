@@ -9,7 +9,6 @@ class DaikichiResultsController < ApplicationController
 
   def show
     votes = @daikichi_form.daikichi_votes
-    pp votes
     @results =
       @daikichi_form.musics_for_voting.map do |music|
         three_point = votes.count { |vote| vote[:three_point_music_ids].include?(music.id.to_s) }
@@ -20,9 +19,8 @@ class DaikichiResultsController < ApplicationController
           total_point: }
       end.sort_by { |result| result[:total_point] }.reverse
     @results.each do |result|
-      result.store(:rank, @results.count{|r|r[:total_point] > result[:total_point]} + 1)
+      result.store(:rank, @results.count { |r| r[:total_point] > result[:total_point] } + 1)
     end
-    pp @results
     @musics = @results.map { |result| Music.find(result[:music_id]) }
     @infos = set_infos(@musics)
     gon.infos_j = @infos

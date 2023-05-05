@@ -72,12 +72,12 @@ Rails.application.configure do
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
   config.middleware.use ExceptionNotification::Rack,
-  email: {
-    email_prefix: '[PREFIX] ',
-    sender_address: %{"notifier" <notifier@example.com>},
-    exception_recipients: %w{exceptions@example.com}
-  },
-  webhook: {
-    url: ENV.fetch('DISCORD_WEBHOOK_URL_TEST')
-  }
+                        slack: {
+                          webhook_url: "#{ENV.fetch('DISCORD_WEBHOOK_URL_TEST')}/slack",
+                          channel: '#webhooktest',
+                          username: 'エラー通知',
+                          additional_parameters: {
+                            mrkdwn: true
+                          }
+                        }
 end

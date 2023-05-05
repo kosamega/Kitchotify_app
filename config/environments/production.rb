@@ -91,4 +91,14 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+  # エラーをdiscordへ通知
+  config.middleware.use ExceptionNotification::Rack,
+  slack: {
+    webhook_url: "#{ENV.fetch('DISCORD_WEBHOOK_URL_TEST')}/slack",
+    channel: '#webhooktest',
+    username: 'エラー通知',
+    additional_parameters: {
+      mrkdwn: true
+    }
+  }
 end

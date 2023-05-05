@@ -156,9 +156,6 @@ GEM
       activesupport (>= 5.1)
       haml (>= 4.0.6)
       railties (>= 5.1)
-    httparty (0.21.0)
-      mini_mime (>= 1.0.0)
-      multi_xml (>= 0.5.2)
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
     image_processing (1.12.2)
@@ -195,7 +192,6 @@ GEM
     minitest (5.16.3)
     msgpack (1.6.0)
     multi_json (1.15.0)
-    multi_xml (0.6.0)
     net-imap (0.3.2)
       date
       net-protocol
@@ -296,6 +292,7 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
+    slack-notifier (2.4.0)
     spring (4.1.0)
     sprockets (4.1.1)
       concurrent-ruby (~> 1.0)
@@ -350,7 +347,6 @@ DEPENDENCIES
   exception_notification
   gon
   haml-rails
-  httparty
   image_processing
   importmap-rails
   jbuilder
@@ -369,6 +365,7 @@ DEPENDENCIES
   rubocop-rails
   sass-rails
   selenium-webdriver
+  slack-notifier
   spring
   sprockets-rails
   stimulus-rails

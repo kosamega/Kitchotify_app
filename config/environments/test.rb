@@ -57,8 +57,4 @@ Rails.application.configure do
 
   # Annotate rendered view with file names.
   # config.action_view.annotate_rendered_view_with_filenames = true
-  config.middleware.use ExceptionNotification::Rack,
-  webhook: {
-    url: ENV.fetch('DISCORD_WEBHOOK_URL_TEST')
-  }
 end
