@@ -3,6 +3,7 @@ class DaikichiResultsController < ApplicationController
   before_action :set_daikichi_form, only: %i[show]
   before_action :set_current_user_playlists, only: %i[show]
   before_action :set_current_user_volume, only: %i[show]
+  before_action :result_open, only: %i[show]
 
   include MusicsHelper
 
@@ -27,4 +28,10 @@ class DaikichiResultsController < ApplicationController
   def set_daikichi_form
     @daikichi_form = DaikichiForm.find(params[:daikichi_form_id])
   end  
+
+  def result_open
+    return if @daikichi_form.result_open? || current_user.admin?
+    flash[:danger] = '投票結果はまだ公開されていません'
+    redirect_to daikichi_forms_path
+  end
 end

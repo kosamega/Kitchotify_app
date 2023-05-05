@@ -26,6 +26,9 @@
   .row.mb-3
     .col-2.col-form-label 投票フォームを閉じる
     .col= f.check_box :form_closed
+  .row.mb-3
+    .col-2.col-form-label 結果を今すぐ公開する
+    .col= f.check_box :result_open
   .row.d-inline-block
     .col
       .col= f.submit action, class: "btn btn-primary"
