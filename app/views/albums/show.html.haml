@@ -2,15 +2,19 @@
 .album-info.mb-4
   .album-info-jaket
     - if @album.jacket.attached?
-      = image_tag(@album.jacket_middle ,class: "album-jaket-img")
+      .jacket-big= image_tag(@album.jacket_middle ,class: "album-jaket-img")
+      .jacket-small= image_tag(@album.jacket_middle ,class: "album-item", width: "130px")
     - else
       .position-relative
-        = image_tag("kakukiti" ,class: "album-jaket-img opacity-50 position-relative")
-        .h4.position-absolute.top-50.start-50.translate-middle.bg-primary.text-white.p-3.text-center= @album.name
+        .jacket-big= image_tag("kakukiti" ,class: "album-jaket-img opacity-50 position-relative")
+        .jacket-small= image_tag("kakukiti" ,class: "album-item", width: "130px")
 
   .album-info-text
     %div.ms-5
-      %h1= @album.name
+      .album-name-big
+        %h1= @album.name
+      .album-name-small
+        %h6= @album.name
       %h6.mt-3= @album.kiki_taikai_date
       - if !@album.designer.nil?
         %h6.mt-3

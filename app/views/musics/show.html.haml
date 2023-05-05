@@ -2,13 +2,14 @@
 .music-info.rounded.d-flex.border-2.border-dark
   .album-info-jaket.m-4.d-inline-block
     -if @album.jacket.attached?
-      = image_tag(@music.album.jacket_middle, class: "album-jaket-img")
+      .jacket-big= image_tag(@music.album.jacket_middle, class: "album-jaket-img")
+      .jacket-small= image_tag(@album.jacket_middle ,class: "album-item", width: "130px")
     - else
       .position-relative
         = image_tag("kakukiti" ,class: "album-jaket-img position-relative")
         .h4.position-absolute.top-50.start-50.translate-middle.bg-primary.text-white.p-3= @album.name      
 
-  .d-inline-flex.flex-column.justify-content-center
+  .d-inline-flex.flex-column.justify-content-center.m-3
     = link_to @music.album.name, album_path(@music.album)
     = @album.kiki_taikai_date
     %h2= @music.name
@@ -34,9 +35,11 @@
                   = hidden_field_tag :at_playlist_show, false
                   = button_tag type: :submit, class: "text-start border-0 bg-transparent" do
                     = playlist.name
-      =link_to "編集", edit_album_music_path(@album, @music), class: "text-white btn btn-primary ms-3"
-      - if current_user.admin?
-        =link_to "削除", [@album, @music], method: :delete, data: { confirm: "本当に消しますか" }, class: "text-white btn btn-danger ms-3"
+      - if current_user.editor?
+        .edit-delete-btn
+          =link_to "編集", edit_album_music_path(@album, @music), class: "text-white btn btn-primary ms-3"
+          - if current_user.admin?
+            =link_to "削除", [@album, @music], method: :delete, data: { confirm: "本当に消しますか" }, class: "text-white btn btn-danger ms-3"
 
 .row.mt-4
   .col

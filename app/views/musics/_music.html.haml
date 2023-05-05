@@ -5,10 +5,14 @@
       %th{scope: "col"} #
       -if !@at_album_show
         %th{scope: "col"}
-      %th{scope: "col"} タイトル 
+      %th.title-th{scope: "col"} タイトル 
+      %th.title-artist-th 
+        タイトル
+        %br
+        アーティスト
       -if !@at_album_show
-        %th{scope: "col"} アルバム
-      %th{scope: "col"} アーティスト
+        %th.album-th{scope: "col"} アルバム
+      %th.artist-th{scope: "col"} アーティスト
       %th{scope: "col"} 
       %th{scope: "col"} 
       - if @playlist&.user == current_user
