@@ -1,3 +1,7 @@
 %h1.mb-3=@daikichi_form.name
+%h3.mb-3
+  投票期限：
+  = @daikichi_form.accept_until.strftime('%F')
+
 
 = render 'form'

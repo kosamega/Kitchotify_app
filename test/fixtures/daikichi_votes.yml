@@ -3,13 +3,13 @@
 # one:
 #   user_id: 1
 #   daikichi_form_id: 1
-#   three_point_musics: ['']
-#   two_point_musics: ['']
-#   one_point_musics: ['']
+#   three_point_music_ids: ['']
+#   two_point_music_ids: ['']
+#   one_point_music_ids: ['']
 
 # two:
 #   user_id: 1
 #   daikichi_form_id: 1
-#   three_point_musics: ['']
-#   two_point_musics: ['']
-#   one_point_musics: ['']
+#   three_point_music_ids: ['']
+#   two_point_music_ids: ['']
+#   one_point_music_ids: ['']

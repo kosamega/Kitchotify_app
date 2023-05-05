@@ -19,19 +19,16 @@
         %td= daikichi_vote.user.name
         %td
           %ul
-          - daikichi_vote.three_point_musics.each do |music_id|
-            -three_point_music = Music.find(music_id)
-            %li=link_to three_point_music.name, album_music_path(three_point_music.album, three_point_music) 
+          - daikichi_vote.three_point_musics.each do |music|
+            %li=link_to music.name, album_music_path(music.album, music) 
         %td
           %ul
-          - daikichi_vote.two_point_musics.each do |music_id|
-            -two_point_music = Music.find(music_id)
-            %li=link_to two_point_music.name, album_music_path(two_point_music.album, two_point_music) 
+          - daikichi_vote.two_point_musics.each do |music|
+            %li=link_to music.name, album_music_path(music.album, music) 
         %td
           %ul
-          - daikichi_vote.one_point_musics.each do |music_id|
-            -one_point_music = Music.find(music_id)
-            %li=link_to one_point_music.name, album_music_path(one_point_music.album, one_point_music) 
+          - daikichi_vote.one_point_musics.each do |music|
+            %li=link_to music.name, album_music_path(music.album, music) 
         %td= link_to '確認', daikichi_form_daikichi_vote_path(@daikichi_form, daikichi_vote)
         %td= link_to '編集', edit_daikichi_form_daikichi_vote_path(@daikichi_form, daikichi_vote)
         %td= link_to '削除', daikichi_form_daikichi_vote_path(@daikichi_form, daikichi_vote), method: :delete, data: { confirm: '本当に削除しますか？' }

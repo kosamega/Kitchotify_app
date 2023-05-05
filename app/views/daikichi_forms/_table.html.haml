@@ -8,6 +8,7 @@
       %th 2点
       %th 1点
       %th
+      %th
       -if current_user.admin?
         %th
         %th
@@ -28,14 +29,15 @@
         %td
           = daikichi_form.one_point
           曲
+        %td= link_to '投票対象曲を聴く', daikichi_form_path(daikichi_form), class: 'btn btn-info'
         %td
           -if daikichi_vote = daikichi_form.daikichi_votes.find_by(user_id: current_user.id)
-            = link_to '投票内容を確認・編集', edit_daikichi_form_daikichi_vote_path(daikichi_form, daikichi_vote), class: 'btn btn-primary'
+            = link_to daikichi_form.form_closed? ? '投票内容を確認' : '投票内容を確認・編集', daikichi_form_daikichi_vote_path(daikichi_form, daikichi_vote), class: 'btn btn-primary'
           -else
             = link_to '投票する', new_daikichi_form_daikichi_vote_path(daikichi_form), class: 'btn btn-primary'
         -if current_user.admin?
           %td= link_to 'フォームを編集', edit_daikichi_form_path(daikichi_form), class: 'btn btn-primary'
           %td= link_to '投票一覧', daikichi_form_daikichi_votes_path(daikichi_form), class: 'btn btn-primary'
         %td
-          -if daikichi_form.form_closed?
+          -if (daikichi_form.form_closed? && daikichi_form.result_open?) || current_user.admin?
             = link_to '投票結果', daikichi_form_daikichi_result_path(daikichi_form), class: 'btn btn-primary'

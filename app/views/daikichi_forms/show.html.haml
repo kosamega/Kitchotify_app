@@ -4,10 +4,5 @@
 
 =render 'table', daikichi_forms: [@daikichi_form]
 
--if daikichi_vote = DaikichiVote.find_by(user_id: current_user.id, daikichi_form_id: @daikichi_form.id)
-  %h3 3点
-  =render 'musics/music', musics: @three_point_musics
-  %h3 2点
-  =render 'musics/music', musics: @two_point_musics
-  %h3 1点
-  =render 'musics/music', musics: @one_point_musics
+%h2 投票対象曲
+=render 'musics/music', musics: @musics
