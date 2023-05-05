@@ -18,6 +18,10 @@ class DaikichiResultsController < ApplicationController
         { music_id: music.id, three_point:, two_point:, one_point:,
           total_point: }
       end.sort_by { |result| result[:total_point] }.reverse
+    @results.each do |result|
+      result.store(:rank, @results.count{|r|r[:total_point] > result[:total_point]} + 1)
+    end
+    pp @results
     @musics = @daikichi_form.musics_for_voting.sort_by do |music|
       @results.find do |result|
         result[:music_id] == music.id
