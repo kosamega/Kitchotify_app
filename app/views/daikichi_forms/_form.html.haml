@@ -13,13 +13,25 @@
     .col-2.col-form-label 1点の曲数*
     .col= f.number_field :one_point, class: "form-control", required: :required, min: 1, max: 999
   .row.mb-3
-    .col-2.col-form-label 投票対象アルバム*
+    .col-2 投票対象曲一括選択
+    .col
+      -Album.all.where(released: true).each do |album|
+        %label.form-check-label
+          =check_box_tag "", album.id, false, class: "form-check-input check-all", data: {album_id: album.id} 
+          =album.name
+
+  .row.mb-3
+    .col-2.col-form-label 投票対象曲*
     .col
       - Album.all.where(released: true).order(:kiki_taikai_date).each do |album|
-        .form-check
-          %label.form-check-label
-            =check_box_tag "daikichi_form[music_ids_for_voting][]", album.id, @daikichi_form.music_ids_for_voting.include?(album.id.to_s), class: 'form-check-input'
-            =album.name
+        .row
+          .col-1
+            .h6= album.name
+          .col
+            -album.musics.each do |music|
+              %label.form-check-label
+                =check_box_tag "daikichi_form[music_ids_for_voting][]", music.id, @daikichi_form.music_ids_for_voting.include?(music.id.to_s), class: "form-check-input album#{music.album.id}"
+                =music.name
   .row.mb-3
     .col-2.col-form-label 投票期限*
     .col= f.date_select :accept_until, required: :required  
@@ -32,3 +44,5 @@
   .row.d-inline-block
     .col
       .col= f.submit action, class: "btn btn-primary"
+
+= javascript_include_tag 'daikichi_form/form'

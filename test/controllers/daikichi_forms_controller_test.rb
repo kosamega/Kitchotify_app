@@ -3,7 +3,7 @@ require 'test_helper'
 class DaikichiFormsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @daikichi_form = DaikichiForm.create(name: 'touhyou', three_point: 1, two_point: 1, one_point: 2, form_closed: false,
-      music_ids_for_voting: [albums(:album1).id, albums(:album2).id], accept_until: '2099-01-01T00:00:00')
+      music_ids_for_voting: [musics(:music1).id, musics(:music2).id, musics(:music3).id, musics(:music4).id], accept_until: '2099-01-01T00:00:00')
     @admin_user = users(:admin_user)
     @not_admin_user = users(:not_admin_user)
   end

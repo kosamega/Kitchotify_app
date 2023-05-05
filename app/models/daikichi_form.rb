@@ -3,6 +3,6 @@ class DaikichiForm < ApplicationRecord
   validates :name, presence: true, uniqueness: true
 
   def musics_for_voting
-    music_ids_for_voting.map { |album_id| Album.find(album_id) }.map(&:musics).flatten
+    music_ids_for_voting.map { |music_id| Music.find(music_id) }
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_04_082516) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_05_045845) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -76,7 +76,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_04_082516) do
     t.integer "two_point", null: false
     t.integer "one_point", null: false
     t.boolean "form_closed", default: false, null: false
-    t.string "albums_for_voting", default: [], array: true
+    t.string "music_ids_for_voting", default: [], array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "accept_until"

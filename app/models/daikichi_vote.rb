@@ -16,9 +16,8 @@ class DaikichiVote < ApplicationRecord
   end
 
   def validate_valid_musics
-    musics_for_voting = daikichi_form.musics_for_voting.map(&:id)
     (three_point_musics + two_point_musics + one_point_musics).each do |music_id|
-      errors.add(:投票対象外, "：#{Music.find(music_id).name}は投票対象外です") if musics_for_voting.exclude?(music_id.to_i)
+      errors.add(:投票対象外, "：#{Music.find(music_id).name}は投票対象外です") if daikichi_form.music_ids_for_voting.exclude?(music_id)
     end
   end
 
