@@ -6,7 +6,7 @@
 #   two_point: 5
 #   one_point: 10
 #   form_closed: false
-#   albums_for_voting: ['']
+#   music_ids_for_voting: ['']
 
 # two:
 #   name: MyString
@@ -14,4 +14,4 @@
 #   two_point: 1
 #   one_point: 1
 #   form_closed: false
-#   albums_for_voting: ['']
+#   music_ids_for_voting: ['']

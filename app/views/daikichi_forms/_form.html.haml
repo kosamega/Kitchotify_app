@@ -18,7 +18,7 @@
       - Album.all.where(released: true).order(:kiki_taikai_date).each do |album|
         .form-check
           %label.form-check-label
-            =check_box_tag "daikichi_form[albums_for_voting][]", album.id, @daikichi_form.albums_for_voting.include?(album.id.to_s), class: 'form-check-input'
+            =check_box_tag "daikichi_form[music_ids_for_voting][]", album.id, @daikichi_form.music_ids_for_voting.include?(album.id.to_s), class: 'form-check-input'
             =album.name
   .row.mb-3
     .col-2.col-form-label 投票期限*

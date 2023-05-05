@@ -17,7 +17,7 @@ class DaikichiFormsTest < ApplicationSystemTestCase
     fill_in 'one_point', with: @daikichi_form.one_point
     fill_in 'two_point', with: @daikichi_form.two_point
     fill_in 'three_point', with: @daikichi_form.three_point
-    fill_in 'Albums for voting', with: @daikichi_form.albums_for_voting
+    fill_in 'Music ids for voting', with: @daikichi_form.music_ids_for_voting
     check 'form_closed' if @daikichi_form.form_closed
     fill_in 'Name', with: @daikichi_form.name
     click_on 'Create Daikichi form'
@@ -33,7 +33,7 @@ class DaikichiFormsTest < ApplicationSystemTestCase
     fill_in 'one_point', with: @daikichi_form.one_point
     fill_in 'two_point', with: @daikichi_form.two_point
     fill_in 'three_point', with: @daikichi_form.three_point
-    fill_in 'Albums for voting', with: @daikichi_form.albums_for_voting
+    fill_in 'Music ids for voting', with: @daikichi_form.music_ids_for_voting
     check 'form_closed' if @daikichi_form.form_closed
     fill_in 'Name', with: @daikichi_form.name
     click_on 'Update Daikichi form'

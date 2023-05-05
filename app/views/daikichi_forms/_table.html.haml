@@ -22,7 +22,7 @@
         %td= daikichi_form.form_closed ? "投票を締め切りました" : "投票受付中"
         %td
           %ul
-          - daikichi_form.albums_for_voting.map{|album_id|Album.find(album_id)}.each do |album|
+          - daikichi_form.music_ids_for_voting.map{|album_id|Album.find(album_id)}.each do |album|
             %li=link_to album.name, album_path(album)
         %td
           = daikichi_form.three_point
