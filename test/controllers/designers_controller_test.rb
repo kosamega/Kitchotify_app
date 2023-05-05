@@ -3,8 +3,8 @@ require 'test_helper'
 class DesignersControllerTest < ActionDispatch::IntegrationTest
   def setup
     @designer = designers(:designer1)
-    @user1 = users(:user1)
-    log_in_as(@user1)
+    @admin_user = users(:admin_user)
+    log_in_as(@admin_user)
   end
 
   test 'should get index' do

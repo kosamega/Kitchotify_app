@@ -1,2 +1,2 @@
 album1_jacket_blob: <%= ActiveStorage::FixtureSet.blob filename: "181.png", service_name: "test_fixtures" %>
-album1_jacket_blob: <%= ActiveStorage::FixtureSet.blob filename: "182.png", service_name: "test_fixtures" %>
+album2_jacket_blob: <%= ActiveStorage::FixtureSet.blob filename: "182.png", service_name: "test_fixtures" %>

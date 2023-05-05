@@ -32,7 +32,7 @@
 .d-none#add-music-form
   =render "musics/form", album: @album, music: @album.musics.build, action: "作成", edit: false, confirm: "追加しますか", at_album_show: true, local: false
 
-= render "musics/music"
+= render "musics/music", musics: @musics
 
 -if current_user.editor?
   = javascript_include_tag 'music_new.js'

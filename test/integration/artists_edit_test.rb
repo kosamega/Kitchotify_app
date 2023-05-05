@@ -3,8 +3,8 @@ require 'test_helper'
 class ArtistsEditTest < ActionDispatch::IntegrationTest
   def setup
     @artist = artists(:artist1)
-    @user = users(:user1)
-    log_in_as(@user)
+    @admin_user = users(:admin_user)
+    log_in_as(@admin_user)
   end
 
   test 'artistの編集に失敗' do

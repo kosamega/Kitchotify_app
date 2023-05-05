@@ -1,0 +1,7 @@
+%h1 大吉投票フォーム
+
+=render 'table', daikichi_forms: @daikichi_forms
+
+%br
+-if current_user.admin?
+  = link_to '投票フォームを作成', new_daikichi_form_path, class: 'btn btn-primary'

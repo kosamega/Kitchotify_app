@@ -33,6 +33,11 @@ Rails.application.routes.draw do
 
   resource :import_csvs, only: %i[new show create]
 
+  resources :daikichi_forms do
+    resources :daikichi_votes
+    resource :daikichi_result, only: %i[show]
+  end
+
   namespace :api, defaults: { format: :json } do
     resources :albums, only: %i[index create]
     resources :musics, only: %i[index]

@@ -1,0 +1,6 @@
+%h1
+  =@daikichi_form.name
+  を編集
+
+= render 'form', action: '更新'
+= link_to '削除', daikichi_form_path(@daikichi_form), method: :delete, data: { confirm: '本当に削除しますか?' }, class: 'btn btn-danger'

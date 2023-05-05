@@ -2,7 +2,7 @@ require 'test_helper'
 
 class UsersLoginTest < ActionDispatch::IntegrationTest
   def setup
-    @user = users(:user1)
+    @admin_user = users(:admin_user)
   end
 
   test 'ログイン失敗' do
@@ -17,7 +17,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
   test 'ログイン成功・ログアウト成功' do
     get new_sessions_path
     assert_template 'sessions/new'
-    post sessions_path, params: { session: { name: @user.name,
+    post sessions_path, params: { session: { name: @admin_user.name,
                                              password: 'password' } }
     assert is_logged_in?
     assert_redirected_to root_path

@@ -1,0 +1,8 @@
+%p#notice= notice
+
+%h1= @daikichi_form.name
+
+=render 'table', daikichi_forms: [@daikichi_form]
+
+%h2 投票対象曲
+=render 'musics/music', musics: @musics

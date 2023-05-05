@@ -1,0 +1,6 @@
+- if instance.errors.any?
+  #error_explanation.alert.alert-danger
+    %h2= "#{pluralize(instance.errors.count, "error")}"
+    %ul
+      - instance.errors.full_messages.each do |message|
+        %li= message

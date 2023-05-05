@@ -1,0 +1,23 @@
+
+= form_with model: [@daikichi_form, @daikichi_vote] do |f|
+  =render 'shared/errors', instance: @daikichi_vote
+  = f.hidden_field :user_id, value: current_user.id
+  
+  .row.mb-3
+    .col-2.col-form-label 3点を入れる曲
+    .col
+      - @daikichi_form.three_point.times do |n|
+        =select_tag "daikichi_vote[three_point_music_ids][]", options_from_collection_for_select(@musics_for_voting, :id, :name, @daikichi_vote.three_point_music_ids.nil? ? nil : @daikichi_vote.three_point_music_ids[n]),  class: 'form-select'
+  .row.mb-3
+    .col-2.col-form-label 2点を入れる曲
+    .col
+      - @daikichi_form.two_point.times do |n|
+        =select_tag "daikichi_vote[two_point_music_ids][]", options_from_collection_for_select(@musics_for_voting, :id, :name, @daikichi_vote.three_point_music_ids.nil? ? nil : @daikichi_vote.two_point_music_ids[n]),  class: 'form-select'
+  .row.mb-3
+    .col-2.col-form-label 1点を入れる曲
+    .col
+      - @daikichi_form.one_point.times do |n|
+        =select_tag "daikichi_vote[one_point_music_ids][]", options_from_collection_for_select(@musics_for_voting, :id, :name, @daikichi_vote.three_point_music_ids.nil? ? nil : @daikichi_vote.one_point_music_ids[n]),  class: 'form-select'
+
+  .actions
+    = f.submit '投票', class: 'btn btn-primary'

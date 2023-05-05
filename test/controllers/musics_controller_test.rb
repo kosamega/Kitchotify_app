@@ -3,10 +3,10 @@ require 'test_helper'
 class MusicsControllerTest < ActionDispatch::IntegrationTest
   def setup
     @album = albums(:album1)
-    @user = users(:user1)
+    @admin_user = users(:admin_user)
     @artist = artists(:artist1)
     @music = musics(:music1)
-    log_in_as(@user)
+    log_in_as(@admin_user)
   end
 
   test 'ログインしていなくてもmusicを作成できる' do

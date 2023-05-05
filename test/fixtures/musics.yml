@@ -16,4 +16,17 @@ music3:
   name: music3
   artist: artist3
   track: 3
+  album: album2
+
+music4:
+  name: music4
+  artist: artist3
+  track: 4
+  album: album2
+
+music5:
+  name: music5
+  artist: artist3
+  track: 4
   album: album3
+

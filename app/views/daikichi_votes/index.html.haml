@@ -1,0 +1,34 @@
+%h1
+  = @daikichi_form.name
+  投票一覧
+
+%table.table.align-middle.table-striped
+  %thead
+    %tr
+      %th ユーザー
+      %th 3点
+      %th 2点
+      %th 1点
+      %th
+      %th
+      %th
+
+  %tbody
+    - @daikichi_votes.each do |daikichi_vote|
+      %tr
+        %td= daikichi_vote.user.name
+        %td
+          %ul
+          - daikichi_vote.three_point_musics.each do |music|
+            %li=link_to music.name, album_music_path(music.album, music) 
+        %td
+          %ul
+          - daikichi_vote.two_point_musics.each do |music|
+            %li=link_to music.name, album_music_path(music.album, music) 
+        %td
+          %ul
+          - daikichi_vote.one_point_musics.each do |music|
+            %li=link_to music.name, album_music_path(music.album, music) 
+        %td= link_to '確認', daikichi_form_daikichi_vote_path(@daikichi_form, daikichi_vote)
+        %td= link_to '編集', edit_daikichi_form_daikichi_vote_path(@daikichi_form, daikichi_vote)
+        %td= link_to '削除', daikichi_form_daikichi_vote_path(@daikichi_form, daikichi_vote), method: :delete, data: { confirm: '本当に削除しますか？' }

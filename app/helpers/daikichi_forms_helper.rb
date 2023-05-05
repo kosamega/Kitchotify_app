@@ -1,0 +1,2 @@
+module DaikichiFormsHelper
+end

@@ -1,11 +1,11 @@
-user1:
-  name: user1
+admin_user:
+  name: admin_user
   password_digest: <%= User.digest('password') %>
   admin: true
   editor: false
   
-user2:
-  name: user2
+not_admin_user:
+  name: not_admin_user
   password_digest: <%= User.digest('password') %>
   admin: false
   editor: false

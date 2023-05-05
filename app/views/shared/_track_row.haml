@@ -46,6 +46,11 @@
   - if current_user.editor?
     %td
       =link_to "編集", edit_album_music_path(music.album, music), class: "text-white btn btn-primary ms-3"
+  - if @results.present?
+    %td=@results[number][:three_point]
+    %td=@results[number][:two_point]
+    %td=@results[number][:one_point]
+    %td=@results[number][:total_point]
 
 - if current_user.editor? && @at_album_show
   %tr

@@ -1,0 +1,43 @@
+%table.table.align-middle.table-striped
+  %thead
+    %tr
+      %th 名前
+      %th 投票期限
+      %th 投票受付
+      %th 3点
+      %th 2点
+      %th 1点
+      %th
+      %th
+      -if current_user.admin?
+        %th
+        %th
+      %th
+
+  %tbody
+    - daikichi_forms.each do |daikichi_form|
+      %tr
+        %td= link_to daikichi_form.name, daikichi_form_path(daikichi_form, user_id: current_user.id)
+        %td= daikichi_form.accept_until.strftime("%F")
+        %td= daikichi_form.form_closed ? "投票を締め切りました" : "投票受付中"
+        %td
+          = daikichi_form.three_point
+          曲
+        %td
+          = daikichi_form.two_point
+          曲
+        %td
+          = daikichi_form.one_point
+          曲
+        %td= link_to '投票対象曲を聴く', daikichi_form_path(daikichi_form), class: 'btn btn-info'
+        %td
+          -if daikichi_vote = daikichi_form.daikichi_votes.find_by(user_id: current_user.id)
+            = link_to daikichi_form.form_closed? ? '投票内容を確認' : '投票内容を確認・編集', daikichi_form_daikichi_vote_path(daikichi_form, daikichi_vote), class: 'btn btn-primary'
+          -else
+            = link_to '投票する', new_daikichi_form_daikichi_vote_path(daikichi_form), class: 'btn btn-primary'
+        -if current_user.admin?
+          %td= link_to 'フォームを編集', edit_daikichi_form_path(daikichi_form), class: 'btn btn-primary'
+          %td= link_to '投票一覧', daikichi_form_daikichi_votes_path(daikichi_form), class: 'btn btn-primary'
+        %td
+          -if (daikichi_form.form_closed? && daikichi_form.result_open?) || current_user.admin?
+            = link_to '投票結果', daikichi_form_daikichi_result_path(daikichi_form), class: 'btn btn-primary'

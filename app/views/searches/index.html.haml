@@ -5,7 +5,7 @@
 
 %h2 曲
 - if @musics.present?
-  = render "musics/music"
+  = render "musics/music", musics: @musics
 - else
   %p
     = @params
