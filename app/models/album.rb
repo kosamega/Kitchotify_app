@@ -56,7 +56,7 @@ class Album < ApplicationRecord
                    url: album_url(self, host: 'kitchotify-app.herokuapp.com'),
                    color: 10_070_709,
                    thumbnail: {
-                     url: jacket.url
+                     url: jacket&.url
                    }
                  }
                ] }
