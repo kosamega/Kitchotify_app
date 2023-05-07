@@ -1,5 +1,5 @@
 class DaikichisController < ApplicationController
-  before_action :set_daikichi, only: %i[ show edit update destroy ]
+  before_action :set_daikichi, only: %i[show edit update destroy]
   before_action :set_current_user_playlists, only: %i[show]
   before_action :set_current_user_volume, only: %i[show]
 
@@ -20,8 +20,7 @@ class DaikichisController < ApplicationController
     @daikichi = Daikichi.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @daikichi = Daikichi.new(daikichi_params)
@@ -49,11 +48,12 @@ class DaikichisController < ApplicationController
   end
 
   private
-    def set_daikichi
-      @daikichi = Daikichi.find(params[:id])
-    end
 
-    def daikichi_params
-      params.require(:daikichi).permit(:name, :released, :designer_id, :counting_votes_date)
-    end
+  def set_daikichi
+    @daikichi = Daikichi.find(params[:id])
+  end
+
+  def daikichi_params
+    params.require(:daikichi).permit(:name, :released, :designer_id, :counting_votes_date)
+  end
 end
