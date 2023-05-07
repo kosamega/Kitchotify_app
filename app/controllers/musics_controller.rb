@@ -93,7 +93,7 @@ class MusicsController < ApplicationController
   end
 
   def artist_exist?
-    return unless (artist = Artist.find_by(id: music_params[:artist_id]).nil?)
+    return if (artist = Artist.find_by(id: music_params[:artist_id]))
 
     respond_to do |format|
       format.html do
