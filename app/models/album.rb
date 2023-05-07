@@ -48,7 +48,7 @@ class Album < ApplicationRecord
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
 
-    params = { content: "「#{name}」が追加されました",
+    params = { content: "#{name} が追加されました",
                embeds: [
                  {
                    title: name,
@@ -63,7 +63,5 @@ class Album < ApplicationRecord
     headers = { 'Content-Type' => 'application/json' }
 
     response = http.post(uri.path, params.to_json, headers)
-    Rails.logger.debug response.body
-    Rails.logger.debug response.code
   end
 end

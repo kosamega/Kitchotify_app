@@ -35,7 +35,10 @@ class DaikichisController < ApplicationController
   end
 
   def update
+    released = @daikichi.released?
     if @daikichi.update(daikichi_params)
+      flash[:success] = "#{@daikichi.name}を更新しました"
+      @daikichi.notify_new_release if released == false && @daikichi.released?
       redirect_to daikichi_url(@daikichi)
     else
       render :edit
