@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+daikichi1:
+  name: daikichi1
+  released: false
+  designer: designer1
+  counting_votes_date: 2023-05-07
+
+daikichi2:
+  name: daikichi2
+  released: false
+  designer: designer2
+  counting_votes_date: 2023-05-07

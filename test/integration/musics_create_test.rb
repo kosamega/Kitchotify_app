@@ -19,7 +19,7 @@ class MusicsCreateTest < ActionDispatch::IntegrationTest
     assert_difference 'Music.count', 1 do
       post album_musics_path(@album), params: { music: { name: 'new_music',
                                                          track: 0,
-                                                         artist_name: @artist.name } }
+                                                         artist_id: @artist.id } }
     end
     assert flash.any?
     assert_template 'musics/new'
@@ -29,7 +29,7 @@ class MusicsCreateTest < ActionDispatch::IntegrationTest
     get new_album_music_path(@album)
     assert_no_difference 'Music.count' do
       post album_musics_path(@album), xhr: true, params: { music: { name: 'new_music',
-                                                                    artist_name: 'not_exist' } }
+                                                                    artist_id: 999_999_999_999 } }
     end
     assert_template 'musics/create'
   end

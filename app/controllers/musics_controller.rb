@@ -27,14 +27,9 @@ class MusicsController < ApplicationController
   end
 
   def create
-    return if Artist.find_by(name: music_params[:artist_name]).nil?
+    return if Artist.find_by(id: music_params[:artist_id]).nil?
 
-    @music = @album.musics.build(
-      name: music_params[:name],
-      track: music_params[:track],
-      index_info: music_params[:index_info],
-      artist_id: Artist.find_by(name: music_params[:artist_name]).id
-    )
+    @music = @album.musics.build(music_params)
     @music.audio.attach(music_params[:audio])
     if @music.save
       @messages = "以下の内容で曲を追加しました<br>曲名：#{@music.name}<br>アーティスト：#{@music.artist.name}<br>インデックス情報：<br>#{@music.index_info}"
@@ -55,12 +50,7 @@ class MusicsController < ApplicationController
   end
 
   def update
-    @music.update(
-      name: music_params[:name],
-      track: music_params[:track],
-      index_info: music_params[:index_info],
-      artist_id: Artist.find_by(name: music_params[:artist_name]).id
-    )
+    @music.update(music_params)
     @music.audio.attach(music_params[:audio]) if @music.audio.nil?
     if @music.errors.full_messages.present?
       @save = false
@@ -99,20 +89,20 @@ class MusicsController < ApplicationController
   end
 
   def music_params
-    params.require(:music).permit(:name, :artist_name, :track, :audio, :index_info)
+    params.require(:music).permit(:name, :artist_id, :track, :audio, :index_info, :daikichi_id, :d_track)
   end
 
   def artist_exist?
-    return unless Artist.find_by(name: music_params[:artist_name]).nil?
+    return if (artist = Artist.find_by(id: music_params[:artist_id]))
 
     respond_to do |format|
       format.html do
-        flash[:danger] = "#{music_params[:artist_name]}というアーティストは存在しません。<br>ページ下部からアーティストを追加してください。"
+        flash[:danger] = "#{artist&.name}というアーティストは存在しません。<br>ページ下部からアーティストを追加してください。"
         redirect_to new_album_music_path(@album)
       end
       format.js do
         @save = false
-        @messages = "#{music_params[:artist_name]}というアーティストは存在しません。<br>ページ下部からアーティストを追加してください。"
+        @messages = "#{artist&.name}というアーティストは存在しません。<br>ページ下部からアーティストを追加してください。"
       end
     end
   end

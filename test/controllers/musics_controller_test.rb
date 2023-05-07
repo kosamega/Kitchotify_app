@@ -15,7 +15,7 @@ class MusicsControllerTest < ActionDispatch::IntegrationTest
       post album_musics_path(@album), params: { music: { name: 'hoge',
                                                          index_info: 'インデックス情報',
                                                          track: 0,
-                                                         artist_name: @artist.name } }
+                                                         artist_id: @artist.id } }
     end
   end
 

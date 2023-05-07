@@ -1,7 +1,7 @@
 -provide(:title, "アルバム一覧")
 .album-container
   %h3 既リリース
-  - @albums.where(released: true).each do |album|
+  - @albums_released.each do |album|
     = link_to album_path(album), class: "album-background" do
       - if album.jacket.attached?
         = image_tag(album.jacket_middle ,class: "album-item", width: "130px")
@@ -9,19 +9,43 @@
         .position-relative
           = image_tag("kakukiti" ,class: "album-item opacity-50 position-relative", width: "130px")
           .h6.position-absolute.top-50.start-50.translate-middle.bg-primary.text-white.p-1= album.name
+  -if @daikichis_released.present?
+    %h3 大吉
+    - @daikichis_released.each do |daikichi|
+      = link_to daikichi_path(daikichi), class: "album-background" do
+        - if daikichi.jacket.attached?
+          = image_tag(daikichi.jacket_middle ,class: "album-item", width: "130px")
+        - else
+          .position-relative
+            = image_tag("kakukiti" ,class: "album-item opacity-50 position-relative", width: "130px")
+            .h6.position-absolute.top-50.start-50.translate-middle.bg-primary.text-white.p-1= daikichi.name
 
 - if current_user.editor?
   .over-flow-hidden
-    =link_to "作成", new_album_path, class: "text-white btn btn-primary m-3 float-end"
+    = link_to '大吉を作成', new_daikichi_path, class: 'btn btn-primary float-end m-3'
     =link_to "一括インポート", new_import_csvs_path, class: "text-white btn btn-primary m-3 float-end"
+    =link_to "月吉・コンピを作成", new_album_path, class: "text-white btn btn-primary m-3 float-end"
+
 
 .album-container.mt-5
-  %h3 未リリース
-  - @albums.where(released: false).each do |album|
-    = link_to album_path(album), class: "album-background" do
-      - if album.jacket.attached?
-        = image_tag(album.jacket_middle ,class: "album-item", width: "130px")
-      - else
-        .position-relative
-          = image_tag("kakukiti" ,class: "album-item opacity-50 position-relative", width: "130px")
-          .h5.position-absolute.top-50.start-50.translate-middle.bg-primary.text-white.p-1.text-center= album.name
+  -if @daikichis_not_released.present?
+    %h3 大吉未リリース
+    - @daikichis_not_released.each do |daikichi|
+      = link_to daikichi_path(daikichi), class: "album-background" do
+        - if daikichi.jacket.attached?
+          = image_tag(daikichi.jacket_middle ,class: "album-item", width: "130px")
+        - else
+          .position-relative
+            = image_tag("kakukiti" ,class: "album-item opacity-50 position-relative", width: "130px")
+            .h6.position-absolute.top-50.start-50.translate-middle.bg-primary.text-white.p-1= daikichi.name
+
+  - if @albums_not_released.present?
+    %h3 未リリース
+    - @albums_not_released.each do |album|
+      = link_to album_path(album), class: "album-background" do
+        - if album.jacket.attached?
+          = image_tag(album.jacket_middle ,class: "album-item", width: "130px")
+        - else
+          .position-relative
+            = image_tag("kakukiti" ,class: "album-item opacity-50 position-relative", width: "130px")
+            .h5.position-absolute.top-50.start-50.translate-middle.bg-primary.text-white.p-1.text-center= album.name

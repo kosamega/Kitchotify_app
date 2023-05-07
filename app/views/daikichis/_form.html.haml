@@ -1,0 +1,38 @@
+= form_for @daikichi do |f|
+  =render 'shared/errors', instance: @daikichi
+
+  .row.mb-3
+    .col-2.col-form-label 名前*
+    .col
+      = f.text_field :name, class: "form-control", required: :required
+  .row.mb-3
+    .col-2.col-form-label 開票日*
+    .col
+      = f.date_select :counting_votes_date, required: :required
+  .row
+    .col-2.col-form-label ジャケット
+    .col= f.file_field :jacket, class: "form-control", accept: "image/jpeg, image/png"
+  .row.mb-3
+    .col-2
+    .col= @daikichi&.jacket&.attached? ? "jacketが存在します" : "jacketが存在しません"
+  .row.mb-3
+    .col-2.col-form-label リリース
+    .col
+      = f.check_box :released
+  .row.mb-3
+    .col-2.col-form-label デザイナー検索
+    .col
+      %input.form-control#search-field-designer
+  .row
+    .col-2.col-form-label デザイナー
+    #select-div-designer.col= f.select :designer_id, Designer.all.to_h{|designer|[designer.name, designer.id]}, {include_blank: true}, class: "form-select", id: "jacket_designer_id", size: '5'
+  .row.mb-3
+    .col-2
+    .col.form-text ※デザイナーが存在しない場合は下のフォームから追加してください。
+  .actions
+    = f.submit 'Save', class: "btn btn-primary"
+%hr
+%h2.mt-4 新規デザイナー
+=render 'designers/form', designer: Designer.new, action: "作成", local: false, edit: edit
+
+=javascript_include_tag 'designer/designer_select_search'
