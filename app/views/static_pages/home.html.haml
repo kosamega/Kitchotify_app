@@ -1,14 +1,24 @@
 -provide(:title, 'Home')
 %h1 最新リリース
 .album-container.border-bottom.pb-2.border-2
-  - @albums_released.each do |album|
-    = link_to album_path(album), class: "album-background" do
-      - if album.jacket.attached?
-        = image_tag album.jacket_middle ,class: "album-item", width: "130px"
-      - else
-        .position-relative
-          = image_tag("kakukiti" ,class: "album-item", width: "130px")
-          .h6.position-absolute.top-50.start-50.translate-middle.bg-primary.text-white.p-1.text-center= album.name
+  - @albums_and_daikichis_released.each do |release|
+    - if release.instance_of? Album
+      = link_to album_path(release), class: "album-background" do
+        - if release.jacket.attached?
+          = image_tag release.jacket_middle ,class: "album-item", width: "130px"
+        - else
+          .position-relative
+            = image_tag("kakukiti" ,class: "album-item", width: "130px")
+            .h6.position-absolute.top-50.start-50.translate-middle.bg-primary.text-white.p-1.text-center= release.name
+    - elsif release.instance_of? Daikichi
+      = link_to daikichi_path(release), class: "album-background" do
+        - if release.jacket.attached?
+          = image_tag release.jacket_middle ,class: "album-item", width: "130px"
+        - else
+          .position-relative
+            = image_tag("kakukiti" ,class: "album-item", width: "130px")
+            .h6.position-absolute.top-50.start-50.translate-middle.bg-primary.text-white.p-1.text-center= release.name
+
 
 .sita-container.mt-4
   .new-comments
