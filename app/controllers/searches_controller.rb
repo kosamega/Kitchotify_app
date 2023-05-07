@@ -6,14 +6,14 @@ class SearchesController < ApplicationController
 
   def index
     @params = params[:search][:content]
-    @musics = Music.where('name LIKE ?', "%#{@params}%").or(Music.where(artist_id: Artist.find_by(name: @params)&.id)).includes(
+    @musics = Music.where('UPPER(name) LIKE ?', "%#{@params.upcase}%").or(Music.where(artist_id: Artist.find_by(name: @params)&.id)).includes(
       { album: [jacket_attachment: [blob: :variant_records]] }, :artist, :likes, audio_attachment: :blob
     )
-    @users = User.where('name LIKE ?', "%#{@params}%")
-    @result_playlists = Playlist.where('name LIKE ?', "%#{@params}%").where(public: true).includes(:user)
-    @artists = Artist.where('name LIKE ?', "%#{@params}%")
-    @designers = Designer.where('name LIKE ?', "%#{@params}%")
-    @albums = Album.where('name LIKE ?', "%#{@params}%")
+    @users = User.where('UPPER(name) LIKE ?', "%#{@params.upcase}%")
+    @result_playlists = Playlist.where('UPPER(name) LIKE ?', "%#{@params.upcase}%").where(public: true).includes(:user)
+    @artists = Artist.where('UPPER(name) LIKE ?', "%#{@params.upcase}%")
+    @designers = Designer.where('UPPER(name) LIKE ?', "%#{@params.upcase}%")
+    @albums = Album.where('UPPER(name) LIKE ?', "%#{@params.upcase}%")
     @infos = set_infos(@musics)
     @show_user = true
     gon.infos_j = @infos
