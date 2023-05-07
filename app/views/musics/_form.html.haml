@@ -5,15 +5,16 @@
       .row.mb-2
         .col-2.col-form-label 曲名*
         .col= form.text_field :name, class: "form-control", required: :required
+      .row.mb-3
+        .col-2.col-form-label 名義検索
+        .col
+          %input.form-control#search-field-artist
       .row
         .col-2.col-form-label 名義*
-        .col= form.text_field :artist_name, class: "form-control", list: 'artist-list', value: music.artist&.name, required: :required
+        #select-div-artist.col= form.select :artist_id, Artist.all.to_h{|aritist|[aritist.name, aritist.id]}, {}, class: "form-select", size: '3'
       .row.mb-2
         .col-2
         .col.form-text 名義が存在しない場合は下のフォームから追加してください。
-      %datalist#artist-list
-        - @artists.each do |artist|
-          %option{value: artist.name}
       .row.mb-2
         .col-2.col-form-label Tr.*
         .col= form.number_field :track, class: "form-control", min: 0, max: 999, required: :required
@@ -24,14 +25,22 @@
         .col-2.col-form-label 音源
         .col= form.file_field :audio, class: "form-control", accept: "audio/mpeg", value: music.audio
       = hidden_field_tag :at_album_show, at_album_show
-      .row
+      .row.mb-2
         .col-2
         .col= music&.audio&.attached? ? "audioが存在します" : "audioが存在しません"
       - if music.audio.attached?
-        .row
+        .row.mb-2
           .col-2
           .col
             %audio{src: music.audio.url, controls: 'controls'}
+      .row.mb-2
+        .col-2.col-form-label 大吉
+        .col= form.select :daikichi_id, Daikichi.all.to_h{|daikichi|[daikichi.name, daikichi.id]}, {include_blank: true}, class: "form-select", size: '2'
+      .row.mb-2
+        .col-2.col-form-label 大吉Tr.*
+        .col= form.number_field :d_track, class: "form-control", min: 0, max: 999
+
+
     .col
       .row.h-100
         .col-1.col-form-label その他
@@ -45,4 +54,6 @@
 
 - if edit && current_user.admin?
   = link_to '削除', album_music_path(album, music), method: :delete, data: { confirm: "本当に消しますか" }, class: "text-white btn btn-danger float-end mt-3"
+
+=javascript_include_tag 'music/select_artist_search'
 
