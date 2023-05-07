@@ -55,6 +55,6 @@ class DaikichisController < ApplicationController
   end
 
   def daikichi_params
-    params.require(:daikichi).permit(:name, :released, :designer_id, :counting_votes_date)
+    params.require(:daikichi).permit(:name, :released, :designer_id, :counting_votes_date, :jacket)
   end
 end
