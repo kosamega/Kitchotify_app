@@ -11,7 +11,7 @@ class DaikichisController < ApplicationController
   end
 
   def show
-    @musics = @daikichi.musics.includes(:artist, :likes, audio_attachment: :blob)
+    @musics = @daikichi.musics.order(:d_track).includes(:artist, :likes, audio_attachment: :blob)
     @infos = set_infos(@musics)
     gon.infos_j = @infos
     @artists = Artist.all
