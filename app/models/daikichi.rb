@@ -6,7 +6,7 @@ class Daikichi < ApplicationRecord
   VALIDATE_DATE_REGEX = /\A[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])\z/
   validates :counting_votes_date, presence: true, format: { with: VALIDATE_DATE_REGEX }
   validates :jacket, content_type: { in: %w[image/jpeg image/png], message: '：jpegかpngであげてください' },
-  size: { less_than: 5.megabytes, message: '5MB以上のファイルはアップロードできません' }
+                     size: { less_than: 5.megabytes, message: '5MB以上のファイルはアップロードできません' }
   include Rails.application.routes.url_helpers
 
   def jacket_middle
