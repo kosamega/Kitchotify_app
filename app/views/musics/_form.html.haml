@@ -37,7 +37,7 @@
         .col-2.col-form-label 大吉
         .col= form.select :daikichi_id, Daikichi.all.to_h{|daikichi|[daikichi.name, daikichi.id]}, {include_blank: true}, class: "form-select", size: '2'
       .row.mb-2
-        .col-2.col-form-label 大吉Tr.*
+        .col-2.col-form-label 大吉Tr.
         .col= form.number_field :d_track, class: "form-control", min: 0, max: 999
 
 
