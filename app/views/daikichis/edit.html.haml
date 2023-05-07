@@ -1,4 +1,5 @@
+-provide(:title, "#{@daikichi.name}を編集")
 %h1
   =@daikichi.name
   を編集
-= render 'form'
+= render 'form', edit: false
