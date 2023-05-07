@@ -1,0 +1,22 @@
+= form_for @daikichi do |f|
+  - if @daikichi.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@daikichi.errors.count, "error")} prohibited this daikichi from being saved:"
+      %ul
+        - @daikichi.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :released
+    = f.check_box :released
+  .field
+    = f.label :designer_id
+    = f.number_field :designer_id
+  .field
+    = f.label :counting_votes_date
+    = f.date_field :counting_votes_date
+  .actions
+    = f.submit 'Save'

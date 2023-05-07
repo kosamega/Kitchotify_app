@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  released: false
+  designer_id: 1
+  counting_votes_date: 2023-05-07
+
+two:
+  name: MyString
+  released: false
+  designer_id: 1
+  counting_votes_date: 2023-05-07

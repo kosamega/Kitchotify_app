@@ -1,12 +1,14 @@
 Rails.application.routes.draw do
   root to: 'static_pages#home'
-
+  
   resources :albums do
     resources :musics, only: %i[new create edit update show destroy]
     resource :index, only: %i[create]
     resource :music_list, only: %i[create]
   end
-
+  
+  resources :daikichis
+  
   resources :artists
 
   resources :designers

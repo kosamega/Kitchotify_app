@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @daikichi.name
+%p
+  %b Released:
+  = @daikichi.released
+%p
+  %b Designer:
+  = @daikichi.designer_id
+%p
+  %b Counting votes date:
+  = @daikichi.counting_votes_date
+
+= link_to 'Edit', edit_daikichi_path(@daikichi)
+\|
+= link_to 'Back', daikichis_path

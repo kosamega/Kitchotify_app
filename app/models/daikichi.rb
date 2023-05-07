@@ -1,0 +1,2 @@
+class Daikichi < ApplicationRecord
+end

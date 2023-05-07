@@ -1,0 +1,27 @@
+%h1 Listing daikichis
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th Released
+      %th Designer
+      %th Counting votes date
+      %th
+      %th
+      %th
+
+  %tbody
+    - @daikichis.each do |daikichi|
+      %tr
+        %td= daikichi.name
+        %td= daikichi.released
+        %td= daikichi.designer_id
+        %td= daikichi.counting_votes_date
+        %td= link_to 'Show', daikichi
+        %td= link_to 'Edit', edit_daikichi_path(daikichi)
+        %td= link_to 'Destroy', daikichi, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Daikichi', new_daikichi_path
