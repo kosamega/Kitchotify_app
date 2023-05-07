@@ -1,5 +1,5 @@
 if(<%=@save%>){
-  $('#album_designer_id').append("<option value='<%= @designer.id%>'><%=@designer.name%></option> ");
+  $('#jacket_designer_id').append("<option value='<%= @designer.id%>'><%=@designer.name%></option> ");
   $('#flash').append('<div><p><%= @designer.name %>を追加しました</p></div>');
 }else{
     $('#flash').append('<div><p><%= @designer.errors.full_messages %></p></div>');
