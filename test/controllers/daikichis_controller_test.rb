@@ -5,11 +5,6 @@ class DaikichisControllerTest < ActionDispatch::IntegrationTest
     @daikichi = daikichis(:one)
   end
 
-  test "should get index" do
-    get daikichis_url
-    assert_response :success
-  end
-
   test "should get new" do
     get new_daikichi_url
     assert_response :success

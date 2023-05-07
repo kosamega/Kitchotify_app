@@ -1,22 +1,35 @@
 = form_for @daikichi do |f|
-  - if @daikichi.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@daikichi.errors.count, "error")} prohibited this daikichi from being saved:"
-      %ul
-        - @daikichi.errors.full_messages.each do |message|
-          %li= message
+  =render 'shared/errors', instance: @daikichi
 
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :released
-    = f.check_box :released
-  .field
-    = f.label :designer_id
-    = f.number_field :designer_id
-  .field
-    = f.label :counting_votes_date
-    = f.date_field :counting_votes_date
+  .row.mb-3
+    .col-2.col-form-label 名前*
+    .col
+      = f.text_field :name, class: "form-control", required: :required
+  .row.mb-3
+    .col-2.col-form-label 開票日*
+    .col
+      = f.date_select :counting_votes_date, required: :required
+  .row
+    .col-2.col-form-label ジャケット
+    .col= f.file_field :jacket, class: "form-control", accept: "image/jpeg, image/png"
+  .row.mb-3
+    .col-2
+    .col= @daikichi&.jacket&.attached? ? "jacketが存在します" : "jacketが存在しません"
+  .row.mb-3
+    .col-2.col-form-label リリース
+    .col
+      = f.check_box :released
+  .row.mb-3
+    .col-2.col-form-label デザイナー検索
+    .col
+      %input.form-control#search-field-designer
+  .row
+    .col-2.col-form-label デザイナー
+    #select-div-designer.col= f.select :designer_id, Designer.all.to_h{|designer|[designer.name, designer.id]}, {include_blank: true}, class: "form-select", size: '5'
+  .row.mb-3
+    .col-2
+    .col.form-text ※デザイナーが存在しない場合は下のフォームから追加してください。
   .actions
-    = f.submit 'Save'
+    = f.submit 'Save', class: "btn btn-primary"
+    
+=javascript_include_tag 'designer/select_search'

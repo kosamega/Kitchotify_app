@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_05_062529) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_07_055113) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -93,6 +93,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_05_062529) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "daikichis", force: :cascade do |t|
+    t.string "name"
+    t.boolean "released"
+    t.integer "designer_id"
+    t.date "counting_votes_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "designers", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -133,6 +142,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_05_062529) do
     t.datetime "updated_at"
     t.string "index_info"
     t.integer "artist_id"
+    t.integer "daikichi_id"
+    t.integer "d_track"
     t.index ["name"], name: "index_musics_on_name"
   end
 

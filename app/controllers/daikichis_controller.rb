@@ -1,11 +1,19 @@
 class DaikichisController < ApplicationController
   before_action :set_daikichi, only: %i[ show edit update destroy ]
+  before_action :set_current_user_playlists, only: %i[show]
+  before_action :set_current_user_volume, only: %i[show]
+
+  include MusicsHelper
 
   def index
     @daikichis = Daikichi.all
   end
 
   def show
+    @musics = @daikichi.musics.includes(:artist, :likes, audio_attachment: :blob)
+    @infos = set_infos(@musics)
+    gon.infos_j = @infos
+    @artists = Artist.all
   end
 
   def new
@@ -19,6 +27,7 @@ class DaikichisController < ApplicationController
     @daikichi = Daikichi.new(daikichi_params)
 
     if @daikichi.save
+      flash[:success] = "#{@daikichi.name}を作成しました"
       redirect_to daikichi_url(@daikichi)
     else
       render :new

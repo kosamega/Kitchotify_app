@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     resource :music_list, only: %i[create]
   end
   
-  resources :daikichis
+  resources :daikichis, only: %i[new create edit update show destroy]
   
   resources :artists
 
