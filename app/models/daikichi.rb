@@ -34,7 +34,7 @@ class Daikichi < ApplicationRecord
                embeds: [
                  {
                    title: name,
-                   description: "聴き大会：#{counting_votes_date}\nDesigned by #{designer&.name}",
+                   description: "開票日：#{counting_votes_date}\nDesigned by #{designer&.name}",
                    url: daikichi_url(self, host: 'kitchotify-app.herokuapp.com'),
                    color: 10_070_709,
                    thumbnail: {
