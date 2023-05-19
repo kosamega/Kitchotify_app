@@ -16,10 +16,12 @@ class DaikichiResultsController < ApplicationController
         one_point = votes.count { |vote| vote[:one_point_music_ids].include?(music.id.to_s) }
         total_point = (three_point * 3) + (two_point * 2) + one_point
         { music_id: music.id, three_point:, two_point:, one_point:,
-          total_point: }
+          total_point:, length: music.length ? music.length : 0}
       end.sort_by { |result| result[:total_point] }.reverse
+    total_length = 0
     @results.each do |result|
       result.store(:rank, @results.count { |r| r[:total_point] > result[:total_point] } + 1)
+      result.store(:total_length, total_length += result[:length])
     end
     @musics = @results.map { |result| Music.find(result[:music_id]) }
     @infos = set_infos(@musics)
