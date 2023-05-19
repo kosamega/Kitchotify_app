@@ -36,6 +36,7 @@ class MusicsController < ApplicationController
       @number = params[:music][:track].to_i - 1
       @at_album_show = params[:at_album_show]
       @save = true
+      @music.update(length: get_music_length(@music)) if @music.audio.attached?
       flash.now[:success] = @messages
     else
       @messages = @music.errors.full_messages.join('<br>')
@@ -52,6 +53,7 @@ class MusicsController < ApplicationController
   def update
     @music.update(music_params)
     @music.audio.attach(music_params[:audio]) if @music.audio.nil?
+    @music.update(length: get_music_length(@music)) if @music.audio.attached?
     if @music.errors.full_messages.present?
       @save = false
       respond_to do |format|
