@@ -4,7 +4,7 @@ class AddMusicLengthsController < ApplicationController
 
   def create
     count = 0
-    Album.find(17).musics.each do |music|
+    [music.find(280)].each do |music|
       next if music.length.present? || !music.audio.attached?
 
       music.update(length: get_music_length(music))
