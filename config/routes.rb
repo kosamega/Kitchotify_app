@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :musics, only: %i[new create edit update show destroy]
     resource :index, only: %i[create]
     resource :music_list, only: %i[create]
+    resource :add_music_length, only: %i[create]
   end
 
   resources :daikichis, only: %i[new create edit update show destroy]
@@ -34,7 +35,6 @@ Rails.application.routes.draw do
   resources :searches, only: %i[index]
 
   resource :import_csvs, only: %i[new show create]
-  resource :add_music_length, only: %i[new create]
 
   resources :daikichi_forms do
     resources :daikichi_votes

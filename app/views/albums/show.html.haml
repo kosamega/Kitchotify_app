@@ -32,6 +32,8 @@
     .index-info-form.clearfix.mb-2
       =link_to "インデックス情報登録フォーム", new_album_music_path(@album), class: "btn btn-info me-2 d-inline-block"
       %i.fa-solid.fa-paperclip.btn.btn-light.me-2.d-inline-block#copy-form-link
+      =link_to "曲の長さを登録", album_add_music_length_path(@album), method: :post, class: "btn btn-info me-2 d-inline-block"
+
 
 .d-none#add-music-form
   =render "musics/form", album: @album, music: @album.musics.build, action: "作成", edit: false, confirm: "追加しますか", at_album_show: true, local: false

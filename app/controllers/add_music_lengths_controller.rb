@@ -1,16 +1,21 @@
 class AddMusicLengthsController < ApplicationController
+  before_action :set_album
+
   include MusicsHelper
-  def new; end
 
   def create
     count = 0
-    [Music.find(280)].each do |music|
+    @album.musics.each do |music|
       next if music.length.present? || !music.audio.attached?
 
       music.update(length: get_music_length(music))
       count += 1
     end
     flash[:success] = "#{count}個長さを追加しました"
-    redirect_to new_add_music_length_path
+    redirect_to album_path(@album)
+  end
+
+  def set_album
+    @album = Album.find(params[:album_id])
   end
 end
