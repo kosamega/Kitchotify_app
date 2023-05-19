@@ -49,6 +49,6 @@ class DaikichisControllerTest < ActionDispatch::IntegrationTest
       delete daikichi_url(@daikichi)
     end
 
-    assert_redirected_to daikichis_url
+    assert_redirected_to albums_path
   end
 end

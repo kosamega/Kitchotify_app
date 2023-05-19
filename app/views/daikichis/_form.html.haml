@@ -32,7 +32,8 @@
   .actions
     = f.submit '作成', class: "btn btn-primary"
   
-  =link_to "削除", daikichi_path(@daikichi), method: :delete, data: { confirm: "本当に消しますか" }, class: "text-white btn btn-danger d-inline-block mt-2"
+  -if @daikichi&.id
+    =link_to "削除", daikichi_path(@daikichi), method: :delete, data: { confirm: "本当に消しますか" }, class: "text-white btn btn-danger d-inline-block mt-2"
   
     
 %hr

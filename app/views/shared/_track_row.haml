@@ -59,6 +59,10 @@
     %td=@results[number][:two_point]
     %td=@results[number][:one_point]
     %td=@results[number][:total_point]
+    %th
+      ="#{@results[number][:length]/60}:#{@results[number][:length]%60}"
+    %td
+      ="#{@results[number][:total_length]/60}:#{@results[number][:total_length]%60}"
 
 - if current_user.editor? && @at_album_show
   %tr
