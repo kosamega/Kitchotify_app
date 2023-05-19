@@ -23,30 +23,32 @@
   - if !@at_album_show
     %td.album-name-big= link_to(music.album.name, album_path(music.album))
   %td.artist-name-big= link_to(music.artist.name, artist_path(music.artist))
-  %td{data:{music_id: music.id, like_id: Like.find_by(music_id: music.id, user_id: current_user.id)&.id}}
-    - if @like_index
-      %i.fa.fa-heart.liked-btn.delete-btn.delete-like-btn
-    - else
-      - if like = music.likes.find_by(user_id: current_user.id)
-        %i.fa.fa-heart.liked-btn.delete-like-btn
+  - if @infos.present?
+    %td{data:{music_id: music.id, like_id: Like.find_by(music_id: music.id, user_id: current_user.id)&.id}}
+      - if @like_index
+        %i.fa.fa-heart.liked-btn.delete-btn.delete-like-btn
       - else
-        %i.fa.fa-heart.unliked-btn.create-like-btn
+        - if like = music.likes.find_by(user_id: current_user.id)
+          %i.fa.fa-heart.liked-btn.delete-like-btn
+        - else
+          %i.fa.fa-heart.unliked-btn.create-like-btn
 
-  %td.add-playlist
-    .add_playlist-point
-      %i.fa-solid.fa-plus.fa-config
-    .select-playlists.d-none
-      .select-playlists-close.m-1
-        %i.fa-solid.fa-xmark.fa-config
-      %ul
-        - @playlists.each do |playlist|
-          %li
-            = form_with(model: MusicPlaylistRelation.new, local: false) do |f|
-              = hidden_field_tag :music_id, music.id
-              = hidden_field_tag :playlist_id, playlist.id
-              = hidden_field_tag :at_playlist_show, false
-              = button_tag type: :submit, class: "text-start border-0 bg-transparent" do
-                = playlist.name
+    %td.add-playlist
+      .add_playlist-point
+        %i.fa-solid.fa-plus.fa-config
+      .select-playlists.d-none
+        .select-playlists-close.m-1
+          %i.fa-solid.fa-xmark.fa-config
+        %ul
+          - @playlists.each do |playlist|
+            %li
+              = form_with(model: MusicPlaylistRelation.new, local: false) do |f|
+                = hidden_field_tag :music_id, music.id
+                = hidden_field_tag :playlist_id, playlist.id
+                = hidden_field_tag :at_playlist_show, false
+                = button_tag type: :submit, class: "text-start border-0 bg-transparent" do
+                  = playlist.name
+                  
   - if @at_playlists_show == true && @playlist.user == current_user
     %td
       = button_tag class: "delete-btn relation-delete-btn border-0 bg-transparent", data: {relation_id: @relations[number].id} do

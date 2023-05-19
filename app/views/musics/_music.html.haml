@@ -13,8 +13,9 @@
       -if !@at_album_show
         %th.album-th{scope: "col"} アルバム
       %th.artist-th{scope: "col"} アーティスト
-      %th{scope: "col"} 
-      %th{scope: "col"} 
+      - if @infos.present?
+        %th{scope: "col"} 
+        %th{scope: "col"} 
       - if @playlist&.user == current_user
         %th{scope: "col"} 
       - if current_user.editor?
