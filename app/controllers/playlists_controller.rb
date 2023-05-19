@@ -21,6 +21,7 @@ class PlaylistsController < ApplicationController
     gon.infos_j = @infos
     gon.playlist_id = @playlist.id
     gon.relations = @relations
+    @total_length = @musics.sum { |music| music.length || 0 }
   end
 
   def create

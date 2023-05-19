@@ -20,6 +20,11 @@
         %h6.mt-3
           Designed by 
           =link_to @album.designer.name, designer_path(@album.designer)
+      %p
+        = @total_length/60
+        分
+        = @total_length%60
+        秒
    
 .container-fluid.mb-4.h-auto.overflow-hidden
   -if current_user.editor?

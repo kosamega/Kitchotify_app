@@ -15,6 +15,7 @@ class DaikichisController < ApplicationController
     @infos = set_infos(@musics)
     gon.infos_j = @infos
     @artists = Artist.all
+    @total_length = @musics.sum { |music| music.length || 0 }
   end
 
   def new

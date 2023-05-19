@@ -24,6 +24,11 @@
   - else
     %span.plivate-public 非公開
   %h3= link_to @playlist.user.name, user_path(@playlist.user)
+  %p
+    = @total_length/60
+    分
+    = @total_length%60
+    秒
   .playlist-comment
     %p#playlist-comment-content
       = @playlist.description

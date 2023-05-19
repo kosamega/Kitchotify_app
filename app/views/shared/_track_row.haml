@@ -48,7 +48,7 @@
                 = hidden_field_tag :at_playlist_show, false
                 = button_tag type: :submit, class: "text-start border-0 bg-transparent" do
                   = playlist.name
-                  
+
   - if @at_playlists_show == true && @playlist.user == current_user
     %td
       = button_tag class: "delete-btn relation-delete-btn border-0 bg-transparent", data: {relation_id: @relations[number].id} do
@@ -61,10 +61,10 @@
     %td=@results[number][:two_point]
     %td=@results[number][:one_point]
     %td=@results[number][:total_point]
-    %th
-      ="#{@results[number][:length]/60}:#{@results[number][:length]%60}"
     %td
-      ="#{@results[number][:total_length]/60}:#{@results[number][:total_length]%60}"
+      ="#{@results[number][:length]/60}分#{@results[number][:length]%60}秒"
+    %td
+      ="#{@results[number][:total_length]/60}分#{@results[number][:total_length]%60}秒"
 
 - if current_user.editor? && @at_album_show
   %tr
