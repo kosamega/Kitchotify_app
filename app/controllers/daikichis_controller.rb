@@ -47,8 +47,9 @@ class DaikichisController < ApplicationController
 
   def destroy
     @daikichi.destroy
+    flash[:success] = "#{@daikichi.name}を削除しました"
 
-    redirect_to daikichis_url
+    redirect_to albums_path
   end
 
   private
