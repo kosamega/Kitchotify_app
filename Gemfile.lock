@@ -75,6 +75,8 @@ GEM
       activerecord (>= 4.2)
     addressable (2.8.1)
       public_suffix (>= 2.0.2, < 6.0)
+    apetag (1.1.5)
+      cicphash (>= 1.0.0)
     ast (2.4.2)
     aws-eventstream (1.2.0)
     aws-partitions (1.674.0)
@@ -128,6 +130,7 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
+    cicphash (2.0.0)
     concurrent-ruby (1.1.10)
     crass (1.0.6)
     date (3.3.1)
@@ -140,6 +143,7 @@ GEM
       actionmailer (>= 5.2, < 8)
       activesupport (>= 5.2, < 8)
     ffi (1.15.5)
+    flacinfo-rb (1.0)
     globalid (1.0.0)
       activesupport (>= 5.0)
     gon (6.4.0)
@@ -190,6 +194,8 @@ GEM
     mini_magick (4.12.0)
     mini_mime (1.1.2)
     minitest (5.16.3)
+    moumar-wmainfo-rb (0.8)
+    mp4info (1.7.3)
     msgpack (1.6.0)
     multi_json (1.15.0)
     net-imap (0.3.2)
@@ -274,6 +280,16 @@ GEM
       activesupport (>= 4.2.0)
       rack (>= 1.1)
       rubocop (>= 1.33.0, < 2.0)
+    ruby-audioinfo (0.5.5)
+      apetag (>= 1.1.4)
+      flacinfo-rb (>= 0.4)
+      moumar-wmainfo-rb (>= 0.7)
+      mp4info (>= 1.7.3)
+      ruby-mp3info (>= 0.8)
+      ruby-ogginfo (>= 0.6.13)
+      wavefile (~> 0.6.0)
+    ruby-mp3info (0.8.10)
+    ruby-ogginfo (0.7.2)
     ruby-progressbar (1.11.0)
     ruby-vips (2.1.4)
       ffi (~> 1.12)
@@ -314,6 +330,7 @@ GEM
     tzinfo (2.0.5)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.3.0)
+    wavefile (0.6.0)
     web-console (4.2.0)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -363,6 +380,7 @@ DEPENDENCIES
   remotipart
   rubocop
   rubocop-rails
+  ruby-audioinfo
   sass-rails
   selenium-webdriver
   slack-notifier
