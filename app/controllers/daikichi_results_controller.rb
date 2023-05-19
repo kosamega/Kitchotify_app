@@ -16,7 +16,7 @@ class DaikichiResultsController < ApplicationController
         one_point = votes.count { |vote| vote[:one_point_music_ids].include?(music.id.to_s) }
         total_point = (three_point * 3) + (two_point * 2) + one_point
         { music_id: music.id, three_point:, two_point:, one_point:,
-          total_point:, length: music.length ? music.length : 0}
+          total_point:, length: music.length || 0 }
       end.sort_by { |result| result[:total_point] }.reverse
     total_length = 0
     @results.each do |result|

@@ -10,8 +10,9 @@ module MusicsHelper
   def get_music_length(music)
     return unless music.audio.attached?
 
-    s3 = Aws::S3::Client.new(region: ENV['AWS_REGION'], access_key_id: ENV['AWS_ACCESS_KEY_ID'], secret_access_key: ENV['AWS_SECRET_KEY'])
-    bucket_name = ENV['AWS_BUCKET']
+    s3 = Aws::S3::Client.new(region: ENV.fetch('AWS_REGION', nil), access_key_id: ENV.fetch('AWS_ACCESS_KEY_ID', nil),
+                             secret_access_key: ENV.fetch('AWS_SECRET_KEY', nil))
+    bucket_name = ENV.fetch('AWS_BUCKET', nil)
     object = s3.get_object(bucket: bucket_name, key: music.audio.key)
 
     # 一時ファイルに音楽ファイルを保存
@@ -25,6 +26,6 @@ module MusicsHelper
     end
   # 例外が発生したとしても一時ファイルを消す
   ensure
-    temp_file.unlink if temp_file
+    temp_file&.unlink
   end
 end

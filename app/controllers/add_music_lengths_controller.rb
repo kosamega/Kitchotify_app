@@ -1,11 +1,12 @@
 class AddMusicLengthsController < ApplicationController
   include MusicsHelper
-  def new
-  end
+  def new; end
+
   def create
     count = 0
     Music.all.each do |music|
       next if music.length.present? || !music.audio.attached?
+
       music.update(length: get_music_length(music))
       count += 1
     end
