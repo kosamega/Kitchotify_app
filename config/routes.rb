@@ -34,6 +34,7 @@ Rails.application.routes.draw do
   resources :searches, only: %i[index]
 
   resource :import_csvs, only: %i[new show create]
+  resource :add_music_length, only: %i[new create]
 
   resources :daikichi_forms do
     resources :daikichi_votes

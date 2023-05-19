@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_07_055113) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_19_132803) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -144,6 +144,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_07_055113) do
     t.integer "artist_id"
     t.integer "daikichi_id"
     t.integer "d_track"
+    t.integer "length"
     t.index ["name"], name: "index_musics_on_name"
   end
 
