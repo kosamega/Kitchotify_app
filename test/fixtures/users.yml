@@ -15,3 +15,15 @@ kitchonkun:
   password_digest: <%= User.digest('password') %>
   role: kitchonkun
   editor: false
+
+representative_user:
+  name: representative_user
+  password_digest: <%= User.digest('password') %>
+  role: representative
+  editor: false
+
+producer_user:
+  name: producer_user
+  password_digest: <%= User.digest('password') %>
+  role: producer
+  editor: false
