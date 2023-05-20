@@ -45,7 +45,7 @@
   .col
     %h2 コメント
     .comment-item
-      - if current_user == User.find_by(id: 2)
+      - if current_user.role_kitchonkun?
         %div kitchonkun以外でログインするとコメントができます
       - else
         .comment-form

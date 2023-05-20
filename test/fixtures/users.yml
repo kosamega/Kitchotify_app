@@ -13,5 +13,5 @@ member_user:
 kitchonkun:
   name: kitchonkun
   password_digest: <%= User.digest('password') %>
-  admin: false
+  role: kitchonkun
   editor: false

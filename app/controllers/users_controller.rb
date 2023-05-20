@@ -67,11 +67,4 @@ class UsersController < ApplicationController
   def set_user
     @user = User.find(params[:id])
   end
-
-  def admin_user_or_kitchonkun
-    return if current_user.role_admin? || current_user.name == 'kitchonkun'
-
-    flash[:danger] = '管理者かkitchonkunアカウントでしかできない操作です'
-    redirect_to root_path
-  end
 end
