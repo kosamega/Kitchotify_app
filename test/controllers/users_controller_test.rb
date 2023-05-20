@@ -71,19 +71,19 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
   test 'adminとrepresentativeのみroleを変更できる' do
     log_in_as(@member_user)
-    patch user_path(@member_user), params: { user: {name: 'member_user', role: 'admin'} }
+    patch user_path(@member_user), params: { user: { name: 'member_user', role: 'admin' } }
     assert_redirected_to user_path(@member_user)
     @member_user.reload
     assert_not @member_user.role_admin?
     delete sessions_path
     log_in_as(@admin_user)
-    patch user_path(@member_user), params: { user: {name: 'member_user', role: 'admin'} }
+    patch user_path(@member_user), params: { user: { name: 'member_user', role: 'admin' } }
     assert_redirected_to user_path(@member_user)
     @member_user.reload
     assert @member_user.role_admin?
     delete sessions_path
     log_in_as(@representative_user)
-    patch user_path(@member_user), params: { user: {name: 'member_user', role: 'representative'} }
+    patch user_path(@member_user), params: { user: { name: 'member_user', role: 'representative' } }
     assert_redirected_to user_path(@member_user)
     @member_user.reload
     assert @member_user.role_representative?

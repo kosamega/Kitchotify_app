@@ -65,13 +65,15 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    permitted_params = params.require(:user).permit(:name, :password, :password_confirmation, :bio, :editor, :join_date, :volume)
+    permitted_params = params.require(:user).permit(:name, :password, :password_confirmation, :bio, :editor,
+                                                    :join_date, :volume)
     permitted_params[:role] = params[:user][:role] if current_user&.role_is_a_representative?
     permitted_params
   end
 
   def correct_user
     return if current_user.role_is_a_representative?
+
     redirect_to root_path unless @user == current_user
   end
 
