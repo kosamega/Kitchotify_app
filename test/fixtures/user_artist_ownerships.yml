@@ -5,5 +5,5 @@ one:
   artist: artist1
 
 two:
-  user: not_admin_user
+  user: member_user
   artist: artist2

@@ -3,7 +3,7 @@ require 'test_helper'
 class AddMusicToPlaylistTest < ActionDispatch::IntegrationTest
   def setup
     @admin_user = users(:admin_user)
-    @other_user = users(:not_admin_user)
+    @other_user = users(:member_user)
     @playlist = playlists(:playlist1)
     @music = musics(:music1)
   end

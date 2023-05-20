@@ -39,7 +39,7 @@ Playlist.create!(
   )
   
   User.create!(
-    name: "not_admin_user#{n+1}",
+    name: "member_user#{n+1}",
     password: 'password',
     password_confirmation: 'password'
   )

@@ -6,6 +6,6 @@ quiz_result1:
   intro_quiz: intro_quiz1
 
 quiz_result2:
-  user: not_admin_user
+  user: member_user
   time: 1
   intro_quiz: intro_quiz2

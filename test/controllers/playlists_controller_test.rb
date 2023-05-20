@@ -3,7 +3,7 @@ require 'test_helper'
 class PlaylistsControllerTest < ActionDispatch::IntegrationTest
   def setup
     @admin_user = users(:admin_user)
-    @not_admin_user = users(:not_admin_user)
+    @member_user = users(:member_user)
     @playlist1 = playlists(:playlist1)
     log_in_as(@admin_user)
   end
