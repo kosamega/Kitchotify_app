@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_19_132803) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_20_103744) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -196,6 +196,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_19_132803) do
     t.boolean "editor", default: false
     t.date "join_date"
     t.float "volume", default: 0.08
+    t.integer "role", default: 0
     t.index ["name"], name: "index_users_on_name", unique: true
   end
 

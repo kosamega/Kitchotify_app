@@ -14,6 +14,9 @@ class User < ApplicationRecord
   attr_accessor :remember_token
 
   default_scope -> { order(created_at: :asc) }
+
+  enum :role, { member: 0, admin: 1, kitchonkun: 2, producer: 3, representative: 4 }, prefix: true
+
   # 渡された文字列のハッシュ値を返す
   def self.digest(string)
     cost = if ActiveModel::SecurePassword.min_cost
