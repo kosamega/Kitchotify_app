@@ -68,4 +68,8 @@ class User < ApplicationRecord
     join_date_y = join_date.month <= 2 ? (join_date.year - 1) : join_date.year
     today_y - join_date_y + 1
   end
+
+  def role_is_a_producer?
+    %w[admin producer representative].include?(role)
+  end
 end

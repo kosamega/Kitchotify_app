@@ -35,7 +35,7 @@ class DaikichiResultsController < ApplicationController
   end
 
   def result_open
-    return if @daikichi_form.result_open? || current_user.role_admin?
+    return if @daikichi_form.result_open? || current_user.role_is_a_producer?
 
     flash[:danger] = '投票結果はまだ公開されていません'
     redirect_to daikichi_forms_path
