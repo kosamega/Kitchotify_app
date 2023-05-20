@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_20_103744) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_20_114014) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -192,7 +192,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_20_103744) do
     t.datetime "updated_at"
     t.text "bio"
     t.text "remember_digest"
-    t.boolean "admin", default: false
     t.boolean "editor", default: false
     t.date "join_date"
     t.float "volume", default: 0.08
