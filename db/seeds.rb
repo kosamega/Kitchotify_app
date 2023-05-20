@@ -10,7 +10,7 @@ User.create!(
   name: 'admin_user',
   password: 'password',
   password_confirmation: 'password',
-  bio: '管理者',
+  bio: '管理者ユーザーです',
   admin: true
 )
 
@@ -39,7 +39,7 @@ Playlist.create!(
   )
   
   User.create!(
-    name: "not_admin_user#{n+1}",
+    name: "member_user#{n+1}",
     password: 'password',
     password_confirmation: 'password'
   )

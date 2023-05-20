@@ -5,8 +5,8 @@
   %thead
     %tr
       %th 名前
-      -# %th ユーザー
       %th 回生
+      %th 役職
       %th bio
 
 
@@ -14,7 +14,6 @@
     - @users.each do |user|
       %tr
         %td= link_to user.name, user_path(user)
-        -# %td
-        -#   = link_to artist.user.name, user_path(artist.user) if artist.user.present?
         %td= user.graduate
+        %td= user.role_member? ? '' : user.role_i18n
         %td= user.bio

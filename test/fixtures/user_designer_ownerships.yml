@@ -5,5 +5,5 @@ one:
   designer: designer1
 
 two:
-  user: not_admin_user
+  user: member_user
   designer: designer2

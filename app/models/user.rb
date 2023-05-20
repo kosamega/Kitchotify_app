@@ -14,6 +14,9 @@ class User < ApplicationRecord
   attr_accessor :remember_token
 
   default_scope -> { order(created_at: :asc) }
+
+  enum :role, { member: 0, admin: 1, kitchonkun: 2, producer: 3, representative: 4 }, prefix: true
+
   # 渡された文字列のハッシュ値を返す
   def self.digest(string)
     cost = if ActiveModel::SecurePassword.min_cost
@@ -54,15 +57,23 @@ class User < ApplicationRecord
     liked_musics.find_by(music_id: music.id).destroy
   end
 
-  def admin_or_kitchonkun?
-    admin? || name == 'kitchonkun'
-  end
-
   def graduate
     return if join_date.nil?
 
     today_y = Date.today.month <= 2 ? (Date.today.year - 1) : Date.today.year
     join_date_y = join_date.month <= 2 ? (join_date.year - 1) : join_date.year
     today_y - join_date_y + 1
+  end
+
+  def admin_or_kitchonkun?
+    %w[admin kitchonkun].include?(role)
+  end
+
+  def role_is_a_producer?
+    %w[admin producer representative].include?(role)
+  end
+
+  def role_is_a_representative?
+    %w[admin representative].include?(role)
   end
 end

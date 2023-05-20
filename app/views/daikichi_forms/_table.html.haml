@@ -9,7 +9,7 @@
       %th 1点
       %th
       %th
-      -if current_user.admin?
+      -if current_user.role_admin?
         %th
         %th
       %th
@@ -35,9 +35,9 @@
             = link_to daikichi_form.form_closed? ? '投票内容を確認' : '投票内容を確認・編集', daikichi_form_daikichi_vote_path(daikichi_form, daikichi_vote), class: 'btn btn-primary'
           -else
             = link_to '投票する', new_daikichi_form_daikichi_vote_path(daikichi_form), class: 'btn btn-primary'
-        -if current_user.admin?
+        -if current_user.role_admin?
           %td= link_to 'フォームを編集', edit_daikichi_form_path(daikichi_form), class: 'btn btn-primary'
           %td= link_to '投票一覧', daikichi_form_daikichi_votes_path(daikichi_form), class: 'btn btn-primary'
         %td
-          -if (daikichi_form.form_closed? && daikichi_form.result_open?) || current_user.admin?
+          -if (daikichi_form.form_closed? && daikichi_form.result_open?) || current_user.role_admin?
             = link_to '投票結果', daikichi_form_daikichi_result_path(daikichi_form), class: 'btn btn-primary'

@@ -1,17 +1,29 @@
 admin_user:
   name: admin_user
   password_digest: <%= User.digest('password') %>
-  admin: true
+  role: admin
   editor: false
   
-not_admin_user:
-  name: not_admin_user
+member_user:
+  name: member_user
   password_digest: <%= User.digest('password') %>
-  admin: false
+  role: member
   editor: false
 
 kitchonkun:
   name: kitchonkun
   password_digest: <%= User.digest('password') %>
-  admin: false
+  role: kitchonkun
+  editor: false
+
+representative_user:
+  name: representative_user
+  password_digest: <%= User.digest('password') %>
+  role: representative
+  editor: false
+
+producer_user:
+  name: producer_user
+  password_digest: <%= User.digest('password') %>
+  role: producer
   editor: false

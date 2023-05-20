@@ -2,9 +2,10 @@
 %h1
   = @user.name
   = "(#{@user.graduate})" if @user.join_date.present?
+%p= @user.role_member? ? '' : @user.role_i18n
 %p= @user.bio
-- if @user == current_user && !(@user.id == 2)
-  .mb-3= link_to "編集", edit_user_path(current_user), class: "btn btn-primary"
+- if (@user == current_user || current_user.role_is_a_representative?) && !current_user.role_kitchonkun?
+  .mb-3= link_to "編集", edit_user_path(@user), class: "btn btn-primary"
 
 -if @user.playlists.filter{|playlist|playlist.public?}.present?
   %h3 プレイリスト

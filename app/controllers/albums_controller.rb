@@ -69,7 +69,7 @@ class AlbumsController < ApplicationController
   end
 
   def released
-    unless Album.find_by(id: params[:id]).present? && !Album.find_by(id: params[:id]).released? && !current_user.admin?
+    unless Album.find_by(id: params[:id]).present? && !Album.find_by(id: params[:id]).released? && !current_user.role_admin?
       return
     end
 

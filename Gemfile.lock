@@ -138,6 +138,8 @@ GEM
     dotenv-rails (2.8.1)
       dotenv (= 2.8.1)
       railties (>= 3.2)
+    enum_help (0.0.19)
+      activesupport (>= 3.0.0)
     erubi (1.11.0)
     exception_notification (4.5.0)
       actionmailer (>= 5.2, < 8)
@@ -361,6 +363,7 @@ DEPENDENCIES
   byebug
   capybara
   dotenv-rails
+  enum_help
   exception_notification
   gon
   haml-rails

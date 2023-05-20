@@ -5,7 +5,7 @@ class DaikichiFormsControllerTest < ActionDispatch::IntegrationTest
     @daikichi_form = DaikichiForm.create(name: 'touhyou', three_point: 1, two_point: 1, one_point: 2, form_closed: false,
                                          music_ids_for_voting: [musics(:music1).id, musics(:music2).id, musics(:music3).id, musics(:music4).id], accept_until: '2099-01-01T00:00:00')
     @admin_user = users(:admin_user)
-    @not_admin_user = users(:not_admin_user)
+    @member_user = users(:member_user)
   end
 
   test 'ログインしないとindexにアクセスできない' do
@@ -18,7 +18,7 @@ class DaikichiFormsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'adminのみnewにアクセスできる' do
-    log_in_as(@not_admin_user)
+    log_in_as(@member_user)
     get new_daikichi_form_url
     assert_not flash.empty?
     assert_redirected_to root_path
@@ -29,7 +29,7 @@ class DaikichiFormsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'adminのみformを作成できる' do
-    log_in_as(@not_admin_user)
+    log_in_as(@member_user)
     assert_no_difference 'DaikichiForm.count' do
       post daikichi_forms_url,
            params: { daikichi_form: { one_point: 1, two_point: 2,
@@ -49,13 +49,13 @@ class DaikichiFormsControllerTest < ActionDispatch::IntegrationTest
     get daikichi_form_url(@daikichi_form)
     assert_not flash.empty?
     assert_redirected_to new_sessions_path
-    log_in_as(@not_admin_user)
+    log_in_as(@member_user)
     get daikichi_form_url(@daikichi_form)
     assert_response :success
   end
 
   test 'adminのみeditにアクセスできる' do
-    log_in_as(@not_admin_user)
+    log_in_as(@member_user)
     get edit_daikichi_form_url(@daikichi_form)
     assert_not flash.empty?
     assert_redirected_to root_path
@@ -66,7 +66,7 @@ class DaikichiFormsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'adminのみformを更新できる' do
-    log_in_as(@not_admin_user)
+    log_in_as(@member_user)
     patch daikichi_form_url(@daikichi_form),
           params: { daikichi_form: { one_point: @daikichi_form.one_point, two_point: @daikichi_form.two_point,
                                      three_point: @daikichi_form.three_point, music_ids_for_voting: @daikichi_form.music_ids_for_voting, form_closed: @daikichi_form.form_closed, name: @daikichi_form.name, accept_until: '2099-01-01T00:00:00' } }
@@ -81,7 +81,7 @@ class DaikichiFormsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'adminのみformを削除できる' do
-    log_in_as(@not_admin_user)
+    log_in_as(@member_user)
     assert_no_difference('DaikichiForm.count') do
       delete daikichi_form_url(@daikichi_form)
     end

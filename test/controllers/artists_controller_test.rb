@@ -4,7 +4,7 @@ class ArtistsControllerTest < ActionDispatch::IntegrationTest
   def setup
     @artist = artists(:artist1)
     @admin_user = users(:admin_user)
-    @not_admin_user = users(:not_admin_user)
+    @member_user = users(:member_user)
     log_in_as(@admin_user)
   end
 
@@ -35,7 +35,7 @@ class ArtistsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should update artist' do
-    patch artist_url(@artist), params: { artist: { name: 'update', user_id: @not_admin_user.id } }
+    patch artist_url(@artist), params: { artist: { name: 'update', user_id: @member_user.id } }
     assert_redirected_to artist_url(@artist)
   end
 

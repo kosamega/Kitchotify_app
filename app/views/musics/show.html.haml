@@ -38,14 +38,14 @@
       - if current_user.editor?
         .edit-delete-btn
           =link_to "編集", edit_album_music_path(@album, @music), class: "text-white btn btn-primary ms-3"
-          - if current_user.admin?
+          - if current_user.role_admin?
             =link_to "削除", [@album, @music], method: :delete, data: { confirm: "本当に消しますか" }, class: "text-white btn btn-danger ms-3"
 
 .row.mt-4
   .col
     %h2 コメント
     .comment-item
-      - if current_user == User.find_by(id: 2)
+      - if current_user.role_kitchonkun?
         %div kitchonkun以外でログインするとコメントができます
       - else
         .comment-form

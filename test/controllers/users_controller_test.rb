@@ -2,9 +2,10 @@ require 'test_helper'
 
 class UsersControllerTest < ActionDispatch::IntegrationTest
   def setup
-    @admin = users(:admin_user)
-    @not_admin = users(:not_admin_user)
+    @admin_user = users(:admin_user)
+    @member_user = users(:member_user)
     @kitchonkun = users(:kitchonkun)
+    @representative_user = users(:representative_user)
   end
 
   test 'ログインしなくてもnewにアクセスできる' do
@@ -37,7 +38,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test '無効なユーザー登録は失敗する' do
-    log_in_as(@admin)
+    log_in_as(@admin_user)
     get new_user_path
     assert_no_difference 'User.count' do
       post users_path, params: { user: { name: '',
@@ -49,22 +50,42 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'userを更新できる' do
-    log_in_as(@not_admin)
-    get edit_user_path(@not_admin)
+    log_in_as(@member_user)
+    get edit_user_path(@member_user)
     assert_template 'users/edit'
-    name = 'updated_not_admin'
-    patch user_path(@not_admin), params: { user: { name:, password: '', password_confirmation: '' } }
+    name = 'updated_member_user'
+    patch user_path(@member_user), params: { user: { name:, password: '', password_confirmation: '' } }
     assert_not flash.empty?
-    assert_redirected_to @not_admin
-    @not_admin.reload
-    assert_equal name, @not_admin.name
+    assert_redirected_to @member_user
+    @member_user.reload
+    assert_equal name, @member_user.name
   end
 
   test 'エディターモードのオンオフができる' do
-    log_in_as(@not_admin)
-    assert_not @not_admin.editor?
-    patch user_path(@not_admin), params: { user: { editor: true } }
-    @not_admin.reload
-    assert @not_admin.editor?
+    log_in_as(@member_user)
+    assert_not @member_user.editor?
+    patch user_path(@member_user), params: { user: { editor: true } }
+    @member_user.reload
+    assert @member_user.editor?
+  end
+
+  test 'adminとrepresentativeのみroleを変更できる' do
+    log_in_as(@member_user)
+    patch user_path(@member_user), params: { user: { name: 'member_user', role: 'admin' } }
+    assert_redirected_to user_path(@member_user)
+    @member_user.reload
+    assert_not @member_user.role_admin?
+    delete sessions_path
+    log_in_as(@admin_user)
+    patch user_path(@member_user), params: { user: { name: 'member_user', role: 'admin' } }
+    assert_redirected_to user_path(@member_user)
+    @member_user.reload
+    assert @member_user.role_admin?
+    delete sessions_path
+    log_in_as(@representative_user)
+    patch user_path(@member_user), params: { user: { name: 'member_user', role: 'representative' } }
+    assert_redirected_to user_path(@member_user)
+    @member_user.reload
+    assert @member_user.role_representative?
   end
 end
