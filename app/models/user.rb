@@ -72,4 +72,8 @@ class User < ApplicationRecord
   def role_is_a_producer?
     %w[admin producer representative].include?(role)
   end
+
+  def role_is_a_representative?
+    %w[admin representative].include?(role)
+  end
 end

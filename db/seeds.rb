@@ -10,7 +10,7 @@ User.create!(
   name: 'admin_user',
   password: 'password',
   password_confirmation: 'password',
-  bio: '管理者',
+  bio: '管理者ユーザーです',
   admin: true
 )
 

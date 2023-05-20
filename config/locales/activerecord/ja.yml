@@ -1,0 +1,9 @@
+ja:
+  enums:
+    user:
+      role:
+        member: 一般会員
+        admin: 管理者
+        kitchonkun: きっちょんくん
+        producer: 生産
+        representative: 代表

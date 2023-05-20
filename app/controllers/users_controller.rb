@@ -38,6 +38,14 @@ class UsersController < ApplicationController
   end
 
   def update
+    if !current_user.role_is_a_representative? && params[:user][:role].present?
+      flash[:danger] = '代表のみroleを変更できます'
+      return redirect_to user_path(@user)
+    end
+    if params[:user][:role] == 'admin' && !current_user.role_admin?
+      flash[:danger] = '管理者のみ管理者に変更できます'
+      return redirect_to user_path(@user)
+    end
     if @user.update(user_params)
       return if user_params[:volume].present?
 
@@ -46,21 +54,24 @@ class UsersController < ApplicationController
         redirect_back_or root_path
       else
         flash[:success] = 'ユーザーを更新しました'
-        redirect_to user_path(current_user)
+        redirect_to user_path(@user)
       end
     else
       flash[:danger] = @user.errors.full_messages.join('<br>')
-      redirect_to edit_user_path(current_user)
+      redirect_to edit_user_path(@user)
     end
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:name, :password, :password_confirmation, :bio, :editor, :join_date, :volume)
+    permitted_params = params.require(:user).permit(:name, :password, :password_confirmation, :bio, :editor, :join_date, :volume)
+    permitted_params[:role] = params[:user][:role] if current_user&.role_is_a_representative?
+    permitted_params
   end
 
   def correct_user
+    return if current_user.role_is_a_representative?
     redirect_to root_path unless @user == current_user
   end
 
