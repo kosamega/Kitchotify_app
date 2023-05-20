@@ -52,7 +52,7 @@
 %h5 アーティストを追加
 =render 'artists/form', action: "作成", artist: Artist.new, local: false, edit: false
 
-- if edit && current_user.admin?
+- if edit && current_user.role_admin?
   = link_to '削除', album_music_path(album, music), method: :delete, data: { confirm: "本当に消しますか" }, class: "text-white btn btn-danger float-end mt-3"
 
 =javascript_include_tag 'music/select_artist_search'

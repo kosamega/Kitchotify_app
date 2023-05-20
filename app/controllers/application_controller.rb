@@ -32,7 +32,7 @@ class ApplicationController < ActionController::Base
   end
 
   def admin_user
-    return if current_user.admin?
+    return if current_user.role_admin?
 
     flash[:danger] = '管理者のみ有効な操作です'
     redirect_to root_path

@@ -77,7 +77,7 @@ class DaikichiVotesController < ApplicationController
   end
 
   def correct_user
-    return if @daikichi_vote.user_id == current_user.id || current_user.admin?
+    return if @daikichi_vote.user_id == current_user.id || current_user.role_admin?
 
     flash[:danger] = '不正なユーザーです'
     redirect_to daikichi_forms_path
@@ -91,7 +91,7 @@ class DaikichiVotesController < ApplicationController
   end
 
   def form_clesed
-    return if !@daikichi_form.form_closed? || current_user.admin?
+    return if !@daikichi_form.form_closed? || current_user.role_admin?
 
     flash[:danger] = '投票期間は終了しました'
     redirect_to daikichi_forms_path

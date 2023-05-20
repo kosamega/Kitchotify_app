@@ -58,7 +58,7 @@ class User < ApplicationRecord
   end
 
   def admin_or_kitchonkun?
-    admin? || name == 'kitchonkun'
+    role_admin? || name == 'kitchonkun'
   end
 
   def graduate
