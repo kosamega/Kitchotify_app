@@ -22,6 +22,10 @@ class AlbumsController < ApplicationController
     gon.infos_j = @infos
     @artists = Artist.all
     @total_length = @album.musics.sum { |music| music.length || 0 }
+    kiki_taikai_date = @album.kiki_taikai_date.present? ? "聴き大会: #{@album.kiki_taikai_date}" : nil
+    designer_name = @album.designer.present? ? "ジャケットデザイン: #{@album.designer.name}" : nil
+    total_length_jp = "#{@total_length / 60}分#{@total_length % 60}秒"
+    @description = [total_length_jp, kiki_taikai_date, designer_name].compact.join(', ')
   end
 
   def new; end

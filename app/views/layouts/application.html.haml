@@ -21,6 +21,12 @@
     = stylesheet_link_tag "application"
     -# PWA
     %link{:href => "/manifest.webmanifest", :rel => "manifest"}/
+    %meta{:name => "twitter:card", :content=> "summary_card"} 
+    -# %meta{:name => "twitter:site", :content="@ユーザー名" }
+    %meta{:name => "twitter:domain", :content => "kitchotify-app.herokuapp.com" }
+    %meta{:name => "twitter:title", :content => yield(:title)} 
+    %meta{:name => "twitter:description", :content => yield(:description) }
+    %meta{:name => "twitter:image", :content => yield(:img_url) || image_path('kakukichi.png') }
   %body
     #flash
     = render "playlists/new"

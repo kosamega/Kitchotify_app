@@ -1,12 +1,15 @@
 -provide(:title, @album.name)
+-provide(:description, @description)
+-provide(:img_url, @album.jacket.url) unless Rails.env.test?
+
 .album-info.mb-4
-  .album-info-jaket
+  .album-info-jacket
     - if @album.jacket.attached?
-      .jacket-big= image_tag(@album.jacket_middle ,class: "album-jaket-img")
+      .jacket-big= image_tag(@album.jacket_middle ,class: "album-jacket-img")
       .jacket-small= image_tag(@album.jacket_middle ,class: "album-item", width: "130px")
     - else
       .position-relative
-        .jacket-big= image_tag("kakukichi" ,class: "album-jaket-img opacity-50 position-relative")
+        .jacket-big= image_tag("kakukichi" ,class: "album-jacket-img opacity-50 position-relative")
         .jacket-small= image_tag("kakukichi" ,class: "album-item", width: "130px")
 
   .album-info-text
@@ -25,6 +28,7 @@
         分
         = @total_length%60
         秒
+      =link_to "ツイッターで共有", "https://twitter.com/share?url=#{album_url(@album)}&text=#{@album.name}", target: "blank", class: 'btn btn-primary mb-3 btn-sm'
    
 .container-fluid.mb-4.h-auto.overflow-hidden
   -if current_user.editor?
