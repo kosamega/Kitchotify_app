@@ -4,6 +4,11 @@ class AlbumsControllerTest < ActionDispatch::IntegrationTest
   def setup
     @album = albums(:album1)
     @admin_user = users(:admin_user)
+    kiki_taikai_date = @album.kiki_taikai_date.present? ? "聴き大会: #{@album.kiki_taikai_date}" : nil
+    designer_name = @album.designer.present? ? "ジャケットデザイン: #{@album.designer.name}" : nil
+    description = [kiki_taikai_date, designer_name].compact.join(', ')
+    title = @album.name
+    @twitter_info = { description:, title:, img_url: nil }
   end
 
   test 'ログインすればshowが表示される' do
@@ -15,7 +20,7 @@ class AlbumsControllerTest < ActionDispatch::IntegrationTest
   test 'ログインしなければshowにアクセスできない' do
     get album_path(@album)
     assert_not flash.empty?
-    assert_redirected_to new_sessions_path
+    assert_redirected_to new_sessions_path(twitter_info: @twitter_info)
   end
 
   test 'should get index' do
@@ -49,7 +54,7 @@ class AlbumsControllerTest < ActionDispatch::IntegrationTest
   test 'should show album' do
     get album_path(@album)
     assert_not flash.empty?
-    assert_redirected_to new_sessions_path
+    assert_redirected_to new_sessions_path(twitter_info: @twitter_info)
     log_in_as(@admin_user)
     get album_path(@album)
     assert_response :success

@@ -81,8 +81,9 @@ class AlbumsController < ApplicationController
   def set_tweet_info
     kiki_taikai_date = @album.kiki_taikai_date.present? ? "聴き大会: #{@album.kiki_taikai_date}" : nil
     designer_name = @album.designer.present? ? "ジャケットデザイン: #{@album.designer.name}" : nil
-    @twitter_description = [kiki_taikai_date, designer_name].compact.join(', ')
-    @twitter_title = @album.name
-    @twitter_img_url = @album.jacket&.url unless Rails.env.test?
+    description = [kiki_taikai_date, designer_name].compact.join(', ')
+    title = @album.name
+    img_url = @album.jacket&.url unless Rails.env.test?
+    @twitter_info = { description:, title:, img_url: }
   end
 end

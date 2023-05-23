@@ -67,8 +67,9 @@ class DaikichisController < ApplicationController
   def set_tweet_info
     counting_votes_date = @daikichi.counting_votes_date.present? ? "開票: #{@daikichi.counting_votes_date}" : nil
     designer_name = @daikichi.designer.present? ? "ジャケットデザイン: #{@daikichi.designer.name}" : nil
-    @twitter_description = [counting_votes_date, designer_name].compact.join(', ')
-    @twitter_title = @daikichi.name
-    @twitter_img_url = @daikichi.jacket&.url unless Rails.env.test?
+    description = [counting_votes_date, designer_name].compact.join(', ')
+    title = @daikichi.name
+    img_url = @daikichi.jacket&.url unless Rails.env.test?
+    @twitter_info = { description:, title:, img_url: }
   end
 end

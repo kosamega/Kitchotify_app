@@ -111,9 +111,10 @@ class MusicsController < ApplicationController
   end
 
   def set_tweet_info
-    @twitter_description = ["アーティスト: #{@music.artist.name}", "アルバム: #{@album.name}",
-                            "聴き大会: #{@album.kiki_taikai_date}"].compact.join(', ')
-    @twitter_title = @music.name
-    @twitter_img_url = @music.album.jacket&.url unless Rails.env.test?
+    description = ["アーティスト: #{@music.artist.name}", "アルバム: #{@album.name}",
+                   "聴き大会: #{@album.kiki_taikai_date}"].compact.join(', ')
+    title = @music.name
+    img_url = @music.album.jacket&.url unless Rails.env.test?
+    @twitter_info = { description:, title:, img_url: }
   end
 end

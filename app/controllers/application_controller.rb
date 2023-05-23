@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
 
     store_location
     flash[:danger] = 'ログインしてください'
-    redirect_to new_sessions_path
+    redirect_to new_sessions_path(twitter_info: @twitter_info)
   end
 
   def not_kitchonkun
