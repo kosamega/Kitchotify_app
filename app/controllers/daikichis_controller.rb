@@ -16,6 +16,10 @@ class DaikichisController < ApplicationController
     gon.infos_j = @infos
     @artists = Artist.all
     @total_length = @musics.sum { |music| music.length || 0 }
+    counting_votes_date = @daikichi.counting_votes_date.present? ? "開票: #{@daikichi.counting_votes_date}" : nil
+    designer_name = @daikichi.designer.present? ? "ジャケットデザイン: #{@daikichi.designer.name}" : nil
+    total_length_jp = "#{@total_length / 60}分#{@total_length % 60}秒"
+    @description = [total_length_jp, counting_votes_date, designer_name].compact.join(', ')
   end
 
   def new

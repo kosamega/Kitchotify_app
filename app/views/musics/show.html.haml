@@ -1,12 +1,15 @@
 -provide(:title, @music.name)
+-provide(:description, @description)
+-provide(:img_url, @music.album.jacket.url) unless Rails.env.test?
+
 .music-info.rounded.d-flex.border-2.border-dark
-  .album-info-jaket.m-4.d-inline-block
+  .album-info-jacket.m-4.d-inline-block
     -if @album.jacket.attached?
-      .jacket-big= image_tag(@music.album.jacket_middle, class: "album-jaket-img")
+      .jacket-big= image_tag(@music.album.jacket_middle, class: "album-jacket-img")
       .jacket-small= image_tag(@album.jacket_middle ,class: "album-item", width: "130px")
     - else
       .position-relative
-        = image_tag("kakukichi" ,class: "album-jaket-img position-relative")
+        = image_tag("kakukichi" ,class: "album-jacket-img position-relative")
         .h4.position-absolute.top-50.start-50.translate-middle.bg-primary.text-white.p-3= @album.name      
 
   .d-inline-flex.flex-column.justify-content-center.m-3
@@ -14,6 +17,7 @@
     = @album.kiki_taikai_date
     %h2= @music.name
     .h3=link_to @music.artist.name, artist_path(@music.artist)
+    %p=link_to "ツイッターで共有", "https://twitter.com/share?url=#{album_music_url(@album, @music)}&text=#{@music.artist.name} - #{@music.name}", target: "blank", class: 'btn btn-primary mb-3 btn-sm'
     .like-add-playlist
       %div.d-inline-block{data:{music_id: @music.id, like_id: Like.find_by(music_id: @music.id, user_id: current_user.id)&.id}}
         - if @music.likes.find_by(user_id: current_user.id)
@@ -70,7 +74,7 @@
           .musics-suggested
             .jacket-s
               -if music.album.jacket.attached?
-                = link_to(image_tag( music.album.jacket_small ,class: "jaket-mini", width: "50px"), album_path(music.album))
+                = link_to(image_tag( music.album.jacket_small ,class: "jacket-mini", width: "50px"), album_path(music.album))
               -else
-                = link_to(image_tag("kakukichi" ,class: "jaket-mini", width: "50px"), album_path(music.album))
+                = link_to(image_tag("kakukichi" ,class: "jacket-mini", width: "50px"), album_path(music.album))
             .suggestion-wrap= link_to("#{music.name}", album_music_path(music.album, music), class: "name-s")

@@ -14,6 +14,8 @@ class MusicsController < ApplicationController
     @infos = set_infos([@music])
     gon.infos_j = @infos
     @music_show = true
+    @description = ["アーティスト: #{@music.artist.name}", "アルバム: #{@album.name}",
+                    "聴き大会: #{@album.kiki_taikai_date}"].compact.join(', ')
   end
 
   def new
