@@ -1,6 +1,4 @@
 -provide(:title, @daikichi.name)
--provide(:description, @description)
--provide(:img_url, @daikichi.jacket.url) unless Rails.env.test?
 .album-info.mb-4
   .album-info-jacket
     - if @daikichi.jacket.attached?

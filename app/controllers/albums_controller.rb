@@ -1,8 +1,9 @@
 class AlbumsController < ApplicationController
+  before_action :set_album, only: %i[show edit update destroy]
+  before_action :set_tweet_info, only: %i[show]
   before_action :logged_in_user
   before_action :admin_user, only: %i[destroy]
   # before_action :released, only: %i[show]
-  before_action :set_album, only: %i[show edit update destroy]
   before_action :set_current_user_playlists, only: %i[show]
   before_action :set_current_user_volume, only: %i[show]
 
@@ -22,10 +23,6 @@ class AlbumsController < ApplicationController
     gon.infos_j = @infos
     @artists = Artist.all
     @total_length = @album.musics.sum { |music| music.length || 0 }
-    kiki_taikai_date = @album.kiki_taikai_date.present? ? "聴き大会: #{@album.kiki_taikai_date}" : nil
-    designer_name = @album.designer.present? ? "ジャケットデザイン: #{@album.designer.name}" : nil
-    total_length_jp = "#{@total_length / 60}分#{@total_length % 60}秒"
-    @description = [total_length_jp, kiki_taikai_date, designer_name].compact.join(', ')
   end
 
   def new; end
@@ -79,5 +76,13 @@ class AlbumsController < ApplicationController
 
     flash[:danger] = 'まだリリースされていません'
     redirect_to root_path
+  end
+
+  def set_tweet_info
+    kiki_taikai_date = @album.kiki_taikai_date.present? ? "聴き大会: #{@album.kiki_taikai_date}" : nil
+    designer_name = @album.designer.present? ? "ジャケットデザイン: #{@album.designer.name}" : nil
+    @twitter_description = [kiki_taikai_date, designer_name].compact.join(', ')
+    @twitter_title = @album.name
+    @twitter_img_url = @album.jacket&.url unless Rails.env.test?
   end
 end

@@ -1,6 +1,7 @@
 class DaikichisController < ApplicationController
-  before_action :logged_in_user
   before_action :set_daikichi, only: %i[show edit update destroy]
+  before_action :set_tweet_info, only: %i[show]
+  before_action :logged_in_user
   before_action :set_current_user_playlists, only: %i[show]
   before_action :set_current_user_volume, only: %i[show]
 
@@ -16,10 +17,6 @@ class DaikichisController < ApplicationController
     gon.infos_j = @infos
     @artists = Artist.all
     @total_length = @musics.sum { |music| music.length || 0 }
-    counting_votes_date = @daikichi.counting_votes_date.present? ? "開票: #{@daikichi.counting_votes_date}" : nil
-    designer_name = @daikichi.designer.present? ? "ジャケットデザイン: #{@daikichi.designer.name}" : nil
-    total_length_jp = "#{@total_length / 60}分#{@total_length % 60}秒"
-    @description = [total_length_jp, counting_votes_date, designer_name].compact.join(', ')
   end
 
   def new
@@ -65,5 +62,13 @@ class DaikichisController < ApplicationController
 
   def daikichi_params
     params.require(:daikichi).permit(:name, :released, :designer_id, :counting_votes_date, :jacket)
+  end
+
+  def set_tweet_info
+    counting_votes_date = @daikichi.counting_votes_date.present? ? "開票: #{@daikichi.counting_votes_date}" : nil
+    designer_name = @daikichi.designer.present? ? "ジャケットデザイン: #{@daikichi.designer.name}" : nil
+    @twitter_description = [counting_votes_date, designer_name].compact.join(', ')
+    @twitter_title = @daikichi.name
+    @twitter_img_url = @daikichi.jacket&.url unless Rails.env.test?
   end
 end

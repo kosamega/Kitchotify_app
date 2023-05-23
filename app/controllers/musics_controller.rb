@@ -1,7 +1,8 @@
 class MusicsController < ApplicationController
-  before_action :logged_in_user, only: %i[show edit update destroy]
   before_action :set_album
   before_action :set_music, only: %i[show edit update destroy]
+  before_action :set_tweet_info, only: %i[show]
+  before_action :logged_in_user, only: %i[show edit update destroy]
   before_action :admin_user, only: %i[destroy]
   before_action :set_current_user_playlists, only: %i[show create]
   before_action :set_current_user_volume, only: %i[show]
@@ -14,8 +15,6 @@ class MusicsController < ApplicationController
     @infos = set_infos([@music])
     gon.infos_j = @infos
     @music_show = true
-    @description = ["アーティスト: #{@music.artist.name}", "アルバム: #{@album.name}",
-                    "聴き大会: #{@album.kiki_taikai_date}"].compact.join(', ')
   end
 
   def new
@@ -109,5 +108,12 @@ class MusicsController < ApplicationController
         @messages = "#{artist&.name}というアーティストは存在しません。<br>ページ下部からアーティストを追加してください。"
       end
     end
+  end
+
+  def set_tweet_info
+    @twitter_description = ["アーティスト: #{@music.artist.name}", "アルバム: #{@album.name}",
+                            "聴き大会: #{@album.kiki_taikai_date}"].compact.join(', ')
+    @twitter_title = @music.name
+    @twitter_img_url = @music.album.jacket&.url unless Rails.env.test?
   end
 end
