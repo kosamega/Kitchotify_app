@@ -106,7 +106,7 @@ body {
   .album-info {
     display: grid;
     grid-template:
-    "jaket text" 140px
+    "jacket text" 140px
     / 140px 1fr;
   }  
 }
@@ -190,7 +190,7 @@ body {
   .album-info {
     display: grid;
     grid-template:
-    "jaket text" 250px
+    "jacket text" 250px
     / 250px 1fr;
   }
   
@@ -439,7 +439,7 @@ a:hover {
 }
 
 // アルバムshow
-.album-jaket-img {
+.album-jacket-img {
   width: 250px;
 }
 
@@ -488,7 +488,7 @@ a:hover {
   margin: 100px auto;
 }
 
-.liked-music-name, .liked-music-album, .liked-music-artist, .liked-music-like, .liked-music-jaket, .album-music-like  {
+.liked-music-name, .liked-music-album, .liked-music-artist, .liked-music-like, .liked-music-jacket, .album-music-like  {
   display: flex;
   align-items: center;
 }
@@ -522,7 +522,7 @@ a:hover {
   margin:10px 0 ;
 }
 
-.liked-music-jaket{
+.liked-music-jacket{
   a {
     height: 50px;
   }

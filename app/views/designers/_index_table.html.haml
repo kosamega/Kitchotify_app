@@ -21,6 +21,6 @@
         %td= designer.bio
         %td
           - designer.albums.each do |album|
-            = link_to(image_tag(album.jacket_small ,class: "jaket-mini", width: "50px"), album_path(album)) if album.jacket.attached?
+            = link_to(image_tag(album.jacket_small ,class: "jacket-mini", width: "50px"), album_path(album)) if album.jacket.attached?
         %td= link_to '編集', edit_designer_path(designer), class: 'btn btn-primary btn-sm'
         
