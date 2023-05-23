@@ -7,7 +7,7 @@
         = image_tag(album.jacket_middle ,class: "album-item", width: "130px")
       - else
         .position-relative
-          = image_tag("kakukiti" ,class: "album-item opacity-50 position-relative", width: "130px")
+          = image_tag("kakukichi" ,class: "album-item opacity-50 position-relative", width: "130px")
           .h6.position-absolute.top-50.start-50.translate-middle.bg-primary.text-white.p-1= album.name
   -if @daikichis_released.present?
     %h3 大吉
@@ -17,7 +17,7 @@
           = image_tag(daikichi.jacket_middle ,class: "album-item", width: "130px")
         - else
           .position-relative
-            = image_tag("kakukiti" ,class: "album-item opacity-50 position-relative", width: "130px")
+            = image_tag("kakukichi" ,class: "album-item opacity-50 position-relative", width: "130px")
             .h6.position-absolute.top-50.start-50.translate-middle.bg-primary.text-white.p-1= daikichi.name
 
 - if current_user.editor?
@@ -36,7 +36,7 @@
           = image_tag(daikichi.jacket_middle ,class: "album-item", width: "130px")
         - else
           .position-relative
-            = image_tag("kakukiti" ,class: "album-item opacity-50 position-relative", width: "130px")
+            = image_tag("kakukichi" ,class: "album-item opacity-50 position-relative", width: "130px")
             .h6.position-absolute.top-50.start-50.translate-middle.bg-primary.text-white.p-1= daikichi.name
 
   - if @albums_not_released.present?
@@ -47,5 +47,5 @@
           = image_tag(album.jacket_middle ,class: "album-item", width: "130px")
         - else
           .position-relative
-            = image_tag("kakukiti" ,class: "album-item opacity-50 position-relative", width: "130px")
+            = image_tag("kakukichi" ,class: "album-item opacity-50 position-relative", width: "130px")
             .h5.position-absolute.top-50.start-50.translate-middle.bg-primary.text-white.p-1.text-center= album.name

@@ -15,7 +15,7 @@
     - if music.album.jacket.attached?
       %td= link_to(image_tag( music.album.jacket_small ,class: "jaket-mini", width: "50px"), album_path(music.album))
     - else
-      %td= link_to(image_tag("kakukiti" ,class: "jaket-mini", width: "50px"), album_path(music.album))
+      %td= link_to(image_tag("kakukichi" ,class: "jaket-mini", width: "50px"), album_path(music.album))
   %td
     = link_to(music.name, album_music_path(music.album, music))
     %br

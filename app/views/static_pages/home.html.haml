@@ -8,7 +8,7 @@
           = image_tag release.jacket_middle ,class: "album-item", width: "130px"
         - else
           .position-relative
-            = image_tag("kakukiti" ,class: "album-item", width: "130px")
+            = image_tag("kakukichi" ,class: "album-item", width: "130px")
             .h6.position-absolute.top-50.start-50.translate-middle.bg-primary.text-white.p-1.text-center= release.name
     - elsif release.instance_of? Daikichi
       = link_to daikichi_path(release), class: "album-background" do
@@ -16,7 +16,7 @@
           = image_tag release.jacket_middle ,class: "album-item", width: "130px"
         - else
           .position-relative
-            = image_tag("kakukiti" ,class: "album-item", width: "130px")
+            = image_tag("kakukichi" ,class: "album-item", width: "130px")
             .h6.position-absolute.top-50.start-50.translate-middle.bg-primary.text-white.p-1.text-center= release.name
 
 
@@ -30,7 +30,7 @@
             - if comment.album.jacket.attached?
               = link_to image_tag(comment.album.jacket_small ,class: "album-item", width: "50px"), album_path(comment.album)
             - else
-              = link_to image_tag("kakukiti" ,class: "album-item", width: "50px"), album_path(comment.album)
+              = link_to image_tag("kakukichi" ,class: "album-item", width: "50px"), album_path(comment.album)
             = link_to comment.music.artist.name, artist_path(comment.music.artist)
             %p.d-inline-block -
             = link_to comment.music.name, album_music_path(comment.album, comment.music)
