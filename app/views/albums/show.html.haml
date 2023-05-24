@@ -1,6 +1,6 @@
 -provide(:title, @album.name)
 
-.album-info.mb-4
+.album-info
   .album-info-jacket
     - if @album.jacket.attached?
       .jacket-big= image_tag(@album.jacket_middle ,class: "album-jacket-img")

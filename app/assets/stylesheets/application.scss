@@ -106,7 +106,7 @@ body {
   .album-info {
     display: grid;
     grid-template:
-    "jacket text" 140px
+    "jacket text" auto
     / 140px 1fr;
   }  
 }
