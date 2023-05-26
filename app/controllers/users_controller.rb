@@ -67,7 +67,10 @@ class UsersController < ApplicationController
   def user_params
     permitted_params = params.require(:user).permit(:name, :password, :password_confirmation, :bio, :editor,
                                                     :join_date, :volume)
-    permitted_params[:role] = params[:user][:role] if current_user&.role_is_a_representative?
+    if current_user&.role_is_a_representative? && params[:user][:role].present?
+      permitted_params[:role] =
+        params[:user][:role]
+    end
     permitted_params
   end
 
