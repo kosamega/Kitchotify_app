@@ -17,7 +17,7 @@
         %th{scope: "col"} 
       - if @playlist&.user == current_user
         %th{scope: "col"} 
-      - if current_user.editor?
+      - if current_user&.editor?
         %th{scope: "col"} 
       - if @results.present?
         %th 3点

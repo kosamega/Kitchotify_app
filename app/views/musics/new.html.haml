@@ -28,4 +28,5 @@
 
 %hr
 %h5 登録済み
-= render "musics/music", musics: @musics
+- if @musics.present?
+  = render "musics/music", musics: @musics
