@@ -20,8 +20,6 @@ class MusicsController < ApplicationController
   def new
     @artists = Artist.all
     @artist = Artist.new
-    @music = @album.musics.build
-    @musics = @album.musics - [@music]
     @at_album_show = true
   end
 
@@ -47,6 +45,7 @@ class MusicsController < ApplicationController
       flash.now[:danger] = @messages
     end
     @artists = Artist.all
+    @at_album_show = true
     respond_to do |format|
       format.html { render 'new' }
       format.js
