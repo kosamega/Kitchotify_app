@@ -1,3 +1,4 @@
 -provide(:title, "edit #{@music.name}")
-#add-music-form
-  =render "form", album: @album, music: @music, action: "更新", edit: true, at_album_show: false, local: true
+=render "form", album: @album, music: @music, action: "更新", edit: true, at_album_show: false, local: true, number: 0
+
+=javascript_include_tag 'music/select_artist_search'
