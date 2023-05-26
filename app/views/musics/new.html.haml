@@ -25,3 +25,7 @@
 
 =render "form", album: @album, music: @album.musics.build, action: "曲を追加", edit: false, confirm: "追加しますか", at_album_show: true, local: true, number: 0
 =javascript_include_tag 'music/select_artist_search'
+
+%hr
+%h5 登録済み
+= render "musics/music", musics: @musics
