@@ -7,8 +7,8 @@
       .jacket-small= image_tag(@album.jacket_middle ,class: "album-item", width: "130px")
     - else
       .position-relative
-        = image_tag("kakukichi" ,class: "album-jacket-img opacity-50 position-relative")
-        .h4.position-absolute.top-50.start-50.translate-middle.bg-primary.text-white.p-3= @album.name
+        .jacket-big= image_tag("kakukichi" ,class: "album-jacket-img opacity-50 position-relative")
+        .jacket-small= image_tag("kakukichi" ,class: "album-item", width: "130px")
 
   .album-info-text.ms-4
     %div
