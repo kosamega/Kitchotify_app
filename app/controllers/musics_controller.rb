@@ -21,6 +21,8 @@ class MusicsController < ApplicationController
     @artists = Artist.all
     @artist = Artist.new
     @music = @album.musics.build
+    @musics = @album.musics - [@music]
+    @at_album_show = true
   end
 
   def edit

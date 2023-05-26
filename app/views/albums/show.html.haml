@@ -31,22 +31,21 @@
 .container-fluid.mb-4.h-auto.overflow-hidden
   -if current_user.editor?
     .add-edit.clearfix.mb-2
-      .btn.btn-info#add-music.d-inline-block.me-2 曲を追加
+      =link_to "曲の長さを登録", album_add_music_length_path(@album), method: :post, class: "btn btn-info me-2 d-inline-block"
       =link_to "アルバムを編集", edit_album_path(@album), class: "btn btn-info me-2 d-inline-block"
     .download.clearfix.mb-2
       =link_to "インデックス情報ダウンロード", album_index_path(@album), method: :post, class: "btn btn-info me-2 d-inline-block"
       =link_to "曲リストダウンロード", album_music_list_path(@album), method: :post, class: "btn btn-info me-2 d-inline-block"
     .index-info-form.clearfix.mb-2
       =link_to "インデックス情報登録フォーム", new_album_music_path(@album), class: "btn btn-info me-2 d-inline-block"
-      %i.fa-solid.fa-paperclip.btn.btn-light.me-2.d-inline-block#copy-form-link
-      =link_to "曲の長さを登録", album_add_music_length_path(@album), method: :post, class: "btn btn-info me-2 d-inline-block"
-
-
-.d-none#add-music-form
-  =render "musics/form", album: @album, music: @album.musics.build, action: "作成", edit: false, confirm: "追加しますか", at_album_show: true, local: false
+      .btn.btn-info#copy-form-link
+        フォームのリンクをコピー
+        %i.fa-solid.fa-paperclip.me-2.d-inline-block
 
 = render "musics/music", musics: @musics
 
 -if current_user.editor?
   = javascript_include_tag 'music_new.js'
   = javascript_include_tag 'copy_link.js'
+
+=javascript_include_tag 'music/select_artist_search'

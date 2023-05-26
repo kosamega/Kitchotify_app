@@ -8,10 +8,10 @@
       .row.mb-3
         .col-2.col-form-label 名義検索
         .col
-          %input.form-control#search-field-artist
+          %input.form-control.search-field-artist{data: {number: number}}
       .row
         .col-2.col-form-label 名義*
-        #select-div-artist.col= form.select :artist_id, Artist.all.to_h{|aritist|[aritist.name, aritist.id]}, {}, class: "form-select", size: '3'
+        .col= form.select :artist_id, Artist.all.to_h{|aritist|[aritist.name, aritist.id]}, {}, class: "form-select artist-select", size: '3', data: {number: number}
       .row.mb-2
         .col-2
         .col.form-text 名義が存在しない場合は下のフォームから追加してください。
@@ -55,6 +55,3 @@
 
 - if edit && current_user.role_admin?
   = link_to '削除', album_music_path(album, music), method: :delete, data: { confirm: "本当に消しますか" }, class: "text-white btn btn-danger float-end mt-3"
-
-=javascript_include_tag 'music/select_artist_search'
-

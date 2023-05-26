@@ -53,7 +53,7 @@
     %td
       = button_tag class: "delete-btn relation-delete-btn border-0 bg-transparent", data: {relation_id: @relations[number].id} do
         削除
-  - if current_user.editor?
+  - if current_user&.editor?
     %td
       =link_to "編集", edit_album_music_path(music.album, music), class: "text-white btn btn-primary ms-3"
   - if @results.present?
@@ -66,7 +66,7 @@
     %td
       ="#{@results[number][:total_length]/60}分#{@results[number][:total_length]%60}秒"
 
-- if current_user.editor? && @at_album_show
+- if current_user&.editor? && @at_album_show
   %tr
     %td{colspan: 6}
-      =render 'musics/form', album: music.album, music: music, action: '更新', edit: true, at_album_show: true, local: false
+      =render 'musics/form', album: music.album, music: music, action: '更新', edit: true, at_album_show: true, local: false, number: number
