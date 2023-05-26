@@ -31,7 +31,6 @@
 .container-fluid.mb-4.h-auto.overflow-hidden
   -if current_user.editor?
     .add-edit.clearfix.mb-2
-      .btn.btn-info#add-music.d-inline-block.me-2 曲を追加
       =link_to "大吉を編集", edit_daikichi_path(@daikichi), class: "btn btn-info me-2 d-inline-block"
     .download.clearfix.mb-2
       -# =link_to "インデックス情報ダウンロード", album_index_path(@daikichi), method: :post, class: "btn btn-info me-2 d-inline-block"
