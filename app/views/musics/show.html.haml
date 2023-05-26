@@ -3,7 +3,7 @@
 .music-info.rounded.d-flex.border-2.border-dark
   .album-info-jacket.m-4.d-inline-block
     -if @album.jacket.attached?
-      .jacket-big= image_tag(@music.album.jacket_middle, class: "album-jacket-img")
+      .jacket-big= image_tag(@album.jacket_middle, class: "album-jacket-img")
       .jacket-small= image_tag(@album.jacket_middle ,class: "album-item", width: "130px")
     - else
       .position-relative

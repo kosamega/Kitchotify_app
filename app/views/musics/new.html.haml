@@ -3,7 +3,8 @@
 .album-info.mb-4
   .album-info-jacket
     - if @album.jacket.attached?
-      = image_tag(@album.jacket_middle ,class: "album-jacket-img")
+      .jacket-big= image_tag(@album.jacket_middle, class: "album-jacket-img")
+      .jacket-small= image_tag(@album.jacket_middle ,class: "album-item", width: "130px")
     - else
       .position-relative
         = image_tag("kakukichi" ,class: "album-jacket-img opacity-50 position-relative")
