@@ -1,7 +1,7 @@
 class DaikichiFormsController < ApplicationController
   before_action :logged_in_user
   before_action :set_daikichi_form, only: %i[show edit update destroy]
-  before_action :admin_user, only: %i[new create edit update destroy]
+  before_action :representative_user, only: %i[new create edit update destroy]
   before_action :set_current_user_playlists, only: %i[show]
   before_action :set_current_user_volume, only: %i[show]
 
@@ -56,6 +56,6 @@ class DaikichiFormsController < ApplicationController
 
   def daikichi_form_params
     params.require(:daikichi_form).permit(:name, :three_point, :two_point, :one_point, :form_closed, :accept_until,
-                                          :result_open, music_ids_for_voting: [])
+                                          :result_open, :description, music_ids_for_voting: [])
   end
 end

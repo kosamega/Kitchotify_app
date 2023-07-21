@@ -4,6 +4,8 @@
 %h3.mb-3
   投票期限：
   = @daikichi_form.accept_until.strftime('%F')
+%p=html_safe_newline(@daikichi_form.description)
+%p 全曲を聴いた上で、自分が大吉に収録されてほしいと思う楽曲を選んでください。
 
 
 = render 'form'

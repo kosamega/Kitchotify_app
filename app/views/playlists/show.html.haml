@@ -31,7 +31,7 @@
     秒
   .playlist-comment
     %p#playlist-comment-content
-      = @playlist.description
+      = html_safe_newline(@playlist.description)
   - if current_user == @playlist.user
     .mb-2
       = link_to "削除", playlist_path(@playlist), method: :delete, data: { confirm: "本当に消しますか" }, class: "btn btn-danger float-end"
