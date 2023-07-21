@@ -2,6 +2,7 @@
 %p#notice= notice
 
 %h1= @daikichi_form.name
+%p= html_safe_newline(@daikichi_form.description)
 
 =render 'table', daikichi_forms: [@daikichi_form]
 

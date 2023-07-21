@@ -4,5 +4,5 @@
 =render 'table', daikichi_forms: @daikichi_forms
 
 %br
--if current_user.role_admin?
+-if current_user.role_is_a_representative?
   = link_to '投票フォームを作成', new_daikichi_form_path, class: 'btn btn-primary'
