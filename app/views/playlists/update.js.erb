@@ -1,13 +1,14 @@
-$('.edit-playlist').removeClass("d-flex");
-$('.edit-playlist').addClass("d-none");
+console.log('tes')
+$('.edit-playlist').removeClass("d-flex")
+$('.edit-playlist').addClass("d-none")
 
-$('#playlist-name').html('<%=@playlist.name%>');
-$('#playlist-<%=@playlist.id%>').html('<%=@playlist.name%>');
+$('#playlist-name').html('<%=@playlist.name%>')
+$('#playlist-<%=@playlist.id%>').html('<%=@playlist.name%>')
 
 if (<%=@playlist.public?%>){
-  $('.plivate-public').html('公開');
+  $('.plivate-public').html('公開')
 }else{
-  $('.plivate-public').html('非公開');
+  $('.plivate-public').html('非公開')
 }
 
-$('#playlist-comment-content').html('<%= @playlist.description %>');
+$('#playlist-comment-content').html('<%= html_safe_newline(@playlist.description) %>')

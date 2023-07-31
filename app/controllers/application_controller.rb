@@ -40,7 +40,7 @@ class ApplicationController < ActionController::Base
 
   def representative_user
     return if current_user.role_is_a_representative?
-    
+
     flash[:danger] = '代表のみ有効な操作です'
     redirect_to root_path
   end
