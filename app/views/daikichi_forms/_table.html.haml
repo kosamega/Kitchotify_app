@@ -33,7 +33,7 @@
         %td
           -if daikichi_vote = daikichi_form.daikichi_votes.find_by(user_id: current_user.id)
             = link_to daikichi_form.form_closed? ? '投票内容を確認' : '投票内容を確認・編集', daikichi_form_daikichi_vote_path(daikichi_form, daikichi_vote), class: 'btn btn-primary'
-          -else
+          -elsif !daikichi_form.form_closed?
             = link_to '投票する', new_daikichi_form_daikichi_vote_path(daikichi_form), class: 'btn btn-primary'
         -if current_user.role_is_a_representative?
           %td= link_to 'フォームを編集', edit_daikichi_form_path(daikichi_form), class: 'btn btn-primary'
