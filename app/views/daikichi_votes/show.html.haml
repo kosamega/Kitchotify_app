@@ -7,12 +7,12 @@
   投票期限：
   = @daikichi_form.accept_until.strftime('%F')
 
+-if !@daikichi_form.form_closed?
+  = link_to '投票内容の編集', edit_daikichi_form_daikichi_vote_path(@daikichi_form, @daikichi_vote), class: 'btn btn-primary mb-3'
+
 %h3 3点
 =render 'musics/music', musics: @three_point_musics
 %h3 2点
 =render 'musics/music', musics: @two_point_musics
 %h3 1点
 =render 'musics/music', musics: @one_point_musics
-
--if !@daikichi_form.form_closed?
-  = link_to '編集', edit_daikichi_form_daikichi_vote_path(@daikichi_form, @daikichi_vote), class: 'btn btn-primary'
