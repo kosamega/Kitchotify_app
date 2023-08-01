@@ -8,7 +8,7 @@ class DaikichiFormsController < ApplicationController
   include MusicsHelper
 
   def index
-    @daikichi_forms = DaikichiForm.all
+    @daikichi_forms = DaikichiForm.all.sort_by(&:accept_until).reverse
   end
 
   def show
