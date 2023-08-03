@@ -5,7 +5,7 @@ class DaikichiForm < ApplicationRecord
   def musics_for_voting
     Music.where(id: [music_ids_for_voting]).includes(:artist, :likes, album: [jacket_attachment: :blob],
                                                                       audio_attachment: :blob).sort_by do |music|
-      [music.album.kiki_taikai_date, music.track]
+      [music.album.kiki_taikai_date, music.album.id, music.track]
     end
   end
 end
