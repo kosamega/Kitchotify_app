@@ -3,6 +3,9 @@ class DaikichiForm < ApplicationRecord
   validates :name, presence: true, uniqueness: true
 
   def musics_for_voting
-    music_ids_for_voting.map { |music_id| Music.find(music_id) }
+    Music.where(id: [music_ids_for_voting]).includes(:artist, :likes, album: [jacket_attachment: :blob],
+                                                                      audio_attachment: :blob).sort_by do |music|
+      [music.album.kiki_taikai_date, music.track]
+    end
   end
 end
