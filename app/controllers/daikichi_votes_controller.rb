@@ -1,4 +1,5 @@
 class DaikichiVotesController < ApplicationController
+  before_action :not_kitchonkun
   before_action :logged_in_user
   before_action :representative_user, only: %i[index destroy]
   before_action :set_daikichi_form
