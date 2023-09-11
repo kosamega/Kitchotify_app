@@ -1,4 +1,9 @@
 -provide(:title, 'Home')
+- if DaikichiForm.where(form_closed: false).present?
+  = link_to daikichi_forms_path do
+    = image_tag 'daikichi_vote_banner.gif', width: "500px"
+  = link_to daikichi_forms_path do
+    = image_tag 'daikichi_vote_banner.gif', width: "500px", class: 'wide-inline-block'
 %h1 最新リリース
 .album-container.border-bottom.pb-2.border-2
   - @albums_and_daikichis_released.each do |release|
