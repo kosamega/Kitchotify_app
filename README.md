@@ -100,6 +100,32 @@ GET https://kitchotify-app.herokuapp.com/api/musics?name=kamogawa
 }
 ```
 
+### ランダム曲API
+HTTPリクエスト
+```
+GET https://kitchotify-app.herokuapp.com/api/musics/random?released=(boolean)
+```
+リクエストパラメータ
+
+| パラメータ | 内容 |
+| ---- | ---- |
+|released|リリース済みの曲のみからランダムで返すかどうか|
+
+レスポンス例
+```
+GET https://kitchotify-app.herokuapp.com/api/musics/random?released=true
+```
+```
+{
+    "name": "Kamogawa Hallucination",
+    "album": "月吉174号",
+    "track": 9,
+    "artist": "kosamega",
+    "url":"https://kitchotify-app.herokuapp.com/albums/4/musics/52",
+    "released": true
+}
+```
+
 ### アルバム検索API
 HTTPリクエスト
 ```
