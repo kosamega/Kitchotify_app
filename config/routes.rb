@@ -43,7 +43,9 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     resources :albums, only: %i[index create]
-    resources :musics, only: %i[index]
+    resources :musics, only: %i[index] do
+      get 'random', on: :collection
+    end
     resources :artists, only: %i[index]
   end
 end
