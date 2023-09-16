@@ -100,7 +100,7 @@ GET https://kitchotify-app.herokuapp.com/api/musics?name=kamogawa
 }
 ```
 
-### ランダム曲API
+### ランダム曲検索API
 HTTPリクエスト
 ```
 GET https://kitchotify-app.herokuapp.com/api/musics/random?released=(boolean)
