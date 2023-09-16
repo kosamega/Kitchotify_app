@@ -7,6 +7,6 @@ class Api::MusicsController < Api::Base
   end
 
   def random
-    @random_music = Music.offset(rand(Music.count)).first
+    @random_music = params[:released] ? Music.released.offset(rand(Music.released.count)).first : Music.offset(rand(Music.count)).first
   end
 end
