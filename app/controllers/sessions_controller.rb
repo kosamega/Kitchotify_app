@@ -7,10 +7,10 @@ class SessionsController < ApplicationController
     user = User.find_by(name: params[:session][:name])
     if user&.authenticate(params[:session][:password])
       log_in user
-      return redirect_to root_path if user.role_kitchonkun?
+      return redirect_back_or root_path if user.role_kitchonkun?
 
       params[:session][:remember_me] == '1' ? remember(user) : forget(user)
-      redirect_to root_path
+      redirect_back_or root_path
     else
       @name = params[:session][:name]
       @password = params[:session][:password]
