@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
 
   # 最後にgetリクエストを送ったURLを覚えておく
   def store_location
-    session[:forwarding_url] = request.original_url if request.get?
+    session[:forwarding_url] = request.original_url if request.get? && request.path != new_sessions_path
   end
 
   # ユーザーのログインを確認する
