@@ -11,7 +11,7 @@
         %tr.align-middle
           %td
             %label.form-check-label
-              =check_box_tag "music_ids[]", music.id, @results[index][:total_length].to_i < 60
+              =check_box_tag "music_ids[]", music.id, @results[index][:total_length].to_i < 9600
           %td=music.name
           %td="#{@results[index][:total_length].to_i/60}分#{@results[index][:total_length].to_i%60}秒"
   .actions

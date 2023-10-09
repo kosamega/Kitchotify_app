@@ -12,7 +12,7 @@
       -if current_user.role_is_a_representative?
         %th
         %th
-        %th
+      %th
       %th
 
   %tbody
@@ -39,7 +39,9 @@
         -if current_user.role_is_a_representative?
           %td= link_to 'フォームを編集', edit_daikichi_form_path(daikichi_form), class: 'btn btn-primary'
           %td= link_to '投票一覧', daikichi_form_daikichi_votes_path(daikichi_form), class: 'btn btn-primary'
-          %td= link_to '投票結果から大吉を作成', new_daikichi_form_daikichi_result_daikichi_path(daikichi_form_id: daikichi_form), class: 'btn btn-primary'
         %td
           -if (daikichi_form.form_closed? && daikichi_form.result_open?) || current_user.role_is_a_representative?
             = link_to '投票結果', daikichi_form_daikichi_result_path(daikichi_form), class: 'btn btn-primary'
+        %td
+          -if (daikichi_form.form_closed? && daikichi_form.result_open?) || current_user.role_is_a_representative?
+            = link_to '投票結果から大吉を作成', new_daikichi_form_daikichi_result_daikichi_path(daikichi_form_id: daikichi_form), class: 'btn btn-primary'
