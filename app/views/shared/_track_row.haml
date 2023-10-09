@@ -51,9 +51,8 @@
     %td
       = button_tag class: "delete-btn relation-delete-btn border-0 bg-transparent", data: {relation_id: @relations[number].id} do
         削除
-  - if current_user&.editor?
-    %td
-      =link_to "編集", edit_album_music_path(music.album, music), class: "text-white btn btn-primary ms-3"
+  %td
+    =link_to "編集", edit_album_music_path(music.album, music), class: "text-white btn btn-primary ms-3"
   - if @results.present?
     %td=@results[number][:three_point]
     %td=@results[number][:two_point]
