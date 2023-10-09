@@ -2,7 +2,7 @@ require 'application_system_test_case'
 
 class DaikichiFormsTest < ApplicationSystemTestCase
   setup do
-    @daikichi_form = daikichi_forms(:one)
+    @daikichi_form = daikichi_forms(:daikichi100)
   end
 
   test 'visiting the index' do
