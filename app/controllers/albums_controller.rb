@@ -12,8 +12,6 @@ class AlbumsController < ApplicationController
   def index
     @albums_released = Album.includes(jacket_attachment: [blob: :variant_records]).where(released: true)
     @albums_not_released = Album.includes(jacket_attachment: [blob: :variant_records]).where(released: false)
-    @daikichis_released = Daikichi.includes(jacket_attachment: [blob: :variant_records]).where(released: true)
-    @daikichis_not_released = Daikichi.includes(jacket_attachment: [blob: :variant_records]).where(released: false)
   end
 
   def show

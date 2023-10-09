@@ -34,14 +34,6 @@
             .col-2
             .col
               %audio{src: music.audio.url, controls: 'controls'}
-        .row.mb-2
-          .col-2.col-form-label 大吉
-          .col= form.select :daikichi_id, Daikichi.all.to_h{|daikichi|[daikichi.name, daikichi.id]}, {include_blank: true}, class: "form-select", size: '2'
-        .row.mb-2
-          .col-2.col-form-label 大吉Tr.
-          .col= form.number_field :d_track, class: "form-control", min: 0, max: 999
-
-
     .col
       .row.h-100
         .col-1.col-form-label その他
