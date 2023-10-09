@@ -16,6 +16,10 @@ class ActiveSupport::TestCase
   def log_in_as(user)
     session[:user_id] = user.id
   end
+
+  setup do
+    DaikichiForm.first.update(music_ids_for_voting: [musics(:music1), musics(:music2), musics(:music3)])
+  end
 end
 
 class ActionDispatch::IntegrationTest

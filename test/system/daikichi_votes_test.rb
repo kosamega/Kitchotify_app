@@ -3,7 +3,7 @@ require 'application_system_test_case'
 class DaikichiVotesTest < ApplicationSystemTestCase
   setup do
     @daikichi_vote = daikichi_votes(:one)
-    @daikichi_form = daikichi_forms(:one)
+    @daikichi_form = daikichi_forms(:daikichi100)
   end
 
   test 'visiting the index' do

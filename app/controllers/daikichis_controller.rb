@@ -1,75 +1,47 @@
 class DaikichisController < ApplicationController
-  before_action :set_daikichi, only: %i[show edit update destroy]
-  before_action :set_tweet_info, only: %i[show]
   before_action :logged_in_user
+  before_action :set_daikichi_form
+  before_action :set_results
+  before_action :set_musics
   before_action :set_current_user_playlists, only: %i[show]
   before_action :set_current_user_volume, only: %i[show]
 
   include MusicsHelper
 
-  def index
-    @daikichis = Daikichi.all
-  end
-
-  def show
-    @musics = @daikichi.musics.order(:d_track).includes(:artist, :likes, audio_attachment: :blob)
-    @infos = set_infos(@musics)
-    gon.infos_j = @infos
-    @artists = Artist.all
-    @total_length = @musics.sum { |music| music.length || 0 }
-  end
-
   def new
-    @daikichi = Daikichi.new
+    @album = Album.new
   end
-
-  def edit; end
 
   def create
-    @daikichi = Daikichi.new(daikichi_params)
+    @album = Album.new(name: @daikichi_form.name.delete('投票'), kiki_taikai_date: @daikichi_form.accept_until)
 
-    if @daikichi.save
-      flash[:success] = "#{@daikichi.name}を作成しました"
-      redirect_to daikichi_url(@daikichi)
-    else
-      render :new
+    Album.transaction do
+      if @album.save!
+        params[:music_ids].each do |music_id|
+          music = Music.find(music_id).dup
+          music.save!
+          music.update!(album_id: @album.id)
+        end
+        flash[:success] = "#{@album.name}を作成しました"
+        redirect_to album_path(@album)
+      else
+        Rails.logger.debug @album.errors.full_messages
+        render :new
+      end
     end
-  end
-
-  def update
-    released = @daikichi.released?
-    if @daikichi.update(daikichi_params)
-      flash[:success] = "#{@daikichi.name}を更新しました"
-      @daikichi.notify_new_release if released == false && @daikichi.released?
-      redirect_to daikichi_url(@daikichi)
-    else
-      render :edit
-    end
-  end
-
-  def destroy
-    @daikichi.destroy
-    flash[:success] = "#{@daikichi.name}を削除しました"
-
-    redirect_to albums_path
   end
 
   private
 
-  def set_daikichi
-    @daikichi = Daikichi.find(params[:id])
+  def set_daikichi_form
+    @daikichi_form = DaikichiForm.find(params[:daikichi_form_id])
   end
 
-  def daikichi_params
-    params.require(:daikichi).permit(:name, :released, :designer_id, :counting_votes_date, :jacket)
+  def set_results
+    @results = @daikichi_form.results
   end
 
-  def set_tweet_info
-    counting_votes_date = @daikichi.counting_votes_date.present? ? "開票: #{@daikichi.counting_votes_date}" : nil
-    designer_name = @daikichi.designer.present? ? "ジャケットデザイン: #{@daikichi.designer.name}" : nil
-    description = [counting_votes_date, designer_name].compact.join(', ')
-    title = @daikichi.name
-    img_url = @daikichi.jacket&.url unless Rails.env.test?
-    @twitter_info = { description:, title:, img_url: }
+  def set_musics
+    @musics = @results.map { |result| Music.find(result[:music_id]) }
   end
 end

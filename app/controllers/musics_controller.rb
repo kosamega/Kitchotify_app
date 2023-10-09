@@ -93,7 +93,7 @@ class MusicsController < ApplicationController
   end
 
   def music_params
-    params.require(:music).permit(:name, :artist_id, :track, :audio, :index_info, :daikichi_id, :d_track)
+    params.require(:music).permit(:name, :artist_id, :track, :audio, :index_info)
   end
 
   def artist_exist?

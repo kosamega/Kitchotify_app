@@ -8,8 +8,6 @@ Rails.application.routes.draw do
     resource :add_music_length, only: %i[create]
   end
 
-  resources :daikichis, only: %i[new create edit update show destroy]
-
   resources :artists
 
   resources :designers
@@ -38,7 +36,9 @@ Rails.application.routes.draw do
 
   resources :daikichi_forms do
     resources :daikichi_votes
-    resource :daikichi_result, only: %i[show]
+    resource :daikichi_result, only: %i[show] do
+      resources :daikichis, only: %i[new create]
+    end
   end
 
   namespace :api, defaults: { format: :json } do
