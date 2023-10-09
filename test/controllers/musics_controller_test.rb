@@ -34,6 +34,14 @@ class MusicsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test '更新できる' do
+    assert_not_equal 'update', @album.name
+    patch album_music_url(@album, @music), params: { music: { name: 'update' } }
+    @music.reload
+    assert_equal 'update', @music.name
+    assert_redirected_to album_url(@album)
+  end
+
   test 'should destroy music' do
     assert_difference('Music.count', -1) do
       delete album_music_path(@album, @music)

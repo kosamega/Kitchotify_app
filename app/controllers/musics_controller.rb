@@ -70,7 +70,7 @@ class MusicsController < ApplicationController
       respond_to do |format|
         format.html do
           flash[:success] = '更新されました'
-          redirect_to [@album, @music]
+          redirect_to album_path(@album)
         end
         format.js
       end
