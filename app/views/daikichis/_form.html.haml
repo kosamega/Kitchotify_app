@@ -1,43 +1,18 @@
-= form_for @daikichi do |f|
-  =render 'shared/errors', instance: @daikichi
-
-  .row.mb-3
-    .col-2.col-form-label 名前*
-    .col
-      = f.text_field :name, class: "form-control", required: :required
-  .row.mb-3
-    .col-2.col-form-label 開票日*
-    .col
-      = f.date_select :counting_votes_date, required: :required
-  .row
-    .col-2.col-form-label ジャケット
-    .col= f.file_field :jacket, class: "form-control", accept: "image/jpeg, image/png"
-  .row.mb-3
-    .col-2
-    .col= @daikichi&.jacket&.attached? ? "jacketが存在します" : "jacketが存在しません"
-  .row.mb-3
-    .col-2.col-form-label リリース
-    .col
-      = f.check_box :released
-  .row.mb-3
-    .col-2.col-form-label デザイナー検索
-    .col
-      %input.form-control#search-field-designer
-  .row
-    .col-2.col-form-label デザイナー
-    #select-div-designer.col= f.select :designer_id, Designer.all.to_h{|designer|[designer.name, designer.id]}, {include_blank: true}, class: "form-select", id: "jacket_designer_id", size: '5'
-  .row.mb-3
-    .col-2
-    .col.form-text ※デザイナーが存在しない場合は下のフォームから追加してください。
+= form_with url: daikichi_form_daikichi_result_daikichis_path, method: :post do |f|
+  =render 'shared/errors', instance: @album
+  %table.table.align-middle
+    %thead
+      %tr
+        %th{scope: "col"} 収録する
+        %th{scope: "col"} タイトル 
+        %th 合計時間
+    %tbody
+      - @musics.each_with_index do |music, index|
+        %tr.align-middle
+          %td
+            %label.form-check-label
+              =check_box_tag "music_ids[]", music.id, @results[index][:total_length].to_i < 60
+          %td=music.name
+          %td="#{@results[index][:total_length].to_i/60}分#{@results[index][:total_length].to_i%60}秒"
   .actions
     = f.submit '作成', class: "btn btn-primary"
-  
-  -if @daikichi&.id
-    =link_to "削除", daikichi_path(@daikichi), method: :delete, data: { confirm: "本当に消しますか" }, class: "text-white btn btn-danger d-inline-block mt-2"
-  
-    
-%hr
-%h2.mt-4 新規デザイナー
-=render 'designers/form', designer: Designer.new, action: "作成", local: false, edit: edit
-
-=javascript_include_tag 'designer/designer_select_search'
