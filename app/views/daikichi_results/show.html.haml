@@ -3,6 +3,6 @@
   =@daikichi_form.name
   投票結果
 
-=link_to '投票結果から大吉を作成', new_daikichi_form_daikichi_result_daikichi_path(daikichi_form: @daikichi_form, daikichi_result: @daikichi_result), class: "text-white btn btn-primary"
+=link_to '投票結果から大吉を作成', new_daikichi_form_daikichi_result_daikichi_path(daikichi_form_id: @daikichi_form), class: "text-white btn btn-primary"
 
 = render "musics/music", musics: @musics
