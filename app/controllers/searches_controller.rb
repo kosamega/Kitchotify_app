@@ -5,7 +5,7 @@ class SearchesController < ApplicationController
   include MusicsHelper
 
   def index
-    @params = params[:search][:content]
+    @params = params[:search][:content].gsub(/^[[:blank:]]+|[[:blank:]]+$/, '')
     @musics = Music.where('UPPER(name) LIKE ?', "%#{@params.upcase}%").or(Music.where(artist_id: Artist.find_by(name: @params)&.id)).includes(
       { album: [jacket_attachment: [blob: :variant_records]] }, :artist, :likes, audio_attachment: :blob
     )
