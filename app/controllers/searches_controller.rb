@@ -8,7 +8,9 @@ class SearchesController < ApplicationController
     @params = params[:search][:content].gsub(/^[[:blank:]]+|[[:blank:]]+$/, '')
     @musics = Music.where('UPPER(name) LIKE ?', "%#{@params.upcase}%").or(Music.where(artist_id: Artist.find_by(name: @params)&.id)).includes(
       { album: [jacket_attachment: [blob: :variant_records]] }, :artist, :likes, audio_attachment: :blob
-    )
+    ).sort_by do |music|
+      music.album.kiki_taikai_date
+    end.reverse
     @users = User.where('UPPER(name) LIKE ?', "%#{@params.upcase}%")
     @result_playlists = Playlist.where('UPPER(name) LIKE ?', "%#{@params.upcase}%").where(public: true).includes(:user)
     @artists = Artist.where('UPPER(name) LIKE ?', "%#{@params.upcase}%")
