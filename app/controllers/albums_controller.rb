@@ -2,7 +2,6 @@ class AlbumsController < ApplicationController
   before_action :set_album, only: %i[show edit update destroy]
   before_action :set_tweet_info, only: %i[show]
   before_action :logged_in_user
-  before_action :admin_user, only: %i[destroy]
   # before_action :released, only: %i[show]
   before_action :set_current_user_playlists, only: %i[show]
   before_action :set_current_user_volume, only: %i[show]

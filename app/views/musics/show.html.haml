@@ -17,9 +17,12 @@
     .h3=link_to @music.artist.name, artist_path(@music.artist)
     %p=link_to "ツイッターで共有", "https://twitter.com/share?url=#{album_music_url(@album, @music)}&text=#{@music.artist.name} - #{@music.name}", target: "blank", class: 'btn btn-primary mb-3 btn-sm'
     .like-add-playlist
-      %div.d-inline-block{data:{music_id: @music.id, like_id: Like.find_by(music_id: @music.id, user_id: current_user.id)&.id}}
+      - if current_user.editor?
+        =link_to "編集", edit_album_music_path(@album, @music), class: "text-white btn btn-primary"
+        =link_to "削除", [@album, @music], method: :delete, data: { confirm: "本当に消しますか" }, class: "text-white btn btn-danger ms-3"
+      %div.d-inline-block.ms-2{data:{music_id: @music.id, like_id: Like.find_by(music_id: @music.id, user_id: current_user.id)&.id}}
         - if @music.likes.find_by(user_id: current_user.id)
-          %i.fa.fa-heart.liked-btn.delete-like-btn
+          %i.fa.fa-heart.liked-btn.delete-like-btn.ms-3
         - else
           %i.fa.fa-heart.unliked-btn.create-like-btn
       .add-playlist.d-inline-block
@@ -37,11 +40,6 @@
                   = hidden_field_tag :at_playlist_show, false
                   = button_tag type: :submit, class: "text-start border-0 bg-transparent" do
                     = playlist.name
-      - if current_user.editor?
-        .edit-delete-btn
-          =link_to "編集", edit_album_music_path(@album, @music), class: "text-white btn btn-primary ms-3"
-          - if current_user.role_admin?
-            =link_to "削除", [@album, @music], method: :delete, data: { confirm: "本当に消しますか" }, class: "text-white btn btn-danger ms-3"
 
 .row.mt-4
   .col

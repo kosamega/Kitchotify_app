@@ -10,7 +10,7 @@
     .row.mt-3.d-inline-block.float-end
       .col
         = form.submit action, class: "btn btn-primary"
-      - if current_user&.role_admin? && action == "更新"
+      - if action == "更新"
         .col
           =link_to "削除", designer_path(@designer), method: :delete, data: { confirm: "本当に消しますか" }, class: "text-white btn btn-danger d-inline-block mt-2"
 

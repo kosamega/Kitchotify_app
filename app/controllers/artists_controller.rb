@@ -62,7 +62,7 @@ class ArtistsController < ApplicationController
 
   def destroy
     @artist.destroy
-    flash[:success] = '削除しました'
+    flash[:success] = "#{@artist.name}を削除しました"
     redirect_to artists_path
   end
 

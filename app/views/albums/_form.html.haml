@@ -1,38 +1,39 @@
 %h6.mb-3 *がついている項目は必須です
-=form_with(model: album) do |form|
-  .row.mb-3
-    .col-2.col-form-label 名前*
-    .col= form.text_field :name, class: "form-control", required: :required
-  .row.mb-3
-    .col-2.col-form-label 聴き大会*
-    .col= form.date_select :kiki_taikai_date, required: :required
-  .row
-    .col-2.col-form-label ジャケット
-    .col= form.file_field :jacket, class: "form-control", accept: "image/jpeg, image/png"
-  .row.mb-3
-    .col-2
-    .col= album&.jacket&.attached? ? "jacketが存在します" : "jacketが存在しません"
-  .row.mb-3
-    .col-2.col-form-label デザイナー検索
-    .col
-      %input.form-control#search-field-designer
-  .row
-    .col-2.col-form-label デザイナー
-    #select-div-designer.col= form.select :designer_id, Designer.all.to_h{|designer|[designer.name, designer.id]}, {include_blank: true}, class: "form-select", id: "jacket_designer_id", size: '5'
-  .row.mb-3
-    .col-2
-    .col.form-text ※デザイナーが存在しない場合は下のフォームから追加してください。
-  - if action == "更新"
+.clearfix
+  =form_with(model: album) do |form|
     .row.mb-3
+      .col-2.col-form-label 名前*
+      .col= form.text_field :name, class: "form-control", required: :required
+    .row.mb-3
+      .col-2.col-form-label 聴き大会*
+      .col= form.date_select :kiki_taikai_date, required: :required
+    .row
+      .col-2.col-form-label ジャケット
+      .col= form.file_field :jacket, class: "form-control", accept: "image/jpeg, image/png"
+    .row.mb-3
+      .col-2
+      .col= album&.jacket&.attached? ? "jacketが存在します" : "jacketが存在しません"
+    .row.mb-3
+      .col-2.col-form-label デザイナー検索
       .col
-        リリース
-        = form.check_box :released
-  .row.d-inline-block
-    .col
-      = form.submit action, class: "btn btn-primary"
-    - if current_user.role_admin? && action == "更新"
-      .col 
-        =link_to "削除", album_path(@album), method: :delete, data: { confirm: "本当に消しますか" }, class: "text-white btn btn-danger d-inline-block mt-2"
+        %input.form-control#search-field-designer
+    .row
+      .col-2.col-form-label デザイナー
+      #select-div-designer.col= form.select :designer_id, Designer.all.to_h{|designer|[designer.name, designer.id]}, {include_blank: true}, class: "form-select", id: "jacket_designer_id", size: '5'
+    .row.mb-3
+      .col-2
+      .col.form-text ※デザイナーが存在しない場合は下のフォームから追加してください。
+    - if action == "更新"
+      .row.mb-3
+        .col
+          リリース
+          = form.check_box :released
+    .row.mt-3.d-inline-block.float-end
+      .col
+        = form.submit action, class: "btn btn-primary"
+      - if action == "更新"
+        .col 
+          =link_to "削除", album_path(@album), method: :delete, data: { confirm: "本当に消しますか" }, class: "text-white btn btn-danger d-inline-block mt-2"
 
 %hr
 %h2.mt-4 新規デザイナー
