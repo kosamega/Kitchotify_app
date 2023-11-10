@@ -1,10 +1,24 @@
 -provide(:title, 'Home')
 - if DaikichiForm.where(form_closed: false).present?
-  = link_to daikichi_forms_path do
-    = image_tag 'daikichi_vote_banner.gif', width: "500px"
-  = link_to daikichi_forms_path do
-    = image_tag 'daikichi_vote_banner.gif', width: "500px", class: 'wide-inline-block'
-%h1 最新リリース
+  .daikichi_form_banner
+    = link_to daikichi_forms_path do
+      = image_tag 'daikichi_vote_banner.gif', width: "500px"
+    = link_to daikichi_forms_path do
+      = image_tag 'daikichi_vote_banner.gif', width: "500px", class: 'wide-inline-block'
+- if @albums_opening_form
+  .album_form_banner
+    %h1 インデックス情報登録フォーム
+    %table.table.align-middle.table-striped
+      %thead
+        %tr
+          %th アルバム
+          %th 締め切り
+      %tbody
+        - @albums_opening_form.each do |album| 
+          %tr
+            %td= link_to album.name, new_album_music_path(album)
+            %td= album.kiki_taikai_date.days_since(14)
+%h1.mt-3 最新リリース
 .album-container.border-bottom.pb-2.border-2
   - @albums_released.each do |album|
     = link_to album_path(album), class: "album-background" do

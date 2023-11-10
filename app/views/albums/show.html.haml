@@ -27,6 +27,7 @@
         = @total_length%60
         秒
       =link_to "ツイッターで共有", "https://twitter.com/share?url=#{album_url(@album)}&text=#{@album.name}", target: "blank", class: 'btn btn-primary mb-3 btn-sm'
+      =link_to "form", new_album_music_path(@album), class: 'btn btn-primary mb-3 btn-sm'
    
 .container-fluid.mb-4.h-auto.overflow-hidden
   -if current_user.editor?
