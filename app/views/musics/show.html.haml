@@ -15,7 +15,7 @@
     = @album.kiki_taikai_date
     %h2= @music.name
     .h3=link_to @music.artist.name, artist_path(@music.artist)
-    %p=link_to "ツイッターで共有", "https://twitter.com/share?url=#{album_music_url(@album, @music)}&text=#{@music.artist.name} - #{@music.name}", target: "blank", class: 'btn btn-primary mb-3 btn-sm'
+    %p=link_to "𝕏で共有", "https://twitter.com/share?url=#{album_music_url(@album, @music)}&text=#{@music.artist.name} - #{@music.name}", target: "blank", class: 'btn btn-primary mb-3 btn-sm'
     .like-add-playlist
       - if current_user.editor?
         =link_to "編集", edit_album_music_path(@album, @music), class: "text-white btn btn-primary"
