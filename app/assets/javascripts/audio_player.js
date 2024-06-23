@@ -6,10 +6,10 @@ let max = infos.length
 
 function changeInfo(index){
   let artistElement = document.getElementById("track-artist");
-  artistElement.innerHTML = infos[index]['artist'];
+  artistElement.innerText = infos[index]['artist'];
 
   let nameElement = document.getElementById("track-name");
-  nameElement.innerHTML = infos[index]['name'];
+  nameElement.innerText = infos[index]['name'];
 
   indexIncoContent.innerText = infos[index]['index_info']
 }
