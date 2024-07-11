@@ -1,7 +1,7 @@
 class DaikichiVotesController < ApplicationController
   before_action :logged_in_user
   before_action :not_kitchonkun
-  before_action :representative_user, only: %i[index destroy]
+  before_action :producer_user, only: %i[index destroy]
   before_action :set_daikichi_form
   before_action :set_daikichi_vote, only: %i[show edit update destroy]
   before_action :correct_user, only: %i[show edit update]
@@ -78,7 +78,7 @@ class DaikichiVotesController < ApplicationController
   end
 
   def correct_user
-    return if @daikichi_vote.user_id == current_user.id || current_user.role_is_a_representative?
+    return if @daikichi_vote.user_id == current_user.id || current_user.role_is_a_producer?
 
     flash[:danger] = '不正なユーザーです'
     redirect_to daikichi_forms_path
@@ -92,7 +92,7 @@ class DaikichiVotesController < ApplicationController
   end
 
   def form_clesed
-    return if !@daikichi_form.form_closed? || current_user.role_is_a_representative?
+    return if !@daikichi_form.form_closed? || current_user.role_is_a_producer?
 
     flash[:danger] = '投票期間は終了しました'
     redirect_to daikichi_forms_path

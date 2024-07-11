@@ -45,6 +45,13 @@ class ApplicationController < ActionController::Base
     redirect_to root_path
   end
 
+  def producer_user
+    return if current_user.role_is_a_producer?
+
+    flash[:danger] = '生産のみ有効な操作です'
+    redirect_to root_path
+  end
+
   def set_current_user_playlists
     @playlists = current_user&.playlists
   end
