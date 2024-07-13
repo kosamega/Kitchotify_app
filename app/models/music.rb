@@ -52,7 +52,7 @@ class Music < ApplicationRecord
               value: edit_album_music_url(album, self, host: 'kitchotify-app.herokuapp.com')
             },
             {
-              name: 'Kitchofyアカウント',
+              name: 'Kitchotifyアカウント',
               value: current_user.name
             }
           ]
