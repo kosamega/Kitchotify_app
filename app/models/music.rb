@@ -21,7 +21,7 @@ class Music < ApplicationRecord
             URI.parse(ENV.fetch('DISCORD_WEBHOOK_URL_TEST',
                                 nil))
           else
-            URI.parse(ENV.fetch('DISCORD_WEBHOOK_URL_NEW_RELEASE',
+            URI.parse(ENV.fetch('DISCORD_WEBHOOK_URL_NEW_MUSIC',
                                 nil))
           end
     http = Net::HTTP.new(uri.host, uri.port)
