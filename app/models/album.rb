@@ -62,6 +62,6 @@ class Album < ApplicationRecord
                ] }
     headers = { 'Content-Type' => 'application/json' }
 
-    response = http.post(uri.path, params.to_json, headers)
+    http.post(uri.path, params.to_json, headers)
   end
 end
