@@ -21,9 +21,7 @@ module MusicsHelper
     temp_file.write(object.body.read)
     temp_file.close
 
-    AudioInfo.open(temp_file.path, 'mp3') do |info|
-      length = info.length
-    end
+    AudioInfo.open(temp_file.path, 'mp3', &:length)
   # 例外が発生したとしても一時ファイルを消す
   ensure
     temp_file&.unlink

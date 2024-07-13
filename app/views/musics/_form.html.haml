@@ -21,6 +21,15 @@
       .row.mb-2
         .col-2
         .col.form-text 曲順が決まっていない場合は適当な数字で登録してください。
+      .row.mb-2
+        .col-2.col-form-label 尺
+        .col= form.number_field :min, class: "form-control", min: 0, max: 80, required: :required
+        .col.col-form-label 分
+        .col= form.number_field :sec, class: "form-control", min: 0, max: 59, required: :required
+        .col.col-form-label 秒
+      .row.mb-2
+        .col-2
+        .col.form-text wipの場合はwipの尺を入力してください。
       - if edit
         .row
           .col-2.col-form-label 音源

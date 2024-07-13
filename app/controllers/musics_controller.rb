@@ -32,6 +32,7 @@ class MusicsController < ApplicationController
     @music = @album.musics.build(music_params)
     @music.audio.attach(music_params[:audio])
     if @music.save
+      @music.notify_new_music(current_user)
       @messages = "以下の内容で曲を追加しました<br>曲名：#{@music.name}<br>アーティスト：#{@music.artist.name}<br>インデックス情報：<br>#{@music.index_info}"
       @number = params[:music][:track].to_i - 1
       @at_album_show = params[:at_album_show]
@@ -93,11 +94,13 @@ class MusicsController < ApplicationController
   end
 
   def music_params
-    params.require(:music).permit(:name, :artist_id, :track, :audio, :index_info)
+    permitted_params = params.require(:music).permit(:name, :artist_id, :track, :audio, :index_info)
+    length = (params[:music][:min].to_i * 60) + params[:music][:sec].to_i
+    permitted_params.merge(length:)
   end
 
   def artist_exist?
-    return if (artist = Artist.find_by(id: music_params[:artist_id]))
+    return false if (artist = Artist.find_by(id: music_params[:artist_id]))
 
     respond_to do |format|
       format.html do
